@@ -1,7 +1,10 @@
 
 ## 说明
 实际效果如下图：
+
 ![](https://github.com/mythkiven/JCombineLoadingAnimation/blob/master/gif.gif)
+
+
 **JCombineLoadingAnimation 是一个组合的动画效果，其中的各部分都可以单独拿出来使用**
 
 ### 1、外层渐变转动的圆
