@@ -10,8 +10,15 @@
 
 #define  Width [UIScreen mainScreen].bounds.size.width
 
+typedef NS_ENUM(NSInteger, JLoadingManagerType) {
+    JLoadingManagerTypeImage = 10,
+    JLoadingManagerTypeColor,
+    JLoadingManagerTypeOther,
+};
 
 @interface JLoadingManagerView : UIView
+
+@property (nonatomic, assign) JLoadingManagerType loadingType;
 
 /*
     启动动画
@@ -26,7 +33,7 @@
 /*
   结束动画
  */
--(void)endAnimation;
+-(void)stopAnimation;
 
 
 

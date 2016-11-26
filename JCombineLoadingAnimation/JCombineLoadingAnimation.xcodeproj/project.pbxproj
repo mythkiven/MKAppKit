@@ -164,21 +164,29 @@
 		D297EE8C1DE5785D007C0AC4 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				D2A756331DE9682A009A8B73 /* file */,
+				D297EE931DE57863007C0AC4 /* JLoadingManagerView.h */,
+				D297EE941DE57863007C0AC4 /* JLoadingManagerView.m */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		D2A756331DE9682A009A8B73 /* file */ = {
+			isa = PBXGroup;
+			children = (
+				D297EE951DE57863007C0AC4 /* JPushTableCell.h */,
+				D297EE961DE57863007C0AC4 /* JPushTableCell.m */,
+				D297EE971DE57863007C0AC4 /* JPushTableCell.xib */,
+				D297EE981DE57863007C0AC4 /* JPushTableCellView.h */,
+				D297EE991DE57863007C0AC4 /* JPushTableCellView.m */,
 				D297EE8D1DE57863007C0AC4 /* JControlLoadingCircleLayer.h */,
 				D297EE8E1DE57863007C0AC4 /* JControlLoadingCircleLayer.m */,
 				D297EE8F1DE57863007C0AC4 /* JControlLoadingCircleView.h */,
 				D297EE901DE57863007C0AC4 /* JControlLoadingCircleView.m */,
 				D297EE911DE57863007C0AC4 /* JDradualLoadingView.h */,
 				D297EE921DE57863007C0AC4 /* JDradualLoadingView.m */,
-				D297EE931DE57863007C0AC4 /* JLoadingManagerView.h */,
-				D297EE941DE57863007C0AC4 /* JLoadingManagerView.m */,
-				D297EE951DE57863007C0AC4 /* JPushTableCell.h */,
-				D297EE961DE57863007C0AC4 /* JPushTableCell.m */,
-				D297EE971DE57863007C0AC4 /* JPushTableCell.xib */,
-				D297EE981DE57863007C0AC4 /* JPushTableCellView.h */,
-				D297EE991DE57863007C0AC4 /* JPushTableCellView.m */,
 			);
-			path = lib;
+			name = file;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -554,6 +562,7 @@
 				D297EE851DE57807007C0AC4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D297EE861DE57807007C0AC4 /* Build configuration list for PBXNativeTarget "JCombineLoadingAnimationTests" */ = {
 			isa = XCConfigurationList;
@@ -562,6 +571,7 @@
 				D297EE881DE57807007C0AC4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D297EE891DE57807007C0AC4 /* Build configuration list for PBXNativeTarget "JCombineLoadingAnimationUITests" */ = {
 			isa = XCConfigurationList;
@@ -570,6 +580,7 @@
 				D297EE8B1DE57807007C0AC4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

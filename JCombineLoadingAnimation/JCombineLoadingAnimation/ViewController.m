@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIView *tableView;
 
 @property (strong, nonatomic) JLoadingManagerView *controlView;
-    
+@property (strong, nonatomic) JPushTableCellView  *jPushTableCellView;
 
     
 @property NSUInteger count;
@@ -29,19 +29,13 @@
 
 @implementation ViewController
 {
-   
-    JPushTableCellView  *_jPushTableCellView;
-    NSTimer             *time;
+   NSTimer             *time;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self.view setBackgroundColor:[UIColor cyanColor]];
     
-    // 配置上方的加载数据
-    _controlView =  [[JLoadingManagerView alloc]initWithFrame:CGRectMake(0, 0,width, width)];
-    [_contain addSubview:_controlView];
- 
     
     //配置下方的cell
     _jPushTableCellView = [[JPushTableCellView alloc]initWithFrame:CGRectMake(0, 0, width, 30*5)];
@@ -53,14 +47,18 @@
     [self b6:nil];
     
 }
+- (IBAction)changeModel:(id)sender {
+   self.controlView.loadingType=(self.controlView.loadingType == 10)?11:10;
+}
 
 - (IBAction)b1:(id)sender {
-    if (!_controlView) {
-        _controlView =  [[JLoadingManagerView alloc]initWithFrame:CGRectMake(0, 0,width, width)];
-        [_contain addSubview:_controlView];
+    if (!self.controlView) {
+        self.controlView =  [[JLoadingManagerView alloc]initWithFrame:CGRectMake(0, 0,width, width)];
+        self.controlView.loadingType = 11;
+        [_contain addSubview:self.controlView];
     }
     
-    [_controlView startAnimationWithPercent:16 duration:4];
+    [self.controlView startAnimationWithPercent:16 duration:4];
     
     _jPushTableCellView.index = 4;
 }
@@ -68,24 +66,23 @@
 
 - (IBAction)b2:(id)sender {
     _jPushTableCellView.index = 3;
-    [_controlView startAnimationWithPercent:16 endPercent:32 duration:8  ];
+    [self.controlView startAnimationWithPercent:16 endPercent:32 duration:8  ];
 }
 - (IBAction)b3:(id)sender {
     _jPushTableCellView.index = 2;
-    [_controlView startAnimationWithPercent:32 endPercent:50 duration:4  ];
+    [self.controlView startAnimationWithPercent:32 endPercent:50 duration:4  ];
 }
 - (IBAction)b4:(id)sender {
     _jPushTableCellView.index = 1;
-    [_controlView startAnimationWithPercent:50 endPercent:90 duration:8  ];
+    [self.controlView startAnimationWithPercent:50 endPercent:90 duration:8  ];
 }
 - (IBAction)b5:(id)sender {
     _jPushTableCellView.index = 0;
-    [_controlView startAnimationWithPercent:90 endPercent:100 duration:2 ];
+    [self.controlView startAnimationWithPercent:90 endPercent:100 duration:2 ];
 }
  
 - (IBAction)b6:(id)sender {
-    [_controlView removeFromSuperview];
-    _controlView = nil;
+    [self.controlView stopAnimation];
     
     NSInteger j =_jPushTableCellView.data.count-1;
     [_jPushTableCellView.tableCellView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:j inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];

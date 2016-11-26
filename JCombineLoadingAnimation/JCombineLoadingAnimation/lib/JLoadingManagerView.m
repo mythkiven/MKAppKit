@@ -11,27 +11,46 @@
 #import "JDradualLoadingView.h"
 #import "JControlLoadingCircleView.h"
 
+#define SCREEN_WIDTH    [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT   [UIScreen mainScreen].bounds.size.heigh
+#define RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
+#define RGB(r,g,b)      [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0]
+#define centerX(v)        v.center.x
+#define centerY(v)        v.center.y
+
+#define loadingHelight  160
+#define dotOuterRadius  508/4
+#define dotInnerRadius (508-16)/4
 
 @interface JLoadingManagerView ()
 
 
-@property (nonatomic, strong)   JControlLoadingCircleView   *progress;
+// 圆点进度条
+@property (nonatomic, strong)   JControlLoadingCircleView   *dotLoading;
+// 外侧纯色转圈
+@property (nonatomic,strong)    UIImageView                 *imageLoading;
+// 外侧绚丽转圈
+@property (nonatomic,strong)    JDradualLoadingView         *colorLoading;
+
+// 进度文字
+@property (nonatomic,strong)    UIButton                     *percentLabel;
+// 进度标题
+@property (nonatomic,strong)    UILabel                     *titleLabel;
+
+
 @property (nonatomic,strong)    NSMutableArray              *layerContainer;
 @property (nonatomic,strong)    NSMutableDictionary         *timerContainer;
-
-
-@property (nonatomic,strong)    UILabel *progressLabel;
-@property (nonatomic,strong)    UILabel *titleLabel;
-@property (nonatomic,strong)    NSTimer *timer;
+@property (nonatomic,strong)    NSTimer         *timer;
+@property (nonatomic, strong)   CADisplayLink   *link;
 
 @end
 
-
 @implementation JLoadingManagerView
 {
-    JDradualLoadingView   * loading;
     CGFloat                 sumPer;
+    
 }
+
 - (NSMutableDictionary *)timerContainer {
     if (!_timerContainer) {
         _timerContainer = [[NSMutableDictionary alloc] init];
@@ -59,121 +78,149 @@
     return self;
 }
 
--(void)defaultInit{
+-(void)defaultInit {
     
-    //外层动画：
-    loading = [[JDradualLoadingView alloc] initWithFrame:CGRectMake(0, 0, 290, 290)];
-    loading.center = CGPointMake(self.center.x, (self.center.y));
-    loading.backgroundColor = [UIColor clearColor];
-    loading.lineColor = [UIColor cyanColor];
-    loading.lineWidth = 10;
-    
-    loading.hidden = YES;
-    
-    //文字
-    self.progressLabel = [[UILabel alloc] initWithFrame: CGRectMake((self.bounds.size.width - 100)/2, (self.bounds.size.height + 20)/2, 100, 30)];
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.bounds.size.width - 160)/2, (self.bounds.size.height - 100)/2, 160, 30)];
-    
-    [self.progressLabel setTextColor:[UIColor whiteColor]];
-    self.progressLabel.text =  @"0%";
-    self.progressLabel.textColor =[UIColor blackColor];
-    self.progressLabel.textAlignment = NSTextAlignmentCenter;
-    self.progressLabel.font = [UIFont systemFontOfSize:20 weight:0.4];
-    [self.titleLabel setTextColor:[UIColor whiteColor]];
-    self.titleLabel.text =  @"github.com/mythkiven";
-    self.titleLabel.textColor =[UIColor blackColor];
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.titleLabel.font = [UIFont systemFontOfSize:12 weight:0.4];
-    
-    
-    
-    _progress = [[JControlLoadingCircleView alloc] initWithFrame:CGRectMake(0, 0, 240, 240)];
-    _progress.center =  CGPointMake(self.center.x, (self.center.y));
-    _progress.backgroundColor = [UIColor clearColor];
-    
-    _progress.outerRadius = 110;
-    _progress.innerRadius = 95;
-    _progress.clockwise = YES;
-    _progress.beginAngle = 360;
-    
-    _progress.gapAngle = 3;
-    _progress.dotCount = 50;
-    
-    _progress.progressColor = [UIColor greenColor];
-    _progress.trackColor    = [UIColor clearColor];
-    _progress.backgroundColor = [UIColor clearColor];
-    
-    _progress.minValue = 0;
-    _progress.maxValue = 100;
-    _progress.currentValue = 0;
-    
-    [self  addSubview:loading];
-    
-    [self addSubview:_progress];
-    [self addSubview:self.progressLabel];
+    [self addSubview:self.dotLoading];
     [self addSubview:self.titleLabel];
-    
+    [self addSubview:self.percentLabel];
     
 }
+-(void)setLoadingType:(JLoadingManagerType)loadingType {
+    _loadingType = loadingType;
+    switch (_loadingType) {
+        case JLoadingManagerTypeImage:{
+            [self  addSubview:self.imageLoading];
+            break;
+        }case JLoadingManagerTypeColor:{
+            [self  addSubview:self.colorLoading];
+            break;
+        }case JLoadingManagerTypeOther:{
+            break;
+        }default:
+            break;
+    }
+}
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    if (_imageLoading) {
+        _imageLoading.center =  CGPointMake(centerX(self),loadingHelight);
+        _imageLoading.bounds =  CGRectMake(0, 0, 281, 281);
+    }
+    if (_colorLoading) {
+        _colorLoading.center =  CGPointMake(centerX(self),loadingHelight);
+        _colorLoading.bounds =  CGRectMake(0, 0, 281, 281);
+    }
+    _dotLoading.bounds = CGRectMake(0,0, 570/2, 570/2);
+    _dotLoading.center = CGPointMake(centerX(self), loadingHelight);
+    
+    _titleLabel.bounds = CGRectMake(0,0, 570/2, 570/2);
+    _titleLabel.center = CGPointMake( centerX(self), loadingHelight-20);
+    
+    _percentLabel.bounds = CGRectMake(0,0, 570/2, 570/2);
+    _percentLabel.center = CGPointMake( centerX(self), loadingHelight+20);
+    
+                      
+                      
+}
 
+#pragma mark - 控制
+-(void)startAnimationWithPercent:(CGFloat)end duration:(CGFloat)duration {
+    if (_imageLoading) {
+        _imageLoading.hidden = NO;
+        [self startRotating];
+    } else if (_colorLoading){
+        _colorLoading.hidden = NO;
+        _colorLoading.hidden = NO;
+        [_colorLoading startAnimation];
+    }
 
-
-
-# pragma mark 控制
--(void)startAnimationWithPercent:(CGFloat)end duration:(CGFloat)duration{
-    loading.hidden = NO;
-    [loading startAnimation];
     [self startAnimationWithPercent:0 endPercent:end duration:duration];
     
 }
-
 -(void)startAnimationWithPercent:(CGFloat)begin endPercent:(CGFloat)end duration:(CGFloat)duration {
     
     sumPer = end;
     [self cancelTimerWithName:@"timeNEW"];
     __weak typeof(self) weakSelf = self;
     
-    if ((end-begin)/duration<=_progress.maxValue/_progress.dotCount) {
+    if ((end-begin)/duration<=_dotLoading.maxValue/_dotLoading.dotCount) {
         [self scheduledDispatchTimerWithName:@"timeNEW" timeInterval:1 queue:nil repeats:YES action:^{
             
             [weakSelf settingValue:(CGFloat)(end-begin)/duration];
         }];
         
-    } else if ( (end-begin)/duration>_progress.maxValue/_progress.dotCount) {
-        CGFloat time = (end-begin) / (_progress.maxValue/_progress.dotCount);
+    } else if ( (end-begin)/duration>_dotLoading.maxValue/_dotLoading.dotCount) {
+        CGFloat time = (end-begin) / (_dotLoading.maxValue/_dotLoading.dotCount);
         
         [self scheduledDispatchTimerWithName:@"timeNEW" timeInterval:duration/time queue:nil repeats:YES action:^{
             
-            [weakSelf settingValue:(_progress.maxValue/_progress.dotCount)];
+            [weakSelf settingValue:(_dotLoading.maxValue/_dotLoading.dotCount)];
         }];
         
     }else {
         
     }
+    
+//    CGFloat timee =(CGFloat) (end-begin) / (_progress.maxValue/_progress.dotCount);
+//    
+//    [self scheduledDispatchTimerWithName:@"timeNEW" timeInterval:duration/timee queue:nil repeats:YES action:^{
+//        
+//        totalTime +=duration/timee;
+//        time +=duration/timee;
+//        [weakSelf settingValue:(_progress.maxValue/_progress.dotCount)];
+//        
+//        CGFloat value = _progress.currentValue;
+//        if (value>= sumPer) {
+//            if (completeblock) completeblock();
+//            
+//            
+//            return;
+//        }
+//        
+//    }];
 }
--(void)endAnimation{
-    [loading stopAnimation];
-    [loading removeFromSuperview];
-    [self removeFromSuperview];
+-(void)stopAnimation {
+    if (_imageLoading) {
+        [self stopRotating];
+        _imageLoading.hidden =YES;
+    } else if (_colorLoading){
+        [_colorLoading stopAnimation];
+        _colorLoading.hidden =YES;
+    }
+    _dotLoading.currentValue =0;
+    [_percentLabel setTitle:@"" forState:UIControlStateNormal];
+    [_percentLabel setImage:nil forState:UIControlStateNormal];
+    [self cancelTimerWithName:@"timeNEW"];
 }
 
 
 
 
-# pragma mark 设置数值
-
-
--(void)settingValue:(CGFloat)sum{
-    CGFloat value = _progress.currentValue;
+#pragma mark 设置数值
+-(void)settingValue:(CGFloat)sum {
+    CGFloat value = _dotLoading.currentValue;
     if (value>= sumPer) {
         [self cancelTimerWithName:@"timeNEW"];
         return;
     }
-    _progress.currentValue = value + sum;
-    _progressLabel.text = [NSString stringWithFormat:@"%ld%%",(NSInteger)_progress.currentValue];
+    _dotLoading.currentValue = value + sum;
+    
+    if (value>=99) {
+        [_percentLabel setTitle:@"" forState:UIControlStateNormal];
+        [_percentLabel setImage:[UIImage imageNamed:@"loading_Hook"] forState:UIControlStateNormal];
+    }else{
+        [_percentLabel setTitle:[NSString stringWithFormat:@"%ld%%",(long)_dotLoading.currentValue] forState:UIControlStateNormal];
+    }
+    
+    
+    
+    
+    
+    
 }
 
-# pragma mark 定时器
+#pragma mark - 定时器
 - (void)scheduledDispatchTimerWithName:(NSString *)timerName
                           timeInterval:(double)interval
                                  queue:(dispatch_queue_t)queue
@@ -208,7 +255,6 @@
     });
     
 }
-# pragma mark 暂停
 - (void)cancelTimerWithName:(NSString *)timerName {
     dispatch_source_t timer = [self.timerContainer objectForKey:timerName];
     
@@ -222,8 +268,94 @@
 }
 
 
+#pragma mark - 设置旋转的图片
+- (void)startRotating {
+    if (self.link){
+        return;
+    }
+    CADisplayLink *link = [CADisplayLink displayLinkWithTarget:self selector:@selector(rotating)];
+//    link.frameInterval =1;
+    [link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+    self.link = link;
+}
 
+- (void)stopRotating  {
+    if (self.link) {
+        [self.link invalidate];
+        self.link = nil;
+    }
+    
+}
+- (void)rotating {
+    self.imageLoading.transform = CGAffineTransformRotate(self.imageLoading.transform, (M_PI/180)/0.85);
+    
+}
 
+                      
+                      
+#pragma mark -
+-(UIButton*)percentLabel {
+    if (!_percentLabel) {
+        _percentLabel = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_percentLabel setTitleColor:[UIColor whiteColor] forState: UIControlStateNormal];
+        _percentLabel.titleLabel.text =  @"0%";
+        _percentLabel.titleLabel.textAlignment = NSTextAlignmentCenter;
+        _percentLabel. titleLabel.font = [UIFont systemFontOfSize:20 weight:0.4];
+    }
+    return _percentLabel;
+}
+-(UILabel*)titleLabel {
+    if (!_titleLabel) {
+        _titleLabel = [[UILabel alloc] init];
+        [_titleLabel setTextColor:[UIColor whiteColor]];
+        _titleLabel.text =  @"github.com/mythkiven";
+        _titleLabel.textColor =[UIColor blackColor];
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
+        _titleLabel.font = [UIFont systemFontOfSize:12 weight:0.4];
+    }
+    return _titleLabel;
+}
+-(JControlLoadingCircleView*)dotLoading {
+  if (!_dotLoading) {
+      _dotLoading = [[JControlLoadingCircleView alloc] init];
+      _dotLoading.backgroundColor = [UIColor clearColor];
+      
+      _dotLoading.outerRadius = dotOuterRadius;
+      _dotLoading.innerRadius = dotInnerRadius;
+      _dotLoading.clockwise = YES;
+      _dotLoading.beginAngle = 360;
+      
+      _dotLoading.gapAngle = 2;
+      _dotLoading.dotCount = 100;
+      
+      _dotLoading.trackColor = RGBA(204, 204, 204, 0.3);
+      _dotLoading.progressColor = RGB(85, 255, 0);
+      _dotLoading.backgroundColor = [UIColor clearColor];
+      
+      _dotLoading.minValue = 0;
+      _dotLoading.maxValue = 100;
+      _dotLoading.currentValue = 0;
+  }
+  return _dotLoading;
+}
+-(UIImageView*)imageLoading {
+  if (!_imageLoading) {
+      _imageLoading= [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"imageLoading"]];
+      _imageLoading.clipsToBounds = YES;
+      [self addSubview:_imageLoading];
+  }
+    return _imageLoading;
+}
+-(JDradualLoadingView*)colorLoading {
+    if (!_colorLoading) {
+        _colorLoading = [[JDradualLoadingView alloc] init];
+        _colorLoading.backgroundColor = [UIColor clearColor];
+        _colorLoading.lineColor = [UIColor cyanColor];
+        _colorLoading.lineWidth = 5;
+        _colorLoading.hidden = YES;
+    }
+    return _colorLoading;
+}
 
 
 @end
