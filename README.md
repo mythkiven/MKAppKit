@@ -7,9 +7,20 @@
 
 **JCombineLoadingAnimation 是一个组合的动画效果，其中的各部分都可以单独拿出来使用**
 
-### 1、外层渐变转动的圆
+### 1、外层旋转动画
 
-基于Core Graphics和CAAnimation,在类：JDradualLoadingView中，使用CGContextRef和CABasicAnimation来实现的。动画的相关控制我已经封装到一个方法里面，具体可以看代码。
+有两种，参见gif的演示，可以使用绚丽的动画，或者简单的颜色渐变，参见gif演示。
+1、颜色渐变的动画:基于Core Graphics和CAAnimation,在类：JDradualLoadingView中，使用CGContextRef和CABasicAnimation来实现的。动画的相关控制我已经封装到一个方法里面，具体可以看代码。
+2、绚丽的效果，旋转的控制使用刷新频率精度较高的CADisplayLink。颜色的渐变使用代码写起来比较麻烦，我直接贴了张图片上去。可以按照需求更图片即可。
+
+针对外层动画的控制，我进行了简单的划分：
+```
+typedef NS_ENUM(NSInteger, JLoadingManagerType) {
+    JLoadingManagerTypeImage = 10,
+    JLoadingManagerTypeColor,
+    JLoadingManagerTypeOther,
+};
+```
 
 ### 2、内层的文字和转动的圆
 
