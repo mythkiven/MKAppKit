@@ -2,7 +2,7 @@
 ## 说明
 实际效果如下图：
 
-![](https://github.com/mythkiven/MKAppKit/blob/master/source/gif.gif)
+![](https://github.com/mythkiven/JCombineLoadingAnimation/blob/master/gif.gif)
 
 
 **JCombineLoadingAnimation 是一个组合的动画效果，其中的各部分都可以单独拿出来使用**
@@ -35,6 +35,8 @@ typedef NS_ENUM(NSInteger, JLoadingManagerType) {
 
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 
+
+其实这份代码写的蛮早了，这几天拿出来调试了下就传上来了，里面代码写的挺糟的也没来得及改，如果有BUG还请提出来，我会优化的。
 
 
 
