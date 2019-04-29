@@ -17,6 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    // 后续组件陆续添加，然后统一到本demo 中，目前可以在 ../devDemo/ 中查看
     return YES;
 }
 

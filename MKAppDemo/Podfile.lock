@@ -1,3 +1,16 @@
-PODFILE CHECKSUM: 9f9e9f3ea2b033523d5e213986e88533279a2912
+PODS:
+  - MKAppKit/MKCombineLoadingAnimation (0.0.1)
+
+DEPENDENCIES:
+  - MKAppKit/MKCombineLoadingAnimation
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - MKAppKit
+
+SPEC CHECKSUMS:
+  MKAppKit: dee2ca2e46b5614fbb36ea12c79c6f03c4ec6450
+
+PODFILE CHECKSUM: bd7f82dd727a26c2411d1d4f32c0ddb6807bdcb4
 
 COCOAPODS: 1.6.1

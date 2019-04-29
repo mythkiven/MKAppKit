@@ -1,11 +1,9 @@
 
-## 说明
+## 常用组件
 
-以前项目中用到的一些UI效果，集中到框架中，有不少是老代码，一直用不到也懒得更新了。
-
-
-
-#### 老项目
-- [圆环进度+tableview组合的加载数据动画](https://github.com/mythkiven/MKAppKit/blob/master/doc/CombineLoadingAnimation.md)
-
+| 组件| 添加方式 | 地址 |
+| --- | --- | --- |
+| 组合加载动画组件 |  pod 'MKAppKit/MKCombineLoadingAnimation'  |  [圆环进度+tableview组合的加载数据动画](https://github.com/mythkiven/MKAppKit/blob/master/doc/CombineLoadingAnimation.md) 
+|  |  |  |
+|  |  |  |
 
