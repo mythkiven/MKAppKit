@@ -16,7 +16,7 @@
 
 **动画效果如下:**
 
-![](https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/Source/MKDiffuseMenu.gif)
+![](https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/Source/SDiffuseMenu.gif)
 
 **配置图如下:**
 
