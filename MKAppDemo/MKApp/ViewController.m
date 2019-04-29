@@ -9,6 +9,7 @@
 #import "ViewController.h" 
 #import "MKCombineLoadingAnimationVC.h"
 #import "MKDropdownMailTFVC.h"
+#import "MKApp-Swift.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (strong,nonatomic) UITableView *tableview;
@@ -37,7 +38,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _dataSource = @[@"MKCombineLoadingAnimation",@"MKDropdownMailTF"];
+    _dataSource = @[@"MKCombineLoadingAnimation",@"MKDropdownMailTF",@"MKDiffuseMenu"];
     self.title = @"MKAppKit";
     [self.view addSubview:self.tableview] ;
 }
@@ -62,6 +63,9 @@
                 break;
             case 1:
                 vc = [MKDropdownMailTFVC new];
+                break;
+            case 2:
+                vc = [MKDiffuseMenuVC new];
                 break;
         default:
             break;

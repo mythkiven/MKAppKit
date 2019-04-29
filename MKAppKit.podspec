@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "MKAppKit"
-  s.version      = "0.0.2"
+  s.version      = "0.0.3"
   s.summary      = "iOS常用组件"
   s.description      = <<-DESC
                           iOS常用组件 Desc
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
 
 
   s.subspec 'All' do |all|
-    all.source_files = 'MKAppKit/MKAnimation/**/*.{h,m}','MKAppKit/MKUIKit/**/*.{h,m}'
+    all.source_files = 'MKAppKit/MKAnimation/**/*.{h,m,swift}','MKAppKit/MKUIKit/**/*.{h,m,swift}'
     all.resources = "MKAppKit/**/**/*.{xib}"
   end
 
@@ -33,6 +33,9 @@ Pod::Spec.new do |s|
     df.resources = "MKAppKit/MKUIKit/MKDropdownMailTF/*.{xib}"
   end
 
+  s.subspec 'MKDiffuseMenu' do |dm|
+    dm.source_files = 'MKAppKit/MKAnimation/MKDiffuseMenu/*.{swift}' 
+  end
 
 end
 

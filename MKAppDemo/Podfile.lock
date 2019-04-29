@@ -1,9 +1,11 @@
 PODS:
-  - MKAppKit/MKCombineLoadingAnimation (0.0.1)
-  - MKAppKit/MKDropdownMailTF (0.0.1)
+  - MKAppKit/MKCombineLoadingAnimation (0.0.2)
+  - MKAppKit/MKDiffuseMenu (0.0.2)
+  - MKAppKit/MKDropdownMailTF (0.0.2)
 
 DEPENDENCIES:
   - MKAppKit/MKCombineLoadingAnimation (from `../`)
+  - MKAppKit/MKDiffuseMenu (from `../`)
   - MKAppKit/MKDropdownMailTF (from `../`)
 
 EXTERNAL SOURCES:
@@ -11,8 +13,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  MKAppKit: 5efc646a9cb1c13b670e28b1fa3c11f36bebeb1b
+  MKAppKit: 02d1be300939eb04b1ed17dd59585423fcf9e9c2
 
-PODFILE CHECKSUM: efaf4c712c3af98580b3fa0bdef21b94f7a4e5b2
+PODFILE CHECKSUM: a8d9e0abef245a3628f80544692388d00693c54e
 
 COCOAPODS: 1.6.1
