@@ -1,0 +1,16 @@
+PODS:
+  - MKAppKit/MKCombineLoadingAnimation (0.0.1)
+
+DEPENDENCIES:
+  - MKAppKit/MKCombineLoadingAnimation (from `../../`)
+
+EXTERNAL SOURCES:
+  MKAppKit:
+    :path: "../../"
+
+SPEC CHECKSUMS:
+  MKAppKit: f4d0ee742cc01573fb2a3d6e20e2e3b90630f001
+
+PODFILE CHECKSUM: ec9c1a93bc8e3bc8290bca5b979fca2ee1df4799
+
+COCOAPODS: 1.6.1
