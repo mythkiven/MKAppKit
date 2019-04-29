@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "MKAppKit"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "iOS常用组件"
   s.description      = <<-DESC
                           iOS常用组件 Desc
@@ -19,14 +19,21 @@ Pod::Spec.new do |s|
 
 
   s.subspec 'All' do |all|
-    all.source_files = 'MKAppKit/Animation/**/*.{h,m}'
-    all.resources = "MKAppKit/*.{xib}","MKAppKit/Animation/**/*.{xib}"
+    all.source_files = 'MKAppKit/MKAnimation/**/*.{h,m}','MKAppKit/MKUIKit/**/*.{h,m}'
+    all.resources = "MKAppKit/**/**/*.{xib}"
   end
 
   s.subspec 'MKCombineLoadingAnimation' do |la|
-    la.source_files = 'MKAppKit/Animation/**/*.{h,m}'
-    la.resources = "MKAppKit/*.{xib}","MKAppKit/Animation/**/*.{xib}"
+    la.source_files = 'MKAppKit/MKAnimation/MKCombineLoadingAnimation/*.{h,m}'
+    la.resources = "MKAppKit/MKAnimation/MKCombineLoadingAnimation/*.{xib}"
   end
+
+  s.subspec 'MKDropdownMailTF' do |df|
+    df.source_files = 'MKAppKit/MKUIKit/MKDropdownMailTF/*.{h,m}'
+    df.resources = "MKAppKit/MKUIKit/MKDropdownMailTF/*.{xib}"
+  end
+
+
 end
 
 

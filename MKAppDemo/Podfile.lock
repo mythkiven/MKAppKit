@@ -1,16 +1,18 @@
 PODS:
   - MKAppKit/MKCombineLoadingAnimation (0.0.1)
+  - MKAppKit/MKDropdownMailTF (0.0.1)
 
 DEPENDENCIES:
-  - MKAppKit/MKCombineLoadingAnimation
+  - MKAppKit/MKCombineLoadingAnimation (from `../`)
+  - MKAppKit/MKDropdownMailTF (from `../`)
 
-SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - MKAppKit
+EXTERNAL SOURCES:
+  MKAppKit:
+    :path: "../"
 
 SPEC CHECKSUMS:
-  MKAppKit: dee2ca2e46b5614fbb36ea12c79c6f03c4ec6450
+  MKAppKit: 5efc646a9cb1c13b670e28b1fa3c11f36bebeb1b
 
-PODFILE CHECKSUM: bd7f82dd727a26c2411d1d4f32c0ddb6807bdcb4
+PODFILE CHECKSUM: efaf4c712c3af98580b3fa0bdef21b94f7a4e5b2
 
 COCOAPODS: 1.6.1

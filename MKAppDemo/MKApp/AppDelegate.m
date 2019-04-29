@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "ViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -16,8 +16,22 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    // 后续组件陆续添加，然后统一到本demo 中，目前可以在 ../devDemo/ 中查看
+    
+//    ViewController *vc = [[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
+//    UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+//    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+//    self.window.rootViewController = nvc;
+//    self.window.backgroundColor = [UIColor whiteColor];
+//    [self.window makeKeyAndVisible];
+    
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    ViewController *homeVc = [[ViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:homeVc];
+    self.window.rootViewController = nav;
+    [self.window makeKeyAndVisible];
+    
+    
     return YES;
 }
 

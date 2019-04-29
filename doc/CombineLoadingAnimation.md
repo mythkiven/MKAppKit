@@ -2,7 +2,7 @@
 ## 说明
 实际效果如下图：
 
-![](https://github.com/mythkiven/MKAppKit/blob/master/source/gif.gif)
+![](https://github.com/mythkiven/MKAppKit/blob/master/source/MKCombineLoadingAnimation.gif)
 
 
 **MKCombineLoadingAnimation 是一个组合的动画效果，其中的各部分都可以单独拿出来使用**

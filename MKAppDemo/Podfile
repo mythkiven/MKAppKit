@@ -1,7 +1,19 @@
-# Uncomment the next line to define a global platform for your project
-platform :ios, '9.0'
+source 'https://github.com/CocoaPods/Specs.git'
+
+workspace 'MKApp.xcworkspace'
+project 'MKApp.xcodeproj'
+
+
+#target :MKCombineLoadingAnimation do
+#  platform:ios,'9.0'
+#  project 'devDemo/MKCombineLoadingAnimation/MKCombineLoadingAnimation.xcodeproj'
+#  pod 'MKAppKit/MKCombineLoadingAnimation', :path => '../'
+#end
 
 target 'MKApp' do
-  pod 'MKAppKit/MKCombineLoadingAnimation'
-
+  platform:ios,'9.0'
+  pod 'MKAppKit/MKCombineLoadingAnimation', :path => '../'
+  pod 'MKAppKit/MKDropdownMailTF', :path => '../'
+#  pod 'MKAppKit/MKCombineLoadingAnimation'
+#  pod 'MKAppKit/MKCombineLoadingAnimation'
 end
