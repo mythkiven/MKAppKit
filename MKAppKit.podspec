@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
   s.default_subspec = 'All'
-
+  s.swift_version = '5.0'
 
   s.subspec 'All' do |all|
     all.source_files = 'MKAppKit/MKAnimation/**/*.{h,m,swift}','MKAppKit/MKUIKit/**/*.{h,m,swift}'
@@ -34,7 +34,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'MKDiffuseMenu' do |dm|
-    dm.source_files = 'MKAppKit/MKAnimation/MKDiffuseMenu/*.{swift}' 
+    dm.source_files = 'MKAppKit/MKAnimation/MKDiffuseMenu/*.{swift}'
   end
 
 end
