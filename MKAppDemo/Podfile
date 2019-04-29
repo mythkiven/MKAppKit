@@ -15,5 +15,5 @@ target 'MKApp' do
   pod 'MKAppKit/MKCombineLoadingAnimation', :path => '../'
   pod 'MKAppKit/MKDropdownMailTF', :path => '../'
 #  pod 'MKAppKit/MKCombineLoadingAnimation'
-#  pod 'MKAppKit/MKCombineLoadingAnimation'
+#  pod 'MKAppKit/MKDropdownMailTF'
 end
