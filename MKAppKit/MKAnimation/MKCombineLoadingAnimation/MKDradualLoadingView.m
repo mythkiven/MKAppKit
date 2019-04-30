@@ -50,12 +50,10 @@ typedef UIColor * (^floatColorBlock)(float);
     if (self.anglePer <= 0) {
         _anglePer = 0;
     }
-    
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     
     [[UIColor clearColor] set];
-    UIRectFill(self.bounds);
-    
+    UIRectFill(self.bounds); 
     CGRect r = self.bounds;
     
     if (r.size.width > r.size.height)

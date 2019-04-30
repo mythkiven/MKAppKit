@@ -98,8 +98,6 @@
     }
 }
 
-
-
 #pragma mark -
 - (void)setMailCellHeight:(CGFloat)mailCellHeight{
     _mailCellHeight = mailCellHeight;
@@ -173,8 +171,7 @@
     } else {
         rect.size.height = cellH;
         cell.emailLabel.frame = rect;
-    }
-    
+    } 
     
     rect.origin.x = self.mLeftMargin;
     cell.emailLabel.frame = rect;

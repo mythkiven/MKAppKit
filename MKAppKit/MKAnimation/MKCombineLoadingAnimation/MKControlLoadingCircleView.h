@@ -38,10 +38,7 @@
 /** 进度最大数值，默认为100 */
 @property (nonatomic, assign) CGFloat    maxValue;
 
-
 /** 进度当前数值 */
 @property (nonatomic, assign) CGFloat    currentValue;
-
-
 
 @end

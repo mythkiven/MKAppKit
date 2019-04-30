@@ -117,7 +117,6 @@
     }
     CGContextSetLineWidth(ctx, 0.5);
     CGContextSetFillColorWithColor(ctx, fillColor.CGColor);
-    CGContextDrawPath(ctx, kCGPathFill);
-    
+    CGContextDrawPath(ctx, kCGPathFill); 
 }
 @end

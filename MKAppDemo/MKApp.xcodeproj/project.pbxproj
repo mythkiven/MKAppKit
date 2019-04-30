@@ -244,13 +244,15 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MKApp/Pods-MKApp-resources.sh",
-				"${PODS_ROOT}/MKAppKit/MKAppKit/MKAnimation/MKCombineLoadingAnimation/MKPushTableCell.xib",
-				"${PODS_ROOT}/MKAppKit/MKAppKit/MKUIKit/MKDropdownMailTF/MKDropdownMailTFCell.xib",
+				"${PODS_ROOT}/../../MKAppKit/Resource/MKCLAResource.bundle",
+				"${PODS_ROOT}/../../MKAppKit/MKAnimation/MKCombineLoadingAnimation/MKPushTableCell.xib",
+				"${PODS_ROOT}/../../MKAppKit/MKUIKit/MKDropdownMailTF/MKDropdownMailTFCell.xib",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MKCLAResource.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MKPushTableCell.nib",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MKDropdownMailTFCell.nib",
 			);

@@ -35,34 +35,24 @@
     self.tableCellView.dataSource =self;
     self.userInteractionEnabled =NO;
     [self addSubview:self.tableCellView];
-    
 }
-
 -(void)setIndex:(NSInteger)index{
     _index = index;
     [self.tableCellView reloadData];
     [self.tableCellView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-    
 }
-
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _data.count;
 }
-
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     MKPushTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MKPushTableCell" forIndexPath:indexPath];
     if ([_data[indexPath.row] isEqualToString:@"NULL"]) {
         cell.index = 99999;
     }else{
         cell.index = [_data[indexPath.row] integerValue] ;
     }
-    
-    
     return cell;
 }
-
 
 
 @end

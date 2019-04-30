@@ -25,22 +25,20 @@
 
 
 // 圆点进度条
-@property (nonatomic, strong)   MKControlLoadingCircleView   *dotLoading;
+@property (nonatomic, strong)   MKControlLoadingCircleView  *dotLoading;
 // 外侧纯色转圈
 @property (nonatomic,strong)    UIImageView                 *imageLoading;
 // 外侧绚丽转圈
-@property (nonatomic,strong)    MKDradualLoadingView         *colorLoading;
-
+@property (nonatomic,strong)    MKDradualLoadingView        *colorLoading;
 // 进度文字
-@property (nonatomic,strong)    UIButton                     *percentLabel;
+@property (nonatomic,strong)    UIButton                    *percentLabel;
 // 进度标题
 @property (nonatomic,strong)    UILabel                     *titleLabel;
 
-
 @property (nonatomic,strong)    NSMutableArray              *layerContainer;
 @property (nonatomic,strong)    NSMutableDictionary         *timerContainer;
-@property (nonatomic,strong)    NSTimer         *timer;
-@property (nonatomic, strong)   CADisplayLink   *link;
+@property (nonatomic,strong)    NSTimer                     *timer;
+@property (nonatomic, strong)   CADisplayLink               *link;
 
 @end
 
@@ -56,7 +54,6 @@
     }
     return _timerContainer;
 }
-
 
 - (instancetype)init {
      if (self= [super init]) {
@@ -77,12 +74,10 @@
     return self;
 }
 
--(void)defaultInit {
-    
+-(void)defaultInit { 
     [self addSubview:self.dotLoading];
     [self addSubview:self.titleLabel];
     [self addSubview:self.percentLabel];
-    
 }
 -(void)setLoadingType:(MKLoadingManagerType)loadingType {
     _loadingType = loadingType;
@@ -118,9 +113,6 @@
     
     _percentLabel.bounds = CGRectMake(0,0, 570/2, 570/2);
     _percentLabel.center = CGPointMake( centerX(self), loadingHelight+20);
-    
-                      
-                      
 }
 
 #pragma mark - 控制
@@ -133,32 +125,24 @@
         _colorLoading.hidden = NO;
         [_colorLoading startAnimation];
     }
-
     [self startAnimationWithPercent:0 endPercent:end duration:duration];
     
 }
 -(void)startAnimationWithPercent:(CGFloat)begin endPercent:(CGFloat)end duration:(CGFloat)duration {
-    
     sumPer = end;
     [self cancelTimerWithName:@"timeNEW"];
     __weak typeof(self) weakSelf = self;
     
     if ((end-begin)/duration<=_dotLoading.maxValue/_dotLoading.dotCount) {
         [self scheduledDispatchTimerWithName:@"timeNEW" timeInterval:1 queue:nil repeats:YES action:^{
-            
             [weakSelf settingValue:(CGFloat)(end-begin)/duration];
         }];
-        
     } else if ( (end-begin)/duration>_dotLoading.maxValue/_dotLoading.dotCount) {
         CGFloat time = (end-begin) / (_dotLoading.maxValue/_dotLoading.dotCount);
-        
         [self scheduledDispatchTimerWithName:@"timeNEW" timeInterval:duration/time queue:nil repeats:YES action:^{
-            
             [weakSelf settingValue:(_dotLoading.maxValue/_dotLoading.dotCount)];
         }];
-        
     }else {
-        
     }
     
 //    CGFloat timee =(CGFloat) (end-begin) / (_progress.maxValue/_progress.dotCount);
@@ -203,20 +187,13 @@
         [self cancelTimerWithName:@"timeNEW"];
         return;
     }
-    _dotLoading.currentValue = value + sum;
-    
+    _dotLoading.currentValue = value + sum; 
     if (value>=99) {
         [_percentLabel setTitle:@"" forState:UIControlStateNormal];
-        [_percentLabel setImage:[UIImage imageNamed:@"loading_Hook"] forState:UIControlStateNormal];
+        [_percentLabel setImage:[self imagesFromBundleWithName:@"mkcla-imageHook"] forState:UIControlStateNormal];
     }else{
         [_percentLabel setTitle:[NSString stringWithFormat:@"%ld%%",(long)_dotLoading.currentValue] forState:UIControlStateNormal];
     }
-    
-    
-    
-    
-    
-    
 }
 
 #pragma mark - 定时器
@@ -224,11 +201,9 @@
                           timeInterval:(double)interval
                                  queue:(dispatch_queue_t)queue
                                repeats:(BOOL)repeats
-                                action:(dispatch_block_t)action
-{
+                                action:(dispatch_block_t)action {
     if (nil == timerName)
         return;
-    
     if (nil == queue)
         queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     
@@ -238,7 +213,6 @@
         dispatch_resume(timer);
         [self.timerContainer setObject:timer forKey:timerName];
     }
-    
     dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, interval * NSEC_PER_SEC), interval * NSEC_PER_SEC, 0.1 * NSEC_PER_SEC);
     
     __weak typeof(self) weakSelf = self;
@@ -247,12 +221,10 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             action();
         });
-        
         if (!repeats) {
             [weakSelf cancelTimerWithName:timerName];
         }
     });
-    
 }
 - (void)cancelTimerWithName:(NSString *)timerName {
     dispatch_source_t timer = [self.timerContainer objectForKey:timerName];
@@ -263,7 +235,6 @@
     
     [self.timerContainer removeObjectForKey:timerName];
     dispatch_source_cancel(timer);
-    
 }
 
 
@@ -283,14 +254,10 @@
         [self.link invalidate];
         self.link = nil;
     }
-    
 }
 - (void)rotating {
     self.imageLoading.transform = CGAffineTransformRotate(self.imageLoading.transform, (M_PI/180)/0.85);
-    
 }
-
-                      
                       
 #pragma mark -
 -(UIButton*)percentLabel {
@@ -339,7 +306,7 @@
 }
 -(UIImageView*)imageLoading {
   if (!_imageLoading) {
-      _imageLoading= [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"imageLoading"]];
+      _imageLoading= [[UIImageView alloc] initWithImage:[self imagesFromBundleWithName:@"mkcla-imageLoading"]];
       _imageLoading.clipsToBounds = YES;
       [self addSubview:_imageLoading];
   }
@@ -355,6 +322,15 @@
     }
     return _colorLoading;
 }
-
-
+- (UIImage *)imagesFromBundleWithName:(NSString *)name {
+    return [UIImage imageNamed:name inBundle:[self bundle] compatibleWithTraitCollection:nil];
+}
+- (NSBundle *)bundle {
+    static NSBundle *bundle = nil;
+    if ( nil == bundle ) {
+        NSString* bundlePath = [[NSBundle mainBundle].resourcePath stringByAppendingPathComponent:@"MKCLAResource.bundle"];
+        bundle = [NSBundle bundleWithPath:bundlePath];
+    }
+    return bundle;
+}
 @end

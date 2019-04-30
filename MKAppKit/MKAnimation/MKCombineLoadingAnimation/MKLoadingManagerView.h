@@ -19,18 +19,15 @@ typedef NS_ENUM(NSInteger, MKLoadingManagerType) {
 
 @property (nonatomic, assign) MKLoadingManagerType loadingType;
 
-/*
-    启动动画
+/**  启动动画
  */
 -(void)startAnimationWithPercent:(CGFloat) end duration:(CGFloat)duration;
 
-/*
-    动画的控制
+/** 动画控制
  */
 -(void)startAnimationWithPercent:(CGFloat)begin endPercent:(CGFloat)end duration:(CGFloat)duration ;
 
-/*
-  结束动画
+/** 结束动画
  */
 -(void)stopAnimation;
 
