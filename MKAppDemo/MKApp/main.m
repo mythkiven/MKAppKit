@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+//#import "MKLaunchMonitor.h"
+#import "MKPointWatch.h"
+
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {
+        [[MKPointWatch pointWatch] startWatching]; 
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
 }

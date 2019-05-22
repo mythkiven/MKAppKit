@@ -8,6 +8,9 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+//#import "MKLaunchMonitor.h"
+#import "MKPointWatch.h"
+
 @interface AppDelegate ()
 
 @end
@@ -16,6 +19,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+//    [[MKLaunchMonitor sharedMonitor] startMonitor];
+    [[MKPointWatch pointWatch] pointWithDescription:@"didFinishLaunchingWithOptions"];
     
 //    ViewController *vc = [[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
 //    UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:vc];
@@ -30,7 +35,6 @@
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:homeVc];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
-    
     
     return YES;
 }
@@ -53,8 +57,11 @@
 }
 
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+- (void)applicationDidBecomeActive:(UIApplication *)application { 
+    [[MKPointWatch pointWatch] pointWithDescription:@"applicationDidBecomeActive"];
+    NSLog(@"des:%@ %@ %lf",[MKPointWatch pointWatch].printedPoints,[MKPointWatch pointWatch].points,[MKPointWatch pointWatch].lastWatchInterval);
+    [[MKPointWatch pointWatch] stopWatchingAndAlertResult]; 
+    
 }
 
 

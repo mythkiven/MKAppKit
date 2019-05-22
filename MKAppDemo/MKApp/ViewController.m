@@ -10,6 +10,8 @@
 #import "MKCombineLoadingAnimationVC.h"
 #import "MKDropdownMailTFVC.h"
 #import "MKApp-Swift.h"
+//#import "MKLaunchMonitor.h"
+#import "MKPointWatch.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (strong,nonatomic) UITableView *tableview;
@@ -38,15 +40,21 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[MKPointWatch pointWatch] pointWithDescription:@"viewDidLoad"];
     _dataSource = @[@"MKCombineLoadingAnimation",@"MKDropdownMailTF",@"MKDiffuseMenu"];
     self.title = @"MKAppKit";
-    [self.view addSubview:self.tableview] ;
+    [self.view addSubview:self.tableview];
+    sleep(1);
 }
-
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [[MKPointWatch pointWatch] pointWithDescription:@"viewDidAppear"];
+//    [[MKLaunchMonitor sharedMonitor] logAllCallStack];
+}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _dataSource.count;
 }
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MKAppDemoCell"];
     if(!cell){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MKAppDemoCell"];
@@ -70,7 +78,8 @@
         default:
             break;
     }
-    if(vc)
+    if(vc){
         [self.navigationController pushViewController:vc animated:YES];
+    } 
 }
 @end

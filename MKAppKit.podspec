@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "MKAppKit"
-  s.version      = "0.0.5"
+  s.version      = "0.0.6"
   s.summary      = "iOS常用组件"
   s.description      = <<-DESC
                           iOS常用组件 Desc
@@ -35,6 +35,10 @@ Pod::Spec.new do |s|
 
   s.subspec 'MKDiffuseMenu' do |dm|
     dm.source_files = 'MKAppKit/MKAnimation/MKDiffuseMenu/*.{swift}'
+  end
+
+  s.subspec 'MKLaunchMonitor' do |lm|
+    lm.source_files = 'MKAppKit/MKLaunchMonitor/*.{h,m,c}'
   end
 
 end
