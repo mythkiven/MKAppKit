@@ -38,7 +38,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'MKLaunchMonitor' do |lm|
-    lm.source_files = 'MKAppKit/MKLaunchMonitor/*.{h,m,c}'
+    lm.source_files = 'MKAppKit/MKMonitor/MKLaunchMonitor/*.{h,m,c}'
   end
 
 end

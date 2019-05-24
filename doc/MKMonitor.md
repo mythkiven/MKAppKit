@@ -9,6 +9,7 @@
 - MKRenderMonitor：渲染帧率监控
 - MKCPUMonitor：CPU 监控
 - MKMemoryMonitor：内存监控
+- MKCrashMonitor：卡顿监控
 - MKLaunchMonitor：app 启动监控
 - MKCrashMonitor：crash 监控
 
@@ -33,7 +34,7 @@ Xcode 自带的 Instrument 工具包含了很多强大的检测 功能：CPU、�
 
 ###### pre-main 阶段
 
-pre main() 这个时间，一般控制在 400ms 以内。iOS10 之后，可以在 Xcode 的 Edit Scheme->Run->Environment Variables 中增加 `DYLD_PRINT_STATISTICS` 环境变量, value=1 来测量这个时间。当前工具库暂时没发监控这个数据。
+pre main() 这个时间， 一般控制在 400ms 以内。iOS10 之后，可以在 Xcode 的 Edit Scheme->Run->Environment Variables 中增加 `DYLD_PRINT_STATISTICS` 环境变量, value=1 来测量这个时间。当前工具库暂时没发监控这个数据。
 
 
 ###### main()->applicationDidBecomeActive()
@@ -45,6 +46,10 @@ pre main() 这个时间，一般控制在 400ms 以内。iOS10 之后，可以�
 
 
 
+sss、、
+
+
+
 主线程阻塞超过 400 毫秒就会让用户感知到卡顿
 
 参考：
@@ -53,6 +58,8 @@ pre main() 这个时间，一般控制在 400ms 以内。iOS10 之后，可以�
 - https://www.itslide.com/slide/275520/
 
 
+
+流量监控去掉NSURLProtocol对于WKWebView的支持,因为出于性能的原因，post 请求 body 数据被清空 （encode 的时候 HTTPBody 和 HTTPBodyStream 这两个字段被丢弃掉了）。参考苹果源码https://github.com/WebKit/webkit/blob/fe39539b83d28751e86077b173abd5b7872ce3f9/Source/WebKit2/Shared/mac/WebCoreArgumentCodersMac.mm#L61-L88 。及bug report: https://bugs.webkit.org/show_bug.cgi?id=138169。 from https://mp.weixin.qq.com/s/rhYKLIbXOsUJC_n6dt9UfA
 ### 相关工具
 
 - [检测项目中未使用的图片](https://github.com/tinymind/LSUnusedResources)
