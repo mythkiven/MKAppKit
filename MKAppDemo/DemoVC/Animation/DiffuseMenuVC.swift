@@ -1,5 +1,5 @@
 //
-//  MKDiffuseMenuVC.swift
+//  DiffuseMenuVC.swift
 //  MKApp
 //
 //  Created by apple on 2019/4/29.
@@ -10,7 +10,7 @@
 import MKAppKit
 import UIKit
 
-class MKDiffuseMenuVC: UIViewController, MKDiffuseMenuDelegate {
+class DiffuseMenuVC: UIViewController, MKDiffuseMenuDelegate {
     
     
     @IBOutlet weak var menuView:                UIView!

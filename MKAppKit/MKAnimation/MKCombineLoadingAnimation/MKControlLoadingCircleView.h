@@ -6,13 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-// 角度转弧度
-#define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
-// 弧度转角度
-#define RADIANS_TO_DEGREES(radians) ((radians) * (180.0 / M_PI))
 
-
-// 圆点进度条 外层包装
 @interface MKControlLoadingCircleView : UIView
 
     

@@ -10,16 +10,16 @@
 #import "MKDradualLoadingView.h"
 #import "MKControlLoadingCircleView.h"
 
-#define SCREEN_WIDTH    [UIScreen mainScreen].bounds.size.width
-#define SCREEN_HEIGHT   [UIScreen mainScreen].bounds.size.heigh
-#define RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
-#define RGB(r,g,b)      [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0]
-#define centerX(v)        v.center.x
-#define centerY(v)        v.center.y
+#define MK_SCREEN_WIDTH    [UIScreen mainScreen].bounds.size.width
+#define MK_SCREEN_HEIGHT   [UIScreen mainScreen].bounds.size.heigh
+#define MK_RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
+#define MK_RGB(r,g,b)      [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0]
+#define MK_centerX(v)      v.center.x
+#define MK_centerY(v)      v.center.y
 
-#define loadingHelight  160
-#define dotOuterRadius  508/4
-#define dotInnerRadius (508-16)/4
+#define MK_loadingHelight  160
+#define MK_dotOuterRadius  508/4
+#define MK_dotInnerRadius (508-16)/4
 
 @interface MKLoadingManagerView ()
 
@@ -98,21 +98,21 @@
     [super layoutSubviews];
     
     if (_imageLoading) {
-        _imageLoading.center =  CGPointMake(centerX(self),loadingHelight);
+        _imageLoading.center =  CGPointMake(MK_centerX(self),MK_loadingHelight);
         _imageLoading.bounds =  CGRectMake(0, 0, 281, 281);
     }
     if (_colorLoading) {
-        _colorLoading.center =  CGPointMake(centerX(self),loadingHelight);
+        _colorLoading.center =  CGPointMake(MK_centerX(self),MK_loadingHelight);
         _colorLoading.bounds =  CGRectMake(0, 0, 281, 281);
     }
     _dotLoading.bounds = CGRectMake(0,0, 570/2, 570/2);
-    _dotLoading.center = CGPointMake(centerX(self), loadingHelight);
+    _dotLoading.center = CGPointMake(MK_centerX(self), MK_loadingHelight);
     
     _titleLabel.bounds = CGRectMake(0,0, 570/2, 570/2);
-    _titleLabel.center = CGPointMake( centerX(self), loadingHelight-20);
+    _titleLabel.center = CGPointMake( MK_centerX(self), MK_loadingHelight-20);
     
     _percentLabel.bounds = CGRectMake(0,0, 570/2, 570/2);
-    _percentLabel.center = CGPointMake( centerX(self), loadingHelight+20);
+    _percentLabel.center = CGPointMake( MK_centerX(self), MK_loadingHelight+20);
 }
 
 #pragma mark - 控制
@@ -286,16 +286,16 @@
       _dotLoading = [[MKControlLoadingCircleView alloc] init];
       _dotLoading.backgroundColor = [UIColor clearColor];
       
-      _dotLoading.outerRadius = dotOuterRadius;
-      _dotLoading.innerRadius = dotInnerRadius;
+      _dotLoading.outerRadius = MK_dotOuterRadius;
+      _dotLoading.innerRadius = MK_dotInnerRadius;
       _dotLoading.clockwise = YES;
       _dotLoading.beginAngle = 360;
       
       _dotLoading.gapAngle = 2;
       _dotLoading.dotCount = 100;
       
-      _dotLoading.trackColor = RGBA(204, 204, 204, 0.3);
-      _dotLoading.progressColor = RGB(85, 255, 0);
+      _dotLoading.trackColor = MK_RGBA(204, 204, 204, 0.3);
+      _dotLoading.progressColor = MK_RGB(85, 255, 0);
       _dotLoading.backgroundColor = [UIColor clearColor];
       
       _dotLoading.minValue = 0;

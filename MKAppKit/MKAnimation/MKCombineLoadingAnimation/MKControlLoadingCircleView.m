@@ -8,6 +8,11 @@
 #import "MKControlLoadingCircleView.h"
 #import "MKControlLoadingCircleLayer.h"
 
+// 角度转弧度
+#define MK_DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
+// 弧度转角度
+#define MK_RADIANS_TO_DEGREES(radians) ((radians) * (180.0 / M_PI))
+
 @implementation MKControlLoadingCircleView
 
 #pragma mark - 初始化方法
@@ -101,11 +106,11 @@
     
 - (CGFloat)beginAngle {
     MKControlLoadingCircleLayer *layer = (MKControlLoadingCircleLayer *)self.layer;
-    return RADIANS_TO_DEGREES(layer.beginAngle);
+    return MK_RADIANS_TO_DEGREES(layer.beginAngle);
 }
     
 - (void)setBeginAngle:(CGFloat)beginAngle {
-    CGFloat radians = DEGREES_TO_RADIANS(beginAngle);
+    CGFloat radians = MK_DEGREES_TO_RADIANS(beginAngle);
     if (self.beginAngle != radians) {
         MKControlLoadingCircleLayer *layer = (MKControlLoadingCircleLayer *)self.layer;
         layer.beginAngle = radians;
@@ -115,11 +120,11 @@
 
 - (CGFloat)gapAngle {
     MKControlLoadingCircleLayer *layer = (MKControlLoadingCircleLayer *)self.layer;
-    return RADIANS_TO_DEGREES(layer.gapAngle);
+    return MK_RADIANS_TO_DEGREES(layer.gapAngle);
 }
     
 - (void)setGapAngle:(CGFloat)gapAngle {
-    CGFloat radians = DEGREES_TO_RADIANS(gapAngle);
+    CGFloat radians = MK_DEGREES_TO_RADIANS(gapAngle);
     if (self.gapAngle != radians) {
         MKControlLoadingCircleLayer *layer = (MKControlLoadingCircleLayer *)self.layer;
         layer.gapAngle = radians;

@@ -1,5 +1,5 @@
 //
-//  MKDropdownMailTFVC.h
+//  DropdownMailTFVC.h
 //  MKApp
 //
 //  Created by https://github.com/mythkiven/ on 2019/4/28.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MKDropdownMailTFVC : UIViewController
+@interface DropdownMailTFVC : UIViewController
 
 
 @end

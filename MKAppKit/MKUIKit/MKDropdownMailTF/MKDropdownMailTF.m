@@ -1,13 +1,13 @@
 //
 //
 //  Created by https://github.com/mythkiven/ on 15/11/12.
-//  Copyright © 2015年 3code. All rights reserved.
+//  Copyright © 2015年 mythkiven All rights reserved.
 //
 
 #import "MKDropdownMailTF.h"
 #import "MKDropdownMailTFCell.h"
 
-#define cellH 44
+#define MK_cellH 44
 
 @interface MKDropdownMailTF ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -56,7 +56,7 @@
     CGFloat textH = self.frame.size.height;
     CGFloat textW = self.frame.size.width;
     
-    self.pullTableView = [[UITableView alloc] initWithFrame:CGRectMake(textX, textY+textH, textW, 4*cellH) style:UITableViewStylePlain];
+    self.pullTableView = [[UITableView alloc] initWithFrame:CGRectMake(textX, textY+textH, textW, 4*MK_cellH) style:UITableViewStylePlain];
     self.pullTableView.dataSource = self;
     self.pullTableView.delegate = self;
     [self setUpEmailSuffixArray];
@@ -169,7 +169,7 @@
         rect.size.height = self.mailCellHeight;
         cell.emailLabel.frame = rect;
     } else {
-        rect.size.height = cellH;
+        rect.size.height = MK_cellH;
         cell.emailLabel.frame = rect;
     } 
     
@@ -185,7 +185,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return self.mailCellHeight ? self.mailCellHeight : cellH;
+    return self.mailCellHeight ? self.mailCellHeight : MK_cellH;
 }
 
 - (void)tapCell:(UIButton *)sender {

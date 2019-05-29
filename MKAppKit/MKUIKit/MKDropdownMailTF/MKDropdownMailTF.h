@@ -1,7 +1,7 @@
 //
 //
 //  Created by https://github.com/mythkiven/ on 15/11/12.
-//  Copyright © 2015年 3code. All rights reserved.
+//  Copyright © 2015年 mythkiven All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

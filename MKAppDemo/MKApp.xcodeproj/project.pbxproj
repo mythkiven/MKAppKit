@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		18289DFD2292467800EB7FF2 /* MKPointWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 18289DFB2292467800EB7FF2 /* MKPointWatch.m */; };
-		1847EB3C2276D90500E6E35D /* MKCombineLoadingAnimationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1847EB392276D90400E6E35D /* MKCombineLoadingAnimationVC.xib */; };
-		1847EB3D2276D90500E6E35D /* MKCombineLoadingAnimationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1847EB3A2276D90400E6E35D /* MKCombineLoadingAnimationVC.m */; };
-		1847EB422276DD4900E6E35D /* MKDropdownMailTFVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1847EB412276DD4900E6E35D /* MKDropdownMailTFVC.m */; };
-		1847EB442276DE6600E6E35D /* MKDropdownMailTFVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1847EB432276DE6600E6E35D /* MKDropdownMailTFVC.xib */; };
-		1847EB472276F73E00E6E35D /* MKDiffuseMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1847EB462276F73D00E6E35D /* MKDiffuseMenuVC.swift */; };
-		1847EB492276F8F500E6E35D /* MKDiffuseMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1847EB482276F8F500E6E35D /* MKDiffuseMenuVC.xib */; };
+		1847EB3C2276D90500E6E35D /* CombineLoadingAnimationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1847EB392276D90400E6E35D /* CombineLoadingAnimationVC.xib */; };
+		1847EB3D2276D90500E6E35D /* CombineLoadingAnimationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1847EB3A2276D90400E6E35D /* CombineLoadingAnimationVC.m */; };
+		1847EB422276DD4900E6E35D /* DropdownMailTFVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1847EB412276DD4900E6E35D /* DropdownMailTFVC.m */; };
+		1847EB442276DE6600E6E35D /* DropdownMailTFVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1847EB432276DE6600E6E35D /* DropdownMailTFVC.xib */; };
+		1847EB472276F73E00E6E35D /* DiffuseMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1847EB462276F73D00E6E35D /* DiffuseMenuVC.swift */; };
+		1847EB492276F8F500E6E35D /* DiffuseMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1847EB482276F8F500E6E35D /* DiffuseMenuVC.xib */; };
 		18BB8F70227318F6005EDC27 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BB8F6F227318F6005EDC27 /* AppDelegate.m */; };
 		18BB8F73227318F6005EDC27 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BB8F72227318F6005EDC27 /* ViewController.m */; };
 		18BB8F78227318FD005EDC27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18BB8F77227318FD005EDC27 /* Assets.xcassets */; };
@@ -25,15 +25,15 @@
 /* Begin PBXFileReference section */
 		18289DFB2292467800EB7FF2 /* MKPointWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPointWatch.m; sourceTree = "<group>"; };
 		18289DFC2292467800EB7FF2 /* MKPointWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPointWatch.h; sourceTree = "<group>"; };
-		1847EB392276D90400E6E35D /* MKCombineLoadingAnimationVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MKCombineLoadingAnimationVC.xib; sourceTree = "<group>"; };
-		1847EB3A2276D90400E6E35D /* MKCombineLoadingAnimationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCombineLoadingAnimationVC.m; sourceTree = "<group>"; };
-		1847EB3B2276D90400E6E35D /* MKCombineLoadingAnimationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCombineLoadingAnimationVC.h; sourceTree = "<group>"; };
-		1847EB402276DD4900E6E35D /* MKDropdownMailTFVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDropdownMailTFVC.h; sourceTree = "<group>"; };
-		1847EB412276DD4900E6E35D /* MKDropdownMailTFVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDropdownMailTFVC.m; sourceTree = "<group>"; };
-		1847EB432276DE6600E6E35D /* MKDropdownMailTFVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MKDropdownMailTFVC.xib; sourceTree = "<group>"; };
+		1847EB392276D90400E6E35D /* CombineLoadingAnimationVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CombineLoadingAnimationVC.xib; sourceTree = "<group>"; };
+		1847EB3A2276D90400E6E35D /* CombineLoadingAnimationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CombineLoadingAnimationVC.m; sourceTree = "<group>"; };
+		1847EB3B2276D90400E6E35D /* CombineLoadingAnimationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CombineLoadingAnimationVC.h; sourceTree = "<group>"; };
+		1847EB402276DD4900E6E35D /* DropdownMailTFVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropdownMailTFVC.h; sourceTree = "<group>"; };
+		1847EB412276DD4900E6E35D /* DropdownMailTFVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropdownMailTFVC.m; sourceTree = "<group>"; };
+		1847EB432276DE6600E6E35D /* DropdownMailTFVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropdownMailTFVC.xib; sourceTree = "<group>"; };
 		1847EB452276F73D00E6E35D /* MKApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MKApp-Bridging-Header.h"; sourceTree = "<group>"; };
-		1847EB462276F73D00E6E35D /* MKDiffuseMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKDiffuseMenuVC.swift; sourceTree = "<group>"; };
-		1847EB482276F8F500E6E35D /* MKDiffuseMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MKDiffuseMenuVC.xib; sourceTree = "<group>"; };
+		1847EB462276F73D00E6E35D /* DiffuseMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffuseMenuVC.swift; sourceTree = "<group>"; };
+		1847EB482276F8F500E6E35D /* DiffuseMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiffuseMenuVC.xib; sourceTree = "<group>"; };
 		18B6A1C92276CB94008B1B97 /* libPods-MKCombineLoadingAnimation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-MKCombineLoadingAnimation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18BB8F6B227318F6005EDC27 /* MKApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MKApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18BB8F6E227318F6005EDC27 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -148,11 +148,11 @@
 		1847EB3E2276D91100E6E35D /* Animation */ = {
 			isa = PBXGroup;
 			children = (
-				1847EB3B2276D90400E6E35D /* MKCombineLoadingAnimationVC.h */,
-				1847EB3A2276D90400E6E35D /* MKCombineLoadingAnimationVC.m */,
-				1847EB392276D90400E6E35D /* MKCombineLoadingAnimationVC.xib */,
-				1847EB462276F73D00E6E35D /* MKDiffuseMenuVC.swift */,
-				1847EB482276F8F500E6E35D /* MKDiffuseMenuVC.xib */,
+				1847EB3B2276D90400E6E35D /* CombineLoadingAnimationVC.h */,
+				1847EB3A2276D90400E6E35D /* CombineLoadingAnimationVC.m */,
+				1847EB392276D90400E6E35D /* CombineLoadingAnimationVC.xib */,
+				1847EB462276F73D00E6E35D /* DiffuseMenuVC.swift */,
+				1847EB482276F8F500E6E35D /* DiffuseMenuVC.xib */,
 				1847EB452276F73D00E6E35D /* MKApp-Bridging-Header.h */,
 			);
 			path = Animation;
@@ -161,9 +161,9 @@
 		1847EB3F2276DD4000E6E35D /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				1847EB402276DD4900E6E35D /* MKDropdownMailTFVC.h */,
-				1847EB412276DD4900E6E35D /* MKDropdownMailTFVC.m */,
-				1847EB432276DE6600E6E35D /* MKDropdownMailTFVC.xib */,
+				1847EB402276DD4900E6E35D /* DropdownMailTFVC.h */,
+				1847EB412276DD4900E6E35D /* DropdownMailTFVC.m */,
+				1847EB432276DE6600E6E35D /* DropdownMailTFVC.xib */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -272,10 +272,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1847EB492276F8F500E6E35D /* MKDiffuseMenuVC.xib in Resources */,
-				1847EB3C2276D90500E6E35D /* MKCombineLoadingAnimationVC.xib in Resources */,
+				1847EB492276F8F500E6E35D /* DiffuseMenuVC.xib in Resources */,
+				1847EB3C2276D90500E6E35D /* CombineLoadingAnimationVC.xib in Resources */,
 				18BB8F7B227318FD005EDC27 /* LaunchScreen.storyboard in Resources */,
-				1847EB442276DE6600E6E35D /* MKDropdownMailTFVC.xib in Resources */,
+				1847EB442276DE6600E6E35D /* DropdownMailTFVC.xib in Resources */,
 				18BB8F78227318FD005EDC27 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,11 +338,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1847EB3D2276D90500E6E35D /* MKCombineLoadingAnimationVC.m in Sources */,
+				1847EB3D2276D90500E6E35D /* CombineLoadingAnimationVC.m in Sources */,
 				18BB8F73227318F6005EDC27 /* ViewController.m in Sources */,
 				18289DFD2292467800EB7FF2 /* MKPointWatch.m in Sources */,
-				1847EB472276F73E00E6E35D /* MKDiffuseMenuVC.swift in Sources */,
-				1847EB422276DD4900E6E35D /* MKDropdownMailTFVC.m in Sources */,
+				1847EB472276F73E00E6E35D /* DiffuseMenuVC.swift in Sources */,
+				1847EB422276DD4900E6E35D /* DropdownMailTFVC.m in Sources */,
 				18BB8F7E227318FD005EDC27 /* main.m in Sources */,
 				18BB8F70227318F6005EDC27 /* AppDelegate.m in Sources */,
 			);

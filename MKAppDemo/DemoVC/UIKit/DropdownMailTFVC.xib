@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MKDropdownMailTFVC">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DropdownMailTFVC">
             <connections>
                 <outlet property="holderView" destination="zta-QT-nr6" id="bLS-Oo-Ag9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="52I-Yq-tcp"/>

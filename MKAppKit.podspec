@@ -2,10 +2,10 @@
 Pod::Spec.new do |s|
 
   s.name         = "MKAppKit"
-  s.version      = "0.0.7"
-  s.summary      = "iOS常用组件"
+  s.version      = "0.0.8"
+  s.summary      = "iOS 常用组件"
   s.description      = <<-DESC
-                          iOS常用组件 Desc
+                          iOS 常用组件 Desc
                        DESC
   s.homepage     = "https://github.com/mythkiven/MKAppKit"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
@@ -21,16 +21,19 @@ Pod::Spec.new do |s|
   s.subspec 'All' do |all|
     all.source_files = 'MKAppKit/MKAnimation/**/*.{h,m,swift}','MKAppKit/MKUIKit/**/*.{h,m,swift}'
     all.resources = "MKAppKit/**/**/*.{xib}","MKAppKit/Resource/*.{bundle}"
+    all.prefix_header_contents = '#import "MKLoadingManagerView.h"','#import "MKDropdownMailTF.h"','#import "MKPointWatch.h"'
   end
 
   s.subspec 'MKCombineLoadingAnimation' do |la|
     la.source_files = 'MKAppKit/MKAnimation/MKCombineLoadingAnimation/*.{h,m}'
     la.resources = "MKAppKit/Resource/*.{bundle}","MKAppKit/MKAnimation/MKCombineLoadingAnimation/*.{xib}"
+    la.prefix_header_contents = '#import "MKLoadingManagerView.h"'
   end
 
   s.subspec 'MKDropdownMailTF' do |df|
     df.source_files = 'MKAppKit/MKUIKit/MKDropdownMailTF/*.{h,m}'
     df.resources = "MKAppKit/MKUIKit/MKDropdownMailTF/*.{xib}"
+    df.prefix_header_contents = '#import "MKDropdownMailTF.h"'
   end
 
   s.subspec 'MKDiffuseMenu' do |dm|
@@ -39,6 +42,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'MKLaunchMonitor' do |lm|
     lm.source_files = 'MKAppKit/MKMonitor/MKLaunchMonitor/*.{h,m,c}'
+    lm.prefix_header_contents = '#import "MKPointWatch.h"'
   end
 
 end

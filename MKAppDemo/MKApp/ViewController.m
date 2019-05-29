@@ -7,8 +7,8 @@
 //
 
 #import "ViewController.h" 
-#import "MKCombineLoadingAnimationVC.h"
-#import "MKDropdownMailTFVC.h"
+#import "CombineLoadingAnimationVC.h"
+#import "DropdownMailTFVC.h"
 #import "MKApp-Swift.h"
 //#import "MKLaunchMonitor.h"
 #import "MKPointWatch.h"
@@ -67,13 +67,13 @@
     
     switch (indexPath.row) {
             case 0:
-                vc = [MKCombineLoadingAnimationVC new];
+                vc = [CombineLoadingAnimationVC new];
                 break;
             case 1:
-                vc = [MKDropdownMailTFVC new];
+                vc = [DropdownMailTFVC new];
                 break;
             case 2:
-                vc = [MKDiffuseMenuVC new];
+                vc = [DiffuseMenuVC new];
                 break;
         default:
             break;

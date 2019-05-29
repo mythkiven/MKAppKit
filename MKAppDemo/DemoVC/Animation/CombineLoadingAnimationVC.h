@@ -1,5 +1,5 @@
 //
-//  MKCombineLoadingAnimationVC.h
+//  CombineLoadingAnimationVC.h
 //  MKApp
 //
 //  Created by https://github.com/mythkiven/ on 15/01/14.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
  
 
-@interface MKCombineLoadingAnimationVC : UIViewController
+@interface CombineLoadingAnimationVC : UIViewController
 
 @end
 

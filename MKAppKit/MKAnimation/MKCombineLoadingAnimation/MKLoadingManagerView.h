@@ -7,7 +7,9 @@
 
 #import <UIKit/UIKit.h>
 
-#define  Width [UIScreen mainScreen].bounds.size.width
+#import "MKControlLoadingCircleView.h"
+#import "MKPushTableCellView.h"
+
 
 typedef NS_ENUM(NSInteger, MKLoadingManagerType) {
     MKLoadingManagerTypeImage = 10,

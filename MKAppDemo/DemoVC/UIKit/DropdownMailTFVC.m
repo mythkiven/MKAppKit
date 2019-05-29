@@ -1,18 +1,18 @@
 //
-//  MKDropdownMailTFVC.m
+//  DropdownMailTFVC.m
 //  MKApp
 //
 //  Created by https://github.com/mythkiven/ on 2019/4/28.
 //  Copyright © 2019 MrthKiven. All rights reserved.
 //
 
-#import "MKDropdownMailTFVC.h"
+#import "DropdownMailTFVC.h"
 #import "MKDropdownMailTF.h"
-@interface MKDropdownMailTFVC ()
+@interface DropdownMailTFVC ()
 @property (weak, nonatomic) IBOutlet UITextField *holderView;
 @end
 
-@implementation MKDropdownMailTFVC
+@implementation DropdownMailTFVC
 
 
 - (void)viewDidLoad {

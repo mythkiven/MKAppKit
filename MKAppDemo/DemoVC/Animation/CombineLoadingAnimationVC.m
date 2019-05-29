@@ -1,17 +1,16 @@
 //
-//  MKCombineLoadingAnimationVC.m
+//  CombineLoadingAnimationVC.m
 //  MKApp
 //
 //  Created by https://github.com/mythkiven/ on 15/01/14.
 //  Copyright © 2015年 mythkiven. All rights reserved.
 //
 
-#import "MKCombineLoadingAnimationVC.h"
+#import "CombineLoadingAnimationVC.h"
 #import "MKLoadingManagerView.h" 
-#import "MKControlLoadingCircleView.h"
-#import "MKPushTableCellView.h"
 
-@interface MKCombineLoadingAnimationVC ()
+
+@interface CombineLoadingAnimationVC ()
 @property (weak, nonatomic) IBOutlet UIView *contain;
 @property (weak, nonatomic) IBOutlet UIView *tableView;
 @property (strong, nonatomic) MKLoadingManagerView *controlView;
@@ -21,7 +20,7 @@
 @property (nonatomic,strong) NSTimer *timer;
 @end
 
-@implementation MKCombineLoadingAnimationVC
+@implementation CombineLoadingAnimationVC
 {
     NSTimer             *time;
 }

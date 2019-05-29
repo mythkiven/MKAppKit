@@ -8,7 +8,7 @@
 
 #import "MKDradualLoadingView.h"
 
-#define ANGLE(a) 2*M_PI/360*a
+#define MK_ANGLE(a) 2*M_PI/360*a
 
 typedef void      (^voidBlock)(void);
 typedef float     (^floatfloatBlock)(float);
