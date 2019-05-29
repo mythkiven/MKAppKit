@@ -41,10 +41,5 @@ script:
     - rm -rf ~/Library/Developer/Xcode/DerivedData/
     - mkdir DerivedData
 
-    # - echo Run the tests
-    # - pod install --project-directory=Tests
-    # - xcodebuild test -workspace MKApp.xcworkspace -scheme 'Tests' -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone XS' -configuration Debug | xcpretty -c
-    # - mv ~/Library/Developer/Xcode/DerivedData/ ./DerivedData/iOS
-
 after_success:
   - bash <(curl -s https://codecov.io/bash)

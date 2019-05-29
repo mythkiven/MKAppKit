@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,10 @@
 		1847EB442276DE6600E6E35D /* DropdownMailTFVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1847EB432276DE6600E6E35D /* DropdownMailTFVC.xib */; };
 		1847EB472276F73E00E6E35D /* DiffuseMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1847EB462276F73D00E6E35D /* DiffuseMenuVC.swift */; };
 		1847EB492276F8F500E6E35D /* DiffuseMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1847EB482276F8F500E6E35D /* DiffuseMenuVC.xib */; };
+		188F8704229E848B00A288D4 /* MKDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F8703229E848B00A288D4 /* MKDebug.m */; };
+		188F8707229E85F600A288D4 /* MKFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F8706229E85F600A288D4 /* MKFileManager.m */; };
+		188F870A229E86DF00A288D4 /* MKFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F8709229E86DF00A288D4 /* MKFunctions.m */; };
+		188F870D229E8F3C00A288D4 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F870C229E8F3C00A288D4 /* Test.m */; };
 		18BB8F70227318F6005EDC27 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BB8F6F227318F6005EDC27 /* AppDelegate.m */; };
 		18BB8F73227318F6005EDC27 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BB8F72227318F6005EDC27 /* ViewController.m */; };
 		18BB8F78227318FD005EDC27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18BB8F77227318FD005EDC27 /* Assets.xcassets */; };
@@ -34,6 +38,14 @@
 		1847EB452276F73D00E6E35D /* MKApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MKApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		1847EB462276F73D00E6E35D /* DiffuseMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffuseMenuVC.swift; sourceTree = "<group>"; };
 		1847EB482276F8F500E6E35D /* DiffuseMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiffuseMenuVC.xib; sourceTree = "<group>"; };
+		188F8702229E848B00A288D4 /* MKDebug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKDebug.h; sourceTree = "<group>"; };
+		188F8703229E848B00A288D4 /* MKDebug.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKDebug.m; sourceTree = "<group>"; };
+		188F8705229E85F600A288D4 /* MKFileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKFileManager.h; sourceTree = "<group>"; };
+		188F8706229E85F600A288D4 /* MKFileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKFileManager.m; sourceTree = "<group>"; };
+		188F8708229E86DF00A288D4 /* MKFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKFunctions.h; sourceTree = "<group>"; };
+		188F8709229E86DF00A288D4 /* MKFunctions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKFunctions.m; sourceTree = "<group>"; };
+		188F870B229E8F3C00A288D4 /* Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
+		188F870C229E8F3C00A288D4 /* Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		18B6A1C92276CB94008B1B97 /* libPods-MKCombineLoadingAnimation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-MKCombineLoadingAnimation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18BB8F6B227318F6005EDC27 /* MKApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MKApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18BB8F6E227318F6005EDC27 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -168,9 +180,26 @@
 			path = UIKit;
 			sourceTree = "<group>";
 		};
+		188F8701229E845500A288D4 /* MKTool */ = {
+			isa = PBXGroup;
+			children = (
+				188F8702229E848B00A288D4 /* MKDebug.h */,
+				188F8703229E848B00A288D4 /* MKDebug.m */,
+				188F8705229E85F600A288D4 /* MKFileManager.h */,
+				188F8706229E85F600A288D4 /* MKFileManager.m */,
+				188F8708229E86DF00A288D4 /* MKFunctions.h */,
+				188F8709229E86DF00A288D4 /* MKFunctions.m */,
+				188F870B229E8F3C00A288D4 /* Test.h */,
+				188F870C229E8F3C00A288D4 /* Test.m */,
+			);
+			name = MKTool;
+			path = ../MKAppKit/MKTool;
+			sourceTree = "<group>";
+		};
 		18BB8F62227318F6005EDC27 = {
 			isa = PBXGroup;
 			children = (
+				188F8701229E845500A288D4 /* MKTool */,
 				1822A718228BF2FD00152CA5 /* MKMonitor */,
 				1847EB382276D8E600E6E35D /* DemoVC */,
 				18BB8F6D227318F6005EDC27 /* MKApp */,
@@ -241,7 +270,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1020;
-				ORGANIZATIONNAME = MrthKiven;
+				ORGANIZATIONNAME = MythKiven;
 				TargetAttributes = {
 					18BB8F6A227318F6005EDC27 = {
 						CreatedOnToolsVersion = 10.2;
@@ -311,20 +340,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MKApp/Pods-MKApp-resources.sh",
-				"${PODS_ROOT}/../../MKAppKit/Resource/MKCLAResource.bundle",
-				"${PODS_ROOT}/../../MKAppKit/MKAnimation/MKCombineLoadingAnimation/MKPushTableCell.xib",
-				"${PODS_ROOT}/../../MKAppKit/MKUIKit/MKDropdownMailTF/MKDropdownMailTFCell.xib",
+				"${PODS_ROOT}/Target Support Files/Pods-MKApp/Pods-MKApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MKCLAResource.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MKPushTableCell.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MKDropdownMailTFCell.nib",
+				"${PODS_ROOT}/Target Support Files/Pods-MKApp/Pods-MKApp-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -339,12 +359,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				1847EB3D2276D90500E6E35D /* CombineLoadingAnimationVC.m in Sources */,
+				188F870D229E8F3C00A288D4 /* Test.m in Sources */,
 				18BB8F73227318F6005EDC27 /* ViewController.m in Sources */,
 				18289DFD2292467800EB7FF2 /* MKPointWatch.m in Sources */,
+				188F8704229E848B00A288D4 /* MKDebug.m in Sources */,
 				1847EB472276F73E00E6E35D /* DiffuseMenuVC.swift in Sources */,
+				188F8707229E85F600A288D4 /* MKFileManager.m in Sources */,
 				1847EB422276DD4900E6E35D /* DropdownMailTFVC.m in Sources */,
 				18BB8F7E227318FD005EDC27 /* main.m in Sources */,
 				18BB8F70227318F6005EDC27 /* AppDelegate.m in Sources */,
+				188F870A229E86DF00A288D4 /* MKFunctions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

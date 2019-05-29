@@ -15,6 +15,7 @@ target 'MKApp' do
   pod 'MKAppKit/MKDropdownMailTF', :path => '../'
   pod 'MKAppKit/MKDiffuseMenu', :path => '../'
 #  pod 'MKAppKit/MKLaunchMonitor', :path => '../'
+#  pod 'MKAppKit/MKLaunchMonitor'
 #  pod 'MKAppKit/MKCombineLoadingAnimation'
 #  pod 'MKAppKit/MKDropdownMailTF'
 #  pod 'MKAppKit/MKDiffuseMenu'

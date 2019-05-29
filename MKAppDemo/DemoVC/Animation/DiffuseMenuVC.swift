@@ -3,7 +3,7 @@
 //  MKApp
 //
 //  Created by apple on 2019/4/29.
-//  Copyright © 2019 MrthKiven. All rights reserved.
+//  Copyright © 2019 MythKiven. All rights reserved.
 //
 
 

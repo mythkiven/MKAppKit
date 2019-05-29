@@ -3,12 +3,13 @@
 //  MKApp
 //
 //  Created by https://github.com/mythkiven/ on 2019/4/28.
-//  Copyright © 2019 MrthKiven. All rights reserved.
+//  Copyright © 2019 MythKiven. All rights reserved.
 //
 
 #import "AppDelegate.h"
 #import "ViewController.h"
 //#import "MKLaunchMonitor.h"
+#import "Test.h"
 #import "MKPointWatch.h"
 
 @interface AppDelegate ()
@@ -20,6 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 //    [[MKLaunchMonitor sharedMonitor] startMonitor];
+    [Test test];
     [[MKPointWatch pointWatch] pointWithDescription:@"didFinishLaunchingWithOptions"];
     
 //    ViewController *vc = [[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
