@@ -1,6 +1,23 @@
 
 
+
+![](https://api.travis-ci.org/mythkiven/MKAppKit.svg?branch=master)
+[![Version](https://img.shields.io/cocoapods/v/MKAppKit.svg?style=flat)](http://cocoapods.org/pods/MKAppKit)
+[![License](https://img.shields.io/cocoapods/l/MKAppKit.svg?style=flat)](http://cocoapods.org/pods/MKAppKit)
+[![Platform](https://img.shields.io/cocoapods/p/MKAppKit.svg?style=flat)](http://cocoapods.org/pods/MKAppKit)
+
+
+
 ![](./source/icon_MKAppKit.png)
+
+
+**使用**
+
+```
+添加pod时，如遇到错误：Unable to find a specification for `MKAppKit`
+请更新 repo：
+$ pod repo update
+```
 
 ## 性能监控组件
 

@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 
   s.name         = "MKAppKit"
   s.version      = "0.1.0"
-  s.summary      = "iOS 常用组件"
+  s.summary      = "Useful tools for iOS application development."
   s.description      = <<-DESC
                           iOS 常用组件 Desc
                        DESC
