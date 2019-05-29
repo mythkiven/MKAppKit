@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "MKAppKit"
-  s.version      = "0.0.8"
+  s.version      = "0.0.9"
   s.summary      = "iOS 常用组件"
   s.description      = <<-DESC
                           iOS 常用组件 Desc
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.swift_version = '5.0'
 
   s.subspec 'All' do |all|
-    all.source_files = 'MKAppKit/MKAnimation/**/*.{h,m,swift}','MKAppKit/MKUIKit/**/*.{h,m,swift}'
+    all.source_files = 'MKAppKit/MKAnimation/**/*.{h,m,swift}','MKAppKit/MKUIKit/**/*.{h,m,swift}','MKAppKit/MKMonitor/**/*.{h,m,mm,c}'
     all.resources = "MKAppKit/**/**/*.{xib}","MKAppKit/Resource/*.{bundle}"
     all.prefix_header_contents = '#import "MKLoadingManagerView.h"','#import "MKDropdownMailTF.h"','#import "MKPointWatch.h"'
   end
@@ -41,7 +41,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'MKLaunchMonitor' do |lm|
-    lm.source_files = 'MKAppKit/MKMonitor/MKLaunchMonitor/*.{h,m,c}'
+    lm.source_files = 'MKAppKit/MKMonitor/MKLaunchMonitor/*.{h,m,c,mm}'
     lm.prefix_header_contents = '#import "MKPointWatch.h"'
   end
 
