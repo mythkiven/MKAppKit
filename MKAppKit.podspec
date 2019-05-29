@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
                        DESC
   s.homepage     = "https://github.com/mythkiven/MKAppKit"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
-  s.author       = { "mythkiven" => "mythziven@gmail.com" }
+  s.author       = { "mythkiven" => "1282412855@qq.com" }
   s.platform     = :ios, "9.0"
   s.source       = { :git => "https://github.com/mythkiven/MKAppKit", :tag => s.version.to_s }
   s.ios.deployment_target = '9.0'
