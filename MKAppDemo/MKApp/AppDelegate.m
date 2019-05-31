@@ -21,7 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 //    [[MKLaunchMonitor sharedMonitor] startMonitor];
-    [Test test];
+    [[Test new] test];
     [[MKPointWatch pointWatch] pointWithDescription:@"didFinishLaunchingWithOptions"];
     
 //    ViewController *vc = [[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];

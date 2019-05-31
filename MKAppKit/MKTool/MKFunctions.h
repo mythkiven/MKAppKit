@@ -13,6 +13,14 @@
 
 #define MKTimeStamp [[NSDate date] timeIntervalSince1970] * 1000l
 
+#define WKInvalTimer(timer) { \
+if (timer != nil) { \
+[timer invalidate]; \
+[timer release]; \
+timer = nil; \
+} \
+}
+
 #define MKLog(fmt, ...) DEBUG ? NSLog((@"> %s:%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__) : printf("")
 #define MKDLog(FORMAT, ...)  [GWDeviceManager deviceManager].isPrintLog&&GW_private_debug?fprintf(stderr,"BLELog>> %s\n", [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]) : printf("")
 
