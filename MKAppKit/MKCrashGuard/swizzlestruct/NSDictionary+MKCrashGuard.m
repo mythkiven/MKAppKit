@@ -8,6 +8,7 @@
 #import "NSDictionary+MKCrashGuard.h" 
 #import "MKCrashGuardManager.h"
 
+MK_SYNTH_DUMMY_CLASS(NSDictionary_MKCrashGuard)
 @implementation NSDictionary (MKCrashGuard)
 
 

@@ -8,6 +8,7 @@
 #import "NSArray+MKCrashGuard.h" 
 #import "MKCrashGuardManager.h"
 
+MK_SYNTH_DUMMY_CLASS(NSArray_MKCrashGuard)
 @implementation NSArray (MKCrashGuard)
 
 #pragma mark   MKCrashGuardProtocol
@@ -25,15 +26,21 @@
         //objectsAtIndexes:
         [MKCrashGuardManager exchangeInstanceMethod:__NSArray systemSelector:@selector(objectsAtIndexes:) swizzledSelector:@selector(crashGuardObjectsAtIndexes:)];
         
+        
+        
         //objectAtIndex:
         [MKCrashGuardManager exchangeInstanceMethod:__NSArrayI systemSelector:@selector(objectAtIndex:) swizzledSelector:@selector(__NSArrayIMKCrashGuardObjectAtIndex:)];
         [MKCrashGuardManager exchangeInstanceMethod:__NSSingleObjectArrayI systemSelector:@selector(objectAtIndex:) swizzledSelector:@selector(__NSSingleObjectArrayIMKCrashGuardObjectAtIndex:)];
         [MKCrashGuardManager exchangeInstanceMethod:__NSArray0 systemSelector:@selector(objectAtIndex:) swizzledSelector:@selector(__NSArray0MKCrashGuardObjectAtIndex:)];
         
+        
+        
         //objectAtIndexedSubscript:
         if (MKCrashGuardSystemVersion(11.0)) {
             [MKCrashGuardManager exchangeInstanceMethod:__NSArrayI systemSelector:@selector(objectAtIndexedSubscript:) swizzledSelector:@selector(__NSArrayIMKCrashGuardObjectAtIndexedSubscript:)];
         }
+        
+        
         
         //getObjects:range:
         [MKCrashGuardManager exchangeInstanceMethod:__NSArray systemSelector:@selector(getObjects:range:) swizzledSelector:@selector(NSArrayMKCrashGuardGetObjects:range:)];

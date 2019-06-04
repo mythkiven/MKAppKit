@@ -9,9 +9,8 @@
 #import "MKCrashGuardManager.h"
 #import "MKCrashGuardConst.h"
 
+MK_SYNTH_DUMMY_CLASS(NSObject_MKCrashGuard)
 @implementation NSObject (MKCrashGuard)
-#pragma mark   MKCrashGuardProtocol
-
 
 #pragma mark - pub
 /**

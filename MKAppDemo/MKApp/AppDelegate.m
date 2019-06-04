@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "MKCrashGuardManager.h"
-#import "Test.h"
+#import "CrashTest.h"
 #import "MKPointWatch.h"
 
 @interface AppDelegate ()
@@ -24,9 +24,9 @@
     // 启用 crash 防护
     [MKCrashGuardManager executeAppGuard];
     // 防护的类名、类名前缀
-    [MKCrashGuardManager guardSelectorWithClassPrefixs:@[@"Te",@"NSArray",@"UI",@"NS",@"NSObject"]];
+    [MKCrashGuardManager guardSelectorWithClassPrefixs:@[@"Crash",@"Case",@"NSArray",@"UI",@"NS",@"NSObject"]];
     //  test crash case
-    [[Test new] executeAllTest];
+    [[CrashTest new] executeAllTest];
     
     // 打点
     [[MKPointWatch pointWatch] pointWithDescription:@"didFinishLaunchingWithOptions"];

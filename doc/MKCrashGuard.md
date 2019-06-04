@@ -76,3 +76,13 @@ NSDictionary 的快速创建 则是调用： dictionaryWithObjects:forKeys:count
 
 
 addObject:nilStr]; //其本质是调用insertObject:
+
+
+### Method Swizzling
+
+
+
+参考 
+- [what-are-the-dangers-of-method-swizzling-in-objective-c)](https://stackoverflow.com/questions/5339276/what-are-the-dangers-of-method-swizzling-in-objective-c)
+- [RSSwizzle](https://github.com/rabovik/RSSwizzle/tree/master/RSSwizzle)
+- [Aspects](https://github.com/steipete/Aspects/blob/master/Aspects.m)

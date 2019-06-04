@@ -25,9 +25,19 @@
         [NSDictionary crashGuardExchangeMethod];
         [NSMutableDictionary crashGuardExchangeMethod];
         [NSString crashGuardExchangeMethod];
-        [NSMutableString crashGuardExchangeMethod]; 
+        [NSMutableString crashGuardExchangeMethod];
         [NSAttributedString crashGuardExchangeMethod];
         [NSMutableAttributedString crashGuardExchangeMethod];
+        
+//        [NSObject performSelector:@selector(mk_guardSelector:) withObject:@YES];
+//        [NSArray performSelector:@selector(crashGuardExchangeMethod)];
+//        [NSMutableArray performSelector:@selector(crashGuardExchangeMethod)];
+//        [NSDictionary performSelector:@selector(crashGuardExchangeMethod)];
+//        [NSMutableDictionary performSelector:@selector(crashGuardExchangeMethod)];
+//        [NSString performSelector:@selector(crashGuardExchangeMethod)];
+//        [NSMutableString performSelector:@selector(crashGuardExchangeMethod)];
+//        [NSAttributedString performSelector:@selector(crashGuardExchangeMethod)];
+//        [NSMutableAttributedString performSelector:@selector(crashGuardExchangeMethod)];
     });
 }
 
@@ -114,7 +124,7 @@
     //将avoidCrash去掉
     errorReason = [errorReason stringByReplacingOccurrencesOfString:@"avoidCrash" withString:@""];
     NSString *errorPlace = [NSString stringWithFormat:@"%@",mainCallStackSymbolMsg];
-    NSString *logErrorMessage = [NSString stringWithFormat:@"%@\n ErrorName : %@\n ErrorReason : %@\n ErrorPlace : %@\n defaultToDo : %@ \n %@",MKCrashGuardSeparatorWithFlag, errorName, errorReason, errorPlace, description,MKCrashGuardSeparator];
+    NSString *logErrorMessage = [NSString stringWithFormat:@"%@\n ErrorName : %@\n ErrorReason : %@\n ErrorPlace : %@\n defaultToDo : %@ \n Exception : %@ \n CallStackSymbols : %@ \n %@",MKCrashGuardSeparatorWithFlag, errorName, errorReason, errorPlace, description,exception,callStackSymbolsArr,MKCrashGuardSeparator];
     // 打印错误日志
     MKCrashGuardLog(@"%@\n\n\n",logErrorMessage);
     

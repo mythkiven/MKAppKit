@@ -8,6 +8,7 @@
 #import "NSMutableAttributedString+MKCrashGuard.h" 
 #import "MKCrashGuardManager.h"
 
+MK_SYNTH_DUMMY_CLASS(NSMutableAttributedString_MKCrashGuard)
 @implementation NSMutableAttributedString (MKCrashGuard)
 
 #pragma mark   MKCrashGuardProtocol

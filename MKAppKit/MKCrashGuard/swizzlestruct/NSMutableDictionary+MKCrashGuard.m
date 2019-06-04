@@ -8,6 +8,7 @@
 #import "NSMutableDictionary+MKCrashGuard.h" 
 #import "MKCrashGuardManager.h"
 
+MK_SYNTH_DUMMY_CLASS(NSMutableDictionary_MKCrashGuard)
 @implementation NSMutableDictionary (MKCrashGuard)
 
 #pragma mark   MKCrashGuardProtocol

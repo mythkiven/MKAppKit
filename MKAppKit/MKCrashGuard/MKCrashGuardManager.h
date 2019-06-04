@@ -40,9 +40,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 //  DEBUG 模式下，crash 信息会打印出来，同时发送一个名为 @"MKCrashGuardErrorNotification" 的通知，用户可监听通知并进行上报处理等。
 
-+ (void)printErrorInfo:(NSException *)exception describe:(NSString *)description;
-+ (void)exchangeClassMethod:(Class)anClass systemSelector:(SEL)systemSelector swizzledSelector:(SEL)swizzledSelector;
-+ (void)exchangeInstanceMethod:(Class)anClass systemSelector:(SEL)systemSelector swizzledSelector:(SEL)swizzledSelector;
++ (void)printErrorInfo:(NSException *)exception describe:(NSString *)description;//  __attribute__((deprecated("Stop invoke this method,If invoke this,Maybe occur crash")));
++ (void)exchangeClassMethod:(Class)anClass systemSelector:(SEL)systemSelector swizzledSelector:(SEL)swizzledSelector;//  __attribute__((deprecated("Stop invoke this method,If invoke this,Maybe occur crash")));
++ (void)exchangeInstanceMethod:(Class)anClass systemSelector:(SEL)systemSelector swizzledSelector:(SEL)swizzledSelector;//  __attribute__((deprecated("Stop invoke this method,If invoke this,Maybe occur crash")));
 
 @end
 NS_ASSUME_NONNULL_END

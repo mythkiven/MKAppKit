@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void (^HttpFailed) (NSURLSessionDataTask*);
 
 
-@interface Test : NSObject
+@interface CrashTest : NSObject
 
 // test crash
 @property (nonatomic,copy) HttpFailed httpFailed;

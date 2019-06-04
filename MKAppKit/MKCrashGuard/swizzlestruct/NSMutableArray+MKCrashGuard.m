@@ -8,6 +8,7 @@
 #import "NSMutableArray+MKCrashGuard.h" 
 #import "MKCrashGuardManager.h"
 
+MK_SYNTH_DUMMY_CLASS(NSMutableArray_MKCrashGuard)
 @implementation NSMutableArray (MKCrashGuard)
 
 #pragma mark   MKCrashGuardProtocol
