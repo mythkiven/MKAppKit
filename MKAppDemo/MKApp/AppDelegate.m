@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-//#import "MKLaunchMonitor.h"
+#import "MKCrashGuardManager.h"
 #import "Test.h"
 #import "MKPointWatch.h"
 
@@ -20,27 +20,33 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    [[MKLaunchMonitor sharedMonitor] startMonitor];
-    [[Test new] test];
+    
+    // 启用 crash 防护
+    [MKCrashGuardManager executeAppGuard];
+    // 防护的类名、类名前缀
+    [MKCrashGuardManager guardSelectorWithClassPrefixs:@[@"Te",@"NSArray",@"UI",@"NS",@"NSObject"]];
+    //  test crash case
+    [[Test new] executeAllTest];
+    
+    // 打点
     [[MKPointWatch pointWatch] pointWithDescription:@"didFinishLaunchingWithOptions"];
     
-//    ViewController *vc = [[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
-//    UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:vc];
-//    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
-//    self.window.rootViewController = nvc;
-//    self.window.backgroundColor = [UIColor whiteColor];
-//    [self.window makeKeyAndVisible];
-    
-    
+    return [self makeWindows];
+}
+- (BOOL)makeWindows {
+    //    ViewController *vc = [[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
+    //    UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+    //    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    //    self.window.rootViewController = nvc;
+    //    self.window.backgroundColor = [UIColor whiteColor];
+    //    [self.window makeKeyAndVisible];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     ViewController *homeVc = [[ViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:homeVc];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
-    
     return YES;
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

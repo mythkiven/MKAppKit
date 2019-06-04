@@ -8,9 +8,6 @@
 #import "MKCrashGuardManager.h"
 
 
-
-
-
 @implementation MKCrashGuardManager
 
 
@@ -23,25 +20,21 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [NSObject mk_guardSelector:YES];
-        
-        [NSArray avoidCrashExchangeMethod];
-        [NSMutableArray avoidCrashExchangeMethod];
-        
-        [NSDictionary avoidCrashExchangeMethod];
-        [NSMutableDictionary avoidCrashExchangeMethod];
-        
-        [NSString avoidCrashExchangeMethod];
-        [NSMutableString avoidCrashExchangeMethod];
-        
-        [NSAttributedString avoidCrashExchangeMethod];
-        [NSMutableAttributedString avoidCrashExchangeMethod];
+        [NSArray crashGuardExchangeMethod];
+        [NSMutableArray crashGuardExchangeMethod];
+        [NSDictionary crashGuardExchangeMethod];
+        [NSMutableDictionary crashGuardExchangeMethod];
+        [NSString crashGuardExchangeMethod];
+        [NSMutableString crashGuardExchangeMethod]; 
+        [NSAttributedString crashGuardExchangeMethod];
+        [NSMutableAttributedString crashGuardExchangeMethod];
     });
 }
 
 /**
- 默认防护所有的 "unrecognized selector sent to instance" crash,如果想按类名前缀进行防护，调用本方法即可。
+ 启用 "unrecognized selector sent to instance" crash 防护，请传入需要防护的 类名或类名前缀
  
- @param classPrefixs 需要防护的类名前缀
+ @param classPrefixs 防护的类名或类名前缀
  */
 + (void)guardSelectorWithClassPrefixs:(NSArray<NSString *> *)classPrefixs{
     [NSObject mk_guardSelectorWithClassPrefixs:classPrefixs];
@@ -66,7 +59,6 @@
                     systemSelector,
                     method_getImplementation(swizzledMethod),
                     method_getTypeEncoding(swizzledMethod));
-    
     if (didAddMethod) {
         class_replaceMethod(anClass,
                             swizzledSelector,
@@ -84,7 +76,6 @@
     //匹配出来的格式为 +[类名 方法名]  或者 -[类名 方法名]
     NSString *regularExpStr = @"[-\\+]\\[.+\\]";
     NSRegularExpression *regularExp = [[NSRegularExpression alloc] initWithPattern:regularExpStr options:NSRegularExpressionCaseInsensitive error:nil];
-    
     for (int index = 2; index < callStackSymbols.count; index++) {
         NSString *callStackSymbol = callStackSymbols[index];
         [regularExp enumerateMatchesInString:callStackSymbol options:NSMatchingReportProgress range:NSMakeRange(0, callStackSymbol.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
@@ -121,11 +112,9 @@
     NSString *errorReason = exception.reason;
     //errorReason 可能为 -[__NSCFConstantString avoidCrashCharacterAtIndex:]: Range or index out of bounds
     //将avoidCrash去掉
-    
     errorReason = [errorReason stringByReplacingOccurrencesOfString:@"avoidCrash" withString:@""];
     NSString *errorPlace = [NSString stringWithFormat:@"%@",mainCallStackSymbolMsg];
     NSString *logErrorMessage = [NSString stringWithFormat:@"%@\n ErrorName : %@\n ErrorReason : %@\n ErrorPlace : %@\n defaultToDo : %@ \n %@",MKCrashGuardSeparatorWithFlag, errorName, errorReason, errorPlace, description,MKCrashGuardSeparator];
-    
     // 打印错误日志
     MKCrashGuardLog(@"%@\n\n\n",logErrorMessage);
     
@@ -146,6 +135,6 @@
     });
 }
 
-
-
+ 
 @end
+

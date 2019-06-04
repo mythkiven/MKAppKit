@@ -62,8 +62,11 @@ pod 'MKAppKit/MKCrashGuard'
 
 ```
 NSArray *array = @[@"chenfanfang", @"AvoidCrash"];
-这种创建方式其实调用了：+(instancetype)arrayWithObjects:(const id  _Nonnull __unsafe_unretained *)objects count:(NSUInteger)count
+这种创建方式其实调用了： arrayWithObjects: count:
 对此防护即可
+
+NSDictionary 的快速创建 则是调用： dictionaryWithObjects:forKeys:count:
+
 ```
 
 - (id)objectAtIndex:(NSUInteger)index
