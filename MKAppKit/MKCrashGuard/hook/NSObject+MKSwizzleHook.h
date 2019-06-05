@@ -25,8 +25,8 @@ typedef void (*MKSwizzleOriginalIMP)(void /* id, SEL, ... */ );
 
 
 typedef id (^MKSwizzledIMPBlock)(MKSwizzleObject* swizzleInfo);
-void mk_swizzleClassMethod(Class cls, SEL originSelector, SEL swizzleSelector);
-void mk_swizzleInstanceMethod(Class cls, SEL originSelector, SEL swizzleSelector);
+static void mk_swizzleClassMethod(Class cls, SEL originSelector, SEL swizzleSelector);
+static void mk_swizzleInstanceMethod(Class cls, SEL originSelector, SEL swizzleSelector);
 void mk_swizzleDeallocIfNeeded(Class class);
 
 

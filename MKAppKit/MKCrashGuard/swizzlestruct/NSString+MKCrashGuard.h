@@ -5,12 +5,11 @@
  *
  */
 
-#import <Foundation/Foundation.h>
-#import "MKCrashGuardProtocol.h"
+#import <Foundation/Foundation.h> 
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSString (MKCrashGuard)<MKCrashGuardProtocol>
+@interface NSString (MKCrashGuard)
 
 /** 防护
  *
@@ -23,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  - (NSString *)stringByReplacingCharactersInRange:(NSRange)range withString:(NSString *)replacement
  *
  */
-
++ (void)crashGuardExchangeMethod;
 @end
 
 NS_ASSUME_NONNULL_END

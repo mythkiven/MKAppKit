@@ -6,63 +6,75 @@
  */
 
 #import "NSMutableString+MKCrashGuard.h"
-#import "MKCrashGuardManager.h"
+#import "MKException.h"
+#import "NSObject+MKSwizzleHook.h"
 
 MK_SYNTH_DUMMY_CLASS(NSMutableString_MKCrashGuard)
 @implementation NSMutableString (MKCrashGuard)
 
 #pragma mark   MKCrashGuardProtocol
 + (void)crashGuardExchangeMethod {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        Class stringClass = NSClassFromString(@"__NSCFString");
-        //replaceCharactersInRange
-        [MKCrashGuardManager exchangeInstanceMethod:stringClass systemSelector:@selector(replaceCharactersInRange:withString:) swizzledSelector:@selector(crashGuardReplaceCharactersInRange:withString:)];
-        //insertString:atIndex:
-        [MKCrashGuardManager exchangeInstanceMethod:stringClass systemSelector:@selector(insertString:atIndex:) swizzledSelector:@selector(crashGuardInsertString:atIndex:)];
-        //deleteCharactersInRange
-        [MKCrashGuardManager exchangeInstanceMethod:stringClass systemSelector:@selector(deleteCharactersInRange:) swizzledSelector:@selector(crashGuardDeleteCharactersInRange:)];
-    });
+    Class stringClass = NSClassFromString(@"__NSCFString");
+    mk_swizzleInstanceMethod(stringClass, @selector(appendString:), @selector(guardAppendString:));
+    mk_swizzleInstanceMethod(stringClass, @selector(insertString:atIndex:), @selector(guardInsertString:atIndex:));
+    mk_swizzleInstanceMethod(stringClass, @selector(deleteCharactersInRange:), @selector(guardDeleteCharactersInRange:));
+    mk_swizzleInstanceMethod(stringClass, @selector(substringFromIndex:), @selector(guardSubstringFromIndex:));
+    mk_swizzleInstanceMethod(stringClass, @selector(substringToIndex:), @selector(guardSubstringToIndex:));
+    mk_swizzleInstanceMethod(stringClass, @selector(substringWithRange:), @selector(guardSubstringWithRange:));
+    mk_swizzleInstanceMethod(stringClass, @selector(replaceCharactersInRange:withString:), @selector(guardReplaceCharactersInRange:withString:));
+    
 }
 
-
-#pragma mark - replaceCharactersInRange
-- (void)crashGuardReplaceCharactersInRange:(NSRange)range withString:(NSString *)aString {
+- (void) guardAppendString:(NSString *)aString {
+    if (aString){
+        [self guardAppendString:aString];
+    }else{
+        mkHandleCrashException([NSString stringWithFormat:@"[NSMutableString appendString: ] value:%@ parameter nil",self]);
+    }
+}
+- (void) guardInsertString:(NSString *)aString atIndex:(NSUInteger)loc {
+    if (aString && loc <= self.length) {
+        [self guardInsertString:aString atIndex:loc];
+    }else{
+        mkHandleCrashException([NSString stringWithFormat:@"[NSMutableString insertString: atIndex: ] value:%@ paremeter string:%@ atIndex:%tu",self,aString,loc]);
+    }
+}
+- (void) guardDeleteCharactersInRange:(NSRange)range {
+    if (range.location + range.length <= self.length){
+        [self guardDeleteCharactersInRange:range];
+    }else{
+        mkHandleCrashException([NSString stringWithFormat:@"[NSMutableString deleteCharactersInRange: ] value:%@ range:%@",self,NSStringFromRange(range)]);
+    }
+}
+- (NSString *)guardSubstringFromIndex:(NSUInteger)from {
+    if (from <= self.length) {
+        return [self guardSubstringFromIndex:from];
+    }
+    mkHandleCrashException([NSString stringWithFormat:@"[NSMutableString substringFromIndex: ] value:%@ from:%tu",self,from]);
+    return nil;
+}
+- (NSString *)guardSubstringToIndex:(NSUInteger)to {
+    if (to <= self.length) {
+        return [self guardSubstringToIndex:to];
+    }
+    mkHandleCrashException([NSString stringWithFormat:@"[NSMutableString substringToIndex: ] value:%@ to:%tu",self,to]);
+    return self;
+}
+- (NSString *)guardSubstringWithRange:(NSRange)range {
+    if (range.location + range.length <= self.length){
+        return [self guardSubstringWithRange:range];
+    }
+    mkHandleCrashException([NSString stringWithFormat:@"[NSMutableString substringWithRange: ] value:%@ range:%@",self,NSStringFromRange(range)]);
+    return nil;
+} 
+- (void)guardReplaceCharactersInRange:(NSRange)range withString:(NSString *)aString {
     @try {
-        [self crashGuardReplaceCharactersInRange:range withString:aString];
+        [self guardReplaceCharactersInRange:range withString:aString];
     }
     @catch (NSException *exception) {
-        NSString *description = MKCrashGuardDefaultIgnore;
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
+        mkHandleCrashException(exception);
     }
     @finally {
-    }
-}
-
-
-#pragma mark - insertString:atIndex:
-- (void)crashGuardInsertString:(NSString *)aString atIndex:(NSUInteger)loc {
-    @try {
-        [self crashGuardInsertString:aString atIndex:loc];
-    }
-    @catch (NSException *exception) {
-        NSString *description = MKCrashGuardDefaultIgnore;
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
-    }
-    @finally {
-    }
-}
-
-#pragma mark - deleteCharactersInRange
-- (void)crashGuardDeleteCharactersInRange:(NSRange)range {
-    @try {
-        [self crashGuardDeleteCharactersInRange:range];
-    }
-    @catch (NSException *exception) {
-        NSString *description = MKCrashGuardDefaultIgnore;
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
-    }
-    @finally { 
     }
 }
 

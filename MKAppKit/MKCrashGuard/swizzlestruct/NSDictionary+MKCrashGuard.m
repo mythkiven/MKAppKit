@@ -6,7 +6,8 @@
  */
 
 #import "NSDictionary+MKCrashGuard.h" 
-#import "MKCrashGuardManager.h"
+#import "MKException.h"
+#import "NSObject+MKSwizzleHook.h"
 
 MK_SYNTH_DUMMY_CLASS(NSDictionary_MKCrashGuard)
 @implementation NSDictionary (MKCrashGuard)
@@ -14,35 +15,31 @@ MK_SYNTH_DUMMY_CLASS(NSDictionary_MKCrashGuard)
 
 #pragma mark   MKCrashGuardProtocol
 + (void)crashGuardExchangeMethod {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [MKCrashGuardManager exchangeClassMethod:self systemSelector:@selector(dictionaryWithObjects:forKeys:count:) swizzledSelector:@selector(crashGuardDictionaryWithObjects:forKeys:count:)];
-    });
-} 
+    [NSDictionary mk_swizzleClassMethod:@selector(dictionaryWithObject:forKey:) withSwizzleMethod:@selector(guardDictionaryWithObject:forKey:)];
+    [NSDictionary mk_swizzleClassMethod:@selector(dictionaryWithObjects:forKeys:count:) withSwizzleMethod:@selector(guardDictionaryWithObjects:forKeys:count:)];
+}
 
-+ (instancetype)crashGuardDictionaryWithObjects:(const id  _Nonnull __unsafe_unretained *)objects forKeys:(const id<NSCopying>  _Nonnull __unsafe_unretained *)keys count:(NSUInteger)cnt { 
-    id instance = nil;
-    @try {
-        instance = [self crashGuardDictionaryWithObjects:objects forKeys:keys count:cnt];
++ (instancetype)guardDictionaryWithObject:(id)object forKey:(id)key {
+    if (object && key) {
+        return [self guardDictionaryWithObject:object forKey:key];
     }
-    @catch (NSException *exception) {
-        NSString *description = @"MKCrashGuard default is to remove nil key-values and instance a dictionary.";
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
-        NSUInteger index = 0;
-        id  _Nonnull __unsafe_unretained newObjects[cnt];
-        id  _Nonnull __unsafe_unretained newkeys[cnt];
-        for (int i = 0; i < cnt; i++) {
-            if (objects[i] && keys[i]) {
-                newObjects[index] = objects[i];
-                newkeys[index] = keys[i];
-                index++;
-            }
+    mkHandleCrashException([NSString stringWithFormat:@"[NSDictionary dictionaryWithObject: ] invalid object:%@ and key:%@",object,key]);
+    return nil;
+}
++ (instancetype)guardDictionaryWithObjects:(const id [])objects forKeys:(const id [])keys count:(NSUInteger)cnt {
+    NSInteger index = 0;
+    id ks[cnt];
+    id objs[cnt];
+    for (NSInteger i = 0; i < cnt ; ++i) {
+        if (keys[i] && objects[i]) {
+            ks[index] = keys[i];
+            objs[index] = objects[i];
+            ++index;
+        }else{
+            mkHandleCrashException([NSString stringWithFormat:@"[NSDictionary dictionaryWithObjects: count: ] invalid keys:%@ and object:%@",keys[i],objects[i]]);
         }
-        instance = [self crashGuardDictionaryWithObjects:newObjects forKeys:newkeys count:index];
     }
-    @finally {
-        return instance;
-    }
+    return [self guardDictionaryWithObjects:objs forKeys:ks count:index];
 }
 
 @end

@@ -8,6 +8,10 @@
 #import "MKCrashGuardManager.h"
 
 
+
+
+
+
 @implementation MKCrashGuardManager
 
 
@@ -28,16 +32,6 @@
         [NSMutableString crashGuardExchangeMethod];
         [NSAttributedString crashGuardExchangeMethod];
         [NSMutableAttributedString crashGuardExchangeMethod];
-        
-//        [NSObject performSelector:@selector(mk_guardSelector:) withObject:@YES];
-//        [NSArray performSelector:@selector(crashGuardExchangeMethod)];
-//        [NSMutableArray performSelector:@selector(crashGuardExchangeMethod)];
-//        [NSDictionary performSelector:@selector(crashGuardExchangeMethod)];
-//        [NSMutableDictionary performSelector:@selector(crashGuardExchangeMethod)];
-//        [NSString performSelector:@selector(crashGuardExchangeMethod)];
-//        [NSMutableString performSelector:@selector(crashGuardExchangeMethod)];
-//        [NSAttributedString performSelector:@selector(crashGuardExchangeMethod)];
-//        [NSMutableAttributedString performSelector:@selector(crashGuardExchangeMethod)];
     });
 }
 

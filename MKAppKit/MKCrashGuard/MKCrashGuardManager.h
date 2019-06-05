@@ -21,17 +21,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MKCrashGuardManager : NSObject
 
 
+
+@interface MKCrashGuardManager : NSObject 
 /**
  在 application: didFinishLaunchingWithOptions: 中调用，启动 App 守护
  */
 + (void)executeAppGuard;
-
 /**
  启用 "unrecognized selector sent to instance" crash 防护，请传入需要防护的 类名或类名前缀
- 
  @param classPrefixs 防护的类名或类名前缀
  */
 + (void)guardSelectorWithClassPrefixs:(NSArray<NSString *> *)classPrefixs;
@@ -39,7 +38,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 //  DEBUG 模式下，crash 信息会打印出来，同时发送一个名为 @"MKCrashGuardErrorNotification" 的通知，用户可监听通知并进行上报处理等。
-
 + (void)printErrorInfo:(NSException *)exception describe:(NSString *)description;//  __attribute__((deprecated("Stop invoke this method,If invoke this,Maybe occur crash")));
 + (void)exchangeClassMethod:(Class)anClass systemSelector:(SEL)systemSelector swizzledSelector:(SEL)swizzledSelector;//  __attribute__((deprecated("Stop invoke this method,If invoke this,Maybe occur crash")));
 + (void)exchangeInstanceMethod:(Class)anClass systemSelector:(SEL)systemSelector swizzledSelector:(SEL)swizzledSelector;//  __attribute__((deprecated("Stop invoke this method,If invoke this,Maybe occur crash")));

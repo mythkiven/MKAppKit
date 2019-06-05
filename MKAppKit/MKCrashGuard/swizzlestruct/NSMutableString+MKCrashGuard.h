@@ -6,11 +6,10 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "MKCrashGuardProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSMutableString (MKCrashGuard)<MKCrashGuardProtocol>
+@interface NSMutableString (MKCrashGuard)
 
 /**  防护：
  *
@@ -19,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
  * - (void)deleteCharactersInRange:(NSRange)range
  *
  */
-
++ (void)crashGuardExchangeMethod;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -5,19 +5,18 @@
  *
  */
 
-#import <Foundation/Foundation.h>
-#import "MKCrashGuardProtocol.h"
+#import <Foundation/Foundation.h> 
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSDictionary (MKCrashGuard)<MKCrashGuardProtocol>
+@interface NSDictionary (MKCrashGuard)
 
 /**
  * 支持一种防护
  * +(instancetype)dictionaryWithObjects:(const id  _Nonnull __unsafe_unretained *)objects forKeys:(const id<NSCopying>  _Nonnull __unsafe_unretained *)keys count:(NSUInteger)cnt  快速创建方式
  *
  */
-
++ (void)crashGuardExchangeMethod;
 
 @end
 

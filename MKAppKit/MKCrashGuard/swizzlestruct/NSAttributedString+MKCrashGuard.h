@@ -6,11 +6,10 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "MKCrashGuardProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSAttributedString (MKCrashGuard)<MKCrashGuardProtocol>
+@interface NSAttributedString (MKCrashGuard)
 
 /** 防护： 
  *
@@ -20,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  */
 
++ (void)crashGuardExchangeMethod;
 @end
 
 NS_ASSUME_NONNULL_END

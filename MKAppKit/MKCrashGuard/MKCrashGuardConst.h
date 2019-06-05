@@ -12,13 +12,6 @@
 #define MKCrashGuardSystemVersion(version) ([[UIDevice currentDevice].systemVersion floatValue] >= version)
 
 
-#define MKCrashGuardDefaultReturnNil  @"MKCrashGuard default  to return nil"
-#define MKCrashGuardDefaultIgnore     @"MKCrashGuard default  to ignore this operation"
-
-#define MKCrashGuardSeparator         @"================================================================\n\n\n"
-#define MKCrashGuardSeparatorWithFlag @"\n\n\n======================== MKCrashGuard Log =========================="
-
-
 #ifdef DEBUG
 #define MKCrashGuardLog(fmt, ...) NSLog((@"MKCrashGuardLog:" fmt), ##__VA_ARGS__)
 #else 
@@ -39,8 +32,7 @@
 #define MK_SYNTH_DUMMY_CLASS(_name_) \
 @interface MK_SYNTH_DUMMY_CLASS ## _name_ : NSObject @end \
 @implementation MK_SYNTH_DUMMY_CLASS ## _name_ @end
-#endif
-
+#endif 
 
 NS_ASSUME_NONNULL_BEGIN
 @interface MKCrashGuardConst : NSObject

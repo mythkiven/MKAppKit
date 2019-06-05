@@ -6,11 +6,10 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "MKCrashGuardProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSMutableDictionary (MKCrashGuard)<MKCrashGuardProtocol>
+@interface NSMutableDictionary (MKCrashGuard) 
 
 /** 防护：
  *
@@ -18,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
  * - (void)removeObjectForKey:(id)aKey
  *
  */
-
++ (void)crashGuardExchangeMethod;
 @end
 
 NS_ASSUME_NONNULL_END

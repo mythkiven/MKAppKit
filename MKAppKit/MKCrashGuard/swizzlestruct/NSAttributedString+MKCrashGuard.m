@@ -6,7 +6,8 @@
  */
 
 #import "NSAttributedString+MKCrashGuard.h" 
-#import "MKCrashGuardManager.h"
+#import "MKException.h"
+#import "NSObject+MKSwizzleHook.h"
 
 MK_SYNTH_DUMMY_CLASS(NSAttributedString_MKCrashGuard)
 @implementation NSAttributedString (MKCrashGuard)
@@ -14,24 +15,21 @@ MK_SYNTH_DUMMY_CLASS(NSAttributedString_MKCrashGuard)
 
 #pragma mark   MKCrashGuardProtocol
 + (void)crashGuardExchangeMethod {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        Class NSConcreteAttributedString = NSClassFromString(@"NSConcreteAttributedString");
-        [MKCrashGuardManager exchangeInstanceMethod:NSConcreteAttributedString systemSelector:@selector(initWithString:) swizzledSelector:@selector(crashGuardInitWithString:)];
-        [MKCrashGuardManager exchangeInstanceMethod:NSConcreteAttributedString systemSelector:@selector(initWithAttributedString:) swizzledSelector:@selector(crashGuardInitWithAttributedString:)];
-        [MKCrashGuardManager exchangeInstanceMethod:NSConcreteAttributedString systemSelector:@selector(initWithString:attributes:) swizzledSelector:@selector(crashGuardInitWithString:attributes:)];
-    });
+    Class NSConcreteAttributedString = NSClassFromString(@"NSConcreteAttributedString");
+    mk_swizzleInstanceMethod(NSConcreteAttributedString,@selector(initWithString:),@selector(guardInitWithString:));
+    mk_swizzleInstanceMethod(NSConcreteAttributedString,@selector(initWithAttributedString:),@selector(guardInitWithAttributedString:));
+    mk_swizzleInstanceMethod(NSConcreteAttributedString,@selector(initWithString:attributes:),@selector(guardInitWithString:attributes:));
+    
 }
 
 #pragma mark  initWithString
-- (instancetype)crashGuardInitWithString:(NSString *)str {
+- (instancetype)guardInitWithString:(NSString *)str {
     id object = nil;
     @try {
-        object = [self crashGuardInitWithString:str];
+        object = [self guardInitWithString:str];
     }
     @catch (NSException *exception) {
-        NSString *description = MKCrashGuardDefaultReturnNil;
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
+        mkHandleCrashException(exception);
     }
     @finally {
         return object;
@@ -39,14 +37,13 @@ MK_SYNTH_DUMMY_CLASS(NSAttributedString_MKCrashGuard)
 }
 
 #pragma mark initWithAttributedString
-- (instancetype)crashGuardInitWithAttributedString:(NSAttributedString *)attrStr {
+- (instancetype)guardInitWithAttributedString:(NSAttributedString *)attrStr {
     id object = nil;
     @try {
-        object = [self crashGuardInitWithAttributedString:attrStr];
+        object = [self guardInitWithAttributedString:attrStr];
     }
     @catch (NSException *exception) {
-        NSString *description = MKCrashGuardDefaultReturnNil;
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
+        mkHandleCrashException(exception);
     }
     @finally {
         return object;
@@ -55,14 +52,13 @@ MK_SYNTH_DUMMY_CLASS(NSAttributedString_MKCrashGuard)
 
 #pragma mark initWithString:attributes:
 
-- (instancetype)crashGuardInitWithString:(NSString *)str attributes:(NSDictionary<NSString *,id> *)attrs {
+- (instancetype)guardInitWithString:(NSString *)str attributes:(NSDictionary<NSString *,id> *)attrs {
     id object = nil;
     @try {
-        object = [self crashGuardInitWithString:str attributes:attrs];
+        object = [self guardInitWithString:str attributes:attrs];
     }
     @catch (NSException *exception) {
-        NSString *description = MKCrashGuardDefaultReturnNil;
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
+        mkHandleCrashException(exception);
     }
     @finally {
         return object;

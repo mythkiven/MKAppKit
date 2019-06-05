@@ -32,12 +32,22 @@ static const char mkSwizzleHookDeallocKey;
 
 
 
-void mk_swizzleClassMethod(Class cls, SEL originSelector, SEL swizzleSelector) {
+ static void mk_swizzleClassMethod(Class cls, SEL originSelector, SEL swizzleSelector) {
     if (!cls) {
         return;
     }
     Method originalMethod = class_getClassMethod(cls, originSelector);
     Method swizzledMethod = class_getClassMethod(cls, swizzleSelector);
+     NSCAssert(NULL != originalMethod,
+               @"originSelector %@ not found in %@ methods of class %@.",
+               NSStringFromSelector(originSelector),
+               class_isMetaClass(cls) ? @"class" : @"instance",
+               cls);
+     NSCAssert(NULL != swizzledMethod,
+               @"swizzleSelector %@ not found in %@ methods of class %@.",
+               NSStringFromSelector(swizzleSelector),
+               class_isMetaClass(cls) ? @"class" : @"instance",
+               cls);
     Class metacls = objc_getMetaClass(NSStringFromClass(cls).UTF8String);
     if (class_addMethod(metacls,
                         originSelector,
@@ -59,12 +69,24 @@ void mk_swizzleClassMethod(Class cls, SEL originSelector, SEL swizzleSelector) {
     }
 }
 
-void mk_swizzleInstanceMethod(Class cls, SEL originSelector, SEL swizzleSelector) {
+ static void mk_swizzleInstanceMethod(Class cls, SEL originSelector, SEL swizzleSelector) {
     if (!cls) {
         return;
     }
     Method originalMethod = class_getInstanceMethod(cls, originSelector);
     Method swizzledMethod = class_getInstanceMethod(cls, swizzleSelector);
+     
+    NSCAssert(NULL != originalMethod,
+               @"originSelector %@ not found in %@ methods of class %@.",
+               NSStringFromSelector(originSelector),
+               class_isMetaClass(cls) ? @"class" : @"instance",
+               cls);
+    NSCAssert(NULL != swizzledMethod,
+               @"swizzleSelector %@ not found in %@ methods of class %@.",
+               NSStringFromSelector(swizzleSelector),
+               class_isMetaClass(cls) ? @"class" : @"instance",
+               cls);
+     
     if (class_addMethod(cls,
                         originSelector,
                         method_getImplementation(swizzledMethod),
