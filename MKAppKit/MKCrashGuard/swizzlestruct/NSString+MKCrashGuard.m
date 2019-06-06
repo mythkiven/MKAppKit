@@ -6,157 +6,166 @@
  */
 
 #import "NSString+MKCrashGuard.h"
-#import "MKCrashGuardManager.h"
+#import "MKException.h"
+#import "NSObject+MKSwizzleHook.h"
 
 MK_SYNTH_DUMMY_CLASS(NSString_MKCrashGuard)
 @implementation NSString (MKCrashGuard)
 
 #pragma mark   MKCrashGuardProtocol
 + (void)crashGuardExchangeMethod {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        Class mkNSCFConstantString = NSClassFromString(@"__NSCFConstantString");
-        [MKCrashGuardManager exchangeInstanceMethod:mkNSCFConstantString systemSelector:@selector(characterAtIndex:) swizzledSelector:@selector(crashGuardCharacterAtIndex:)];
-        [MKCrashGuardManager exchangeInstanceMethod:mkNSCFConstantString systemSelector:@selector(substringFromIndex:) swizzledSelector:@selector(crashGuardSubstringFromIndex:)];
-        [MKCrashGuardManager exchangeInstanceMethod:mkNSCFConstantString systemSelector:@selector(substringToIndex:) swizzledSelector:@selector(crashGuardSubstringToIndex:)];
-        [MKCrashGuardManager exchangeInstanceMethod:mkNSCFConstantString systemSelector:@selector(substringWithRange:) swizzledSelector:@selector(crashGuardSubstringWithRange:)];
-        [MKCrashGuardManager exchangeInstanceMethod:mkNSCFConstantString systemSelector:@selector(stringByReplacingOccurrencesOfString:withString:) swizzledSelector:@selector(crashGuardStringByReplacingOccurrencesOfString:withString:)];
-        [MKCrashGuardManager exchangeInstanceMethod:mkNSCFConstantString systemSelector:@selector(stringByReplacingOccurrencesOfString:withString:options:range:) swizzledSelector:@selector(crashGuardStringByReplacingOccurrencesOfString:withString:options:range:)];
-        [MKCrashGuardManager exchangeInstanceMethod:mkNSCFConstantString systemSelector:@selector(stringByReplacingCharactersInRange:withString:) swizzledSelector:@selector(crashGuardStringByReplacingCharactersInRange:withString:)];
-        
-        Class mkNSTaggedPointerString = NSClassFromString(@"NSTaggedPointerString");
-        [MKCrashGuardManager exchangeInstanceMethod:mkNSTaggedPointerString systemSelector:@selector(characterAtIndex:) swizzledSelector:@selector(crashGuardCharacterAtIndex:)];
-        [MKCrashGuardManager exchangeInstanceMethod:mkNSTaggedPointerString systemSelector:@selector(substringFromIndex:) swizzledSelector:@selector(crashGuardSubstringFromIndex:)];
-        [MKCrashGuardManager exchangeInstanceMethod:mkNSTaggedPointerString systemSelector:@selector(substringToIndex:) swizzledSelector:@selector(crashGuardSubstringToIndex:)];
-        [MKCrashGuardManager exchangeInstanceMethod:mkNSTaggedPointerString systemSelector:@selector(substringWithRange:) swizzledSelector:@selector(crashGuardSubstringWithRange:)];
-        [MKCrashGuardManager exchangeInstanceMethod:mkNSTaggedPointerString systemSelector:@selector(stringByReplacingOccurrencesOfString:withString:) swizzledSelector:@selector(crashGuardStringByReplacingOccurrencesOfString:withString:)];
-        [MKCrashGuardManager exchangeInstanceMethod:mkNSTaggedPointerString systemSelector:@selector(stringByReplacingOccurrencesOfString:withString:options:range:) swizzledSelector:@selector(crashGuardStringByReplacingOccurrencesOfString:withString:options:range:)];
-        [MKCrashGuardManager exchangeInstanceMethod:mkNSTaggedPointerString systemSelector:@selector(stringByReplacingCharactersInRange:withString:) swizzledSelector:@selector(crashGuardStringByReplacingCharactersInRange:withString:)];
-        
-        Class mkNSPlaceholderString = NSClassFromString(@"NSPlaceholderString");
-        [MKCrashGuardManager exchangeInstanceMethod:mkNSPlaceholderString systemSelector:@selector(characterAtIndex:) swizzledSelector:@selector(crashGuardCharacterAtIndex:)];
-        [MKCrashGuardManager exchangeInstanceMethod:mkNSPlaceholderString systemSelector:@selector(substringFromIndex:) swizzledSelector:@selector(crashGuardSubstringFromIndex:)];
-        [MKCrashGuardManager exchangeInstanceMethod:mkNSPlaceholderString systemSelector:@selector(substringToIndex:) swizzledSelector:@selector(crashGuardSubstringToIndex:)];
-        [MKCrashGuardManager exchangeInstanceMethod:mkNSPlaceholderString systemSelector:@selector(substringWithRange:) swizzledSelector:@selector(crashGuardSubstringWithRange:)];
-        [MKCrashGuardManager exchangeInstanceMethod:mkNSPlaceholderString systemSelector:@selector(stringByReplacingOccurrencesOfString:withString:) swizzledSelector:@selector(crashGuardStringByReplacingOccurrencesOfString:withString:)];
-        [MKCrashGuardManager exchangeInstanceMethod:mkNSPlaceholderString systemSelector:@selector(stringByReplacingOccurrencesOfString:withString:options:range:) swizzledSelector:@selector(crashGuardStringByReplacingOccurrencesOfString:withString:options:range:)];
-        [MKCrashGuardManager exchangeInstanceMethod:mkNSPlaceholderString systemSelector:@selector(stringByReplacingCharactersInRange:withString:) swizzledSelector:@selector(crashGuardStringByReplacingCharactersInRange:withString:)];
-    });
+    [NSString mk_swizzleClassMethod:@selector(stringWithUTF8String:) withSwizzleMethod:@selector(guardStringWithUTF8String:)];
+    [NSString mk_swizzleClassMethod:@selector(stringWithCString:encoding:) withSwizzleMethod:@selector(guardStringWithCString:encoding:)];
+
+    //NSPlaceholderString
+    mk_swizzleInstanceMethod(NSClassFromString(@"NSPlaceholderString"), @selector(initWithCString:encoding:), @selector(guardInitWithCString:encoding:));
+    mk_swizzleInstanceMethod(NSClassFromString(@"NSPlaceholderString"), @selector(initWithString:), @selector(guardInitWithString:));
+    mk_swizzleInstanceMethod(NSClassFromString(@"__NSCFConstantString"), @selector(characterAtIndex:), @selector(guardCharacterAtIndex:));
+    mk_swizzleInstanceMethod(NSClassFromString(@"__NSCFConstantString"), @selector(stringByReplacingOccurrencesOfString:withString:), @selector(guardStringByReplacingOccurrencesOfString:withString:));
+    mk_swizzleInstanceMethod(NSClassFromString(@"__NSCFConstantString"), @selector(stringByReplacingOccurrencesOfString:withString:options:range:), @selector(guardStringByReplacingOccurrencesOfString:withString:options:range:));
+    mk_swizzleInstanceMethod(NSClassFromString(@"__NSCFConstantString"), @selector(stringByReplacingCharactersInRange:withString:), @selector(guardStringByReplacingCharactersInRange:withString:));
+
+    //_NSCFConstantString
+    mk_swizzleInstanceMethod(NSClassFromString(@"__NSCFConstantString"), @selector(substringFromIndex:), @selector(guardSubstringFromIndex:));
+    mk_swizzleInstanceMethod(NSClassFromString(@"__NSCFConstantString"), @selector(substringToIndex:), @selector(guardSubstringToIndex:));
+    mk_swizzleInstanceMethod(NSClassFromString(@"__NSCFConstantString"), @selector(substringWithRange:), @selector(guardSubstringWithRange:));
+    mk_swizzleInstanceMethod(NSClassFromString(@"__NSCFConstantString"), @selector(rangeOfString:options:range:locale:), @selector(guardRangeOfString:options:range:locale:));
+    mk_swizzleInstanceMethod(NSClassFromString(@"__NSCFConstantString"), @selector(characterAtIndex:), @selector(guardCharacterAtIndex:));
+    mk_swizzleInstanceMethod(NSClassFromString(@"__NSCFConstantString"), @selector(stringByReplacingOccurrencesOfString:withString:), @selector(guardStringByReplacingOccurrencesOfString:withString:));
+    mk_swizzleInstanceMethod(NSClassFromString(@"__NSCFConstantString"), @selector(stringByReplacingOccurrencesOfString:withString:options:range:), @selector(guardStringByReplacingOccurrencesOfString:withString:options:range:));
+    mk_swizzleInstanceMethod(NSClassFromString(@"__NSCFConstantString"), @selector(stringByReplacingCharactersInRange:withString:), @selector(guardStringByReplacingCharactersInRange:withString:));
+    
+    //NSTaggedPointerString
+    mk_swizzleInstanceMethod(NSClassFromString(@"NSTaggedPointerString"), @selector(substringFromIndex:), @selector(guardSubstringFromIndex:));
+    mk_swizzleInstanceMethod(NSClassFromString(@"NSTaggedPointerString"), @selector(substringToIndex:), @selector(guardSubstringToIndex:));
+    mk_swizzleInstanceMethod(NSClassFromString(@"NSTaggedPointerString"), @selector(substringWithRange:), @selector(guardSubstringWithRange:));
+    mk_swizzleInstanceMethod(NSClassFromString(@"NSTaggedPointerString"), @selector(rangeOfString:options:range:locale:), @selector(guardRangeOfString:options:range:locale:));
+    mk_swizzleInstanceMethod(NSClassFromString(@"__NSCFConstantString"), @selector(characterAtIndex:), @selector(guardCharacterAtIndex:));
+    mk_swizzleInstanceMethod(NSClassFromString(@"__NSCFConstantString"), @selector(stringByReplacingOccurrencesOfString:withString:), @selector(guardStringByReplacingOccurrencesOfString:withString:));
+    mk_swizzleInstanceMethod(NSClassFromString(@"__NSCFConstantString"), @selector(stringByReplacingOccurrencesOfString:withString:options:range:), @selector(guardStringByReplacingOccurrencesOfString:withString:options:range:));
+    mk_swizzleInstanceMethod(NSClassFromString(@"__NSCFConstantString"), @selector(stringByReplacingCharactersInRange:withString:), @selector(guardStringByReplacingCharactersInRange:withString:));
+    
 }
 
-#pragma mark - characterAtIndex:
-- (unichar)crashGuardCharacterAtIndex:(NSUInteger)index {
+
+- (unichar)guardCharacterAtIndex:(NSUInteger)index {
     unichar characteristic;
     @try {
-        characteristic = [self crashGuardCharacterAtIndex:index];
+        characteristic = [self guardCharacterAtIndex:index];
     }
     @catch (NSException *exception) {
-        NSString *description = @"MKCrashGuard default is to return a without assign unichar.";
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
+        mkHandleCrashException(exception);
     }
     @finally {
         return characteristic;
     }
 }
-
-
-#pragma mark - substringFromIndex:
-- (NSString *)crashGuardSubstringFromIndex:(NSUInteger)from {
-    NSString *subString = nil;
-    @try {
-        subString = [self crashGuardSubstringFromIndex:from];
-    }
-    @catch (NSException *exception) {
-        NSString *description = MKCrashGuardDefaultReturnNil;
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
-        subString = nil;
-    }
-    @finally {
-        return subString;
-    }
-}
-
-#pragma mark - substringToIndex
-- (NSString *)crashGuardSubstringToIndex:(NSUInteger)to {
-    NSString *subString = nil;
-    @try {
-        subString = [self crashGuardSubstringToIndex:to];
-    }
-    @catch (NSException *exception) {
-        NSString *description = MKCrashGuardDefaultReturnNil;
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
-        subString = nil;
-    }
-    @finally {
-        return subString;
-    }
-}
-
-
-#pragma mark - substringWithRange:
-- (NSString *)crashGuardSubstringWithRange:(NSRange)range {
-    NSString *subString = nil;
-    @try {
-        subString = [self crashGuardSubstringWithRange:range];
-    }
-    @catch (NSException *exception) {
-        NSString *description = MKCrashGuardDefaultReturnNil;
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
-        subString = nil;
-    }
-    @finally {
-        return subString;
-    }
-}
-
-#pragma mark - stringByReplacingOccurrencesOfString:
-- (NSString *)crashGuardStringByReplacingOccurrencesOfString:(NSString *)target withString:(NSString *)replacement {
+- (NSString *)guardStringByReplacingOccurrencesOfString:(NSString *)target withString:(NSString *)replacement {
     NSString *newStr = nil;
     @try {
-        newStr = [self crashGuardStringByReplacingOccurrencesOfString:target withString:replacement];
+        newStr = [self guardStringByReplacingOccurrencesOfString:target withString:replacement];
     }
     @catch (NSException *exception) {
-        NSString *description = MKCrashGuardDefaultReturnNil;
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
+        mkHandleCrashException(exception);
         newStr = nil;
     }
     @finally {
         return newStr;
     }
 }
-
-
-#pragma mark - stringByReplacingOccurrencesOfString:withString:options:range:
-- (NSString *)crashGuardStringByReplacingOccurrencesOfString:(NSString *)target withString:(NSString *)replacement options:(NSStringCompareOptions)options range:(NSRange)searchRange {
+- (NSString *)guardStringByReplacingOccurrencesOfString:(NSString *)target withString:(NSString *)replacement options:(NSStringCompareOptions)options range:(NSRange)searchRange {
     NSString *newStr = nil;
     @try {
-        newStr = [self crashGuardStringByReplacingOccurrencesOfString:target withString:replacement options:options range:searchRange];
+        newStr = [self guardStringByReplacingOccurrencesOfString:target withString:replacement options:options range:searchRange];
     }
     @catch (NSException *exception) {
-        NSString *description = MKCrashGuardDefaultReturnNil;
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
+        mkHandleCrashException(exception);
         newStr = nil;
     }
     @finally {
         return newStr;
     }
 }
-
-
-#pragma mark - stringByReplacingCharactersInRange:withString:
-- (NSString *)crashGuardStringByReplacingCharactersInRange:(NSRange)range withString:(NSString *)replacement {
+- (NSString *)guardStringByReplacingCharactersInRange:(NSRange)range withString:(NSString *)replacement {
     NSString *newStr = nil;
     @try {
-        newStr = [self crashGuardStringByReplacingCharactersInRange:range withString:replacement];
+        newStr = [self guardStringByReplacingCharactersInRange:range withString:replacement];
     }
     @catch (NSException *exception) {
-        NSString *description = MKCrashGuardDefaultReturnNil;
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
+        mkHandleCrashException(exception);
         newStr = nil;
     }
     @finally {
         return newStr;
     }
-} 
+}
++ (NSString*) guardStringWithUTF8String:(const char *)nullTerminatedCString{
+    if (NULL != nullTerminatedCString) {
+        return [self guardStringWithUTF8String:nullTerminatedCString];
+    }
+    mkHandleCrashException(@"[NSString stringWithUTF8String :] NULL char pointer");
+    return nil;
+}
+
++ (nullable instancetype) guardStringWithCString:(const char *)cString encoding:(NSStringEncoding)enc
+{
+    if (NULL != cString){
+        return [self guardStringWithCString:cString encoding:enc];
+    }
+    mkHandleCrashException(@"[NSString stringWithCString:encoding: ] NULL char pointer");
+    return nil;
+}
+
+- (nullable instancetype) guardInitWithString:(id)cString{
+    if (nil != cString){
+        return [self guardInitWithString:cString];
+    }
+    mkHandleCrashException(@"[NSString initWithString :] nil parameter");
+    return nil;
+}
+
+- (nullable instancetype) guardInitWithCString:(const char *)nullTerminatedCString encoding:(NSStringEncoding)encoding{
+    if (NULL != nullTerminatedCString){
+        return [self guardInitWithCString:nullTerminatedCString encoding:encoding];
+    }
+    mkHandleCrashException(@"[NSString initWithCString:encoding :] NULL char pointer");
+    return nil;
+}
+
+- (NSString *)guardSubstringFromIndex:(NSUInteger)from{
+    if (from <= self.length) {
+        return [self guardSubstringFromIndex:from];
+    }
+    mkHandleCrashException([NSString stringWithFormat:@"[NSString substringFromIndex :] value:%@ from:%tu",self,from]);
+    return nil;
+}
+
+- (NSString *)guardSubstringToIndex:(NSUInteger)to{
+    if (to <= self.length) {
+        return [self guardSubstringToIndex:to];
+    }
+    mkHandleCrashException([NSString stringWithFormat:@"[NSString substringToIndex :] value:%@ from:%tu",self,to]);
+    return self;
+}
+
+- (NSString *)guardSubstringWithRange:(NSRange)range{
+    if (range.location + range.length <= self.length) {
+        return [self guardSubstringWithRange:range];
+    }
+    mkHandleCrashException([NSString stringWithFormat:@"[NSString substringWithRange :] value:%@ range:%@",self,NSStringFromRange(range)]);
+    return nil;
+}
+- (NSRange)guardRangeOfString:(NSString *)searchString options:(NSStringCompareOptions)mask range:(NSRange)range locale:(nullable NSLocale *)locale{
+    if (searchString){
+        if (range.location + range.length <= self.length) {
+            return [self guardRangeOfString:searchString options:mask range:range locale:locale];
+        }
+        mkHandleCrashException([NSString stringWithFormat:@"[NSString rangeOfString:options:range:locale: ] value:%@ range:%@",self,NSStringFromRange(range)]);
+        return NSMakeRange(NSNotFound, 0);
+    }else{
+        mkHandleCrashException([NSString stringWithFormat:@"[NSString rangeOfString:options:range:locale: ] searchString nil value:%@ range:%@",self,NSStringFromRange(range)]);
+        return NSMakeRange(NSNotFound, 0);
+    }
+}
 
 @end

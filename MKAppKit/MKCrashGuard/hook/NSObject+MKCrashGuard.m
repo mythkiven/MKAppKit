@@ -49,7 +49,7 @@ static NSMutableArray *mkUnrecognizedSelectorClassPrefixs;
            if (![classNamePrefix hasPrefix:@"UI"] &&![classNamePrefix isEqualToString:@"NS"] && ![classNamePrefix isEqualToString:NSStringFromClass([NSObject class])]) {
                 [mkUnrecognizedSelectorClassPrefixs addObject:classNamePrefix];
             } else {
-                MKCrashGuardLog(@"%@",[NSString stringWithFormat:@"\n%@\n[MKCrashGuard mk_guardSelectorWithClassPrefixs:];\n 忽略UI开头的类、NSObject\n%@\n",MKCrashGuardSeparatorWithFlag,MKCrashGuardSeparator]); 
+                MKCrashGuardLog(@"%@",[NSString stringWithFormat:@"\n ==================================== \n[MKCrashGuard mk_guardSelectorWithClassPrefixs:];\n 忽略UI开头的类、NSObject\n  ====================================  \n"); 
             }
         }
     });
