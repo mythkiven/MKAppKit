@@ -23,16 +23,34 @@ static const char mkSwizzleHookDeallocKey;
     NSAssert(_impProviderBlock,nil);
     return (MKSwizzleOriginalIMP)_impProviderBlock();
 }
-
 @end
 
+#pragma mark -
+#pragma mark -
+
+static const char mkDeallocNSObjectKey;
+/**
+ Observer the target middle object
+ */
+@interface MKDeallocStub : NSObject
+@property (nonatomic,readwrite,copy) void(^deallocBlock)(void);
+@end
+@implementation MKDeallocStub
+- (void)dealloc {
+    if (self.deallocBlock) {
+        self.deallocBlock();
+    }
+    self.deallocBlock = nil;
+}
+@end
+ 
 
 #pragma mark -
 #pragma mark - C type
 
 
 
- static void mk_swizzleClassMethod(Class cls, SEL originSelector, SEL swizzleSelector) {
+   void mk_swizzleClassMethod(Class cls, SEL originSelector, SEL swizzleSelector) {
     if (!cls) {
         return;
     }
@@ -69,7 +87,7 @@ static const char mkSwizzleHookDeallocKey;
     }
 }
 
- static void mk_swizzleInstanceMethod(Class cls, SEL originSelector, SEL swizzleSelector) {
+   void mk_swizzleInstanceMethod(Class cls, SEL originSelector, SEL swizzleSelector) {
     if (!cls) {
         return;
     }
@@ -154,15 +172,8 @@ void mk_swizzleDeallocIfNeeded(Class class) {
 }
 
 
-
-
-
-
 #pragma mark -
 #pragma mark - MKSwizzleHook
-
-
-
 
 @implementation NSObject (MKSwizzleHook)
 
@@ -196,6 +207,19 @@ void __MK_SWIZZLE_BLOCK(Class classToSwizzle,SEL selector,MKSwizzledIMPBlock imp
 
 - (void)mk_swizzleInstanceMethod:(SEL)originSelector withSwizzledBlock:(MKSwizzledIMPBlock)swizzledBlock {
     __MK_SWIZZLE_BLOCK(self.class, originSelector, swizzledBlock);
+}
+
+- (void)mk_deallocBlock:(void(^)(void))block{
+    @synchronized(self){
+        NSMutableArray* blockArray = objc_getAssociatedObject(self, &mkDeallocNSObjectKey);
+        if (!blockArray) {
+            blockArray = [NSMutableArray array];
+            objc_setAssociatedObject(self, &mkDeallocNSObjectKey, blockArray, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        }
+        MKDeallocStub *stub = [MKDeallocStub new];
+        stub.deallocBlock = block;
+        [blockArray addObject:stub];
+    }
 }
 
 @end

@@ -8,6 +8,9 @@
 #import "NSObject+MKCrashGuard.h"
 #import "MKCrashGuardManager.h"
 #import "MKCrashGuardConst.h"
+#import "MKException.h"
+#import "NSObject+MKSwizzleHook.h"
+
 
 MK_SYNTH_DUMMY_CLASS(NSObject_MKCrashGuard)
 @implementation NSObject (MKCrashGuard)
@@ -49,7 +52,7 @@ static NSMutableArray *mkUnrecognizedSelectorClassPrefixs;
            if (![classNamePrefix hasPrefix:@"UI"] &&![classNamePrefix isEqualToString:@"NS"] && ![classNamePrefix isEqualToString:NSStringFromClass([NSObject class])]) {
                 [mkUnrecognizedSelectorClassPrefixs addObject:classNamePrefix];
             } else {
-                MKCrashGuardLog(@"%@",[NSString stringWithFormat:@"\n ==================================== \n[MKCrashGuard mk_guardSelectorWithClassPrefixs:];\n 忽略UI开头的类、NSObject\n  ====================================  \n"); 
+                MKCrashGuardLog(@"\n ==================================== \n[MKCrashGuard mk_guardSelectorWithClassPrefixs:];\n 忽略UI开头的类、NSObject\n  ====================================  \n");
             }
         }
     });
@@ -73,8 +76,7 @@ static NSMutableArray *mkUnrecognizedSelectorClassPrefixs;
     @try {
         [self crashGuardForwardInvocation:anInvocation];
     } @catch (NSException *exception) {
-        NSString *description = MKCrashGuardDefaultIgnore;
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
+        mkHandleCrashException(exception);
     } @finally {
     }
 }
@@ -85,8 +87,7 @@ static NSMutableArray *mkUnrecognizedSelectorClassPrefixs;
         [self crashGuardSetValue:value forKey:key];
     }
     @catch (NSException *exception) {
-        NSString *description = MKCrashGuardDefaultIgnore;
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
+        mkHandleCrashException(exception);
     }
     @finally {
     }
@@ -98,8 +99,7 @@ static NSMutableArray *mkUnrecognizedSelectorClassPrefixs;
         [self crashGuardSetValue:value forKeyPath:keyPath];
     }
     @catch (NSException *exception) {
-        NSString *description = MKCrashGuardDefaultIgnore;
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
+        mkHandleCrashException(exception);
     }
     @finally {
     }
@@ -111,8 +111,7 @@ static NSMutableArray *mkUnrecognizedSelectorClassPrefixs;
         [self crashGuardSetValue:value forUndefinedKey:key];
     }
     @catch (NSException *exception) {
-        NSString *description = MKCrashGuardDefaultIgnore;
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
+        mkHandleCrashException(exception);
     }
     @finally {
     }
@@ -124,8 +123,7 @@ static NSMutableArray *mkUnrecognizedSelectorClassPrefixs;
         [self crashGuardSetValuesForKeysWithDictionary:keyedValues];
     }
     @catch (NSException *exception) {
-        NSString *description = MKCrashGuardDefaultIgnore;
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
+        mkHandleCrashException(exception);
     }
     @finally {
     }

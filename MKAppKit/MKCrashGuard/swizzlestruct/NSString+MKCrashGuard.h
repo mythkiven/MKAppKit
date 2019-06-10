@@ -20,7 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
  *  - (NSString *)stringByReplacingOccurrencesOfString:(NSString *)target withString:(NSString *)replacement
  *  - (NSString *)stringByReplacingOccurrencesOfString:(NSString *)target withString:(NSString *)replacement options:(NSStringCompareOptions)options range:(NSRange)searchRange
  *  - (NSString *)stringByReplacingCharactersInRange:(NSRange)range withString:(NSString *)replacement
- *
+ *  + (nullable instancetype)stringWithUTF8String:(const char *)nullTerminatedCString;
+ *  + (nullable instancetype)stringWithCString:(const char *)cString encoding:(NSStringEncoding)enc;
+ *  - (nullable instancetype)initWithCString:(const char *)nullTerminatedCString encoding:(NSStringEncoding)encoding;
+ *  - (instancetype)initWithString:(NSString *)aString;
  */
 + (void)crashGuardExchangeMethod;
 @end

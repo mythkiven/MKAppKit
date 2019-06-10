@@ -16,7 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
  * - (void)replaceCharactersInRange:(NSRange)range withString:(NSString *)aString
  * - (void)insertString:(NSString *)aString atIndex:(NSUInteger)loc
  * - (void)deleteCharactersInRange:(NSRange)range
- *
+ * - (void)appendString:(NSString *)aString;
+ * - (NSString *)substringFromIndex:(NSUInteger)from;
+ * - (NSString *)substringToIndex:(NSUInteger)to;
+ * - (NSString *)substringWithRange:(NSRange)range;   
  */
 + (void)crashGuardExchangeMethod;
 @end

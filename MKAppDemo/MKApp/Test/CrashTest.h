@@ -32,6 +32,7 @@ typedef void (^HttpFailed) (NSURLSessionDataTask*);
 @property (nonatomic,copy)  NSMutableString*  mstring;
 @property (nonatomic,copy)  NSMutableData*  mdata;
 @property (nonatomic,copy)  NSMutableSet*  mset;
+@property (strong,nonatomic) NSTimer* timer;
 
 - (void)executeAllTest;
 -(void)nonselector;

@@ -22,9 +22,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     // 启用 crash 防护
-    [MKCrashGuardManager executeAppGuard];
-    // 防护的类名、类名前缀
-    [MKCrashGuardManager guardSelectorWithClassPrefixs:@[@"Crash",@"Case",@"NSArray",@"UI",@"NS",@"NSObject"]];
+    [MKCrashGuardManager executeAppGuard]; 
     //  test crash case
     [[CrashTest new] executeAllTest];
     

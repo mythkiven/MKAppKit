@@ -16,9 +16,9 @@ MK_SYNTH_DUMMY_CLASS(NSMutableArray_MKCrashGuard)
 + (void)crashGuardExchangeMethod {
     
     Class __NSArrayM = NSClassFromString(@"__NSArrayM");
-    Class __NSCFArray = NSClassFromString(@"__NSCFArray");
+//    Class __NSCFArray = NSClassFromString(@"__NSCFArray");
     
-    mk_swizzleInstanceMethod(__NSArrayM, @selector(objectAtIndex:), @selector(guardObjectAtIndex:));
+    mk_swizzleInstanceMethod(__NSArrayM, @selector(objectAtIndex:), @selector(_guardObjectAtIndex:));
     mk_swizzleInstanceMethod(__NSArrayM, @selector(subarrayWithRange:), @selector(guardSubarrayWithRange:));
     mk_swizzleInstanceMethod(__NSArrayM, @selector(objectAtIndexedSubscript:), @selector(guardObjectAtIndexedSubscript:));
     mk_swizzleInstanceMethod(__NSArrayM, @selector(addObject:), @selector(guardAddObject:));
@@ -29,15 +29,15 @@ MK_SYNTH_DUMMY_CLASS(NSMutableArray_MKCrashGuard)
     mk_swizzleInstanceMethod(__NSArrayM, @selector(removeObjectsInRange:), @selector(guardRemoveObjectsInRange:));
     mk_swizzleInstanceMethod(__NSArrayM, @selector(getObjects:range:), @selector(guardGetObjects:range:));
     
-    mk_swizzleInstanceMethod(__NSCFArray, @selector(objectAtIndex:), @selector(guardObjectAtIndex:));
-    mk_swizzleInstanceMethod(__NSCFArray, @selector(subarrayWithRange:), @selector(guardSubarrayWithRange:));
-    mk_swizzleInstanceMethod(__NSCFArray, @selector(objectAtIndexedSubscript:), @selector(guardObjectAtIndexedSubscript:));
-    mk_swizzleInstanceMethod(__NSCFArray, @selector(addObject:), @selector(guardAddObject:));
-    mk_swizzleInstanceMethod(__NSCFArray, @selector(insertObject:atIndex:), @selector(guardInsertObject:atIndex:));
-    mk_swizzleInstanceMethod(__NSCFArray, @selector(removeObjectAtIndex:), @selector(guardRemoveObjectAtIndex:));
-    mk_swizzleInstanceMethod(__NSCFArray, @selector(replaceObjectAtIndex:withObject:), @selector(guardReplaceObjectAtIndex:withObject:));
-    mk_swizzleInstanceMethod(__NSCFArray, @selector(removeObjectsInRange:), @selector(guardRemoveObjectsInRange:));
-    mk_swizzleInstanceMethod(__NSCFArray, @selector(getObjects:range:), @selector(guardGetObjects:range:));
+//    mk_swizzleInstanceMethod(__NSCFArray, @selector(objectAtIndex:), @selector(_guardObjectAtIndex:));
+//    mk_swizzleInstanceMethod(__NSCFArray, @selector(subarrayWithRange:), @selector(guardSubarrayWithRange:));
+//    mk_swizzleInstanceMethod(__NSCFArray, @selector(objectAtIndexedSubscript:), @selector(guardObjectAtIndexedSubscript:));
+//    mk_swizzleInstanceMethod(__NSCFArray, @selector(addObject:), @selector(guardAddObject:));
+//    mk_swizzleInstanceMethod(__NSCFArray, @selector(insertObject:atIndex:), @selector(guardInsertObject:atIndex:));
+//    mk_swizzleInstanceMethod(__NSCFArray, @selector(removeObjectAtIndex:), @selector(guardRemoveObjectAtIndex:));
+//    mk_swizzleInstanceMethod(__NSCFArray, @selector(replaceObjectAtIndex:withObject:), @selector(guardReplaceObjectAtIndex:withObject:));
+//    mk_swizzleInstanceMethod(__NSCFArray, @selector(removeObjectsInRange:), @selector(guardRemoveObjectsInRange:));
+//    mk_swizzleInstanceMethod(__NSCFArray, @selector(getObjects:range:), @selector(guardGetObjects:range:));
     
 }
 
@@ -49,12 +49,13 @@ MK_SYNTH_DUMMY_CLASS(NSMutableArray_MKCrashGuard)
         mkHandleCrashException(@"[NSMutableArray addObject: ] nil object");
     }
 }
-- (id)guardObjectAtIndex:(NSUInteger)index {
+- (id)_guardObjectAtIndex:(NSUInteger)index {
     if (index < self.count) {
-        return [self guardObjectAtIndex:index];
+        return [self _guardObjectAtIndex:index];
     }
     mkHandleCrashException([NSString stringWithFormat:@"[NSMutableArray objectAtIndex: ] invalid index:%tu total:%tu",index,self.count]);
     return nil;
+    
 }
 - (id)guardObjectAtIndexedSubscript:(NSInteger)index {
     if (index < self.count) {
@@ -102,7 +103,7 @@ MK_SYNTH_DUMMY_CLASS(NSMutableArray_MKCrashGuard)
     if (range.location + range.length <= self.count){
         return [self guardSubarrayWithRange:range];
     }else if (range.location < self.count){
-        return [self hookSubarrayWithRange:NSMakeRange(range.location, self.count-range.location)];
+        return [self guardSubarrayWithRange:NSMakeRange(range.location, self.count-range.location)];
     }
     mkHandleCrashException([NSString stringWithFormat:@"[NSMutableArray subarrayWithRange: ] invalid range location:%tu length:%tu",range.location,range.length]);
     return nil;

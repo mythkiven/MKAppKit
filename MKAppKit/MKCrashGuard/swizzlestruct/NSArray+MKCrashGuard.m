@@ -19,7 +19,7 @@ MK_SYNTH_DUMMY_CLASS(NSArray_MKCrashGuard)
     [NSArray mk_swizzleClassMethod:@selector(arrayWithObject:) withSwizzleMethod:@selector(guardArrayWithObject:)];
     [NSArray mk_swizzleClassMethod:@selector(arrayWithObjects:count:) withSwizzleMethod:@selector(guardArrayWithObjects:count:)];
     
-    Class __NSArray = NSClassFromString(@"NSArray");
+//    Class __NSArray = NSClassFromString(@"NSArray");
     Class __NSArray0 = NSClassFromString(@"__NSArray0");
     Class __NSArrayI = NSClassFromString(@"__NSArrayI");
     Class __NSSingleObjectArrayI = NSClassFromString(@"__NSSingleObjectArrayI");
@@ -27,11 +27,12 @@ MK_SYNTH_DUMMY_CLASS(NSArray_MKCrashGuard)
     Class __NSFrozenArrayM = NSClassFromString(@"__NSFrozenArrayM");
     Class __NSArrayReversed = NSClassFromString(@"__NSArrayReversed");
     
-    mk_swizzleInstanceMethod(__NSArray,@selector(objectsAtIndexes:),@selector(guardObjectsAtIndexes:));
-    mk_swizzleInstanceMethod(__NSArray,@selector(objectAtIndex:),@selector(guardObjectAtIndex:));
-    mk_swizzleInstanceMethod(__NSArray,@selector(objectAtIndexedSubscript:),@selector(guardObjectAtIndexedSubscript:));
-    mk_swizzleInstanceMethod(__NSArray,@selector(getObjects:range:),@selector(guardGetObjects:range:));
-    mk_swizzleInstanceMethod(__NSArray,@selector(subarrayWithRange:),@selector(guardSubarrayWithRange:));
+    
+//    mk_swizzleInstanceMethod(__NSArray,@selector(objectsAtIndexes:),@selector(guardObjectsAtIndexes:));
+//    mk_swizzleInstanceMethod(__NSArray,@selector(objectAtIndex:),@selector(guardObjectAtIndex:));
+//    mk_swizzleInstanceMethod(__NSArray,@selector(objectAtIndexedSubscript:),@selector(guardObjectAtIndexedSubscript:));
+//    mk_swizzleInstanceMethod(__NSArray,@selector(getObjects:range:),@selector(guardGetObjects:range:));
+//    mk_swizzleInstanceMethod(__NSArray,@selector(subarrayWithRange:),@selector(guardSubarrayWithRange:));
     
     mk_swizzleInstanceMethod(__NSArray0,@selector(objectsAtIndexes:),@selector(guardObjectsAtIndexes:));
     mk_swizzleInstanceMethod(__NSArray0,@selector(objectAtIndex:),@selector(guardObjectAtIndex:));
@@ -40,7 +41,7 @@ MK_SYNTH_DUMMY_CLASS(NSArray_MKCrashGuard)
     mk_swizzleInstanceMethod(__NSArray0,@selector(subarrayWithRange:),@selector(guardSubarrayWithRange:));
     
     mk_swizzleInstanceMethod(__NSArrayI,@selector(objectsAtIndexes:),@selector(guardObjectsAtIndexes:));
-    mk_swizzleInstanceMethod(__NSArrayI,@selector(objectAtIndex:),@selector(guardObjectAtIndex:));
+    mk_swizzleInstanceMethod(__NSArrayI,@selector(objectAtIndex:),@selector(guardObjectAtIndex:)); // -[NSArray objectAtIndex:]: method only defined for abstract class. 
     mk_swizzleInstanceMethod(__NSArrayI,@selector(objectAtIndexedSubscript:),@selector(guardObjectAtIndexedSubscript:));
     mk_swizzleInstanceMethod(__NSArrayI,@selector(getObjects:range:),@selector(guardGetObjects:range:));
     mk_swizzleInstanceMethod(__NSArrayI,@selector(subarrayWithRange:),@selector(guardSubarrayWithRange:));
@@ -50,19 +51,19 @@ MK_SYNTH_DUMMY_CLASS(NSArray_MKCrashGuard)
     mk_swizzleInstanceMethod(__NSSingleObjectArrayI,@selector(objectAtIndexedSubscript:),@selector(guardObjectAtIndexedSubscript:));
     mk_swizzleInstanceMethod(__NSSingleObjectArrayI,@selector(getObjects:range:),@selector(guardGetObjects:range:));
     mk_swizzleInstanceMethod(__NSSingleObjectArrayI,@selector(subarrayWithRange:),@selector(guardSubarrayWithRange:));
-    
+
     mk_swizzleInstanceMethod(__NSArrayI_Transfer,@selector(objectsAtIndexes:),@selector(guardObjectsAtIndexes:));
     mk_swizzleInstanceMethod(__NSArrayI_Transfer,@selector(objectAtIndex:),@selector(guardObjectAtIndex:));
     mk_swizzleInstanceMethod(__NSArrayI_Transfer,@selector(objectAtIndexedSubscript:),@selector(guardObjectAtIndexedSubscript:));
     mk_swizzleInstanceMethod(__NSArrayI_Transfer,@selector(getObjects:range:),@selector(guardGetObjects:range:));
     mk_swizzleInstanceMethod(__NSArrayI_Transfer,@selector(subarrayWithRange:),@selector(guardSubarrayWithRange:));
-    
+
     mk_swizzleInstanceMethod(__NSFrozenArrayM,@selector(objectsAtIndexes:),@selector(guardObjectsAtIndexes:));
     mk_swizzleInstanceMethod(__NSFrozenArrayM,@selector(objectAtIndex:),@selector(guardObjectAtIndex:));
     mk_swizzleInstanceMethod(__NSFrozenArrayM,@selector(objectAtIndexedSubscript:),@selector(guardObjectAtIndexedSubscript:));
     mk_swizzleInstanceMethod(__NSFrozenArrayM,@selector(getObjects:range:),@selector(guardGetObjects:range:));
     mk_swizzleInstanceMethod(__NSFrozenArrayM,@selector(subarrayWithRange:),@selector(guardSubarrayWithRange:));
-    
+
     mk_swizzleInstanceMethod(__NSArrayReversed,@selector(objectsAtIndexes:),@selector(guardObjectsAtIndexes:));
     mk_swizzleInstanceMethod(__NSArrayReversed,@selector(objectAtIndex:),@selector(guardObjectAtIndex:));
     mk_swizzleInstanceMethod(__NSArrayReversed,@selector(objectAtIndexedSubscript:),@selector(guardObjectAtIndexedSubscript:));
@@ -112,11 +113,12 @@ MK_SYNTH_DUMMY_CLASS(NSArray_MKCrashGuard)
     return nil;
 }
 - (id)guardObjectAtIndex:(NSUInteger)index {
-    if (index < self.count) {
+    if (index < self.count) { 
         return [self guardObjectAtIndex:index];
     }
     mkHandleCrashException([NSString stringWithFormat:@"[NSArray objectAtIndex: ] invalid index:%tu total:%tu",index,self.count]);
     return nil;
+    
 }
 
 - (NSArray *)guardObjectsAtIndexes:(NSIndexSet *)indexes {

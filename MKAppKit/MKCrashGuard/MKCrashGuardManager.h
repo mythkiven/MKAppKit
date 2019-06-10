@@ -19,6 +19,11 @@
 #import "NSMutableDictionary+MKCrashGuard.h"
 #import "MKCrashGuardConst.h"
 
+#import "NSTimer+MKCrashGuard.h"
+#import "NSNotificationCenter+MKCrashGuard.h"
+#import "NSObject+MKKVOCrashGuard.h"
+#import "NSObject+MKSELCrashGuard.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 
@@ -36,9 +41,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)guardSelectorWithClassPrefixs:(NSArray<NSString *> *)classPrefixs;
 
 
-
-//  DEBUG 模式下，crash 信息会打印出来，同时发送一个名为 @"MKCrashGuardErrorNotification" 的通知，用户可监听通知并进行上报处理等。
-+ (void)printErrorInfo:(NSException *)exception describe:(NSString *)description;//  __attribute__((deprecated("Stop invoke this method,If invoke this,Maybe occur crash")));
 + (void)exchangeClassMethod:(Class)anClass systemSelector:(SEL)systemSelector swizzledSelector:(SEL)swizzledSelector;//  __attribute__((deprecated("Stop invoke this method,If invoke this,Maybe occur crash")));
 + (void)exchangeInstanceMethod:(Class)anClass systemSelector:(SEL)systemSelector swizzledSelector:(SEL)swizzledSelector;//  __attribute__((deprecated("Stop invoke this method,If invoke this,Maybe occur crash")));
 

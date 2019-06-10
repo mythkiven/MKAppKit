@@ -112,7 +112,7 @@ static MKException *_manager;
     NSLog(@"MKCrashGuard ErrorPlace:%@",errorPlace);
     NSLog(@"MKCrashGuard LoadAddress:%@",@(loadAddress));
     NSLog(@"MKCrashGuard SlideAddress:%@",@(slideAddress));
-    NSLog(@"MKCrashGuard defaultToDo:%@",exceptionMessage);
+    NSLog(@"MKCrashGuard Description:%@",exceptionMessage);
     NSLog(@"MKCrashGuard CallStack:%@",callStackString);
     NSLog(@"================================ MKCrashGuard End====================================");
 #endif
@@ -181,6 +181,5 @@ uintptr_t get_slide_address(void) {
     }
     return mainCallStackSymbolMsg;
 }
-
-
+ 
 @end
