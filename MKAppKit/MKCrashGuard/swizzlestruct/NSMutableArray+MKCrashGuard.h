@@ -6,11 +6,10 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "MKCrashGuardProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSMutableArray (MKCrashGuard)<MKCrashGuardProtocol>
+@interface NSMutableArray (MKCrashGuard) 
 
 /** 防护：
  *
@@ -19,8 +18,12 @@ NS_ASSUME_NONNULL_BEGIN
  *  - (void)removeObjectAtIndex:(NSUInteger)index
  *  - (void)insertObject:(id)anObject atIndex:(NSUInteger)index
  *  - (void)getObjects:(__unsafe_unretained id  _Nonnull *)objects range:(NSRange)range
+ *  - (NSArray<ObjectType> *)subarrayWithRange:(NSRange)range;
+ *  - (ObjectType)objectAtIndexedSubscript:(NSUInteger)idx
+ *  - (void)addObject:(ObjectType)anObject;
+ *  - (void)replaceObjectAtIndex:(NSUInteger)index withObject:(ObjectType)anObject;
  */
-
++ (void)crashGuardExchangeMethod;
 @end
 
 NS_ASSUME_NONNULL_END

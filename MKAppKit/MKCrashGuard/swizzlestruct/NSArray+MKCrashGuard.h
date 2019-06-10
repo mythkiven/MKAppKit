@@ -6,11 +6,10 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "MKCrashGuardProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSArray (MKCrashGuard)<MKCrashGuardProtocol>
+@interface NSArray (MKCrashGuard) 
 
 /** 防护：
  *
@@ -22,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
  * - (void)getObjects:(ObjectType _Nonnull __unsafe_unretained [_Nonnull])objects range:(NSRange)range
  *
  */
++ (void)crashGuardExchangeMethod;
 
 @end
 

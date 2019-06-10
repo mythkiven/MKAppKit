@@ -6,65 +6,42 @@
  */
 
 #import "NSMutableDictionary+MKCrashGuard.h" 
-#import "MKCrashGuardManager.h"
+#import "MKException.h"
+#import "NSObject+MKSwizzleHook.h"
 
 MK_SYNTH_DUMMY_CLASS(NSMutableDictionary_MKCrashGuard)
 @implementation NSMutableDictionary (MKCrashGuard)
 
 #pragma mark   MKCrashGuardProtocol
 + (void)crashGuardExchangeMethod {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        Class dictionaryM = NSClassFromString(@"__NSDictionaryM");
-        //setObject:forKey:
-        [MKCrashGuardManager exchangeInstanceMethod:dictionaryM systemSelector:@selector(setObject:forKey:) swizzledSelector:@selector(crashGuardSetObject:forKey:)];
-        //setObject:forKeyedSubscript:
-        if (MKCrashGuardSystemVersion(11.0)) {
-            [MKCrashGuardManager exchangeInstanceMethod:dictionaryM systemSelector:@selector(setObject:forKeyedSubscript:) swizzledSelector:@selector(crashGuardSetObject:forKeyedSubscript:)];
-        }
-        //removeObjectForKey:
-        Method removeObjectForKey = class_getInstanceMethod(dictionaryM, @selector(removeObjectForKey:));
-        Method crashGuardRemoveObjectForKey = class_getInstanceMethod(dictionaryM, @selector(crashGuardRemoveObjectForKey:));
-        method_exchangeImplementations(removeObjectForKey, crashGuardRemoveObjectForKey);
-    });
+    mk_swizzleInstanceMethod(NSClassFromString(@"__NSDictionaryM"), @selector(setObject:forKey:), @selector(guardSetObject:forKey:));
+    mk_swizzleInstanceMethod(NSClassFromString(@"__NSDictionaryM"), @selector(removeObjectForKey:), @selector(guardRemoveObjectForKey:));
+    mk_swizzleInstanceMethod(NSClassFromString(@"__NSDictionaryM"), @selector(setObject:forKeyedSubscript:), @selector(guardSetObject:forKeyedSubscript:));
 }
 
-
-#pragma mark - setObject:forKey:
-- (void)crashGuardSetObject:(id)anObject forKey:(id<NSCopying>)aKey {
-    @try {
-        [self crashGuardSetObject:anObject forKey:aKey];
-    }
-    @catch (NSException *exception) {
-        [MKCrashGuardManager printErrorInfo:exception describe:MKCrashGuardDefaultIgnore];
-    }
-    @finally {
+- (void) guardSetObject:(id)object forKey:(id)key {
+    if (object && key) {
+        [self guardSetObject:object forKey:key];
+    } else {
+        mkHandleCrashException([NSString stringWithFormat:@"[NSMutableDictionary setObject: forKey: ] invalid object:%@ and key:%@  dict:%@",object,key,self]);
     }
 }
 
-#pragma mark - setObject:forKeyedSubscript:
-- (void)crashGuardSetObject:(id)obj forKeyedSubscript:(id<NSCopying>)key {
-    @try {
-        [self crashGuardSetObject:obj forKeyedSubscript:key];
-    }
-    @catch (NSException *exception) {
-        [MKCrashGuardManager printErrorInfo:exception describe:MKCrashGuardDefaultIgnore];
-    }
-    @finally {
+- (void) guardRemoveObjectForKey:(id)key {
+    if (key) {
+        [self guardRemoveObjectForKey:key];
+    } else {
+        mkHandleCrashException([NSString stringWithFormat:@"[NSMutableDictionary removeObjectForKey: ] nil key  dict:%@",self]);
     }
 }
 
-
-#pragma mark - removeObjectForKey:
-- (void)crashGuardRemoveObjectForKey:(id)aKey {
-    @try {
-        [self crashGuardRemoveObjectForKey:aKey];
-    }
-    @catch (NSException *exception) {
-        [MKCrashGuardManager printErrorInfo:exception describe:MKCrashGuardDefaultIgnore];
-    }
-    @finally {
+- (void) guardSetObject:(id)object forKeyedSubscript:(id<NSCopying>)key {
+    if (key) {
+        [self guardSetObject:object forKeyedSubscript:key];
+    } else {
+        mkHandleCrashException([NSString stringWithFormat:@"[NSMutableDictionary setObject: forKeyedSubscript: ] object:%@ and forKeyedSubscript:%@  dict:%@",object,key,self]);
     }
 }
+
  
 @end

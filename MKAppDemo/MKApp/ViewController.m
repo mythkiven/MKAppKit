@@ -10,7 +10,7 @@
 #import "CombineLoadingAnimationVC.h"
 #import "DropdownMailTFVC.h"
 #import "MKApp-Swift.h"
-//#import "MKLaunchMonitor.h"
+#import "testViewController.h"
 #import "MKPointWatch.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -45,11 +45,15 @@
     self.title = @"MKAppKit";
     [self.view addSubview:self.tableview];
     sleep(1);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (ino64_t)(8.0 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        [self presentViewController:[testViewController new] animated:YES completion:nil];
+    } ); 
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [[MKPointWatch pointWatch] pointWithDescription:@"viewDidAppear"];
 //    [[MKLaunchMonitor sharedMonitor] logAllCallStack];
+    
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _dataSource.count;

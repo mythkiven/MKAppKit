@@ -6,167 +6,136 @@
  */
 
 #import "NSArray+MKCrashGuard.h" 
-#import "MKCrashGuardManager.h"
+#import "MKException.h"
+#import "NSObject+MKSwizzleHook.h"
 
 MK_SYNTH_DUMMY_CLASS(NSArray_MKCrashGuard)
+
 @implementation NSArray (MKCrashGuard)
 
-#pragma mark   MKCrashGuardProtocol
+#pragma mark  -  MKCrashGuardProtocol
 + (void)crashGuardExchangeMethod {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        // instance array method exchange
-        [MKCrashGuardManager exchangeClassMethod:[self class] systemSelector:@selector(arrayWithObjects:count:) swizzledSelector:@selector(MKCrashGuardArrayWithObjects:count:)];
-        
-        Class __NSArray = NSClassFromString(@"NSArray");
-        Class __NSArrayI = NSClassFromString(@"__NSArrayI");
-        Class __NSSingleObjectArrayI = NSClassFromString(@"__NSSingleObjectArrayI");
-        Class __NSArray0 = NSClassFromString(@"__NSArray0");
-        
-        //objectsAtIndexes:
-        [MKCrashGuardManager exchangeInstanceMethod:__NSArray systemSelector:@selector(objectsAtIndexes:) swizzledSelector:@selector(crashGuardObjectsAtIndexes:)];
-        
-        
-        
-        //objectAtIndex:
-        [MKCrashGuardManager exchangeInstanceMethod:__NSArrayI systemSelector:@selector(objectAtIndex:) swizzledSelector:@selector(__NSArrayIMKCrashGuardObjectAtIndex:)];
-        [MKCrashGuardManager exchangeInstanceMethod:__NSSingleObjectArrayI systemSelector:@selector(objectAtIndex:) swizzledSelector:@selector(__NSSingleObjectArrayIMKCrashGuardObjectAtIndex:)];
-        [MKCrashGuardManager exchangeInstanceMethod:__NSArray0 systemSelector:@selector(objectAtIndex:) swizzledSelector:@selector(__NSArray0MKCrashGuardObjectAtIndex:)];
-        
-        
-        
-        //objectAtIndexedSubscript:
-        if (MKCrashGuardSystemVersion(11.0)) {
-            [MKCrashGuardManager exchangeInstanceMethod:__NSArrayI systemSelector:@selector(objectAtIndexedSubscript:) swizzledSelector:@selector(__NSArrayIMKCrashGuardObjectAtIndexedSubscript:)];
+    
+    [NSArray mk_swizzleClassMethod:@selector(arrayWithObject:) withSwizzleMethod:@selector(guardArrayWithObject:)];
+    [NSArray mk_swizzleClassMethod:@selector(arrayWithObjects:count:) withSwizzleMethod:@selector(guardArrayWithObjects:count:)];
+    
+//    Class __NSArray = NSClassFromString(@"NSArray");
+    Class __NSArray0 = NSClassFromString(@"__NSArray0");
+    Class __NSArrayI = NSClassFromString(@"__NSArrayI");
+    Class __NSSingleObjectArrayI = NSClassFromString(@"__NSSingleObjectArrayI");
+    Class __NSArrayI_Transfer = NSClassFromString(@"__NSArrayI_Transfer");
+    Class __NSFrozenArrayM = NSClassFromString(@"__NSFrozenArrayM");
+    Class __NSArrayReversed = NSClassFromString(@"__NSArrayReversed");
+    
+    
+//    mk_swizzleInstanceMethod(__NSArray,@selector(objectsAtIndexes:),@selector(guardObjectsAtIndexes:));
+//    mk_swizzleInstanceMethod(__NSArray,@selector(objectAtIndex:),@selector(guardObjectAtIndex:));
+//    mk_swizzleInstanceMethod(__NSArray,@selector(objectAtIndexedSubscript:),@selector(guardObjectAtIndexedSubscript:));
+//    mk_swizzleInstanceMethod(__NSArray,@selector(getObjects:range:),@selector(guardGetObjects:range:));
+//    mk_swizzleInstanceMethod(__NSArray,@selector(subarrayWithRange:),@selector(guardSubarrayWithRange:));
+    
+    mk_swizzleInstanceMethod(__NSArray0,@selector(objectsAtIndexes:),@selector(guardObjectsAtIndexes:));
+    mk_swizzleInstanceMethod(__NSArray0,@selector(objectAtIndex:),@selector(guardObjectAtIndex:));
+    mk_swizzleInstanceMethod(__NSArray0,@selector(objectAtIndexedSubscript:),@selector(guardObjectAtIndexedSubscript:));
+    mk_swizzleInstanceMethod(__NSArray0,@selector(getObjects:range:),@selector(guardGetObjects:range:));
+    mk_swizzleInstanceMethod(__NSArray0,@selector(subarrayWithRange:),@selector(guardSubarrayWithRange:));
+    
+    mk_swizzleInstanceMethod(__NSArrayI,@selector(objectsAtIndexes:),@selector(guardObjectsAtIndexes:));
+    mk_swizzleInstanceMethod(__NSArrayI,@selector(objectAtIndex:),@selector(guardObjectAtIndex:)); // -[NSArray objectAtIndex:]: method only defined for abstract class. 
+    mk_swizzleInstanceMethod(__NSArrayI,@selector(objectAtIndexedSubscript:),@selector(guardObjectAtIndexedSubscript:));
+    mk_swizzleInstanceMethod(__NSArrayI,@selector(getObjects:range:),@selector(guardGetObjects:range:));
+    mk_swizzleInstanceMethod(__NSArrayI,@selector(subarrayWithRange:),@selector(guardSubarrayWithRange:));
+    
+    mk_swizzleInstanceMethod(__NSSingleObjectArrayI,@selector(objectsAtIndexes:),@selector(guardObjectsAtIndexes:));
+    mk_swizzleInstanceMethod(__NSSingleObjectArrayI,@selector(objectAtIndex:),@selector(guardObjectAtIndex:));
+    mk_swizzleInstanceMethod(__NSSingleObjectArrayI,@selector(objectAtIndexedSubscript:),@selector(guardObjectAtIndexedSubscript:));
+    mk_swizzleInstanceMethod(__NSSingleObjectArrayI,@selector(getObjects:range:),@selector(guardGetObjects:range:));
+    mk_swizzleInstanceMethod(__NSSingleObjectArrayI,@selector(subarrayWithRange:),@selector(guardSubarrayWithRange:));
+
+    mk_swizzleInstanceMethod(__NSArrayI_Transfer,@selector(objectsAtIndexes:),@selector(guardObjectsAtIndexes:));
+    mk_swizzleInstanceMethod(__NSArrayI_Transfer,@selector(objectAtIndex:),@selector(guardObjectAtIndex:));
+    mk_swizzleInstanceMethod(__NSArrayI_Transfer,@selector(objectAtIndexedSubscript:),@selector(guardObjectAtIndexedSubscript:));
+    mk_swizzleInstanceMethod(__NSArrayI_Transfer,@selector(getObjects:range:),@selector(guardGetObjects:range:));
+    mk_swizzleInstanceMethod(__NSArrayI_Transfer,@selector(subarrayWithRange:),@selector(guardSubarrayWithRange:));
+
+    mk_swizzleInstanceMethod(__NSFrozenArrayM,@selector(objectsAtIndexes:),@selector(guardObjectsAtIndexes:));
+    mk_swizzleInstanceMethod(__NSFrozenArrayM,@selector(objectAtIndex:),@selector(guardObjectAtIndex:));
+    mk_swizzleInstanceMethod(__NSFrozenArrayM,@selector(objectAtIndexedSubscript:),@selector(guardObjectAtIndexedSubscript:));
+    mk_swizzleInstanceMethod(__NSFrozenArrayM,@selector(getObjects:range:),@selector(guardGetObjects:range:));
+    mk_swizzleInstanceMethod(__NSFrozenArrayM,@selector(subarrayWithRange:),@selector(guardSubarrayWithRange:));
+
+    mk_swizzleInstanceMethod(__NSArrayReversed,@selector(objectsAtIndexes:),@selector(guardObjectsAtIndexes:));
+    mk_swizzleInstanceMethod(__NSArrayReversed,@selector(objectAtIndex:),@selector(guardObjectAtIndex:));
+    mk_swizzleInstanceMethod(__NSArrayReversed,@selector(objectAtIndexedSubscript:),@selector(guardObjectAtIndexedSubscript:));
+    mk_swizzleInstanceMethod(__NSArrayReversed,@selector(getObjects:range:),@selector(guardGetObjects:range:));
+    mk_swizzleInstanceMethod(__NSArrayReversed,@selector(subarrayWithRange:),@selector(guardSubarrayWithRange:));
+    
+}
+
+
+
+#pragma mark - hook class
++ (instancetype) guardArrayWithObject:(id)anObject {
+    if (anObject) {
+        return [self guardArrayWithObject:anObject];
+    }
+    mkHandleCrashException(@"[NSArray arrayWithObject:] object is nil");
+    return nil;
+}
++ (instancetype)guardArrayWithObjects:(const id  _Nonnull __unsafe_unretained *)objects count:(NSUInteger)cnt {
+    NSInteger index = 0;
+    id objs[cnt];
+    for (NSInteger i = 0; i < cnt ; ++i) {
+        if (objects[i]) {
+            objs[index++] = objects[i];
+        }else{
+            mkHandleCrashException([NSString stringWithFormat:@"[NSArray arrayWithObjects: count: ] invalid index object:%tu total:%tu",i,cnt]);
         }
-        
-        
-        
-        //getObjects:range:
-        [MKCrashGuardManager exchangeInstanceMethod:__NSArray systemSelector:@selector(getObjects:range:) swizzledSelector:@selector(NSArrayMKCrashGuardGetObjects:range:)];
-        [MKCrashGuardManager exchangeInstanceMethod:__NSSingleObjectArrayI systemSelector:@selector(getObjects:range:) swizzledSelector:@selector(__NSSingleObjectArrayIMKCrashGuardGetObjects:range:)];
-        [MKCrashGuardManager exchangeInstanceMethod:__NSArrayI systemSelector:@selector(getObjects:range:) swizzledSelector:@selector(__NSArrayIMKCrashGuardGetObjects:range:)];
-    });
+    }
+    return [self guardArrayWithObjects:objs count:index];
 }
 
-#pragma mark - instance array
-+ (instancetype)MKCrashGuardArrayWithObjects:(const id  _Nonnull __unsafe_unretained *)objects count:(NSUInteger)cnt {
-    id instance = nil;
-    @try {
-        instance = [self MKCrashGuardArrayWithObjects:objects count:cnt];
+#pragma mark - hook instance
+- (NSArray *)guardSubarrayWithRange:(NSRange)range {
+    if (range.location + range.length <= self.count){
+        return [self guardSubarrayWithRange:range];
+    }else if (range.location < self.count){
+        return [self guardSubarrayWithRange:NSMakeRange(range.location, self.count-range.location)];
     }
-    @catch (NSException *exception) {
-        NSString *description = @"MKCrashGuard default is to remove nil object and instance a array.";
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
-        NSInteger newObjsIndex = 0;
-        id  _Nonnull __unsafe_unretained newObjects[cnt];
-        for (int i = 0; i < cnt; i++) {
-            if (objects[i] != nil) {
-                newObjects[newObjsIndex] = objects[i];
-                newObjsIndex++;
-            }
-        }
-        instance = [self MKCrashGuardArrayWithObjects:newObjects count:newObjsIndex];
+    mkHandleCrashException([NSString stringWithFormat:@"[NSArray subarrayWithRange: ] invalid range location:%tu length:%tu",range.location,range.length]);
+    return nil;
+}
+- (id)guardObjectAtIndexedSubscript:(NSUInteger)idx {
+    if (idx < self.count) {
+        return [self guardObjectAtIndexedSubscript:idx];
     }
-    @finally {
-        return instance;
+    mkHandleCrashException([NSString stringWithFormat:@"[NSArray objectAtIndexedSubscript: ] invalid index:%tu total:%tu",index,self.count]);
+    return nil;
+}
+- (id)guardObjectAtIndex:(NSUInteger)index {
+    if (index < self.count) { 
+        return [self guardObjectAtIndex:index];
     }
+    mkHandleCrashException([NSString stringWithFormat:@"[NSArray objectAtIndex: ] invalid index:%tu total:%tu",index,self.count]);
+    return nil;
+    
 }
 
-#pragma mark  - objectAtIndexedSubscript:
-- (id)__NSArrayIMKCrashGuardObjectAtIndexedSubscript:(NSUInteger)idx {
-    id object = nil;
-    @try {
-        object = [self __NSArrayIMKCrashGuardObjectAtIndexedSubscript:idx];
-    }
-    @catch (NSException *exception) {
-        NSString *description = MKCrashGuardDefaultReturnNil;
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
-    }
-    @finally {
-        return object;
-    }
-}
-
-#pragma mark - objectsAtIndexes:
-- (NSArray *)crashGuardObjectsAtIndexes:(NSIndexSet *)indexes {
+- (NSArray *)guardObjectsAtIndexes:(NSIndexSet *)indexes {
     NSArray *returnArray = nil;
     @try {
-        returnArray = [self crashGuardObjectsAtIndexes:indexes];
+        returnArray = [self guardObjectsAtIndexes:indexes];
     } @catch (NSException *exception) {
-        NSString *description = MKCrashGuardDefaultReturnNil;
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
+        mkHandleCrashException(exception);
     } @finally {
         return returnArray;
     }
 }
-
-#pragma mark - objectAtIndex:
-- (id)__NSArrayIMKCrashGuardObjectAtIndex:(NSUInteger)index {
-    id object = nil;
+- (void)guardGetObjects:(__unsafe_unretained id  _Nonnull *)objects range:(NSRange)range {
     @try {
-        object = [self __NSArrayIMKCrashGuardObjectAtIndex:index];
-    }
-    @catch (NSException *exception) {
-        NSString *description = MKCrashGuardDefaultReturnNil;
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
-    }
-    @finally {
-        return object;
-    }
-}
-- (id)__NSSingleObjectArrayIMKCrashGuardObjectAtIndex:(NSUInteger)index {
-    id object = nil;
-    @try {
-        object = [self __NSSingleObjectArrayIMKCrashGuardObjectAtIndex:index];
-    }
-    @catch (NSException *exception) {
-        NSString *description = MKCrashGuardDefaultReturnNil;
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
-    }
-    @finally {
-        return object;
-    }
-}
-- (id)__NSArray0MKCrashGuardObjectAtIndex:(NSUInteger)index {
-    id object = nil;
-    @try {
-        object = [self __NSArray0MKCrashGuardObjectAtIndex:index];
-    }
-    @catch (NSException *exception) {
-        NSString *description = MKCrashGuardDefaultReturnNil;
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
-    }
-    @finally {
-        return object;
-    }
-}
-
-#pragma mark - getObjects:range:
-- (void)NSArrayMKCrashGuardGetObjects:(__unsafe_unretained id  _Nonnull *)objects range:(NSRange)range {
-    @try {
-        [self NSArrayMKCrashGuardGetObjects:objects range:range];
+        [self guardGetObjects:objects range:range];
     } @catch (NSException *exception) {
-        NSString *description = MKCrashGuardDefaultIgnore;
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
-    } @finally {
-    }
-}
-- (void)__NSSingleObjectArrayIMKCrashGuardGetObjects:(__unsafe_unretained id  _Nonnull *)objects range:(NSRange)range {
-    @try {
-        [self __NSSingleObjectArrayIMKCrashGuardGetObjects:objects range:range];
-    } @catch (NSException *exception) {
-        NSString *description = MKCrashGuardDefaultIgnore;
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
-    } @finally {
-    }
-}
-- (void)__NSArrayIMKCrashGuardGetObjects:(__unsafe_unretained id  _Nonnull *)objects range:(NSRange)range {
-    @try {
-        [self __NSArrayIMKCrashGuardGetObjects:objects range:range];
-    } @catch (NSException *exception) {
-        NSString *description = MKCrashGuardDefaultIgnore;
-        [MKCrashGuardManager printErrorInfo:exception describe:description];
+        mkHandleCrashException(exception);
     } @finally {
     }
 }

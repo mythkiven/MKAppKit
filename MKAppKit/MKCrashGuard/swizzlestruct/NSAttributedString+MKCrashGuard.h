@@ -6,20 +6,23 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "MKCrashGuardProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSAttributedString (MKCrashGuard)<MKCrashGuardProtocol>
+@interface NSAttributedString (MKCrashGuard)
 
 /** 防护： 
  *
  *  - (instancetype)initWithString:(NSString *)str
  *  - (instancetype)initWithAttributedString:(NSAttributedString *)attrStr
  *  - (instancetype)initWithString:(NSString *)str attributes:(NSDictionary<NSString *,id> *)attrs
- *
+ *  - (NSAttributedString *)attributedSubstringFromRange:(NSRange)range;
+ *  - (nullable id)attribute:(NSAttributedStringKey)attrName atIndex:(NSUInteger)location effectiveRange:(nullable NSRangePointer)range;
+ *  - (void)enumerateAttributesInRange:(NSRange)enumerationRange options:(NSAttributedStringEnumerationOptions)opts usingBlock:(void (NS_NOESCAPE ^)(NSDictionary<NSAttributedStringKey, id> *attrs, NSRange range, BOOL *stop))block;
+ *  - (void)enumerateAttribute:(NSAttributedStringKey)attrName inRange:(NSRange)enumerationRange options:(NSAttributedStringEnumerationOptions)opts usingBlock:(void (NS_NOESCAPE ^)(id _Nullable value, NSRange range, BOOL *stop))block;
  */
 
++ (void)crashGuardExchangeMethod;
 @end
 
 NS_ASSUME_NONNULL_END

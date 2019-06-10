@@ -34,6 +34,7 @@ void mk_swizzleDeallocIfNeeded(Class class);
 + (void)mk_swizzleClassMethod:(SEL)systemSelector withSwizzleMethod:(SEL)swizzleSelector;
 - (void)mk_swizzleInstanceMethod:(SEL)systemSelector withSwizzleMethod:(SEL)swizzleSelector;
 - (void)mk_swizzleInstanceMethod:(SEL)systemSelector withSwizzledBlock:(MKSwizzledIMPBlock)swizzledBlock;
+- (void)mk_deallocBlock:(void(^)(void))block;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -49,6 +49,14 @@
 		18C1F56C22A4FDA5000F7CC4 /* MKCrashGuardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F56A22A4FDA4000F7CC4 /* MKCrashGuardManager.m */; };
 		18C1F58C22A631D2000F7CC4 /* CaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F58B22A631D2000F7CC4 /* CaseTest.m */; };
 		18C1F59522A66DE2000F7CC4 /* NSObject+MKSwizzleHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F59422A66DE2000F7CC4 /* NSObject+MKSwizzleHook.m */; };
+		18C1F59C22A7AA39000F7CC4 /* MKException.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F59B22A7AA39000F7CC4 /* MKException.m */; };
+		18C1F5A322AE4470000F7CC4 /* NSSet+MKCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F5A222AE4470000F7CC4 /* NSSet+MKCrashGuard.m */; };
+		18C1F5A622AE448D000F7CC4 /* NSMutableSet+MKCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F5A522AE448D000F7CC4 /* NSMutableSet+MKCrashGuard.m */; };
+		18C1F5AB22AE4728000F7CC4 /* NSTimer+MKCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F5AA22AE4728000F7CC4 /* NSTimer+MKCrashGuard.m */; };
+		18C1F5B122AE4745000F7CC4 /* NSNotificationCenter+MKCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F5B022AE4745000F7CC4 /* NSNotificationCenter+MKCrashGuard.m */; };
+		18C1F5B422AE476E000F7CC4 /* NSObject+MKKVOCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F5B322AE476E000F7CC4 /* NSObject+MKKVOCrashGuard.m */; };
+		18C1F5B722AE4792000F7CC4 /* NSObject+MKSELCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F5B622AE4792000F7CC4 /* NSObject+MKSELCrashGuard.m */; };
+		18C1F5BD22AE6164000F7CC4 /* testViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F5BC22AE6164000F7CC4 /* testViewController.m */; };
 		CD14498602F8FFA94293C467 /* libPods-MKApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E0AE6536CA56DED26768444 /* libPods-MKApp.a */; };
 /* End PBXBuildFile section */
 
@@ -89,7 +97,6 @@
 		188F870B229E8F3C00A288D4 /* CrashTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CrashTest.h; sourceTree = "<group>"; };
 		188F870C229E8F3C00A288D4 /* CrashTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CrashTest.m; sourceTree = "<group>"; };
 		18B0FB6022A4FBC800CB5780 /* NSDictionary+MKCrashGuard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+MKCrashGuard.m"; sourceTree = "<group>"; };
-		18B0FB6222A4FBC900CB5780 /* MKCrashGuardProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCrashGuardProtocol.h; sourceTree = "<group>"; };
 		18B0FB6322A4FBC900CB5780 /* NSMutableDictionary+MKCrashGuard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+MKCrashGuard.h"; sourceTree = "<group>"; };
 		18B0FB6422A4FBC900CB5780 /* MKCrashGuardConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCrashGuardConst.m; sourceTree = "<group>"; };
 		18B0FB6522A4FBC900CB5780 /* NSMutableArray+MKCrashGuard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+MKCrashGuard.h"; sourceTree = "<group>"; };
@@ -125,6 +132,22 @@
 		18C1F58B22A631D2000F7CC4 /* CaseTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CaseTest.m; sourceTree = "<group>"; };
 		18C1F59322A66DE2000F7CC4 /* NSObject+MKSwizzleHook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+MKSwizzleHook.h"; sourceTree = "<group>"; };
 		18C1F59422A66DE2000F7CC4 /* NSObject+MKSwizzleHook.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MKSwizzleHook.m"; sourceTree = "<group>"; };
+		18C1F59A22A7AA39000F7CC4 /* MKException.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKException.h; sourceTree = "<group>"; };
+		18C1F59B22A7AA39000F7CC4 /* MKException.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKException.m; sourceTree = "<group>"; };
+		18C1F5A122AE4470000F7CC4 /* NSSet+MKCrashGuard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSSet+MKCrashGuard.h"; sourceTree = "<group>"; };
+		18C1F5A222AE4470000F7CC4 /* NSSet+MKCrashGuard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSSet+MKCrashGuard.m"; sourceTree = "<group>"; };
+		18C1F5A422AE448D000F7CC4 /* NSMutableSet+MKCrashGuard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableSet+MKCrashGuard.h"; sourceTree = "<group>"; };
+		18C1F5A522AE448D000F7CC4 /* NSMutableSet+MKCrashGuard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableSet+MKCrashGuard.m"; sourceTree = "<group>"; };
+		18C1F5A922AE4728000F7CC4 /* NSTimer+MKCrashGuard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTimer+MKCrashGuard.h"; sourceTree = "<group>"; };
+		18C1F5AA22AE4728000F7CC4 /* NSTimer+MKCrashGuard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+MKCrashGuard.m"; sourceTree = "<group>"; };
+		18C1F5AF22AE4745000F7CC4 /* NSNotificationCenter+MKCrashGuard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+MKCrashGuard.h"; sourceTree = "<group>"; };
+		18C1F5B022AE4745000F7CC4 /* NSNotificationCenter+MKCrashGuard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+MKCrashGuard.m"; sourceTree = "<group>"; };
+		18C1F5B222AE476E000F7CC4 /* NSObject+MKKVOCrashGuard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+MKKVOCrashGuard.h"; sourceTree = "<group>"; };
+		18C1F5B322AE476E000F7CC4 /* NSObject+MKKVOCrashGuard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MKKVOCrashGuard.m"; sourceTree = "<group>"; };
+		18C1F5B522AE4792000F7CC4 /* NSObject+MKSELCrashGuard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+MKSELCrashGuard.h"; sourceTree = "<group>"; };
+		18C1F5B622AE4792000F7CC4 /* NSObject+MKSELCrashGuard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MKSELCrashGuard.m"; sourceTree = "<group>"; };
+		18C1F5BB22AE6164000F7CC4 /* testViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testViewController.h; sourceTree = "<group>"; };
+		18C1F5BC22AE6164000F7CC4 /* testViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testViewController.m; sourceTree = "<group>"; };
 		489DBB6E3C85E44985C5B368 /* Pods-MKApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MKApp.debug.xcconfig"; path = "Target Support Files/Pods-MKApp/Pods-MKApp.debug.xcconfig"; sourceTree = "<group>"; };
 		51C84C6B4D5F2935E0157851 /* Pods-MKApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MKApp.release.xcconfig"; path = "Target Support Files/Pods-MKApp/Pods-MKApp.release.xcconfig"; sourceTree = "<group>"; };
 		5E0AE6536CA56DED26768444 /* libPods-MKApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MKApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -293,12 +316,12 @@
 		18B0FB1922A1038F00CB5780 /* MKCrashGuard */ = {
 			isa = PBXGroup;
 			children = (
+				18C1F5A822AE46DB000F7CC4 /* swizzleop */,
+				18C1F59922A7AA04000F7CC4 /* manager */,
 				18C1F59622A66E04000F7CC4 /* hook */,
-				18C1F59722A681CC000F7CC4 /* swizzleoop */,
 				18C1F59122A6479C000F7CC4 /* swizzlestruct */,
 				18B0FB6722A4FBC900CB5780 /* MKCrashGuardConst.h */,
 				18B0FB6422A4FBC900CB5780 /* MKCrashGuardConst.m */,
-				18B0FB6222A4FBC900CB5780 /* MKCrashGuardProtocol.h */,
 				18C1F56922A4FDA4000F7CC4 /* MKCrashGuardManager.h */,
 				18C1F56A22A4FDA4000F7CC4 /* MKCrashGuardManager.m */,
 			);
@@ -354,6 +377,8 @@
 				18C1F58B22A631D2000F7CC4 /* CaseTest.m */,
 				188F870B229E8F3C00A288D4 /* CrashTest.h */,
 				188F870C229E8F3C00A288D4 /* CrashTest.m */,
+				18C1F5BB22AE6164000F7CC4 /* testViewController.h */,
+				18C1F5BC22AE6164000F7CC4 /* testViewController.m */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -377,6 +402,10 @@
 				18B0FB6A22A4FBCA00CB5780 /* NSMutableString+MKCrashGuard.m */,
 				18B0FB6B22A4FBCA00CB5780 /* NSString+MKCrashGuard.h */,
 				18B0FB7522A4FBCB00CB5780 /* NSString+MKCrashGuard.m */,
+				18C1F5A122AE4470000F7CC4 /* NSSet+MKCrashGuard.h */,
+				18C1F5A222AE4470000F7CC4 /* NSSet+MKCrashGuard.m */,
+				18C1F5A422AE448D000F7CC4 /* NSMutableSet+MKCrashGuard.h */,
+				18C1F5A522AE448D000F7CC4 /* NSMutableSet+MKCrashGuard.m */,
 			);
 			path = swizzlestruct;
 			sourceTree = "<group>";
@@ -392,11 +421,28 @@
 			path = hook;
 			sourceTree = "<group>";
 		};
-		18C1F59722A681CC000F7CC4 /* swizzleoop */ = {
+		18C1F59922A7AA04000F7CC4 /* manager */ = {
 			isa = PBXGroup;
 			children = (
+				18C1F59A22A7AA39000F7CC4 /* MKException.h */,
+				18C1F59B22A7AA39000F7CC4 /* MKException.m */,
 			);
-			path = swizzleoop;
+			path = manager;
+			sourceTree = "<group>";
+		};
+		18C1F5A822AE46DB000F7CC4 /* swizzleop */ = {
+			isa = PBXGroup;
+			children = (
+				18C1F5A922AE4728000F7CC4 /* NSTimer+MKCrashGuard.h */,
+				18C1F5AA22AE4728000F7CC4 /* NSTimer+MKCrashGuard.m */,
+				18C1F5AF22AE4745000F7CC4 /* NSNotificationCenter+MKCrashGuard.h */,
+				18C1F5B022AE4745000F7CC4 /* NSNotificationCenter+MKCrashGuard.m */,
+				18C1F5B222AE476E000F7CC4 /* NSObject+MKKVOCrashGuard.h */,
+				18C1F5B322AE476E000F7CC4 /* NSObject+MKKVOCrashGuard.m */,
+				18C1F5B522AE4792000F7CC4 /* NSObject+MKSELCrashGuard.h */,
+				18C1F5B622AE4792000F7CC4 /* NSObject+MKSELCrashGuard.m */,
+			);
+			path = swizzleop;
 			sourceTree = "<group>";
 		};
 		E995972D87E273576838631C /* Pods */ = {
@@ -578,24 +624,32 @@
 				18C1F58C22A631D2000F7CC4 /* CaseTest.m in Sources */,
 				18B0FB7722A4FBCB00CB5780 /* NSDictionary+MKCrashGuard.m in Sources */,
 				18B0FB8722A4FBCB00CB5780 /* NSAttributedString+MKCrashGuard.m in Sources */,
+				18C1F5A322AE4470000F7CC4 /* NSSet+MKCrashGuard.m in Sources */,
+				18C1F5AB22AE4728000F7CC4 /* NSTimer+MKCrashGuard.m in Sources */,
 				18B0FB7D22A4FBCB00CB5780 /* NSArray+MKCrashGuard.m in Sources */,
 				18BB8F73227318F6005EDC27 /* ViewController.m in Sources */,
 				18289DFD2292467800EB7FF2 /* MKPointWatch.m in Sources */,
 				18B0FB7F22A4FBCB00CB5780 /* NSMutableString+MKCrashGuard.m in Sources */,
 				18B0FB8922A4FBCB00CB5780 /* NSString+MKCrashGuard.m in Sources */,
 				18B0FB8522A4FBCB00CB5780 /* NSMutableDictionary+MKCrashGuard.m in Sources */,
+				18C1F5BD22AE6164000F7CC4 /* testViewController.m in Sources */,
 				18C1F59522A66DE2000F7CC4 /* NSObject+MKSwizzleHook.m in Sources */,
 				188F8704229E848B00A288D4 /* MKDebug.m in Sources */,
 				1847EB472276F73E00E6E35D /* DiffuseMenuVC.swift in Sources */,
+				18C1F5B422AE476E000F7CC4 /* NSObject+MKKVOCrashGuard.m in Sources */,
 				18B0FB7922A4FBCB00CB5780 /* MKCrashGuardConst.m in Sources */,
 				188F8707229E85F600A288D4 /* MKFileManager.m in Sources */,
 				18B0FB7B22A4FBCB00CB5780 /* NSMutableArray+MKCrashGuard.m in Sources */,
 				18B0FB8322A4FBCB00CB5780 /* NSMutableAttributedString+MKCrashGuard.m in Sources */,
+				18C1F59C22A7AA39000F7CC4 /* MKException.m in Sources */,
 				18B0FB8122A4FBCB00CB5780 /* NSObject+MKCrashGuard.m in Sources */,
 				186FF093229F704600AFA303 /* CrashTest.m in Sources */,
+				18C1F5B122AE4745000F7CC4 /* NSNotificationCenter+MKCrashGuard.m in Sources */,
+				18C1F5B722AE4792000F7CC4 /* NSObject+MKSELCrashGuard.m in Sources */,
 				1847EB422276DD4900E6E35D /* DropdownMailTFVC.m in Sources */,
 				18BB8F7E227318FD005EDC27 /* main.m in Sources */,
 				186FF05D229EA19600AFA303 /* MKJSON.m in Sources */,
+				18C1F5A622AE448D000F7CC4 /* NSMutableSet+MKCrashGuard.m in Sources */,
 				18C1F56B22A4FDA5000F7CC4 /* MKCrashGuardManager.m in Sources */,
 				18BB8F70227318F6005EDC27 /* AppDelegate.m in Sources */,
 				188F870A229E86DF00A288D4 /* MKFunctions.m in Sources */,

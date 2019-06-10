@@ -23,21 +23,49 @@ static const char mkSwizzleHookDeallocKey;
     NSAssert(_impProviderBlock,nil);
     return (MKSwizzleOriginalIMP)_impProviderBlock();
 }
-
 @end
 
+#pragma mark -
+#pragma mark -
+
+static const char mkDeallocNSObjectKey;
+/**
+ Observer the target middle object
+ */
+@interface MKDeallocStub : NSObject
+@property (nonatomic,readwrite,copy) void(^deallocBlock)(void);
+@end
+@implementation MKDeallocStub
+- (void)dealloc {
+    if (self.deallocBlock) {
+        self.deallocBlock();
+    }
+    self.deallocBlock = nil;
+}
+@end
+ 
 
 #pragma mark -
 #pragma mark - C type
 
 
 
-void mk_swizzleClassMethod(Class cls, SEL originSelector, SEL swizzleSelector) {
+   void mk_swizzleClassMethod(Class cls, SEL originSelector, SEL swizzleSelector) {
     if (!cls) {
         return;
     }
     Method originalMethod = class_getClassMethod(cls, originSelector);
     Method swizzledMethod = class_getClassMethod(cls, swizzleSelector);
+     NSCAssert(NULL != originalMethod,
+               @"originSelector %@ not found in %@ methods of class %@.",
+               NSStringFromSelector(originSelector),
+               class_isMetaClass(cls) ? @"class" : @"instance",
+               cls);
+     NSCAssert(NULL != swizzledMethod,
+               @"swizzleSelector %@ not found in %@ methods of class %@.",
+               NSStringFromSelector(swizzleSelector),
+               class_isMetaClass(cls) ? @"class" : @"instance",
+               cls);
     Class metacls = objc_getMetaClass(NSStringFromClass(cls).UTF8String);
     if (class_addMethod(metacls,
                         originSelector,
@@ -59,12 +87,24 @@ void mk_swizzleClassMethod(Class cls, SEL originSelector, SEL swizzleSelector) {
     }
 }
 
-void mk_swizzleInstanceMethod(Class cls, SEL originSelector, SEL swizzleSelector) {
+   void mk_swizzleInstanceMethod(Class cls, SEL originSelector, SEL swizzleSelector) {
     if (!cls) {
         return;
     }
     Method originalMethod = class_getInstanceMethod(cls, originSelector);
     Method swizzledMethod = class_getInstanceMethod(cls, swizzleSelector);
+     
+    NSCAssert(NULL != originalMethod,
+               @"originSelector %@ not found in %@ methods of class %@.",
+               NSStringFromSelector(originSelector),
+               class_isMetaClass(cls) ? @"class" : @"instance",
+               cls);
+    NSCAssert(NULL != swizzledMethod,
+               @"swizzleSelector %@ not found in %@ methods of class %@.",
+               NSStringFromSelector(swizzleSelector),
+               class_isMetaClass(cls) ? @"class" : @"instance",
+               cls);
+     
     if (class_addMethod(cls,
                         originSelector,
                         method_getImplementation(swizzledMethod),
@@ -132,15 +172,8 @@ void mk_swizzleDeallocIfNeeded(Class class) {
 }
 
 
-
-
-
-
 #pragma mark -
 #pragma mark - MKSwizzleHook
-
-
-
 
 @implementation NSObject (MKSwizzleHook)
 
@@ -174,6 +207,19 @@ void __MK_SWIZZLE_BLOCK(Class classToSwizzle,SEL selector,MKSwizzledIMPBlock imp
 
 - (void)mk_swizzleInstanceMethod:(SEL)originSelector withSwizzledBlock:(MKSwizzledIMPBlock)swizzledBlock {
     __MK_SWIZZLE_BLOCK(self.class, originSelector, swizzledBlock);
+}
+
+- (void)mk_deallocBlock:(void(^)(void))block{
+    @synchronized(self){
+        NSMutableArray* blockArray = objc_getAssociatedObject(self, &mkDeallocNSObjectKey);
+        if (!blockArray) {
+            blockArray = [NSMutableArray array];
+            objc_setAssociatedObject(self, &mkDeallocNSObjectKey, blockArray, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        }
+        MKDeallocStub *stub = [MKDeallocStub new];
+        stub.deallocBlock = block;
+        [blockArray addObject:stub];
+    }
 }
 
 @end

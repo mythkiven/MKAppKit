@@ -44,36 +44,46 @@
     [self testKVC];
     [self testSelector];
     
-//    [self testUnSupportCrash];
+    [self testUnSupportCrash];
+    [self testOp];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (ino64_t)(6 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{ 
+        
+    } );
+    
 }
 
-
+- (void)testOp {
+    
+}
 
 #pragma mark 不支持的 crash 防护
 - (void)testUnSupportCrash {
-     
-    // 暂不知支持：
+    
     // NSData
     self.mdata = [NSMutableData data];
     [self.mdata appendBytes:"" length:1];
-    // block
-    self.httpFailed([NSURLSessionDataTask new]);
-    // appendFormat
-    self.mstring = [NSMutableString string];   // non
-    [self.mstring appendFormat:@"%@",@"mythkiven"];  // non
-    // kvc
-    [[TestCase new] setNilValueForKey:@"key"];  // non
     //   set
     self.mset = [NSMutableSet setWithArray:@[@"1",@"2"]];
     [self.mset removeObject:@"1"];
- 
+    
     id person = [UIViewController new];
     [person objectForKey:@"key"];
-//    Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '-[UIViewController objectForKey:]: unrecognized selector sent to instance 0x7fc075f0f790'
-    [[NSObject new] valueForKey:@"MKCrashGuard"];
-//    Terminating app due to uncaught exception 'NSUnknownKeyException', reason: '[<NSObject 0x600001910050> valueForUndefinedKey:]: this class is not key value coding-compliant for the key MKCrashGuard.'
-    [[UIView new] valueForKey:@"MKCrashGuard"];
-// Terminating app due to uncaught exception 'NSUnknownKeyException', reason: '[<UIView 0x7f8441d024f0> valueForUndefinedKey:]: this class is not key value coding-compliant for the key MKCrashGuard.'
+    
+    /**
+     * 暂不知支持：
+     */
+//    // block
+//    self.httpFailed([NSURLSessionDataTask new]);
+//    // appendFormat
+//    self.mstring = [NSMutableString string];   // non
+//    [self.mstring appendFormat:@"%@",@"mythkiven"];  // non
+//    // kvc
+//    [[TestCase new] setNilValueForKey:@"key"];  // non
+////    Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '-[UIViewController objectForKey:]: unrecognized selector sent to instance 0x7fc075f0f790'
+//    [[NSObject new] valueForKey:@"MKCrashGuard"];
+////    Terminating app due to uncaught exception 'NSUnknownKeyException', reason: '[<NSObject 0x600001910050> valueForUndefinedKey:]: this class is not key value coding-compliant for the key MKCrashGuard.'
+//    [[UIView new] valueForKey:@"MKCrashGuard"];
+//// Terminating app due to uncaught exception 'NSUnknownKeyException', reason: '[<UIView 0x7f8441d024f0> valueForUndefinedKey:]: this class is not key value coding-compliant for the key MKCrashGuard.'
 
 }
 
