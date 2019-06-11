@@ -20,10 +20,11 @@
 #import "MKCrashGuardConst.h"
 
 #import "NSTimer+MKCrashGuard.h"
-#import "NSNotificationCenter+MKCrashGuard.h"
+#import "NSObject+MKNotificationCrashGuard.h"
 #import "NSObject+MKKVOCrashGuard.h"
 #import "NSObject+MKSELCrashGuard.h"
 
+#import "UINavigationController+MKCrashGuard.h"
 NS_ASSUME_NONNULL_BEGIN
 
 

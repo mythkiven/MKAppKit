@@ -53,6 +53,14 @@
 }
 
 - (void)testOp {
+    id nullValue = [NSNull null];
+    NSString *result = [nullValue stringValue];
+    __unused float x = floorf(123.456f); // makes sure compiler doesn't trick us
+    float result2 = [nullValue floatValue];
+    int result3 = [nullValue intValue];
+    const void *result4 = [nullValue bytes];
+    NSString *result5 = NSStringFromClass([nullValue class]);
+    NSString *result6 = [nullValue description]; 
     
 }
 

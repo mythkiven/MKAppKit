@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSNotificationCenter (MKCrashGuard)
+@interface NSObject (MKNotificationCrashGuard)
 /**
  * 防护 添加 通知后，没有删除导致的 crash 
  */

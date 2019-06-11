@@ -46,7 +46,8 @@
     [self.view addSubview:self.tableview];
     sleep(1);
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (ino64_t)(8.0 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        [self presentViewController:[testViewController new] animated:YES completion:nil];
+        testViewController *test = [testViewController new];
+        [self.navigationController pushViewController:test animated:YES]; 
     } ); 
 }
 -(void)viewDidAppear:(BOOL)animated{

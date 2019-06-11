@@ -28,7 +28,7 @@ static const char mkSwizzleHookDeallocKey;
 #pragma mark -
 #pragma mark -
 
-static const char mkDeallocNSObjectKey;
+static const char mkNSObjectDealloc;
 /**
  Observer the target middle object
  */
@@ -48,9 +48,7 @@ static const char mkDeallocNSObjectKey;
 #pragma mark -
 #pragma mark - C type
 
-
-
-   void mk_swizzleClassMethod(Class cls, SEL originSelector, SEL swizzleSelector) {
+void mk_swizzleClassMethod(Class cls, SEL originSelector, SEL swizzleSelector) {
     if (!cls) {
         return;
     }
@@ -87,7 +85,7 @@ static const char mkDeallocNSObjectKey;
     }
 }
 
-   void mk_swizzleInstanceMethod(Class cls, SEL originSelector, SEL swizzleSelector) {
+void mk_swizzleInstanceMethod(Class cls, SEL originSelector, SEL swizzleSelector) {
     if (!cls) {
         return;
     }
@@ -211,15 +209,65 @@ void __MK_SWIZZLE_BLOCK(Class classToSwizzle,SEL selector,MKSwizzledIMPBlock imp
 
 - (void)mk_deallocBlock:(void(^)(void))block{
     @synchronized(self){
-        NSMutableArray* blockArray = objc_getAssociatedObject(self, &mkDeallocNSObjectKey);
+        NSMutableArray* blockArray = objc_getAssociatedObject(self, &mkNSObjectDealloc);
         if (!blockArray) {
             blockArray = [NSMutableArray array];
-            objc_setAssociatedObject(self, &mkDeallocNSObjectKey, blockArray, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            objc_setAssociatedObject(self, &mkNSObjectDealloc, blockArray, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
         MKDeallocStub *stub = [MKDeallocStub new];
         stub.deallocBlock = block;
         [blockArray addObject:stub];
     }
 }
+
+
+//#ifndef NULLSAFE_ENABLED
+//#define NULLSAFE_ENABLED 1
+//#endif
+//
+//
+//#pragma clang diagnostic ignored "-Wgnu-conditional-omitted-operand"
+//
+//
+//@implementation NSNull (NullSafe)
+//
+//#if NULLSAFE_ENABLED
+//
+//- (NSMethodSignature *)methodSignatureForSelector:(SEL)selector
+//{
+//    //look up method signature
+//    NSMethodSignature *signature = [super methodSignatureForSelector:selector];
+//    if (!signature)
+//    {
+//        for (Class someClass in @[
+//                                  [NSMutableArray class],
+//                                  [NSMutableDictionary class],
+//                                  [NSMutableString class],
+//                                  [NSNumber class],
+//                                  [NSDate class],
+//                                  [NSData class]
+//                                  ])
+//        {
+//            @try
+//            {
+//                if ([someClass instancesRespondToSelector:selector])
+//                {
+//                    signature = [someClass instanceMethodSignatureForSelector:selector];
+//                    break;
+//                }
+//            }
+//            @catch (__unused NSException *unused) {}
+//        }
+//    }
+//    return signature;
+//}
+//
+//- (void)forwardInvocation:(NSInvocation *)invocation
+//{
+//    invocation.target = nil;
+//    [invocation invoke];
+//}
+//
+//#endif
 
 @end

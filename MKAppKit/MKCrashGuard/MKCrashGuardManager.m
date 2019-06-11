@@ -37,6 +37,8 @@
         [NSTimer guardTimerCrash];
         [NSNotificationCenter guardNotificationCrash];
         [NSObject guardKVOCrash];
+        
+        [UINavigationController guardNavigationController];
     });
 }
 
