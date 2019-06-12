@@ -11,9 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSNull (MKCrashGuard)
 
-/**
- * 防护 重复跳转
- */
+
 + (void)guardNSNull;
 
 @end

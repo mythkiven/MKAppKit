@@ -13,7 +13,7 @@
 #import <objc/runtime.h>
 
 
-static char const * const ObjectTagKey = "ObjectTag";
+static const char mkNavigationControllerAssociatedKey;
 
 @interface UINavigationController () <UINavigationControllerDelegate>
 
@@ -33,11 +33,11 @@ static char const * const ObjectTagKey = "ObjectTag";
 
 - (void)setViewTransitionInProgress:(BOOL)property {
     NSNumber *number = [NSNumber numberWithBool:property];
-    objc_setAssociatedObject(self, ObjectTagKey, number , OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, &mkNavigationControllerAssociatedKey, number , OBJC_ASSOCIATION_RETAIN);
 }
 
 - (BOOL)isViewTransitionInProgress {
-    NSNumber *number = objc_getAssociatedObject(self, ObjectTagKey);
+    NSNumber *number = objc_getAssociatedObject(self, &mkNavigationControllerAssociatedKey);
     return [number boolValue];
 }
 

@@ -18,12 +18,11 @@
 #pragma mark - public
 
 /**
- 在 application: didFinishLaunchingWithOptions: 中调用，启动 App 守护
+ * 启动 App 守护,守护所有类型的crash
  */
 + (void)executeAppGuard {
     static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [NSObject mk_guardSelector:YES];
+    dispatch_once(&onceToken, ^{ 
         [NSArray crashGuardExchangeMethod];
         [NSMutableArray crashGuardExchangeMethod];
         [NSDictionary crashGuardExchangeMethod];
@@ -37,18 +36,16 @@
         [NSTimer guardTimerCrash];
         [NSNotificationCenter guardNotificationCrash];
         [NSObject guardKVOCrash];
+        [NSObject guardKVCCrash];
         
         [UINavigationController guardNavigationController];
     });
 }
-
 /**
- 启用 "unrecognized selector sent to instance" crash 防护，请传入需要防护的 类名或类名前缀
- 
- @param classPrefixs 防护的类名或类名前缀
+ * 自行配置守护的类型
  */
-+ (void)guardSelectorWithClassPrefixs:(NSArray<NSString *> *)classPrefixs{
-    [NSObject mk_guardSelectorWithClassPrefixs:classPrefixs];
++ (void)configAppGuard:(MKCrashGuardType)crashGuardType {
+    
 }
 
 

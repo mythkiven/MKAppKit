@@ -12,19 +12,20 @@
 #import <objc/message.h>
 
 
-static const char mkDeallocKVOKey;
-static const char mkObserverDeallocKVOKey;
+static const void *mkKVODeallocAssociatedKey = &mkKVODeallocAssociatedKey;
+static const void *mkKVOObserverContainerAssociatedKey = &mkKVOObserverContainerAssociatedKey;
 
-/**
- Record the kvo object Override the isEqual and hash method
- */
 @interface KVOObjectItem : NSObject
-@property(nonatomic,readwrite,assign)NSObject* observer;
-@property(nonatomic,readwrite,copy)NSString* keyPath;
-@property(nonatomic,readwrite,assign)NSKeyValueObservingOptions options;
-@property(nonatomic,readwrite,assign)void* context;
+
+@property(nonatomic,readwrite,assign) NSObject *observer;
+@property(nonatomic,readwrite,copy) NSString  *keyPath;
+@property(nonatomic,readwrite,assign) NSKeyValueObservingOptions options;
+@property(nonatomic,readwrite,assign) void *context;
+
 @end
+
 @implementation KVOObjectItem
+
 - (BOOL)isEqual:(KVOObjectItem*)object {
     if ([self.observer isEqual:object.observer] && [self.keyPath isEqualToString:object.keyPath]) {
         return YES;
@@ -38,6 +39,7 @@ static const char mkObserverDeallocKVOKey;
     self.observer = nil;
     self.context = nil;
 }
+
 @end
 
 
@@ -45,27 +47,23 @@ static const char mkObserverDeallocKVOKey;
 #pragma mark -
 
 @interface KVOObjectContainer : NSObject
-/**
- KVO object array set
- */
-@property(nonatomic,readwrite,retain)NSMutableSet* kvoObjectSet;
-/**
- Associated owner object
- */
-@property(nonatomic,readwrite,unsafe_unretained)NSObject* whichObject;
-/**
- NSMutableSet safe-thread
- */
+
+@property(nonatomic,readwrite,retain) NSMutableSet *kvoObjectSet;
+@property(nonatomic,readwrite,unsafe_unretained) NSObject *whichObject;
+
 #if OS_OBJECT_HAVE_OBJC_SUPPORT
-@property(nonatomic,readwrite,retain)dispatch_semaphore_t kvoLock;
+@property(nonatomic,readwrite,retain) dispatch_semaphore_t kvoLock;
 #else
-@property(nonatomic,readwrite,assign)dispatch_semaphore_t kvoLock;
+@property(nonatomic,readwrite,assign) dispatch_semaphore_t kvoLock;
 #endif
 - (void)addKVOObjectItem:(KVOObjectItem*)item;
 - (void)removeKVOObjectItem:(KVOObjectItem*)item;
 - (BOOL)checkKVOItemExist:(KVOObjectItem*)item;
+
 @end
+
 @implementation KVOObjectContainer
+
 - (void)addKVOObjectItem:(KVOObjectItem*)item {
     if (item) {
         dispatch_semaphore_wait(self.kvoLock, DISPATCH_TIME_FOREVER);
@@ -91,7 +89,6 @@ static const char mkObserverDeallocKVOKey;
     dispatch_semaphore_signal(self.kvoLock);
     return exist;
 }
-
 - (dispatch_semaphore_t)kvoLock {
     if (!_kvoLock) {
         _kvoLock = dispatch_semaphore_create(1);
@@ -99,15 +96,12 @@ static const char mkObserverDeallocKVOKey;
     }
     return _kvoLock;
 }
-/**
- Clean the kvo object array and temp var
- release the dispatch_semaphore
- */
 - (void)dealloc {
     self.whichObject = nil;
     self.kvoLock = NULL;
 }
-- (void)cleanKVOData{
+
+- (void)cleanKVOData {
     for (KVOObjectItem* item in self.kvoObjectSet) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
@@ -118,29 +112,32 @@ static const char mkObserverDeallocKVOKey;
 #pragma clang diagnostic pop
     }
 }
-- (NSMutableSet*)kvoObjectSet{
+- (NSMutableSet*)kvoObjectSet {
     if(_kvoObjectSet){
         return _kvoObjectSet;
     }
     _kvoObjectSet = [[NSMutableSet alloc] init];
     return _kvoObjectSet;
 }
+
 @end
 
+
 #pragma mark -
 #pragma mark -
 
-@interface JJObserverContainer : NSObject
+
+@interface MKObserverContainer : NSObject
+
 @property (nonatomic,readwrite,retain) NSHashTable* observers;
-/**
- Associated owner object
- */
 @property(nonatomic,readwrite,assign) NSObject* whichObject;
 - (void)addObserver:(KVOObjectItem *)observer;
 - (void)removeObserver:(KVOObjectItem *)observer;
+
 @end
 
-@implementation JJObserverContainer
+@implementation MKObserverContainer
+
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -163,8 +160,7 @@ static const char mkObserverDeallocKVOKey;
 
 - (void)cleanObservers {
     for (KVOObjectItem* item in self.observers) {
-        [self.whichObject removeObserver:item.observer forKeyPath:item.keyPath];
-        
+        [self.whichObject removeObserver:item.observer forKeyPath:item.keyPath]; 
     }
     @synchronized (self) {
         [self.observers removeAllObjects];
@@ -184,13 +180,13 @@ static const char mkObserverDeallocKVOKey;
 MK_SYNTH_DUMMY_CLASS(NSObject_MKKVOCrashGuard)
 @implementation NSObject (MKKVOCrashGuard) 
 
-+ (void)guardKVOCrash{
++ (void)guardKVOCrash {
     mk_swizzleInstanceMethod([self class], @selector(addObserver:forKeyPath:options:context:), @selector(guardAddObserver:forKeyPath:options:context:));
     mk_swizzleInstanceMethod([self class], @selector(removeObserver:forKeyPath:), @selector(guardRemoveObserver:forKeyPath:));
     mk_swizzleInstanceMethod([self class], @selector(removeObserver:forKeyPath:context:), @selector(guardRemoveObserver:forKeyPath:context:));
 }
 
-- (void)guardAddObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context{
+- (void)guardAddObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context {
     if ([self ignoreKVOInstanceClass:observer]) {
         [self guardAddObserver:observer forKeyPath:keyPath options:options context:context];
         return;
@@ -200,10 +196,7 @@ MK_SYNTH_DUMMY_CLASS(NSObject_MKKVOCrashGuard)
         return;
     }
     
-    mkHandleCrashException([NSString stringWithFormat:@"[NSObject addObserver:forKeyPath:options:context: ] invalid observer:%@ or keyPath:%@",observer,keyPath]);
-    
-    KVOObjectContainer* objectContainer = objc_getAssociatedObject(self,&mkDeallocKVOKey);
-    
+    KVOObjectContainer* objectContainer = objc_getAssociatedObject(self,mkKVODeallocAssociatedKey);
     KVOObjectItem* item = [[KVOObjectItem alloc] init];
     item.observer = observer;
     item.keyPath = keyPath;
@@ -213,7 +206,7 @@ MK_SYNTH_DUMMY_CLASS(NSObject_MKKVOCrashGuard)
     if (!objectContainer) {
         objectContainer = [KVOObjectContainer new];
         [objectContainer setWhichObject:self];
-        objc_setAssociatedObject(self, &mkDeallocKVOKey, objectContainer, OBJC_ASSOCIATION_RETAIN);
+        objc_setAssociatedObject(self, mkKVODeallocAssociatedKey, objectContainer, OBJC_ASSOCIATION_RETAIN);
     }
     
     if (![objectContainer checkKVOItemExist:item]) {
@@ -221,27 +214,26 @@ MK_SYNTH_DUMMY_CLASS(NSObject_MKKVOCrashGuard)
         [self guardAddObserver:observer forKeyPath:keyPath options:options context:context];
     }
     
-    JJObserverContainer* observerContainer = objc_getAssociatedObject(observer,&mkObserverDeallocKVOKey);
+    MKObserverContainer * observerContainer = objc_getAssociatedObject(observer,mkKVOObserverContainerAssociatedKey);
     
     if (!observerContainer) {
-        observerContainer = [JJObserverContainer new];
+        observerContainer = [MKObserverContainer  new];
         [observerContainer setWhichObject:self];
         [observerContainer addObserver:item];
-        objc_setAssociatedObject(observer, &mkObserverDeallocKVOKey, observerContainer, OBJC_ASSOCIATION_RETAIN);
+        objc_setAssociatedObject(observer, mkKVOObserverContainerAssociatedKey  , observerContainer, OBJC_ASSOCIATION_RETAIN);
     }else{
         [observerContainer addObserver:item];
     }
     
-    mk_swizzleDeallocIfNeeded(self.class);
-    mk_swizzleDeallocIfNeeded(observer.class);
+    mk_swizzleKVODeallocIfNeeded(self.class);
+    mk_swizzleKVODeallocIfNeeded(observer.class);
 }
 
-- (void)guardRemoveObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath context:(void*)context{
+- (void)guardRemoveObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath context:(void*)context {
     if ([self ignoreKVOInstanceClass:observer]) {
         [self guardRemoveObserver:observer forKeyPath:keyPath context:context];
         return;
     }
-    mkHandleCrashException([NSString stringWithFormat:@"[NSObject removeObserver:forKeyPath:context:] invalid observer:%@ or keyPath:%@ context:%@",observer,keyPath,context]);
     [self removeObserver:observer forKeyPath:keyPath];
 }
 
@@ -251,16 +243,13 @@ MK_SYNTH_DUMMY_CLASS(NSObject_MKKVOCrashGuard)
         return;
     }
     
-    KVOObjectContainer* objectContainer = objc_getAssociatedObject(self, &mkDeallocKVOKey);
-    
+    KVOObjectContainer* objectContainer = objc_getAssociatedObject(self, mkKVODeallocAssociatedKey);
     if (!observer) {
         return;
     }
     if (!objectContainer) {
         return;
     }
-    
-    mkHandleCrashException([NSString stringWithFormat:@"[NSObject addObserver:forKeyPath:options:context: ] invalid observer:%@ or keyPath:%@",observer,keyPath]);
     
     KVOObjectItem* item = [[KVOObjectItem alloc] init];
     item.observer = observer;
@@ -270,26 +259,19 @@ MK_SYNTH_DUMMY_CLASS(NSObject_MKKVOCrashGuard)
         @try {
             [self guardRemoveObserver:observer forKeyPath:keyPath];
         }@catch (NSException *exception) {
+            mkHandleCrashException(exception);
         }
         [objectContainer removeKVOObjectItem:item];
     }
 }
 
-/**
- Ignore Special Library
- 
- @param object Instance Class
- @return YES or NO
- */
 - (BOOL)ignoreKVOInstanceClass:(id)object {
     if (!object) {
         return NO;
     }
-    //Ignore ReactiveCocoa
     if (object_getClass(object) == objc_getClass("RACKVOProxy")) {
         return YES;
     }
-    //Ignore AMAP
     NSString* className = NSStringFromClass(object_getClass(object));
     if ([className hasPrefix:@"AMap"]) {
         return YES;
@@ -297,13 +279,9 @@ MK_SYNTH_DUMMY_CLASS(NSObject_MKKVOCrashGuard)
     return NO;
 }
 
-
-/**
- * guard the kvo object dealloc and to clean the kvo array
- */
 - (void)mk_cleanKVO {
-    KVOObjectContainer* objectContainer = objc_getAssociatedObject(self, &mkDeallocKVOKey);
-    JJObserverContainer* observerContainer = objc_getAssociatedObject(self, &mkObserverDeallocKVOKey);
+    KVOObjectContainer* objectContainer = objc_getAssociatedObject(self, mkKVODeallocAssociatedKey);
+    MKObserverContainer * observerContainer = objc_getAssociatedObject(self, mkKVOObserverContainerAssociatedKey);
     if (objectContainer) {
         [objectContainer cleanKVOData];
     }else if(observerContainer){

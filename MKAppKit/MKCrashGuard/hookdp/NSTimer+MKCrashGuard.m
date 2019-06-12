@@ -10,32 +10,21 @@
 #import "NSObject+MKSwizzleHook.h"
 
 
-/**
- Copy the NSTimer Info
- */
 @interface MKTimerObject : NSObject
+
 @property(nonatomic,readwrite,assign)NSTimeInterval ti;
-/**
- weak reference target
- */
 @property(nonatomic,readwrite,weak)id target;
 @property(nonatomic,readwrite,assign)SEL selector;
 @property(nonatomic,readwrite,assign)id userInfo;
-/**
- TimerObject Associated NSTimer
- */
 @property(nonatomic,readwrite,weak)NSTimer* timer;
-/**
- Record the target class name
- */
 @property(nonatomic,readwrite,copy)NSString* targetClassName;
-/**
- Record the target method name
- */
 @property(nonatomic,readwrite,copy)NSString* targetMethodName;
+
 @end
-@implementation MKTimerObject 
-- (void)fireTimer{
+
+@implementation MKTimerObject
+
+- (void)fireTimer {
     if (!self.target) {
         [self.timer invalidate];
         self.timer = nil;
@@ -49,18 +38,25 @@
 #pragma clang diagnostic pop
     }
 }
+
 @end
+
+
+#pragma mark -
+#pragma mark -
 
 
 @implementation NSTimer (MKCrashGuard)
 
 + (void)guardTimerCrash {
-    mk_swizzleClassMethod([NSTimer class], @selector(scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:), @selector(guardScheduledTimerWithTimeInterval:target:selector:userInfo:repeats:));
+    mk_swizzleClassMethod([NSTimer class],
+                          @selector(scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:),
+                          @selector(guardScheduledTimerWithTimeInterval:target:selector:userInfo:repeats:));
 }
 
-+ (NSTimer*)guardScheduledTimerWithTimeInterval:(NSTimeInterval)ti target:(id)aTarget selector:(SEL)aSelector userInfo:(nullable id)userInfo repeats:(BOOL)yesOrNo{
-    if (!yesOrNo) {
-        return [self guardScheduledTimerWithTimeInterval:ti target:aTarget selector:aSelector userInfo:userInfo repeats:yesOrNo];
++ (NSTimer*)guardScheduledTimerWithTimeInterval:(NSTimeInterval)ti target:(id)aTarget selector:(SEL)aSelector userInfo:(nullable id)userInfo repeats:(BOOL)repeat {
+    if (!repeat) {
+        return [self guardScheduledTimerWithTimeInterval:ti target:aTarget selector:aSelector userInfo:userInfo repeats:repeat];
     }
     MKTimerObject* timerObject = [MKTimerObject new];
     timerObject.ti = ti;
@@ -71,7 +67,7 @@
         timerObject.targetClassName = [NSString stringWithCString:object_getClassName(aTarget) encoding:NSASCIIStringEncoding];
     }
     timerObject.targetMethodName = NSStringFromSelector(aSelector);
-    NSTimer* timer = [NSTimer guardScheduledTimerWithTimeInterval:ti target:timerObject selector:@selector(fireTimer) userInfo:userInfo repeats:yesOrNo];
+    NSTimer* timer = [NSTimer guardScheduledTimerWithTimeInterval:ti target:timerObject selector:@selector(fireTimer) userInfo:userInfo repeats:repeat];
     timerObject.timer = timer;
     return timer;
 }

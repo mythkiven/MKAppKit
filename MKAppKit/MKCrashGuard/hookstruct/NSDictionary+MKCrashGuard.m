@@ -17,7 +17,8 @@ MK_SYNTH_DUMMY_CLASS(NSDictionary_MKCrashGuard)
 + (void)crashGuardExchangeMethod {
     [NSDictionary mk_swizzleClassMethod:@selector(dictionaryWithObject:forKey:) withSwizzleMethod:@selector(guardDictionaryWithObject:forKey:)];
     [NSDictionary mk_swizzleClassMethod:@selector(dictionaryWithObjects:forKeys:count:) withSwizzleMethod:@selector(guardDictionaryWithObjects:forKeys:count:)];
-    [NSDictionary mk_swizzleClassMethod:@selector(initWithObjects:forKeys:count:) withSwizzleMethod:@selector(guardInitWithObjects:forKeys:count:)];
+    
+    [NSDictionary mk_swizzleInstanceMethod:@selector(initWithObjects:forKeys:count:) withSwizzleMethod:@selector(guardInitWithObjects:forKeys:count:)];
 }
 
 + (instancetype)guardDictionaryWithObject:(id)object forKey:(id)key {

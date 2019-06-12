@@ -14,60 +14,53 @@ MK_SYNTH_DUMMY_CLASS(NSObject_MKSELCrashGuard)
 @implementation NSObject (MKSELCrashGuard)
 
 + (void)guardUnrecognizedSelectorCrash { 
-    mk_swizzleClassMethod([self class], @selector(methodSignatureForSelector:), @selector(classMethodSignatureForSelectorSwizzled:));
-    mk_swizzleClassMethod([self class], @selector(forwardInvocation:), @selector(forwardClassInvocationSwizzled:));
+    mk_swizzleClassMethod([self class], @selector(methodSignatureForSelector:), @selector(mk_classMethodSignatureForSelector:));
+    mk_swizzleClassMethod([self class], @selector(forwardInvocation:), @selector(mk_forwardClassInvocation:));
     
-    mk_swizzleInstanceMethod([self class], @selector(methodSignatureForSelector:), @selector(methodSignatureForSelectorSwizzled:));
-    mk_swizzleInstanceMethod([self class], @selector(forwardInvocation:), @selector(forwardInvocationSwizzled:));
+    mk_swizzleInstanceMethod([self class], @selector(methodSignatureForSelector:), @selector(mk_methodSignatureForSelector:));
+    mk_swizzleInstanceMethod([self class], @selector(forwardInvocation:), @selector(mk_forwardInvocation:));
 }
 
-+ (NSMethodSignature*)classMethodSignatureForSelectorSwizzled:(SEL)aSelector {
-    NSMethodSignature* methodSignature = [self classMethodSignatureForSelectorSwizzled:aSelector];
-    if (methodSignature) {
-        return methodSignature;
-    }
-    return [self.class checkObjectSignatureAndCurrentClass:self.class];
-}
-- (NSMethodSignature*)methodSignatureForSelectorSwizzled:(SEL)aSelector {
-    NSMethodSignature* methodSignature = [self methodSignatureForSelectorSwizzled:aSelector];
+
++ (NSMethodSignature*)mk_classMethodSignatureForSelector:(SEL)aSelector {
+    NSMethodSignature* methodSignature = [self mk_classMethodSignatureForSelector:aSelector];
     if (methodSignature) {
         return methodSignature;
     }
     return [self.class checkObjectSignatureAndCurrentClass:self.class];
 }
 
-/**
- * Check the class method signature to the [NSObject class]
- * If not equals,return nil
- * If equals,return the v@:@ method
- @param currentClass Class
- @return NSMethodSignature
- */
-+ (NSMethodSignature *)checkObjectSignatureAndCurrentClass:(Class)currentClass{
++ (void)mk_forwardClassInvocation:(NSInvocation*)invocation {
+    mkHandleCrashException([NSString stringWithFormat:@"forwardInvocation: Unrecognized static class:%@ and selector:%@",NSStringFromClass(self.class),NSStringFromSelector(invocation.selector)]);
+}
+
+
+- (NSMethodSignature*)mk_methodSignatureForSelector:(SEL)aSelector {
+    NSMethodSignature* methodSignature = [self mk_methodSignatureForSelector:aSelector];
+    if (methodSignature) {
+        return methodSignature;
+    }
+    return [self.class checkObjectSignatureAndCurrentClass:self.class];
+}
+
+- (void)mk_forwardInvocation:(NSInvocation*)invocation {
+    mkHandleCrashException([NSString stringWithFormat:@"forwardInvocation: Unrecognized instance class:%@ and selector:%@",NSStringFromClass(self.class),NSStringFromSelector(invocation.selector)]);
+}
+
+
++ (NSMethodSignature *)checkObjectSignatureAndCurrentClass:(Class)currentClass {
     IMP originIMP = class_getMethodImplementation([NSObject class], @selector(methodSignatureForSelector:));
     IMP currentClassIMP = class_getMethodImplementation(currentClass, @selector(methodSignatureForSelector:));
-    // If current class override methodSignatureForSelector return nil
+    
+    // 已重写
     if (originIMP != currentClassIMP){
         return nil;
     }
-    // Customer method signature
-    // void xxx(id,sel,id)
+    
     return [NSMethodSignature signatureWithObjCTypes:"v@:@"];
 }
 
-/**
- Forward instance object
- @param invocation NSInvocation
- */
-- (void)forwardInvocationSwizzled:(NSInvocation*)invocation{
-    mkHandleCrashException([NSString stringWithFormat:@"forwardInvocationSwizzled: Unrecognized instance class:%@ and selector:%@",NSStringFromClass(self.class),NSStringFromSelector(invocation.selector)]);
-}
 
-/**
- Forward class object
- @param invocation NSInvocation
- */
-+ (void)forwardClassInvocationSwizzled:(NSInvocation*)invocation{
-    mkHandleCrashException([NSString stringWithFormat:@"forwardClassInvocationSwizzled: Unrecognized static class:%@ and selector:%@",NSStringFromClass(self.class),NSStringFromSelector(invocation.selector)]);
-}
+
+
 @end

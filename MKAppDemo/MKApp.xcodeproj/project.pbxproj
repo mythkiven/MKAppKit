@@ -51,6 +51,7 @@
 		18C1F5FC22AF43BD000F7CC4 /* UINavigationController+MKCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F5FB22AF43BD000F7CC4 /* UINavigationController+MKCrashGuard.m */; };
 		18C1F5FF22AF4870000F7CC4 /* NSNull+MKCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F5FE22AF4870000F7CC4 /* NSNull+MKCrashGuard.m */; };
 		18C1F64622AFB325000F7CC4 /* NSObject+MKNotificationCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F64522AFB325000F7CC4 /* NSObject+MKNotificationCrashGuard.m */; };
+		18C1F64922B0DEA7000F7CC4 /* NSObject+MKKVCCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F64822B0DEA6000F7CC4 /* NSObject+MKKVCCrashGuard.m */; };
 		CD14498602F8FFA94293C467 /* libPods-MKApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E0AE6536CA56DED26768444 /* libPods-MKApp.a */; };
 /* End PBXBuildFile section */
 
@@ -142,10 +143,12 @@
 		18C1F5F522AF4397000F7CC4 /* NSObject+MKSELCrashGuard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MKSELCrashGuard.h"; sourceTree = "<group>"; };
 		18C1F5FA22AF43BD000F7CC4 /* UINavigationController+MKCrashGuard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+MKCrashGuard.h"; sourceTree = "<group>"; };
 		18C1F5FB22AF43BD000F7CC4 /* UINavigationController+MKCrashGuard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+MKCrashGuard.m"; sourceTree = "<group>"; };
-		18C1F5FD22AF4870000F7CC4 /* NSNull+MKCrashGuard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNull+MKCrashGuard.h"; sourceTree = "<group>"; };
-		18C1F5FE22AF4870000F7CC4 /* NSNull+MKCrashGuard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNull+MKCrashGuard.m"; sourceTree = "<group>"; };
+		18C1F5FD22AF4870000F7CC4 /* NSNull+MKCrashGuard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSNull+MKCrashGuard.h"; path = "../hookstruct/NSNull+MKCrashGuard.h"; sourceTree = "<group>"; };
+		18C1F5FE22AF4870000F7CC4 /* NSNull+MKCrashGuard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSNull+MKCrashGuard.m"; path = "../hookstruct/NSNull+MKCrashGuard.m"; sourceTree = "<group>"; };
 		18C1F64422AFB325000F7CC4 /* NSObject+MKNotificationCrashGuard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MKNotificationCrashGuard.h"; sourceTree = "<group>"; };
 		18C1F64522AFB325000F7CC4 /* NSObject+MKNotificationCrashGuard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MKNotificationCrashGuard.m"; sourceTree = "<group>"; };
+		18C1F64722B0DEA6000F7CC4 /* NSObject+MKKVCCrashGuard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+MKKVCCrashGuard.h"; sourceTree = "<group>"; };
+		18C1F64822B0DEA6000F7CC4 /* NSObject+MKKVCCrashGuard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MKKVCCrashGuard.m"; sourceTree = "<group>"; };
 		489DBB6E3C85E44985C5B368 /* Pods-MKApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MKApp.debug.xcconfig"; path = "Target Support Files/Pods-MKApp/Pods-MKApp.debug.xcconfig"; sourceTree = "<group>"; };
 		51C84C6B4D5F2935E0157851 /* Pods-MKApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MKApp.release.xcconfig"; path = "Target Support Files/Pods-MKApp/Pods-MKApp.release.xcconfig"; sourceTree = "<group>"; };
 		5E0AE6536CA56DED26768444 /* libPods-MKApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MKApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -413,10 +416,10 @@
 				18C1F5C222AF4339000F7CC4 /* NSArray+MKCrashGuard.m */,
 				18C1F5CD22AF4339000F7CC4 /* NSAttributedString+MKCrashGuard.h */,
 				18C1F5C422AF4339000F7CC4 /* NSAttributedString+MKCrashGuard.m */,
-				18C1F5C522AF4339000F7CC4 /* NSMutableDictionary+MKCrashGuard.h */,
-				18C1F5CC22AF4339000F7CC4 /* NSMutableDictionary+MKCrashGuard.m */,
 				18C1F5C622AF4339000F7CC4 /* NSSet+MKCrashGuard.h */,
 				18C1F5CB22AF4339000F7CC4 /* NSSet+MKCrashGuard.m */,
+				18C1F5C522AF4339000F7CC4 /* NSMutableDictionary+MKCrashGuard.h */,
+				18C1F5CC22AF4339000F7CC4 /* NSMutableDictionary+MKCrashGuard.m */,
 				18C1F5C822AF4339000F7CC4 /* NSMutableSet+MKCrashGuard.h */,
 				18C1F5D222AF4339000F7CC4 /* NSMutableSet+MKCrashGuard.m */,
 				18C1F5C922AF4339000F7CC4 /* NSMutableArray+MKCrashGuard.h */,
@@ -425,8 +428,6 @@
 				18C1F5D322AF4339000F7CC4 /* NSMutableString+MKCrashGuard.m */,
 				18C1F5D022AF4339000F7CC4 /* NSMutableAttributedString+MKCrashGuard.h */,
 				18C1F5C122AF4339000F7CC4 /* NSMutableAttributedString+MKCrashGuard.m */,
-				18C1F5FD22AF4870000F7CC4 /* NSNull+MKCrashGuard.h */,
-				18C1F5FE22AF4870000F7CC4 /* NSNull+MKCrashGuard.m */,
 			);
 			path = hookstruct;
 			sourceTree = "<group>";
@@ -451,6 +452,10 @@
 				18C1F5EF22AF4397000F7CC4 /* NSObject+MKKVOCrashGuard.m */,
 				18C1F64422AFB325000F7CC4 /* NSObject+MKNotificationCrashGuard.h */,
 				18C1F64522AFB325000F7CC4 /* NSObject+MKNotificationCrashGuard.m */,
+				18C1F64722B0DEA6000F7CC4 /* NSObject+MKKVCCrashGuard.h */,
+				18C1F64822B0DEA6000F7CC4 /* NSObject+MKKVCCrashGuard.m */,
+				18C1F5FD22AF4870000F7CC4 /* NSNull+MKCrashGuard.h */,
+				18C1F5FE22AF4870000F7CC4 /* NSNull+MKCrashGuard.m */,
 			);
 			path = hookdp;
 			sourceTree = "<group>";
@@ -638,6 +643,7 @@
 				188F8707229E85F600A288D4 /* MKFileManager.m in Sources */,
 				18C1F59C22A7AA39000F7CC4 /* MKException.m in Sources */,
 				18B0FB8122A4FBCB00CB5780 /* NSObject+MKCrashGuard.m in Sources */,
+				18C1F64922B0DEA7000F7CC4 /* NSObject+MKKVCCrashGuard.m in Sources */,
 				18C1F5F722AF4398000F7CC4 /* NSObject+MKKVOCrashGuard.m in Sources */,
 				18C1F5D922AF4339000F7CC4 /* NSMutableDictionary+MKCrashGuard.m in Sources */,
 				18C1F5DA22AF4339000F7CC4 /* NSString+MKCrashGuard.m in Sources */,

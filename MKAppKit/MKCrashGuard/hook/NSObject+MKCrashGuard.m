@@ -22,15 +22,7 @@ MK_SYNTH_DUMMY_CLASS(NSObject_MKCrashGuard)
  */
 + (void)mk_guardSelector:(BOOL)isGuardUnrecognized {
     static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        //setValue:forKey:
-        [MKCrashGuardManager exchangeInstanceMethod:[self class] systemSelector:@selector(setValue:forKey:) swizzledSelector:@selector(crashGuardSetValue:forKey:)];
-        //setValue:forKeyPath:
-        [MKCrashGuardManager exchangeInstanceMethod:[self class] systemSelector:@selector(setValue:forKeyPath:) swizzledSelector:@selector(crashGuardSetValue:forKeyPath:)];
-        //setValue:forUndefinedKey:
-        [MKCrashGuardManager exchangeInstanceMethod:[self class] systemSelector:@selector(setValue:forUndefinedKey:) swizzledSelector:@selector(crashGuardSetValue:forUndefinedKey:)];
-        //setValuesForKeysWithDictionary:
-        [MKCrashGuardManager exchangeInstanceMethod:[self class] systemSelector:@selector(setValuesForKeysWithDictionary:) swizzledSelector:@selector(crashGuardSetValuesForKeysWithDictionary:)];
+    dispatch_once(&onceToken, ^{ 
         //unrecognized selector sent to instance
         if (isGuardUnrecognized) {
             [MKCrashGuardManager exchangeInstanceMethod:[self class] systemSelector:@selector(methodSignatureForSelector:) swizzledSelector:@selector(crashGuardMethodSignatureForSelector:)];
@@ -80,55 +72,6 @@ static NSMutableArray *mkUnrecognizedSelectorClassPrefixs;
     } @finally {
     }
 }
-
-#pragma mark - setValue:forKey:
-- (void)crashGuardSetValue:(id)value forKey:(NSString *)key {
-    @try {
-        [self crashGuardSetValue:value forKey:key];
-    }
-    @catch (NSException *exception) {
-        mkHandleCrashException(exception);
-    }
-    @finally {
-    }
-}
-
-#pragma mark - setValue:forKeyPath:
-- (void)crashGuardSetValue:(id)value forKeyPath:(NSString *)keyPath {
-    @try {
-        [self crashGuardSetValue:value forKeyPath:keyPath];
-    }
-    @catch (NSException *exception) {
-        mkHandleCrashException(exception);
-    }
-    @finally {
-    }
-}
-
-#pragma mark - setValue:forUndefinedKey:
-- (void)crashGuardSetValue:(id)value forUndefinedKey:(NSString *)key {
-    @try {
-        [self crashGuardSetValue:value forUndefinedKey:key];
-    }
-    @catch (NSException *exception) {
-        mkHandleCrashException(exception);
-    }
-    @finally {
-    }
-}
-
-#pragma mark - setValuesForKeysWithDictionary:
-- (void)crashGuardSetValuesForKeysWithDictionary:(NSDictionary<NSString *,id> *)keyedValues {
-    @try {
-        [self crashGuardSetValuesForKeysWithDictionary:keyedValues];
-    }
-    @catch (NSException *exception) {
-        mkHandleCrashException(exception);
-    }
-    @finally {
-    }
-}
-
 
 
 @end

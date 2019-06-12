@@ -12,7 +12,7 @@
 #import <libkern/OSAtomic.h>
 
 typedef IMP (^MKSwizzleHookImpProvider)(void);
-static const char mkSwizzleHookDeallocKey;
+static const void *mkKVODeallocAssociatedKey = &mkKVODeallocAssociatedKey;
 
 @interface MKSwizzleObject()
 @property (nonatomic,readwrite,copy) MKSwizzleHookImpProvider impProviderBlock;
@@ -25,23 +25,27 @@ static const char mkSwizzleHookDeallocKey;
 }
 @end
 
+
 #pragma mark -
 #pragma mark -
 
-static const char mkNSObjectDealloc;
-/**
- Observer the target middle object
- */
-@interface MKDeallocStub : NSObject
+static const void *mkNSObjectDeallocAssociatedKey = &mkNSObjectDeallocAssociatedKey;
+
+@interface MKDeallocExecutor : NSObject
+
 @property (nonatomic,readwrite,copy) void(^deallocBlock)(void);
+
 @end
-@implementation MKDeallocStub
+
+@implementation MKDeallocExecutor
+
 - (void)dealloc {
     if (self.deallocBlock) {
         self.deallocBlock();
     }
     self.deallocBlock = nil;
 }
+
 @end
  
 
@@ -54,12 +58,12 @@ void mk_swizzleClassMethod(Class cls, SEL originSelector, SEL swizzleSelector) {
     }
     Method originalMethod = class_getClassMethod(cls, originSelector);
     Method swizzledMethod = class_getClassMethod(cls, swizzleSelector);
-     NSCAssert(NULL != originalMethod,
+    NSCAssert(NULL != originalMethod,
                @"originSelector %@ not found in %@ methods of class %@.",
                NSStringFromSelector(originSelector),
                class_isMetaClass(cls) ? @"class" : @"instance",
                cls);
-     NSCAssert(NULL != swizzledMethod,
+    NSCAssert(NULL != swizzledMethod,
                @"swizzleSelector %@ not found in %@ methods of class %@.",
                NSStringFromSelector(swizzleSelector),
                class_isMetaClass(cls) ? @"class" : @"instance",
@@ -126,12 +130,12 @@ void mk_swizzleInstanceMethod(Class cls, SEL originSelector, SEL swizzleSelector
 BOOL mk_requiresDeallocSwizzle(Class class) {
     BOOL swizzled = NO;
     for ( Class currentClass = class; !swizzled && currentClass != nil; currentClass = class_getSuperclass(currentClass) ) {
-        swizzled = [objc_getAssociatedObject(currentClass, &mkSwizzleHookDeallocKey) boolValue];
+        swizzled = [objc_getAssociatedObject(currentClass, mkKVODeallocAssociatedKey) boolValue];
     }
     return !swizzled;
 }
 
-void mk_swizzleDeallocIfNeeded(Class class) {
+void mk_swizzleKVODeallocIfNeeded(Class class) {
     static SEL deallocSEL = NULL;
     static SEL cleanupSEL = NULL;
     static dispatch_once_t onceToken;
@@ -143,7 +147,7 @@ void mk_swizzleDeallocIfNeeded(Class class) {
         if ( !mk_requiresDeallocSwizzle(class) ) {
             return;
         }
-        objc_setAssociatedObject(class, &mkSwizzleHookDeallocKey, @(YES), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(class, mkKVODeallocAssociatedKey, @(YES), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     Method dealloc = NULL;
     unsigned int count = 0;
@@ -207,67 +211,22 @@ void __MK_SWIZZLE_BLOCK(Class classToSwizzle,SEL selector,MKSwizzledIMPBlock imp
     __MK_SWIZZLE_BLOCK(self.class, originSelector, swizzledBlock);
 }
 
-- (void)mk_deallocBlock:(void(^)(void))block{
-    @synchronized(self){
-        NSMutableArray* blockArray = objc_getAssociatedObject(self, &mkNSObjectDealloc);
+/**
+ 在当前对象销毁时调用
+ @param block 销毁时调用的 block
+ */
+- (void)mk_runAtDealloc:(void(^)(void))block {
+    @synchronized(self) {
+        NSMutableArray* blockArray = objc_getAssociatedObject(self, mkNSObjectDeallocAssociatedKey);
         if (!blockArray) {
             blockArray = [NSMutableArray array];
-            objc_setAssociatedObject(self, &mkNSObjectDealloc, blockArray, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            objc_setAssociatedObject(self, mkNSObjectDeallocAssociatedKey, blockArray, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
-        MKDeallocStub *stub = [MKDeallocStub new];
+        MKDeallocExecutor *stub = [MKDeallocExecutor new];
         stub.deallocBlock = block;
         [blockArray addObject:stub];
     }
 }
 
-
-//#ifndef NULLSAFE_ENABLED
-//#define NULLSAFE_ENABLED 1
-//#endif
-//
-//
-//#pragma clang diagnostic ignored "-Wgnu-conditional-omitted-operand"
-//
-//
-//@implementation NSNull (NullSafe)
-//
-//#if NULLSAFE_ENABLED
-//
-//- (NSMethodSignature *)methodSignatureForSelector:(SEL)selector
-//{
-//    //look up method signature
-//    NSMethodSignature *signature = [super methodSignatureForSelector:selector];
-//    if (!signature)
-//    {
-//        for (Class someClass in @[
-//                                  [NSMutableArray class],
-//                                  [NSMutableDictionary class],
-//                                  [NSMutableString class],
-//                                  [NSNumber class],
-//                                  [NSDate class],
-//                                  [NSData class]
-//                                  ])
-//        {
-//            @try
-//            {
-//                if ([someClass instancesRespondToSelector:selector])
-//                {
-//                    signature = [someClass instanceMethodSignatureForSelector:selector];
-//                    break;
-//                }
-//            }
-//            @catch (__unused NSException *unused) {}
-//        }
-//    }
-//    return signature;
-//}
-//
-//- (void)forwardInvocation:(NSInvocation *)invocation
-//{
-//    invocation.target = nil;
-//    [invocation invoke];
-//}
-//
-//#endif
 
 @end

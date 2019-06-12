@@ -20,9 +20,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-      
+    
     // 启用 crash 防护
-//    [MKCrashGuardManager executeAppGuard]; 
+    [MKCrashGuardManager executeAppGuard];
     //  test crash case
     [[CrashTest new] executeAllTest];
     

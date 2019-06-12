@@ -17,6 +17,9 @@ MK_SYNTH_DUMMY_CLASS(NSObject_MKNotificationCrashGuard)
 @implementation  NSObject (MKNotificationCrashGuard)
 
 + (void)guardNotificationCrash {
+    // 添加通知后，没有移除导致Crash的问题 在 9.0 以后没有出现了。
+    if(@available(iOS 9.0, *))
+        return;
     [self mk_swizzleInstanceMethod:@selector(addObserver:selector:name:object:) withSwizzledBlock:^id(MKSwizzleObject *swizzleInfo) {
         return ^(__unsafe_unretained id self,id observer,SEL aSelector,NSString* aName,id anObject){
             [self guardAddObserver:observer selector:aSelector name:aName object:anObject swizzleInfo:swizzleInfo];
@@ -31,12 +34,11 @@ MK_SYNTH_DUMMY_CLASS(NSObject_MKNotificationCrashGuard)
     }
     if ([observer isKindOfClass:NSObject.class]) {
         __unsafe_unretained typeof(observer) unsafeObject = observer;
-        [observer mk_deallocBlock:^{
+        [observer mk_runAtDealloc:^{
             [[NSNotificationCenter defaultCenter] removeObserver:unsafeObject];
         }];
     }
-//    [observer setIsNSNotification:YES];
-    
+//    [observer setIsNSNotification:YES]; 
     void(*originIMP)(__unsafe_unretained id,SEL,id,SEL,NSString*,id);
     originIMP = (__typeof(originIMP))[swizzleInfo getOriginalImplementation];
     if (originIMP != NULL) {

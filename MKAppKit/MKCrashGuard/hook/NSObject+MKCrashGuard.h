@@ -12,31 +12,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (MKCrashGuard)
 
-/**  防护：
- *
- *  - (void)setValuesForKeysWithDictionary:(NSDictionary<NSString *, id> *)keyedValues;
- *  - (void)setValue:(nullable id)value forUndefinedKey:(NSString *)key;
- *  - (void)setValue:(nullable id)value forKeyPath:(NSString *)keyPath;
- *  - (void)setValue:(nullable id)value forKey:(NSString *)key;
- *
- *  - (id)forwardingTargetForSelector:(SEL)aSelector
- *  - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector 
- */
-
-
-
 /**
  防护 Unrecognized
  @param isGuardUnrecognized 是否防护 Unrecognized
  */
-+ (void)mk_guardSelector:(BOOL)isGuardUnrecognized;
-
++ (void)mk_guardSelector:(BOOL)isGuardUnrecognized DEPRECATED_MSG_ATTRIBUTE("Please use [NSObject guardUnrecognizedSelectorCrash]");
 
 /**
  防护 Unrecognized
  @param classPrefixs 需要防护的类名或类名前缀
  */
-+ (void)mk_guardSelectorWithClassPrefixs:(NSArray<NSString *> *)classPrefixs;
++ (void)mk_guardSelectorWithClassPrefixs:(NSArray<NSString *> *)classPrefixs DEPRECATED_MSG_ATTRIBUTE("Please use [NSObject guardUnrecognizedSelectorCrash]");
 
 @end
 

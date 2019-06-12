@@ -10,9 +10,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSTimer (MKCrashGuard)
+
 /**
  * 防护 强引用 以及 target 提前销毁
+ *
  */
+
 + (void)guardTimerCrash;
 @end
 

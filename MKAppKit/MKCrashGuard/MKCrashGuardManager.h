@@ -23,23 +23,47 @@
 #import "NSObject+MKNotificationCrashGuard.h"
 #import "NSObject+MKKVOCrashGuard.h"
 #import "NSObject+MKSELCrashGuard.h"
+#import "NSObject+MKKVCCrashGuard.h"
 
 #import "UINavigationController+MKCrashGuard.h"
 NS_ASSUME_NONNULL_BEGIN
 
 
+typedef NS_OPTIONS(NSInteger,MKCrashGuardType){
+    MKCrashGuardTypeNone = 0,
+    MKCrashGuardTypeUnrecognizedSelector,
+    MKCrashGuardTypeKVOCrash,
+    MKCrashGuardTypeKVCCrash,
+    MKCrashGuardTypeNSTimer,
+    MKCrashGuardTypeNSNotification,
+    MKCrashGuardTypeNSNull,
+    
+    MKCrashGuardTypeUINavigationController,
+    
+    MKCrashGuardTypeNSStringContainer,
+    MKCrashGuardTypeDictionaryContainer,
+    MKCrashGuardTypeArrayContainer,
+    MKCrashGuardTypeNSAttributedStringContainer,
+    MKCrashGuardTypeNSSetContainer,
+    
+    MKCrashGuardTypeAllExceptContainer = MKCrashGuardTypeUnrecognizedSelector | MKCrashGuardTypeKVOCrash | MKCrashGuardTypeKVCCrash | MKCrashGuardTypeNSTimer | MKCrashGuardTypeNSNotification | MKCrashGuardTypeNSNull | MKCrashGuardTypeUINavigationController,
+    MKCrashGuardTypeAllContainer = MKCrashGuardTypeNSStringContainer | MKCrashGuardTypeDictionaryContainer | MKCrashGuardTypeArrayContainer | MKCrashGuardTypeNSAttributedStringContainer | MKCrashGuardTypeNSSetContainer ,
+    MKCrashGuardTypeAll = MKCrashGuardTypeAllContainer | MKCrashGuardTypeAllExceptContainer ,
+};
 
 
-@interface MKCrashGuardManager : NSObject 
+
+@interface MKCrashGuardManager : NSObject
+
 /**
- 在 application: didFinishLaunchingWithOptions: 中调用，启动 App 守护
+ * 启动 App 守护,守护所有类型的crash
  */
 + (void)executeAppGuard;
+
 /**
- 启用 "unrecognized selector sent to instance" crash 防护，请传入需要防护的 类名或类名前缀
- @param classPrefixs 防护的类名或类名前缀
+ * 自行配置守护的类型
  */
-+ (void)guardSelectorWithClassPrefixs:(NSArray<NSString *> *)classPrefixs;
++ (void)configAppGuard:(MKCrashGuardType)crashGuardType;
 
 
 + (void)exchangeClassMethod:(Class)anClass systemSelector:(SEL)systemSelector swizzledSelector:(SEL)swizzledSelector;//  __attribute__((deprecated("Stop invoke this method,If invoke this,Maybe occur crash")));
