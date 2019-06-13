@@ -10,13 +10,13 @@
 ![](./source/icon_MKAppKit.png)
 
 
-## Crash 守护组件
+## Crash 守护组件：MKCrashGuard
 
 | 组件 | 添加方式 | 语言 | 备注 |
 | --- | --- | --- | --- |
 | [crash 防护组件 v1.0](https://github.com/mythkiven/MKAppKit/blob/master/doc/MKCrashGuard.md) | `pod 'MKAppKit/MKCrashGuard' ` | Objective-C   | 守护类型：KVO、KVC、unrecognized selector、NStimer、NSNotification、UINavigationController、NSString,NSArray,NSDictonary,NSAttributedString,NSSet 以及对应的可变形式
 
-## 性能监控组件
+## 性能监控组件： MKMonitor 系列
 
 | 组件 | 添加方式 | 语言 | 备注 |
 | --- | --- | --- | --- |
@@ -38,12 +38,12 @@
 ## UI 组件
 | 组件 | 添加方式 | 语言 | 效果 |
 | --- | --- | --- | --- |
-| [输入 @自动下拉邮箱列表 v1.0](https://github.com/mythkiven/MKAppKit/blob/master/doc/MKDropdownMailTF.md) |  `pod 'MKAppKit/MKDropdownMailTF' ` |  Objective-C | ![](https://github.com/mythkiven/MKAppKit/blob/master/source/MKDropdownMailTF.gif)
+| [输入 @ 自动下拉邮箱列表 v1.0](https://github.com/mythkiven/MKAppKit/blob/master/doc/MKDropdownMailTF.md) |  `pod 'MKAppKit/MKDropdownMailTF' ` |  Objective-C | ![](https://github.com/mythkiven/MKAppKit/blob/master/source/MKDropdownMailTF.gif)
 |  |  |  |
 
 
 
-**使用**
+** 使用 **
 
 ```
 添加 pod 时，如遇到错误：Unable to find a specification for `MKAppKit`

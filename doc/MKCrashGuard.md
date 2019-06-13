@@ -32,7 +32,7 @@ pod 'MKAppKit/MKCrashGuard'
 
 ### 3、设计原理
 
-- 利用 Objective-C 语言的动态特性, 采用 AOP面向切面编程的设计思想, 做到无痕植入。对业务代码的零侵入性地将原本会导致 app 崩溃的 crash 抓取住, 消灭掉, 保证 app 继续正常地运行, 再将 crash 的具体信息提取出来, 实时返回给用户。
+- 利用 Objective-C 语言的动态特性, 采用 AOP 面向切面编程的设计思想, 做到无痕植入。对业务代码的零侵入性地将原本会导致 app 崩溃的 crash 抓取住, 消灭掉, 保证 app 继续正常地运行, 再将 crash 的具体信息提取出来, 实时返回给用户。
 
 - 为了避免冲突，一些 hook 操作前会判断对象的类型，比如 KVO 会判断 `NSStringFromClass(object_getClass(object)` 如果包含 AMap、RACKVOProxy，就取消 hook 操作。
 
