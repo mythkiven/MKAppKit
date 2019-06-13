@@ -6,23 +6,19 @@
  */
 
 #import "MKCrashGuardManager.h"
-
-
-
-
-
+#import "MKException.h"
 
 @implementation MKCrashGuardManager
-
 
 #pragma mark - public
 
 /**
- * 启动 App 守护,守护所有类型的crash
+ * 启动 App 守护,默认守护所有的类型:MKCrashGuardTypeAll
  */
 + (void)executeAppGuard {
+//    [MKCrashGuardManager executeAppGuardWithConfig:MKCrashGuardTypeAll]; 耗时？
     static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{ 
+    dispatch_once(&onceToken, ^{
         [NSArray crashGuardExchangeMethod];
         [NSMutableArray crashGuardExchangeMethod];
         [NSDictionary crashGuardExchangeMethod];
@@ -31,34 +27,51 @@
         [NSMutableString crashGuardExchangeMethod];
         [NSAttributedString crashGuardExchangeMethod];
         [NSMutableAttributedString crashGuardExchangeMethod];
-        
+
         [NSObject guardUnrecognizedSelectorCrash];
         [NSTimer guardTimerCrash];
         [NSNotificationCenter guardNotificationCrash];
         [NSObject guardKVOCrash];
         [NSObject guardKVCCrash];
-        
+
         [UINavigationController guardNavigationController];
     });
 }
+
 /**
- * 自行配置守护的类型
+ * 启动 App 守护,自定义守护的类型
  */
-+ (void)configAppGuard:(MKCrashGuardType)crashGuardType {
-    
++ (void)executeAppGuardWithConfig:(MKCrashGuardType)crashGuardType {
+    MKException * exc = [MKException shareException];
+    exc.guardCrashType = crashGuardType;
+}
+
+/**
+ * 注册 crash 信息的回调对象
+ */
++ (void)registerCrashHandle:(id<MKExceptionHandle>)crashHandle {
+    MKException * exc = [MKException shareException];
+    exc.delegate = crashHandle;
+}
+
+/**
+ * 开启 log
+ * @param isLog 是否开启log
+ */
++ (void)printLog:(BOOL)isLog {
+    MKException * exc = [MKException shareException];
+    exc.printLog = isLog;
 }
 
 
-#pragma mark - private
+#pragma mark - pri
 
-// 类方法的交换
 + (void)exchangeClassMethod:(Class)anClass systemSelector:(SEL)systemSelector swizzledSelector:(SEL)swizzledSelector {
     Method method1 = class_getClassMethod(anClass, systemSelector);
     Method method2 = class_getClassMethod(anClass, swizzledSelector);
     method_exchangeImplementations(method1, method2);
 }
 
-// 对象方法的交换
 + (void)exchangeInstanceMethod:(Class)anClass systemSelector:(SEL)systemSelector swizzledSelector:(SEL)swizzledSelector {
     Method originalMethod = class_getInstanceMethod(anClass, systemSelector);
     Method swizzledMethod = class_getInstanceMethod(anClass, swizzledSelector);

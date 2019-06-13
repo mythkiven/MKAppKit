@@ -9,16 +9,15 @@
 #import "MKException.h"
 #import "NSObject+MKSwizzleHook.h"
 
-
 @interface MKTimerObject : NSObject
 
-@property(nonatomic,readwrite,assign)NSTimeInterval ti;
-@property(nonatomic,readwrite,weak)id target;
-@property(nonatomic,readwrite,assign)SEL selector;
-@property(nonatomic,readwrite,assign)id userInfo;
-@property(nonatomic,readwrite,weak)NSTimer* timer;
-@property(nonatomic,readwrite,copy)NSString* targetClassName;
-@property(nonatomic,readwrite,copy)NSString* targetMethodName;
+@property(nonatomic,readwrite,assign) NSTimeInterval ti;
+@property(nonatomic,readwrite,weak) id target;
+@property(nonatomic,readwrite,assign) SEL selector;
+@property(nonatomic,readwrite,assign) id userInfo;
+@property(nonatomic,readwrite,weak) NSTimer *timer;
+@property(nonatomic,readwrite,copy) NSString *targetClassName;
+@property(nonatomic,readwrite,copy) NSString *targetMethodName;
 
 @end
 
@@ -45,7 +44,7 @@
 #pragma mark -
 #pragma mark -
 
-
+MK_SYNTH_DUMMY_CLASS(NSTimer_MKSELCrashGuard)
 @implementation NSTimer (MKCrashGuard)
 
 + (void)guardTimerCrash {

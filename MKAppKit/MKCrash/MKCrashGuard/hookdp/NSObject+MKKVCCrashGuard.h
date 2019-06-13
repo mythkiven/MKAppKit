@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 防护如下方法
  * - (void)setValue:(nullable id)value forKey:(NSString *)key;
- *  - (void)setValue:(nullable id)value forKeyPath:(NSString *)keyPath;
+ * - (void)setValue:(nullable id)value forKeyPath:(NSString *)keyPath;
  * - (void)setValue:(nullable id)value forUndefinedKey:(NSString *)key;
  * - (void)setValuesForKeysWithDictionary:(NSDictionary<NSString *, id> *)keyedValues;
  */

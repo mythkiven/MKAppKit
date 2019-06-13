@@ -12,7 +12,6 @@
 MK_SYNTH_DUMMY_CLASS(NSString_MKCrashGuard)
 @implementation NSString (MKCrashGuard)
 
-#pragma mark   MKCrashGuardProtocol
 + (void)crashGuardExchangeMethod {
     [NSString mk_swizzleClassMethod:@selector(stringWithUTF8String:) withSwizzleMethod:@selector(guardStringWithUTF8String:)];
     [NSString mk_swizzleClassMethod:@selector(stringWithCString:encoding:) withSwizzleMethod:@selector(guardStringWithCString:encoding:)];

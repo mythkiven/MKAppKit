@@ -26,12 +26,13 @@ __attribute__((overloadable)) void mkHandleCrashException(NSString* exceptionMes
 
 
 
-@interface MKException(){
+@interface MKException()
+{
 //    NSMutableSet* _currentClassesSet;
 //    NSMutableSet* _blackClassesSet;
 //    NSInteger _currentClassSize;
 //    dispatch_semaphore_t _classArrayLock; //Protect _blackClassesSet and _currentClassesSet atomic
-//    dispatch_semaphore_t _swizzleLock; //Protect swizzle atomic
+    dispatch_semaphore_t _swizzleLock;
 }
 @end
 
@@ -55,10 +56,71 @@ static MKException *_manager;
 }
 - (instancetype) init{
     if(self =[super init]){
+        _swizzleLock = dispatch_semaphore_create(1);
     }
     return self;
 }
 
+
+
+- (void)setGuardCrashType:(MKCrashGuardType)guardCrashType{
+    dispatch_semaphore_wait(_swizzleLock, DISPATCH_TIME_FOREVER);
+    if (_guardCrashType != guardCrashType) {
+        _guardCrashType = guardCrashType;
+        
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+        
+        if(self.guardCrashType & MKCrashGuardTypeNSStringContainer){
+            [NSString performSelector:@selector(crashGuardExchangeMethod)];
+            [NSMutableString performSelector:@selector(crashGuardExchangeMethod)];
+        }
+        if(self.guardCrashType & MKCrashGuardTypeDictionaryContainer){
+            [NSDictionary performSelector:@selector(crashGuardExchangeMethod)];
+            [NSMutableDictionary performSelector:@selector(crashGuardExchangeMethod)];
+        }
+        if(self.guardCrashType & MKCrashGuardTypeArrayContainer){
+            [NSArray performSelector:@selector(crashGuardExchangeMethod)];
+            [NSMutableArray performSelector:@selector(crashGuardExchangeMethod)];
+        }
+        if(self.guardCrashType & MKCrashGuardTypeNSAttributedStringContainer){
+            [NSAttributedString performSelector:@selector(crashGuardExchangeMethod)];
+            [NSMutableAttributedString performSelector:@selector(crashGuardExchangeMethod)];
+        }
+        if(self.guardCrashType & MKCrashGuardTypeNSSetContainer){
+            [NSSet performSelector:@selector(crashGuardExchangeMethod)];
+            [NSMutableSet performSelector:@selector(crashGuardExchangeMethod)];
+        }
+        
+        
+        if(self.guardCrashType & MKCrashGuardTypeUINavigationController){
+            [UINavigationController performSelector:@selector(guardNavigationController)];
+        }
+        
+        
+        if(self.guardCrashType & MKCrashGuardTypeNSNull){
+            [NSNull performSelector:@selector(guardNSNull)];
+        }
+        if(self.guardCrashType & MKCrashGuardTypeNSNotification){
+            [NSObject performSelector:@selector(guardNotificationCrash)];
+        }
+        if(self.guardCrashType & MKCrashGuardTypeNSTimer){
+            [NSTimer performSelector:@selector(guardTimerCrash)];
+        }
+        if(self.guardCrashType & MKCrashGuardTypeKVCCrash){
+            [NSObject performSelector:@selector(guardKVCCrash)];
+        }
+        if(self.guardCrashType & MKCrashGuardTypeKVOCrash){
+            [NSObject performSelector:@selector(guardKVOCrash)];
+        }
+        if(self.guardCrashType & MKCrashGuardTypeUnrecognizedSelector){
+            [NSObject performSelector:@selector(guardUnrecognizedSelectorCrash)];
+        }
+        
+#pragma clang diagnostic pop
+    }
+    dispatch_semaphore_signal(_swizzleLock);
+}
 
 #pragma mark - pri
 
@@ -107,15 +169,15 @@ static MKException *_manager;
         [self.delegate handleCrashException:exceptionMessage extraInfo:exdic];
     }
     
-#ifdef DEBUG
-    NSLog(@"================================ MKCrashGuard Start==================================");
-    NSLog(@"MKCrashGuard ErrorPlace:%@",errorPlace);
-    NSLog(@"MKCrashGuard LoadAddress:%@",@(loadAddress));
-    NSLog(@"MKCrashGuard SlideAddress:%@",@(slideAddress));
-    NSLog(@"MKCrashGuard Description:%@",exceptionMessage);
-    NSLog(@"MKCrashGuard CallStack:%@",callStackString);
-    NSLog(@"================================ MKCrashGuard End====================================");
-#endif
+    if(self.printLog){
+        MKCrashGuardLog(@"================================ MKCrashGuard Start==================================");
+        MKCrashGuardLog(@"MKCrashGuard ErrorPlace:%@",errorPlace);
+        MKCrashGuardLog(@"MKCrashGuard LoadAddress:%@",@(loadAddress));
+        MKCrashGuardLog(@"MKCrashGuard SlideAddress:%@",@(slideAddress));
+        MKCrashGuardLog(@"MKCrashGuard Description:%@",exceptionMessage);
+        MKCrashGuardLog(@"MKCrashGuard CallStack:%@",callStackString);
+        MKCrashGuardLog(@"================================ MKCrashGuard End====================================");
+    }
     
 }
 

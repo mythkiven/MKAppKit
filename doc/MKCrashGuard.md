@@ -18,7 +18,7 @@ pod 'MKAppKit/MKCrashGuard'
 ### 2、守护的情形
 
 - unrecognized selector sent to instance
-- KVO 添加观察者后没有清除、重复添加\移除 观察者\keyPath 导致Crash
+- KVO 添加观察者后没有清除、重复添加 \ 移除 观察者 \ keyPath 导致 Crash
 - KVC
 - NStimer 与 Target 强引用，内存泄漏
 - NSNotification iOS9 之前添加通知后，没有移除会导致 Crash
@@ -27,13 +27,11 @@ pod 'MKAppKit/MKCrashGuard'
 - UINavigationController 重复跳转的问题
 
 
-
-
-
 ### 3、设计原理
-利用 Objective-C 语言的动态特性, 采用 AOP(Aspect Oriented Programming) 面向切面编程的设计思想, 做到无痕植入。对业务代码的零侵入性地将原本会导致 app 崩溃的 crash 抓取住, 消灭掉, 保证 app 继续正常地运行, 再将 crash 的具体信息提取出来, 实时返回给用户。
 
-为了避免冲突，一些 hook 操作前会判断对象的类型，比如 kvo 会判断 `NSStringFromClass(object_getClass(object)` 如果包含 AMap、RACKVOProxy，就不进行 kvo 的 hook 操作。
+- 利用 Objective-C 语言的动态特性, 采用 AOP(Aspect Oriented Programming) 面向切面编程的设计思想, 做到无痕植入。对业务代码的零侵入性地将原本会导致 app 崩溃的 crash 抓取住, 消灭掉, 保证 app 继续正常地运行, 再将 crash 的具体信息提取出来, 实时返回给用户。
+
+- 为了避免冲突，一些 hook 操作前会判断对象的类型，比如 kvo 会判断 `NSStringFromClass(object_getClass(object)` 如果包含 AMap、RACKVOProxy，就不进行 kvo 的 hook 操作。
 
 - 可变的都继承自不可变的, 所有可变的分类中, 重复的方法就不用替换了。
 
@@ -85,7 +83,7 @@ iOS9 之后专门针对于这种情况做了处理, 所以在 iOS9 之后, 即�
 主要解决: 添加监听后没有清除、清除不存在的 key、添加重复的 key 导致的 crash
 
 防护措施: hook addObserver:forKeyPath:options:context: \ removeObserver:forKeyPath: \ removeObserver:forKeyPath:context:
-在注册监听后, 关联一个中间对象，来维护添加的观察者和keypath防止重复添加或移除, 当被观察者释放时, 清除还在集合中的观察者, 从而保护 key 不存在的情况和保护重复添加的情况
+在注册监听后, 关联一个中间对象，来维护添加的观察者和 keypath 防止重复添加或移除, 当被观察者释放时, 清除还在集合中的观察者, 从而保护 key 不存在的情况和保护重复添加的情况
 
 ```
 
@@ -227,11 +225,6 @@ objc_exception_throw + 48                                           libobjc.A.dy
 | 野指针 | delegate\block 回调前没有判空而是直接调用 | -  |
 | 野指针 | CoreFoundation 对象到 Foundation 中, 已用__bridge_transfer 转移了对象的所有权之后, 调用一次 CFRelease | `__bridge: bridge 时候不要任何事情 __bridge_retained:(ObjC 转 CF 的时候使用) 在 bridge 的时候 retain 对象, 在 CF 一端负责释放对象 __bridge_transfer:(CF 转 ObjC 的时候使用) 转移 CF 对象的所有权, 不再需要在 CF 一端负责释放对象 ` |
 
-** 常用调试方式 **
-
- 1、Debug 阶段开启僵尸模式, Release 时关闭僵尸模式
- 2、Xcode 设置异常断点
-
 ##### 5.1 野指针
 
 ![](https://github.com/mythkiven/tmp/raw/master/resource/img/oc/ios_crash_3f4ue2y631.png)
@@ -255,79 +248,19 @@ if(self.delegate != nil) {
     }
 }
 ```
+
 ##### 5.2 多线程 crash
+
 一般是操作数据 / 库所致
-##### 5.3 EXC_BAD_ACCESS 是一个比较难处理的 crash 了
 
-##### 5.4 NSDictionary
-
-```
-元素特性:
-    @{[NSNull null]:[NSNull null]}; 防止 nsnull 对象是 OK 的。但放置 nil NULL 就编译不通过
-    @{@"":nil}
-    @{@"":NULL}
-```
-
-
-###### 5.5 NSArray 概述:
-
-```
-- 快速创建 实际调用方法:
-NSArray *array = @[@"chenfanfang", @"AvoidCrash"];
-这种创建方式其实调用了:  arrayWithObjects: count:
-对此防护即可
-
-NSDictionary 的快速创建 则是调用:  dictionaryWithObjects:forKeys:count:
-
-
- iOS 8: 下都是__NSArrayI
- iOS11: 之后分 __NSArrayI、  __NSArray0、__NSSingleObjectArrayI
-
- iOS11 之前: arr@[]  调用的是 [__NSArrayI objectAtIndexed]
- iOS11 之后: arr@[]  调用的是 [__NSArrayI objectAtIndexedSubscript]
-
-```
-
-- (id)objectAtIndex:(NSUInteger)index
-- (void)getObjects:(__unsafe_unretained id  _Nonnull *)objects range:(NSRange)range
-
-
-
-
-addObject:nilStr]; // 其本质是调用 insertObject:
-
-
-### Method Swizzling
-
+##### 5.3 EXC_BAD_ACCESS
 
 
 参考
 - [what-are-the-dangers-of-method-swizzling-in-objective-c)](https://stackoverflow.com/questions/5339276/what-are-the-dangers-of-method-swizzling-in-objective-c)
 - [RSSwizzle](https://github.com/rabovik/RSSwizzle/tree/master/RSSwizzle)
 - [Aspects](https://github.com/steipete/Aspects/blob/master/Aspects.m)
-
-
-
-### 日志收集
-
-
-Automatically take screenshot, add tags to describe the bug.
-Automatically gather device details and app context data following reporting bugs.
-Automatically detect crashes and symbolicate stack traces.
-Automatically collect network reqeust data.
-Powerful bug lifecycle management.
-
-
-在自己的程序里集成多个 Crash 日志收集服务实在不是明智之举。通常情况下, 第三方功能性 SDK 都会集成一个 Crash 收集服务, 以及时发现自己 SDK 的问题。当各家的服务都以保证自己的 Crash 统计正确完整为目的时, 难免出现时序手脚, 强行覆盖等等的恶意竞争, 总会有人默默被坑。
-
-如果同时有多方通过 NSSetUncaughtExceptionHandler 注册异常处理程序, 和平的作法是:
-
-后注册者通过 NSGetUncaughtExceptionHandler 将先前别人注册的 handler 取出并备份, 在自己 handler 处理完后自觉把别人的 handler 注册回去, 规规矩矩的传递。不传递强行覆盖的后果是, 在其之前注册过的日志收集服务写出的 Crash 日志就会因为取不到 NSException 而丢失 Last Exception Backtrace 等信息。（P.S. iOS 系统自带的 Crash Reporter 不受影响）
-
-在开发测试阶段, 可以利用 fishhook 框架去 hookNSSetUncaughtExceptionHandler 方法, 这样就可以清晰的看到 handler 的传递流程断在哪里, 快速定位污染环境者。不推荐利用调试器添加符号断点来检查, 原因是一些 Crash 收集框架在调试状态下是不工作的。
-
-
-
-[Getting notified when an object instance is deallocated](https://forums.macrumors.com/threads/getting-notified-when-an-object-instance-is-deallocated.976309/)
-[Fun With the Objective-C Runtime: Run Code at Deallocation of Any Object](https://blog.slaunchaman.com/2011/04/11/fun-with-the-objective-c-runtime-run-code-at-deallocation-of-any-object/)
-[facebook/KVOController](https://github.com/facebook/KVOController)
+- [Getting notified when an object instance is deallocated](https://forums.macrumors.com/threads/getting-notified-when-an-object-instance-is-deallocated.976309/)
+- [JJExceptionPrinciple](https://github.com/jezzmemo/JJException/blob/master/JJExceptionPrinciple.md)
+- [Fun With the Objective-C Runtime: Run Code at Deallocation of Any Object](https://blog.slaunchaman.com/2011/04/11/fun-with-the-objective-c-runtime-run-code-at-deallocation-of-any-object/)
+- [facebook/KVOController](https://github.com/facebook/KVOController)

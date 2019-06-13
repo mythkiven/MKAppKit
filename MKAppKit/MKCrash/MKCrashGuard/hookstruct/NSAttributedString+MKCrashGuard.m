@@ -13,7 +13,6 @@
 MK_SYNTH_DUMMY_CLASS(NSAttributedString_MKCrashGuard)
 @implementation NSAttributedString (MKCrashGuard)
 
-
 #pragma mark   MKCrashGuardProtocol
 + (void)crashGuardExchangeMethod {
     Class NSConcreteAttributedString = NSClassFromString(@"NSConcreteAttributedString");

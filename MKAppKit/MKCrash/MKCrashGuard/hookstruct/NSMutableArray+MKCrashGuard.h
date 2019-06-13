@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  - (void)replaceObjectAtIndex:(NSUInteger)index withObject:(ObjectType)anObject;
  */
 + (void)crashGuardExchangeMethod;
+
 @end
 
 NS_ASSUME_NONNULL_END

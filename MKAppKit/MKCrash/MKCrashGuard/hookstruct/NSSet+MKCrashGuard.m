@@ -15,7 +15,7 @@
     [NSSet mk_swizzleClassMethod:@selector(setWithObject:) withSwizzleMethod:@selector(guardSetWithObject:)];
 }
 
-+ (instancetype)guardSetWithObject:(id)object{
++ (instancetype)guardSetWithObject:(id)object {
     if (object){
         return [self guardSetWithObject:object];
     }

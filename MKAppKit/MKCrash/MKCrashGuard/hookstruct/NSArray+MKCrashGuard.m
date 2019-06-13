@@ -78,8 +78,6 @@ MK_SYNTH_DUMMY_CLASS(NSArray_MKCrashGuard)
     
 }
 
-
-
 #pragma mark - hook class
 + (instancetype) guardArrayWithObject:(id)anObject {
     if (anObject) {

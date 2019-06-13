@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  - (instancetype)initWithString:(NSString *)aString;
  */
 + (void)crashGuardExchangeMethod;
+
 @end
 
 NS_ASSUME_NONNULL_END

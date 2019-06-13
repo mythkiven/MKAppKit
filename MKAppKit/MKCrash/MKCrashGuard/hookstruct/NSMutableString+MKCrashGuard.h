@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
  * - (NSString *)substringWithRange:(NSRange)range;   
  */
 + (void)crashGuardExchangeMethod;
+
 @end
 
 NS_ASSUME_NONNULL_END

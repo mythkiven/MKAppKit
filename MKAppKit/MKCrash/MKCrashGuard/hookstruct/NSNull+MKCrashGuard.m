@@ -14,9 +14,8 @@
 MK_SYNTH_DUMMY_CLASS(NSNull_MKCrashGuard)
 @implementation NSNull (MKCrashGuard)
 
-
 + (void)guardNSNull {
-    mk_swizzleInstanceMethod(self,@selector(length),@selector(guardLength));
+//    mk_swizzleInstanceMethod(self,@selector(length),@selector(guardLength));
 }
 
 - (NSInteger)guardLength {
