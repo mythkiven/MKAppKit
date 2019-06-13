@@ -19,9 +19,9 @@ Pod::Spec.new do |s|
   s.swift_version = '5.0'
 
   s.subspec 'All' do |all|
-    all.source_files = 'MKAppKit/MKAnimation/**/*.{h,m,swift}','MKAppKit/MKUIKit/**/*.{h,m,swift}','MKAppKit/MKMonitor/**/*.{h,m,mm,c}'
+    all.source_files = 'MKAppKit/**/**/*.{h,m,swift,mm,c}'
     all.resources = "MKAppKit/**/**/*.{xib}","MKAppKit/Resource/*.{bundle}"
-    all.prefix_header_contents = '#import "MKLoadingManagerView.h"','#import "MKDropdownMailTF.h"','#import "MKPointWatch.h"'
+    all.prefix_header_contents = '#import "MKLoadingManagerView.h"','#import "MKDropdownMailTF.h"','#import "MKPointWatch.h"','#import "MKCrashGuardManager.h"'
   end
 
   s.subspec 'MKCombineLoadingAnimation' do |la|

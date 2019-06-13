@@ -6,7 +6,6 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <objc/runtime.h>
 
 #import "NSMutableArray+MKCrashGuard.h"
 #import "NSAttributedString+MKCrashGuard.h"

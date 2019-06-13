@@ -7,6 +7,7 @@
 
 #import "MKCrashGuardManager.h"
 #import "MKException.h"
+#import <objc/runtime.h>
 
 @implementation MKCrashGuardManager
 
