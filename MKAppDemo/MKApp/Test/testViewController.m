@@ -75,6 +75,10 @@
 
 #pragma mark -  test KVO
 - (void)testKVO{
+    [_kvoDemo addObserver:self forKeyPath:@"demoString" options:NSKeyValueObservingOptionNew context:nil];
+    [_kvoDemo addObserver:self forKeyPath:@"demoString" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew  context:nil];
+    [_kvoDemo addObserver:self forKeyPath:@"demoString" options:NSKeyValueObservingOptionNew context:nil];
+    
     [self addObserver:self forKeyPath:@"test1" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:nil];
     [self addObserver:self forKeyPath:@"test1" options:NSKeyValueObservingOptionNew context:nil];
     [self removeObserver:self forKeyPath:@"test0" context:nil];

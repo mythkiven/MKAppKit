@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "MKAppKit"
-  s.version      = "0.1.0"
+  s.version      = "0.1.1"
   s.summary      = "Useful tools for iOS application development."
   s.description      = <<-DESC
                           iOS 常用组件 Desc
@@ -43,6 +43,11 @@ Pod::Spec.new do |s|
   s.subspec 'MKLaunchMonitor' do |lm|
     lm.source_files = 'MKAppKit/MKMonitor/MKLaunchMonitor/*.{h,m,c,mm}'
     lm.prefix_header_contents = '#import "MKPointWatch.h"'
+  end
+
+  s.subspec 'MKCrashGuard' do |cg|
+    cg.source_files = 'MKAppKit/MKCrash/MKCrashGuard/*.{h,m,c,mm}'
+    cg.prefix_header_contents = '#import "MKCrashGuardManager.h"'
   end
 
 end

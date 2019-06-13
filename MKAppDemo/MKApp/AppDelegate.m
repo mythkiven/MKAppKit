@@ -8,8 +8,6 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-#import "MKCrashGuardManager.h"
-#import "CrashTest.h"
 #import "MKPointWatch.h"
 
 @interface AppDelegate ()
@@ -20,11 +18,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    // 启用 crash 防护
-    [MKCrashGuardManager executeAppGuard]; 
-    //  test crash case
-    [[CrashTest new] executeAllTest];
     
     // 打点
     [[MKPointWatch pointWatch] pointWithDescription:@"didFinishLaunchingWithOptions"];
