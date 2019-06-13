@@ -43,7 +43,7 @@
 
 
 
-** 使用 **
+**使用**
 
 ```
 添加 pod 时，如遇到错误：Unable to find a specification for `MKAppKit`

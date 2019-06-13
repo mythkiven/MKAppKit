@@ -10,15 +10,18 @@
 ```
 pod 'MKAppKit/MKCrashGuard'
 ```
-- crash 日志写入沙盒
+- 使用
 ```
-支持将 crash 日志写入沙盒:
+// 启用防护
+[MKCrashGuardManager executeAppGuard];
+// 设置 crash 回调
+[MKCrashGuardManager registerCrashHandle:self];
 ```
 
 ### 2、守护的情形
 
 - unrecognized selector sent to instance
-- KVO 添加观察者后没有清除、重复添加 \ 移除 观察者 \ keyPath 导致 Crash
+- KVO 添加观察者后没有清除、重复添加 (移除) 观察者 (keyPath) 导致的 Crash
 - KVC
 - NStimer 与 Target 强引用，内存泄漏
 - NSNotification iOS9 之前添加通知后，没有移除会导致 Crash
@@ -29,13 +32,13 @@ pod 'MKAppKit/MKCrashGuard'
 
 ### 3、设计原理
 
-- 利用 Objective-C 语言的动态特性, 采用 AOP(Aspect Oriented Programming) 面向切面编程的设计思想, 做到无痕植入。对业务代码的零侵入性地将原本会导致 app 崩溃的 crash 抓取住, 消灭掉, 保证 app 继续正常地运行, 再将 crash 的具体信息提取出来, 实时返回给用户。
+- 利用 Objective-C 语言的动态特性, 采用 AOP面向切面编程的设计思想, 做到无痕植入。对业务代码的零侵入性地将原本会导致 app 崩溃的 crash 抓取住, 消灭掉, 保证 app 继续正常地运行, 再将 crash 的具体信息提取出来, 实时返回给用户。
 
-- 为了避免冲突，一些 hook 操作前会判断对象的类型，比如 kvo 会判断 `NSStringFromClass(object_getClass(object)` 如果包含 AMap、RACKVOProxy，就不进行 kvo 的 hook 操作。
+- 为了避免冲突，一些 hook 操作前会判断对象的类型，比如 KVO 会判断 `NSStringFromClass(object_getClass(object)` 如果包含 AMap、RACKVOProxy，就取消 hook 操作。
 
 - 可变的都继承自不可变的, 所有可变的分类中, 重复的方法就不用替换了。
 
-###### 3.1 监听实例 dealloc
+#### 3.1 监听实例 dealloc
 
 销毁的步骤
 ```
@@ -62,14 +65,14 @@ AssociatedObject 原理：
 - objc_setAssociatedObject(被添加对象，key,value,AssociationPolicy / 策略) 给当前对象添加一个关联的中间对象，策略用 OBJC_ASSOCIATION_RETAIN，在关联的中间对象的 dealloc 方法中执行一些销毁相关操作。
 - 需要注意的是，调用中间对象的 dealloc 时，Host 对象已经释放了。
 
-###### 3.2 NSTimer 防护原理
+#### 3.2 NSTimer 防护原理
 ```
 主要解决: NSTimer 与 target  相互强引用时, 内存泄漏的问题.
 
 防护措施: hook scheduledTimerWithTimeInterval:target:selector:userInfo:repeats, 在执行时, 当 repeats 为 NO 走原始方法, 当 repeats 为 YES, 创建一个中间对象弱引用 target, 当中间对象的 target 为空时, 清理 NSTimer。从而解决了循环引用的问题。
 ```
 
-###### 3.3 NSNotification 防护原理
+#### 3.3 NSNotification 防护原理
 ```
 主要解决: 添加通知后, 没有移除导致 Crash 的问题。
 iOS9 之后专门针对于这种情况做了处理, 所以在 iOS9 之后, 即使开发者没有移除 observer,Notification crash 也不会再产生了
@@ -78,7 +81,7 @@ iOS9 之后专门针对于这种情况做了处理, 所以在 iOS9 之后, 即�
 不过 Swizzle dealloc 影响面相对偏广，一般不建议开启。
 ```
 
-###### 3.4 KVO 防护原理
+#### 3.4 KVO 防护原理
 ```
 主要解决: 添加监听后没有清除、清除不存在的 key、添加重复的 key 导致的 crash
 
@@ -87,7 +90,7 @@ iOS9 之后专门针对于这种情况做了处理, 所以在 iOS9 之后, 即�
 
 ```
 
-####### 3.5 Unrecognized Selector Sent to Instance 防护原理
+#### 3.5 Unrecognized Selector Sent to Instance 防护原理
 ![](https://github.com/mythkiven/tmp/raw/master/resource/img/oc/UnrecognizedSelectorSenttoInstance_706e67.png)
 
 ```
