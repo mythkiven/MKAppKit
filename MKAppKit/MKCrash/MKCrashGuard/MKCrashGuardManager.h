@@ -23,6 +23,8 @@
 #import "NSObject+MKKVOCrashGuard.h"
 #import "NSObject+MKSELCrashGuard.h"
 #import "NSObject+MKKVCCrashGuard.h"
+#import "NSUserDefaults+MKCrashGuard.h"
+#import "NSCache+MKCrashGuard.h"
 
 #import "UINavigationController+MKCrashGuard.h"
 
@@ -45,8 +47,11 @@ typedef NS_OPTIONS(NSInteger,MKCrashGuardType) {
     MKCrashGuardTypeNSAttributedStringContainer = 1 << 11,
     MKCrashGuardTypeNSSetContainer = 1 << 12,
     
+    MKCrashGuardTypeNSUserDefaults = 1 << 13,
+    MKCrashGuardTypeNSCache = 1 << 14,
+    
     MKCrashGuardTypeAllExceptUIAndContainer = MKCrashGuardTypeUnrecognizedSelector | MKCrashGuardTypeKVOCrash | MKCrashGuardTypeKVCCrash | MKCrashGuardTypeNSTimer | MKCrashGuardTypeNSNotification | MKCrashGuardTypeNSNull,
-    MKCrashGuardTypeAllExceptContainer = MKCrashGuardTypeUnrecognizedSelector | MKCrashGuardTypeKVOCrash | MKCrashGuardTypeKVCCrash | MKCrashGuardTypeNSTimer | MKCrashGuardTypeNSNotification | MKCrashGuardTypeNSNull | MKCrashGuardTypeUINavigationController,
+    MKCrashGuardTypeAllExceptContainer = MKCrashGuardTypeUnrecognizedSelector | MKCrashGuardTypeKVOCrash | MKCrashGuardTypeKVCCrash | MKCrashGuardTypeNSTimer | MKCrashGuardTypeNSNotification | MKCrashGuardTypeNSNull | MKCrashGuardTypeUINavigationController | MKCrashGuardTypeNSUserDefaults | MKCrashGuardTypeNSCache,
     MKCrashGuardTypeAllContainer = MKCrashGuardTypeNSStringContainer | MKCrashGuardTypeDictionaryContainer | MKCrashGuardTypeArrayContainer | MKCrashGuardTypeNSAttributedStringContainer | MKCrashGuardTypeNSSetContainer ,
     MKCrashGuardTypeAll = MKCrashGuardTypeAllContainer | MKCrashGuardTypeAllExceptContainer ,
 };

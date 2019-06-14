@@ -36,6 +36,9 @@
         [NSObject guardKVCCrash];
 
         [UINavigationController guardNavigationController];
+        
+        [NSUserDefaults guardUserDefaultsCrash];
+        [NSCache guardNSCacheCrash];
     });
 }
 

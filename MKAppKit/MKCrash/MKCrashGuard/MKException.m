@@ -117,6 +117,14 @@ static MKException *_manager;
             [NSObject performSelector:@selector(guardUnrecognizedSelectorCrash)];
         }
         
+        if(self.guardCrashType & MKCrashGuardTypeNSUserDefaults){
+            [NSUserDefaults performSelector:@selector(guardUserDefaultsCrash)];
+        }
+        if(self.guardCrashType & MKCrashGuardTypeNSCache){
+            [NSCache performSelector:@selector(guardNSCacheCrash)];
+        }
+        
+        
 #pragma clang diagnostic pop
     }
     dispatch_semaphore_signal(_swizzleLock);

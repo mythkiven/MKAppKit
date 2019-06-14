@@ -11,12 +11,15 @@ project 'MKApp.xcodeproj'
 
 target 'MKApp' do
   platform:ios,'9.0'
-  pod 'MKAppKit/MKCombineLoadingAnimation', :path => '../'
-  pod 'MKAppKit/MKDropdownMailTF', :path => '../'
-  pod 'MKAppKit/MKDiffuseMenu', :path => '../'
-#  pod 'MKAppKit/MKLaunchMonitor', :path => '../'
-#  pod 'MKAppKit/MKLaunchMonitor'
+
 #  pod 'MKAppKit/MKCombineLoadingAnimation'
 #  pod 'MKAppKit/MKDropdownMailTF'
 #  pod 'MKAppKit/MKDiffuseMenu'
+#  pod 'MKAppKit/MKCrashGuard'
+
+  pod 'MKAppKit/MKCrashGuard', :path => '../'
+  pod 'MKAppKit/MKCombineLoadingAnimation', :path => '../'
+  pod 'MKAppKit/MKDropdownMailTF', :path => '../'
+  pod 'MKAppKit/MKDiffuseMenu', :path => '../'
+
 end

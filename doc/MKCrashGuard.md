@@ -28,6 +28,8 @@ pod 'MKAppKit/MKCrashGuard'
 - NSString,NSArray,NSDictonary,NSAttributedString,NSSet 以及对应的可变形式
 - Zombie Pointer 暂未支持
 - UINavigationController 重复跳转的问题
+- NSUserDefaults key 为 nil 时的 crash
+- NSCache key object 为 nil 时的 crash
 
 
 ### 3、设计原理
@@ -85,9 +87,12 @@ iOS9 之后专门针对于这种情况做了处理, 所以在 iOS9 之后, 即�
 ```
 主要解决: 添加监听后没有清除、清除不存在的 key、添加重复的 key 导致的 crash
 
-防护措施: hook addObserver:forKeyPath:options:context: \ removeObserver:forKeyPath: \ removeObserver:forKeyPath:context:
-在注册监听后, 关联一个中间对象，来维护添加的观察者和 keypath 防止重复添加或移除, 当被观察者释放时, 清除还在集合中的观察者, 从而保护 key 不存在的情况和保护重复添加的情况
-
+防护措施: hook addObserver:forKeyPath:options:context: \ removeObserver:forKeyPath: \ removeObserver:forKeyPath:context: 然后通过一个中间代理做消息分发，并进行防护。
+- 重复添加移除的问题：在通过中间代理分发消息前，就可以直接过滤掉。
+- dealloc 时没有解除关系的问题：
+- - 保存观察者时: 这里我们使用 NSHashTable 保存，并指定指针持有策略为 weak，
+- - 保存被观察者时: 通过设置关联对象，在 dealloc 前，通过关联对象解除观察关系即可。
+- - 这里需要 hook dealloc：在 dealloc 时获取关联对象，然后调用关联对象来解除观察关系。
 ```
 
 #### 3.5 Unrecognized Selector Sent to Instance 防护原理
