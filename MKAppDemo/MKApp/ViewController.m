@@ -10,14 +10,19 @@
 #import "CombineLoadingAnimationVC.h"
 #import "DropdownMailTFVC.h"
 #import "MKApp-Swift.h"
-#import "testViewController.h"
+
+#import "UTest.h"
 #import "MKPointWatch.h"
 
 #import "MKCrashGuardManager.h"
 #import "CrashTest.h"
 
+#import "MKMainThreadWatch.h"
+#import "DoraemonANRManager.h" 
+#import "MKRenderCounter.h"
 
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,MKExceptionHandle>
+
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,MKExceptionHandle >
 @property (strong,nonatomic) UITableView *tableview;
 @property (copy,nonatomic) NSArray* dataSource;
 @end
@@ -50,17 +55,57 @@
     self.title = @"MKAppKit";
     [self.view addSubview:self.tableview];
     
-    BOOL test = YES;
-    if(test){
-        [self execTest];
-    }
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [[MKPointWatch pointWatch] pointWithDescription:@"viewDidAppear"];
+    
 //    [[MKLaunchMonitor sharedMonitor] logAllCallStack];
     
+////    crash 防护测试
+//    [self execTest];
+//
+////    render test
+//    [self renderTest];
+    
+//    crash 抓取测试
+    [self crashCaught];
+    
 }
+
+#pragma mark crash 抓取测试
+- (void)crashCaught {
+    [CrashCaughtTest testCrashCaught];
+}
+#pragma mark crash 帧率测试
+- (void)renderTest {
+    [[RenderTest new] renderTest];
+}
+#pragma mark crash 防护测试
+- (void)execTest {
+    // 启用 crash 防护
+    [MKCrashGuardManager executeAppGuard];
+    [MKCrashGuardManager printLog:NO];
+    [MKCrashGuardManager registerCrashHandle:self];
+    
+    // crash test
+    [[CrashTest new] executeAllTest];
+    BOOL testUI = NO;
+    if(testUI){
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (ino64_t)(8.0 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            dispatch_async(dispatch_get_main_queue(),  ^{
+                testViewController *test = [testViewController new];
+                [self.navigationController pushViewController:test animated:YES];
+            });
+        });
+    }
+    
+}
+
+- (void)handleCrashException:(nonnull NSString *)exceptionMessage extraInfo:(nullable NSDictionary*)extraInfo {
+    NSLog(@"APP log  %@ \n %@",exceptionMessage, extraInfo);
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _dataSource.count;
 }
@@ -93,27 +138,6 @@
 }
 
 
-#pragma mark - test crash
-- (void)execTest {
-    // 启用 crash 防护
-    [MKCrashGuardManager executeAppGuard]; 
-    [MKCrashGuardManager printLog:NO];
-    [MKCrashGuardManager registerCrashHandle:self];
-    // test
-    [[CrashTest new] executeAllTest];
-    
-    BOOL testUI = NO;
-    if(testUI){
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (ino64_t)(8.0 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-            dispatch_async(dispatch_get_main_queue(),  ^{
-                testViewController *test = [testViewController new];
-                [self.navigationController pushViewController:test animated:YES];
-            });
-        });
-    }
-}
-- (void)handleCrashException:(nonnull NSString *)exceptionMessage extraInfo:(nullable NSDictionary*)extraInfo {
-    NSLog(@"APP log  %@ \n %@",exceptionMessage, extraInfo);
-}
+
 
 @end

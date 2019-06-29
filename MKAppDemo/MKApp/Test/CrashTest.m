@@ -50,6 +50,8 @@
         
     } );
     
+    
+    
 }
 
 - (void)testOp {
@@ -64,7 +66,7 @@
     
 }
 
-#pragma mark 不支持的 crash 防护
+#pragma mark crash 防护
 - (void)testUnSupportCrash {
     
     // NSData
@@ -77,6 +79,9 @@
     id person = [UIViewController new];
     [person objectForKey:@"key"];
     
+    
+    void *dataOut = malloc(16 * sizeof(uint8_t));
+//    free(dataOut);
     /**
      * 暂不知支持：
      */

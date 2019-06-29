@@ -39,6 +39,7 @@
         
         [NSUserDefaults guardUserDefaultsCrash];
         [NSCache guardNSCacheCrash];
+        [NSNumber guardNSNumberCrash];
     });
 }
 

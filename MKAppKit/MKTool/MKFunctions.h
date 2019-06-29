@@ -21,9 +21,6 @@ timer = nil; \
 } \
 }
 
-#define MKLog(fmt, ...) DEBUG ? NSLog((@"> %s:%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__) : printf("")
-#define MKDLog(FORMAT, ...)  [GWDeviceManager deviceManager].isPrintLog&&GW_private_debug?fprintf(stderr,"BLELog>> %s\n", [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]) : printf("")
-
 #define mkWeakify(var) __weak typeof(var) AHKWeak_##var = var;
 #define mkStrongify(var) \
 _Pragma("clang diagnostic push") \
@@ -63,3 +60,17 @@ extern BOOL MKPathExists(NSString* path, NSString** fileType);
 extern BOOL MKPathFileExists(NSString* path);
 extern BOOL MKPathDirectoryExists(NSString* path);
 
+
+
+/** GCD定时器
+ dispatch_source_t timer =  mk_createGCDTimer(interval, interval, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+ [self dosomething];// 需要及时执行cancle: dispatch_source_cancel(timer);
+ });
+
+ @param interval 间隔多久触发定时任务
+ @param leeway 触发定时任务时，允许的时间差,如果不确定，就设置为 0 或 interval / 10000
+ @param queue 执行队列
+ @param block 定时任务
+ @return timer
+ */
+extern dispatch_source_t mk_createGCDTimer(uint64_t interval, uint64_t leeway, dispatch_queue_t queue, dispatch_block_t block);

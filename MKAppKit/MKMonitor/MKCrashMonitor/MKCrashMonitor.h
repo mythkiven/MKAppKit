@@ -1,8 +1,8 @@
 //
-//  CaseTest.h
+//  MKCrashMonitor.h
 //  MKApp
 //
-//  Created by apple on 2019/6/4.
+//  Created by apple on 2019/6/28.
 //  Copyright © 2019 MythKiven. All rights reserved.
 //
 
@@ -10,9 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CaseTest : NSObject
+@interface MKCrashMonitor : NSObject
 
-- (void)test;
 @end
+
+void mk_registerCrashHandler(void);
 
 NS_ASSUME_NONNULL_END

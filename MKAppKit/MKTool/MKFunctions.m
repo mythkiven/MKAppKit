@@ -84,3 +84,16 @@ BOOL MKPathDirectoryExists(NSString* path) {
     BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory];
     return exists && isDirectory;
 }
+
+
+#pragma -  GCD 
+
+dispatch_source_t mk_createGCDTimer(uint64_t interval, uint64_t leeway, dispatch_queue_t queue, dispatch_block_t block) {
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    if (timer) {
+        dispatch_source_set_timer(timer, dispatch_walltime(NULL, interval), interval, leeway);
+        dispatch_source_set_event_handler(timer, block);
+        dispatch_resume(timer);
+    }
+    return timer;
+}

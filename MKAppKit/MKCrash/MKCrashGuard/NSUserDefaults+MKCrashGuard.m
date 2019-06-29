@@ -15,17 +15,17 @@ MK_SYNTH_DUMMY_CLASS(NSUserDefaults_MKSELCrashGuard)
 
 + (void)guardUserDefaultsCrash {
     Class userDefaults=NSClassFromString(@"NSUserDefaults");
-    mk_swizzleClassMethod(userDefaults,@selector(setObject:forKey:),@selector(guard_setObject:forKey:));
-    mk_swizzleClassMethod(userDefaults,@selector(objectForKey:),@selector(guard_objectForKey:));
-    mk_swizzleClassMethod(userDefaults,@selector(stringForKey:),@selector(guard_stringForKey:));
-    mk_swizzleClassMethod(userDefaults,@selector(arrayForKey:),@selector(guard_arrayForKey:));
-    mk_swizzleClassMethod(userDefaults,@selector(dataForKey:),@selector(guard_dataForKey:));
-    mk_swizzleClassMethod(userDefaults,@selector(URLForKey:),@selector(guard_URLForKey:));
-    mk_swizzleClassMethod(userDefaults,@selector(stringArrayForKey:),@selector(guard_stringArrayForKey:));
-    mk_swizzleClassMethod(userDefaults,@selector(floatForKey:),@selector(guard_floatForKey:));
-    mk_swizzleClassMethod(userDefaults,@selector(doubleForKey:),@selector(guard_doubleForKey:));
-    mk_swizzleClassMethod(userDefaults,@selector(integerForKey:),@selector(guard_integerForKey:));
-    mk_swizzleClassMethod(userDefaults,@selector(boolForKey:),@selector(guard_boolForKey:));
+    mk_swizzleInstanceMethod(userDefaults,@selector(setObject:forKey:),@selector(guard_setObject:forKey:));
+    mk_swizzleInstanceMethod(userDefaults,@selector(objectForKey:),@selector(guard_objectForKey:));
+    mk_swizzleInstanceMethod(userDefaults,@selector(stringForKey:),@selector(guard_stringForKey:));
+    mk_swizzleInstanceMethod(userDefaults,@selector(arrayForKey:),@selector(guard_arrayForKey:));
+    mk_swizzleInstanceMethod(userDefaults,@selector(dataForKey:),@selector(guard_dataForKey:));
+    mk_swizzleInstanceMethod(userDefaults,@selector(URLForKey:),@selector(guard_URLForKey:));
+    mk_swizzleInstanceMethod(userDefaults,@selector(stringArrayForKey:),@selector(guard_stringArrayForKey:));
+    mk_swizzleInstanceMethod(userDefaults,@selector(floatForKey:),@selector(guard_floatForKey:));
+    mk_swizzleInstanceMethod(userDefaults,@selector(doubleForKey:),@selector(guard_doubleForKey:));
+    mk_swizzleInstanceMethod(userDefaults,@selector(integerForKey:),@selector(guard_integerForKey:));
+    mk_swizzleInstanceMethod(userDefaults,@selector(boolForKey:),@selector(guard_boolForKey:));
     
 }
 

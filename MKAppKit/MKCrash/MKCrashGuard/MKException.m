@@ -123,6 +123,9 @@ static MKException *_manager;
         if(self.guardCrashType & MKCrashGuardTypeNSCache){
             [NSCache performSelector:@selector(guardNSCacheCrash)];
         }
+        if(self.guardCrashType & MKCrashGuardTypeNSNumber){
+            [NSNumber performSelector:@selector(guardNSNumberCrash)];
+        }
         
         
 #pragma clang diagnostic pop

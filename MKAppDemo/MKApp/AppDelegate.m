@@ -9,7 +9,11 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "MKPointWatch.h"
+#import "NSObject+MKTTimeLoad.h"
 
+#import "MKCrashMonitor.h"
+#import <sys/utsname.h>
+#import "MKDevice.h"
 @interface AppDelegate ()
 
 @end
@@ -18,9 +22,18 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+//    int i=0;
+//    while(++i){
+//        NSLog(@"%d",i);
+//    }
+//    [self saveLogToLocalFile];
+//     打点 
     
-    // 打点
     [[MKPointWatch pointWatch] pointWithDescription:@"didFinishLaunchingWithOptions"];
+    NSLog(@"%@",_loadInfoArray); 
+    // crash 抓取
+    mk_registerCrashHandler();
+    
     
     return [self makeWindows];
 }
@@ -37,6 +50,15 @@
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)saveLogToLocalFile {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [paths objectAtIndex:0];
+    NSString *fileName = [NSString stringWithFormat:@"%@.log",[[NSDate alloc] initWithTimeIntervalSinceNow:8*3600]];
+    NSString *logFilePath = [documentDirectory stringByAppendingPathComponent:fileName];
+    freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding],"a+",stdout);
+    freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding],"a+",stderr);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
