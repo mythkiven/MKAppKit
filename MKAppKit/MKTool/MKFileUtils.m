@@ -14,13 +14,13 @@
 #include <dirent.h>
 
 #import "MKHeader.h"
-#import "MKFileManager.h"
+#import "MKFileUtils.h"
 
 
 static pthread_mutex_t mk_pthread_mutex_t = PTHREAD_MUTEX_INITIALIZER;
 
 
-@implementation MKFileManager
+@implementation MKFileUtils
 
 #pragma mark - public -
 + (NSString *)documentsDirectoryPath {
@@ -48,9 +48,17 @@ static pthread_mutex_t mk_pthread_mutex_t = PTHREAD_MUTEX_INITIALIZER;
 }
 
 + (NSString*)saveLogToLocalFile:(NSString*)savePath {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectory = [paths objectAtIndex:0];
-    documentDirectory = [documentDirectory stringByAppendingPathComponent:@"MKLog"];
+    
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+//    NSString *documentDirectory = [paths objectAtIndex:0];
+    NSString *documentDirectory = [MK_LOG_PATH() stringByAppendingPathComponent:@"MKLog"];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL isDir = NO;
+    BOOL existed = [fileManager fileExistsAtPath:documentDirectory isDirectory:&isDir];
+    if (!(isDir && existed)) {
+        [fileManager createDirectoryAtPath:documentDirectory withIntermediateDirectories:YES attributes:nil error:nil];
+    } 
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -64,6 +72,43 @@ static pthread_mutex_t mk_pthread_mutex_t = PTHREAD_MUTEX_INITIALIZER;
     return logFilePath;
 }
 
+static  NSString *mk_markline_c = @"├---";
+static  NSString *mk_markline_b = @"|    ";
+static  NSString *mk_markline_w = @"     ";
+static  NSString *mk_markline_e = @"└---";
++ (void)treeSanbox {
+    NSString *homePath = NSHomeDirectory();
+    MKPrintf(@"in %@/AppData directory:",homePath);
+    NSFileManager* fm = [NSFileManager defaultManager];
+    NSError* err = nil;
+    NSArray* paths = [fm contentsOfDirectoryAtPath:homePath error:&err];
+    for (NSString* path in paths) {
+        MKPrintf(@"%@ %@",[paths indexOfObject:path]<paths.count-1?mk_markline_c: mk_markline_e,path);
+        if ([[path lastPathComponent] hasPrefix:@"."]) {
+            continue;
+        }
+        BOOL isDir = false;
+        NSString* fullPath = [homePath stringByAppendingPathComponent:path];
+        [fm fileExistsAtPath:fullPath isDirectory:&isDir];
+        if (isDir) {
+            [self treeFile:fullPath mark:mk_markline_b];
+        }
+    }
+}
++ (void)treeFile:(NSString *)path mark:(NSString*)mark {
+    NSArray *dir = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
+    [dir enumerateObjectsUsingBlock:^(id  _Nonnull file, NSUInteger idx, BOOL * _Nonnull stop) {
+        MKPrintf(@"%@ %@",idx<dir.count-1?[mark stringByAppendingString:mk_markline_c]:[mark stringByAppendingString:mk_markline_e], file);
+        BOOL isDir;
+        NSString *newpath = [path stringByAppendingPathComponent: file];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:newpath isDirectory:&isDir] && isDir) {
+            [self treeFile:newpath mark:[mark stringByAppendingString:idx<dir.count-1?mk_markline_b:mk_markline_w]];
+        }
+    }]; 
+}
+
+
+#pragma mark -
 bool mk_isFileExist(NSString *filePath) {
     bool exist = true;
     if(!filePath){

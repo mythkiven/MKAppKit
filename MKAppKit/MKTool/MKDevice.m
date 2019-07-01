@@ -1,10 +1,9 @@
-//
-//  MKDevice.m
-//  MKApp
-//
-//  Created by apple on 2019/6/29.
-//  Copyright © 2019 MythKiven. All rights reserved.
-//
+/**
+ *
+ * Created by https://github.com/mythkiven/ on 19/06/28.
+ * Copyright © 2019年 mythkiven. All rights reserved.
+ *
+ */
 
 #import "MKDevice.h"
 #import <UIKit/UIKit.h>
@@ -13,6 +12,9 @@
 #import <mach-o/arch.h>
 #import <mach/mach.h>
 #import <SystemConfiguration/CaptiveNetwork.h>
+#include <sys/stat.h> // struct stat stat_info;
+#import <dlfcn.h> // Dl_info dylib_info;
+
 
 
 @implementation MKDevice 
@@ -265,14 +267,90 @@
     return [NSString stringWithFormat:@"%.2lfGb",dis/(1024*1024.0*1024.0)];
 }
 
+#pragma mark - Jailbreak
+
+#define ARRAY_SIZE(a) sizeof(a)/sizeof(a[0])
+- (int)jailBreak {
+    BOOL isJailbreak = [MKDevice isJailBreak1] || [MKDevice isJailBreak2] || [MKDevice isJailBreak3] || [MKDevice isJailBreak4]  || [MKDevice isJailBreak6];
+    return isJailbreak?2:0;
+}
+const char* mk_jailbreak_tool_pathes[] = {
+    "/Applications/Cydia.app",
+    "/Applications/limera1n.app",
+    "/Applications/greenpois0n.app",
+    "/Applications/blackra1n.app",
+    "/Applications/blacksn0w.app",
+    "/Applications/redsn0w.app",
+    "/Applications/Absinthe.app",
+    "/Library/MobileSubstrate/MobileSubstrate.dylib",
+    "/bin/bash",
+    "/usr/sbin/sshd",
+    "/etc/apt",
+    "/private/var/lib/apt/",
+    NULL,
+};
++ (BOOL)isJailBreak1 {
+    BOOL exist = NO;
+    for (int i=0; i<ARRAY_SIZE(mk_jailbreak_tool_pathes); i++) {
+        @try {
+            exist = [[NSFileManager defaultManager] fileExistsAtPath:[NSString stringWithUTF8String:mk_jailbreak_tool_pathes[i]]];
+        } @catch (NSException *exception) {
+        }
+        if(exist){
+            return YES;
+        }
+    }
+    return exist;
+}
++ (BOOL)isJailBreak2 {
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"cydia://"]]) {
+        return YES;
+    }
+    return NO;
+}
++ (BOOL)isJailBreak3 {
+    if ([[NSFileManager defaultManager] fileExistsAtPath:@"User/Applications/"]) {
+        NSArray *appList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:@"User/Applications/" error:nil];
+        return YES;
+    }
+    return NO;
+}
++ (BOOL)isJailBreak4 {
+    struct stat stat_info;
+    if (0 == stat("/Applications/Cydia.app", &stat_info)) {
+        return YES;
+    }
+    return NO;
+}
++ (BOOL)isJailBreak5 { // 不准确  可能会利用 Fishhook原理 hook了stat
+    int ret ;
+    Dl_info dylib_info;
+    int (*func_stat)(const char *, struct stat *) = stat;
+    if ((ret = dladdr(func_stat, &dylib_info))) {
+        NSLog(@"lib :%s", dylib_info.dli_fname);
+        return YES;
+    }
+    return NO;
+}
+char* printEnv(void) {
+    char *env = getenv("DYLD_INSERT_LIBRARIES");
+    return env;
+}
++ (BOOL)isJailBreak6 {
+    if (printEnv()) {
+        return YES;
+    }
+    return NO;
+}
+
 
 
 #pragma mark -
 - (NSString *)deviceInfo {
     return [NSString stringWithFormat:
-            @" appName: %@\n appVersion: %@\n appBundleVersion: %@\n deviceName: %@\n deviceModel: %@\n deviceVersion: %@\n deviceLanguage: %@\n batteryPercent: %@\n netInfo: %@\n currentTime: %@\n cpuType: %@\n cpuUsed: %@\n usedMemory: %@\n totalMemory: %@\n freedisk: %@\n totalDisk: %@",
+            @" appName: %@\n appVersion: %@\n appBundleVersion: %@\n deviceName: %@\n deviceModel: %@\n deviceVersion: %@\n deviceLanguage: %@\n batteryPercent: %@\n netInfo: %@\n currentTime: %@\n cpuType: %@\n cpuUsed: %@\n usedMemory: %@\n totalMemory: %@\n freedisk: %@\n totalDisk: %@\n jailBreak:%@",
             self.appName,self.appVersion,self.appBundleVersion,self.deviceName,self.deviceModel,self.deviceVersion,self.deviceLanguage,self.batteryPercent,self.netInfo,self.currentTime,
-            self.cpuType,self.cpuUsed,self.appUsedMemory,self.totalMemory,self.freeDisk,self.totalDisk];
+            self.cpuType,self.cpuUsed,self.appUsedMemory,self.totalMemory,self.freeDisk,self.totalDisk,self.jailBreak==2?@"true":@"false"];
 }
 -(NSString*) description {
     return self.deviceInfo;

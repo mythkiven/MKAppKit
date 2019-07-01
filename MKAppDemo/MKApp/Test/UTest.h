@@ -31,8 +31,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-@interface CrashCaughtTest : NSObject
-+ (void)testCrashCaught;
+@interface CrashCaughtTest : NSObject 
++ (void)testExceptionCrashCaught;
++ (void)testSigCrashCaught;
+
 @end
 
 

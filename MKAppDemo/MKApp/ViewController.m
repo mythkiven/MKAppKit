@@ -17,8 +17,7 @@
 #import "MKCrashGuardManager.h"
 #import "CrashTest.h"
 
-#import "MKMainThreadWatch.h"
-#import "DoraemonANRManager.h" 
+#import "MKMainThreadWatch.h" 
 #import "MKRenderCounter.h"
 
 
@@ -55,6 +54,15 @@
     self.title = @"MKAppKit";
     [self.view addSubview:self.tableview];
     
+    //    crash 防护测试
+    [self execTest];
+    
+    //    render test
+    [self renderTest];
+    
+//    //    crash 抓取测试
+//    [self crashCaught];
+    
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -62,22 +70,16 @@
     
 //    [[MKLaunchMonitor sharedMonitor] logAllCallStack];
     
-////    crash 防护测试
-//    [self execTest];
-//
-////    render test
-//    [self renderTest];
-    
-//    crash 抓取测试
-    [self crashCaught];
-    
 }
 
-#pragma mark crash 抓取测试
+#pragma mark -
+
+#pragma mark crash抓取测试
 - (void)crashCaught {
-    [CrashCaughtTest testCrashCaught];
+    [CrashCaughtTest testExceptionCrashCaught];
+    [CrashCaughtTest testSigCrashCaught];
 }
-#pragma mark crash 帧率测试
+#pragma mark 帧率测试
 - (void)renderTest {
     [[RenderTest new] renderTest];
 }
@@ -99,12 +101,14 @@
             });
         });
     }
-    
 }
-
+#pragma mark crash 防护日志
 - (void)handleCrashException:(nonnull NSString *)exceptionMessage extraInfo:(nullable NSDictionary*)extraInfo {
+    // 通过 MKCrashMonitor 写入文件
     NSLog(@"APP log  %@ \n %@",exceptionMessage, extraInfo);
 }
+
+#pragma mark   -
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _dataSource.count;

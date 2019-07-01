@@ -79,7 +79,6 @@
     id person = [UIViewController new];
     [person objectForKey:@"key"];
     
-    
     void *dataOut = malloc(16 * sizeof(uint8_t));
 //    free(dataOut);
     /**

@@ -1,18 +1,21 @@
-//
-//  MKCrashCaught.m
-//  MKApp
-//
-//  Created by apple on 2019/6/28.
-//  Copyright © 2019 MythKiven. All rights reserved.
-//
+/**
+ *
+ * Created by https://github.com/mythkiven/ on 19/06/21.
+ * Copyright © 2019年 mythkiven. All rights reserved.
+ *
+ */
 
 #import "MKCrashCaught.h"
 #include <libkern/OSAtomic.h>
+#include <pthread.h>
 #include <execinfo.h>
 #import <UIKit/UIKit.h>
 
 #import "MKHeader.h"
 #import "MKDevice.h"
+
+
+static pthread_mutex_t mk_pthread_mutex_t_write_crash = PTHREAD_MUTEX_INITIALIZER;
 
 // 最大处理数量
 const int mk_caughtExceptionMaximum  = 20;
@@ -51,8 +54,9 @@ NSString *mk_getBacktrace() {
     free(strs);
     return mstr;
 }
-NSString *mk_getAppInfo() { 
-    return [MKDevice new].deviceInfo;
+NSString *mk_getAppInfo() {
+    MKDevice *device = [MKDevice new];
+    return device.deviceInfo;
 }
 
 #pragma mark -  save to file -
@@ -62,12 +66,27 @@ NSString *mk_crashLogPath(){
     NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *sandBoxPath  = [paths objectAtIndex:0];
     crashLogPath = [sandBoxPath stringByAppendingPathComponent:@"MKCrashLog"];
+    
+#ifdef DEBUG
+    crashLogPath = [crashLogPath stringByAppendingPathComponent:@"DEBUG"];
     if(NO == [[NSFileManager defaultManager] fileExistsAtPath:crashLogPath]){
         [[NSFileManager defaultManager] createDirectoryAtPath:crashLogPath
                                   withIntermediateDirectories:YES
                                                    attributes:nil
                                                         error:NULL];
     }
+    
+#else
+    crashLogPath = [sandBoxPath stringByAppendingPathComponent:@"RELEASE"];
+    if(NO == [[NSFileManager defaultManager] fileExistsAtPath:crashLogPath]){
+        [[NSFileManager defaultManager] createDirectoryAtPath:crashLogPath
+                                  withIntermediateDirectories:YES
+                                                   attributes:nil
+                                                        error:NULL];
+    }
+    
+#endif
+    
     return crashLogPath;
 }
 
@@ -89,19 +108,23 @@ void mk_saveToFile(NSMutableDictionary *dict) {
     NSString* dateString = [formatter stringFromDate:[NSDate date]];
     [dict setObject:dateString forKey:@"date"];
     NSString* savePath = [[mk_crashLogPath() stringByAppendingPathComponent:dateString] stringByAppendingString:@".plist"];
-    BOOL succeed = [ dict writeToFile:savePath atomically:YES];
-    if(NO == succeed){
-        MKErrorLog(@"JxbDebugTool:crash report failed!");
-    }else{
-        MKLog(@"JxbDebugTool:save crash report succeed!");
-    }
-    mk_plist();
-    [mk_logPlist addObject:dateString];
-    if( [mk_logPlist writeToFile:[mk_crashLogPath() stringByAppendingPathComponent:@"crashLog.plist"] atomically:YES]){
-        MKLog(@"add success");
-    }else{
-        MKErrorLog(@"add faile");
-    }
+    
+    pthread_mutex_lock(&mk_pthread_mutex_t_write_crash);
+        BOOL succeed = [ dict writeToFile:savePath atomically:YES];
+        if(NO == succeed){
+            MKErrorLog(@"crash report failed!");
+        }else{
+            MKLog(@"save crash report succeed!");
+        }
+        mk_plist();
+        [mk_logPlist addObject:dateString];
+        if([mk_logPlist writeToFile:[mk_crashLogPath() stringByAppendingPathComponent:@"crashLog.plist"] atomically:YES]){
+            MKLog(@"add to crashLog.plist success");
+        }else{
+            MKErrorLog(@"add to crashLog.plist faile");
+        }
+    pthread_mutex_unlock(&mk_pthread_mutex_t_write_crash);
+     
 }
 
 void mk_saveException(NSException*exception) {

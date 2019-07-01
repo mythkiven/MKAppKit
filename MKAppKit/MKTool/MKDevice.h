@@ -1,10 +1,10 @@
-//
-//  MKDevice.h
-//  MKApp
-//
-//  Created by apple on 2019/6/29.
-//  Copyright © 2019 MythKiven. All rights reserved.
-//
+
+/**
+ *
+ * Created by https://github.com/mythkiven/ on 19/06/28.
+ * Copyright © 2019年 mythkiven. All rights reserved.
+ *
+ */
 
 #import <Foundation/Foundation.h>
 
@@ -32,8 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy,nonatomic) NSString * netInfo;
 /** 屏幕显示的时间 */
 @property (copy,nonatomic) NSString * currentTime;
+/** 2:已越狱*/
+@property (assign,nonatomic) int jailBreak;
 
-@property (copy,nonatomic) NSString * cpuType;
+@property (copy,nonatomic) NSString * cpuType; 
 @property (copy,nonatomic) NSString * appUsedMemory;
 @property (copy,nonatomic) NSString * totalMemory;
 @property (copy,nonatomic) NSString * totalDisk;

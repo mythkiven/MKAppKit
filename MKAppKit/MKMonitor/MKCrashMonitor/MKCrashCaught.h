@@ -1,10 +1,9 @@
-//
-//  MKCrashCaught.h
-//  MKApp
-//
-//  Created by apple on 2019/6/28.
-//  Copyright © 2019 MythKiven. All rights reserved.
-//
+/**
+ *
+ * Created by https://github.com/mythkiven/ on 19/06/21.
+ * Copyright © 2019年 mythkiven. All rights reserved.
+ *
+ */
 
 #import <Foundation/Foundation.h>
  

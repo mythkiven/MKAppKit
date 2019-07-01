@@ -1,10 +1,9 @@
-//
-//  MKCrashMonitor.m
-//  MKApp
-//
-//  Created by apple on 2019/6/28.
-//  Copyright © 2019 MythKiven. All rights reserved.
-//
+/**
+ *
+ * Created by https://github.com/mythkiven/ on 19/06/21.
+ * Copyright © 2019年 mythkiven. All rights reserved.
+ *
+ */
 
 #import "MKCrashMonitor.h"
 #import "MKCrashCaught.h"
@@ -22,9 +21,6 @@ void mk_registerCrashHandler(void){
         mk_registerExceptionHandler(); 
     });
     
-    
-    
-    
     NSArray *a1 = mk_getCrashPlist();
     NSArray *a2 = mk_getCrashLogs();
     NSDictionary *a3 = mk_getCrashReport();
@@ -35,7 +31,8 @@ void mk_registerCrashHandler(void){
     /**
      根据 key 获取 crash
      */
-    //    NSDictionary *mk_crashForKey(NSString *key);
     
+}
+void mk_reportCrash(NSString *crashLog) {
     
 }

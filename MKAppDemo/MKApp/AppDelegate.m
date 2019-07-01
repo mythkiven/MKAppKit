@@ -11,9 +11,14 @@
 #import "MKPointWatch.h"
 #import "NSObject+MKTTimeLoad.h"
 
-#import "MKCrashMonitor.h"
+
 #import <sys/utsname.h>
 #import "MKDevice.h"
+
+#import "MKHeader.h"
+
+#import "MKDebug.h"
+
 @interface AppDelegate ()
 
 @end
@@ -22,28 +27,18 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    int i=0;
-//    while(++i){
-//        NSLog(@"%d",i);
-//    }
-//    [self saveLogToLocalFile];
-//     打点 
     
+    // debug
+    [MKDebug debugRegister];
+    
+    //// 打点
     [[MKPointWatch pointWatch] pointWithDescription:@"didFinishLaunchingWithOptions"];
-    NSLog(@"%@",_loadInfoArray); 
-    // crash 抓取
-    mk_registerCrashHandler();
-    
+    NSLog(@"_loadInfoArray>> %@",_loadInfoArray);
     
     return [self makeWindows];
 }
-- (BOOL)makeWindows {
-    //    ViewController *vc = [[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
-    //    UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:vc];
-    //    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    //    self.window.rootViewController = nvc;
-    //    self.window.backgroundColor = [UIColor whiteColor];
-    //    [self.window makeKeyAndVisible];
+
+- (BOOL)makeWindows { 
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     ViewController *homeVc = [[ViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:homeVc];

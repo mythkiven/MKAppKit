@@ -14,20 +14,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MKFileManager : NSObject
+@interface MKFileUtils : NSObject
 
 + (NSString *)documentsDirectoryPath;
 + (NSURL *)documentsDirectoryURL;
 + (NSString *)libraryDirectoryPath;
 + (NSString *)cacheDirectoryPath;
 + (NSString *)temporaryDirectoryPath;
-
++ (void)treeSanbox;
 /**
  NSlog printf 日志保存进沙盒
  @param savePath 保存的路径，可为空。将使用默认路径
  @return return 保存的路径
  */
-+ (NSString*)saveLogToLocalFile:(NSString*)savePath;
++ (NSString*)saveLogToLocalFile:(nullable NSString*)savePath;
 
 /**
  * 以一种安全的方式读取文件，基于底层api

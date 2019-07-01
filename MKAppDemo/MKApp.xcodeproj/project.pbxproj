@@ -22,14 +22,12 @@
 		186FF08A229F65A500AFA303 /* MKAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FF089229F65A500AFA303 /* MKAppTests.m */; };
 		186FF091229F65B500AFA303 /* MKCrashGuardTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FF05F229F644500AFA303 /* MKCrashGuardTest.m */; };
 		186FF093229F704600AFA303 /* CrashTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F870C229E8F3C00A288D4 /* CrashTest.m */; };
+		187B9FFF22C9EB2900BB14CC /* MKSandbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 187B9FFE22C9EB2900BB14CC /* MKSandbox.m */; };
 		188F8704229E848B00A288D4 /* MKDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F8703229E848B00A288D4 /* MKDebug.m */; };
-		188F8707229E85F600A288D4 /* MKFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F8706229E85F600A288D4 /* MKFileManager.m */; };
+		188F8707229E85F600A288D4 /* MKFileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F8706229E85F600A288D4 /* MKFileUtils.m */; };
 		188F870A229E86DF00A288D4 /* MKFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F8709229E86DF00A288D4 /* MKFunctions.m */; };
 		18ABC9D722C0BA24004A885E /* NSObject+MKTTimeLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABC9D622C0BA24004A885E /* NSObject+MKTTimeLoad.m */; };
 		18ABC9DA22C0CDB0004A885E /* MKMainThreadWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABC9D922C0CDB0004A885E /* MKMainThreadWatch.m */; };
-		18ABC9E522C0DB43004A885E /* DoraemonANRTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABC9E122C0DB43004A885E /* DoraemonANRTracker.m */; };
-		18ABC9E622C0DB43004A885E /* DoraemonANRManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABC9E222C0DB43004A885E /* DoraemonANRManager.m */; };
-		18ABC9E722C0DB43004A885E /* DoraemonPingThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABC9E422C0DB43004A885E /* DoraemonPingThread.m */; };
 		18ABC9ED22C1F354004A885E /* MKThreadTraceLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABC9EC22C1F354004A885E /* MKThreadTraceLogger.m */; };
 		18ABC9F622C20EDF004A885E /* MKRenderCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABC9F522C20EDF004A885E /* MKRenderCounter.m */; };
 		18BB8F70227318F6005EDC27 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BB8F6F227318F6005EDC27 /* AppDelegate.m */; };
@@ -77,10 +75,12 @@
 		186FF087229F65A500AFA303 /* MKAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MKAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		186FF089229F65A500AFA303 /* MKAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKAppTests.m; sourceTree = "<group>"; };
 		186FF08B229F65A500AFA303 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		187B9FFD22C9EB2900BB14CC /* MKSandbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKSandbox.h; sourceTree = "<group>"; };
+		187B9FFE22C9EB2900BB14CC /* MKSandbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKSandbox.m; sourceTree = "<group>"; };
 		188F8702229E848B00A288D4 /* MKDebug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKDebug.h; sourceTree = "<group>"; };
 		188F8703229E848B00A288D4 /* MKDebug.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKDebug.m; sourceTree = "<group>"; };
-		188F8705229E85F600A288D4 /* MKFileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKFileManager.h; sourceTree = "<group>"; };
-		188F8706229E85F600A288D4 /* MKFileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKFileManager.m; sourceTree = "<group>"; };
+		188F8705229E85F600A288D4 /* MKFileUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKFileUtils.h; sourceTree = "<group>"; };
+		188F8706229E85F600A288D4 /* MKFileUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKFileUtils.m; sourceTree = "<group>"; };
 		188F8708229E86DF00A288D4 /* MKFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKFunctions.h; sourceTree = "<group>"; };
 		188F8709229E86DF00A288D4 /* MKFunctions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKFunctions.m; sourceTree = "<group>"; };
 		188F870B229E8F3C00A288D4 /* CrashTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CrashTest.h; sourceTree = "<group>"; };
@@ -89,12 +89,6 @@
 		18ABC9D622C0BA24004A885E /* NSObject+MKTTimeLoad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MKTTimeLoad.m"; sourceTree = "<group>"; };
 		18ABC9D822C0CDB0004A885E /* MKMainThreadWatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKMainThreadWatch.h; sourceTree = "<group>"; };
 		18ABC9D922C0CDB0004A885E /* MKMainThreadWatch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKMainThreadWatch.m; sourceTree = "<group>"; };
-		18ABC9DF22C0DB43004A885E /* DoraemonANRManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoraemonANRManager.h; sourceTree = "<group>"; };
-		18ABC9E022C0DB43004A885E /* DoraemonPingThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoraemonPingThread.h; sourceTree = "<group>"; };
-		18ABC9E122C0DB43004A885E /* DoraemonANRTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoraemonANRTracker.m; sourceTree = "<group>"; };
-		18ABC9E222C0DB43004A885E /* DoraemonANRManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoraemonANRManager.m; sourceTree = "<group>"; };
-		18ABC9E322C0DB43004A885E /* DoraemonANRTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoraemonANRTracker.h; sourceTree = "<group>"; };
-		18ABC9E422C0DB43004A885E /* DoraemonPingThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoraemonPingThread.m; sourceTree = "<group>"; };
 		18ABC9EB22C1F354004A885E /* MKThreadTraceLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKThreadTraceLogger.h; sourceTree = "<group>"; };
 		18ABC9EC22C1F354004A885E /* MKThreadTraceLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKThreadTraceLogger.m; sourceTree = "<group>"; };
 		18ABC9F422C20EDF004A885E /* MKRenderCounter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKRenderCounter.h; sourceTree = "<group>"; };
@@ -210,7 +204,6 @@
 		1822A725228BF2FD00152CA5 /* MKRenderMonitor */ = {
 			isa = PBXGroup;
 			children = (
-				18ABC9DE22C0DB43004A885E /* Function */,
 				18ABC9D822C0CDB0004A885E /* MKMainThreadWatch.h */,
 				18ABC9D922C0CDB0004A885E /* MKMainThreadWatch.m */,
 				18ABC9F422C20EDF004A885E /* MKRenderCounter.h */,
@@ -274,10 +267,12 @@
 		188F8701229E845500A288D4 /* MKTool */ = {
 			isa = PBXGroup;
 			children = (
+				187B9FFD22C9EB2900BB14CC /* MKSandbox.h */,
+				187B9FFE22C9EB2900BB14CC /* MKSandbox.m */,
 				188F8702229E848B00A288D4 /* MKDebug.h */,
 				188F8703229E848B00A288D4 /* MKDebug.m */,
-				188F8705229E85F600A288D4 /* MKFileManager.h */,
-				188F8706229E85F600A288D4 /* MKFileManager.m */,
+				188F8705229E85F600A288D4 /* MKFileUtils.h */,
+				188F8706229E85F600A288D4 /* MKFileUtils.m */,
 				188F8708229E86DF00A288D4 /* MKFunctions.h */,
 				188F8709229E86DF00A288D4 /* MKFunctions.m */,
 				18ABC9EB22C1F354004A885E /* MKThreadTraceLogger.h */,
@@ -288,20 +283,6 @@
 			);
 			name = MKTool;
 			path = ../MKAppKit/MKTool;
-			sourceTree = "<group>";
-		};
-		18ABC9DE22C0DB43004A885E /* Function */ = {
-			isa = PBXGroup;
-			children = (
-				18ABC9DF22C0DB43004A885E /* DoraemonANRManager.h */,
-				18ABC9E222C0DB43004A885E /* DoraemonANRManager.m */,
-				18ABC9E022C0DB43004A885E /* DoraemonPingThread.h */,
-				18ABC9E422C0DB43004A885E /* DoraemonPingThread.m */,
-				18ABC9E322C0DB43004A885E /* DoraemonANRTracker.h */,
-				18ABC9E122C0DB43004A885E /* DoraemonANRTracker.m */,
-			);
-			name = Function;
-			path = ../../../../../../Desktop/DoraemonKit/iOS/DoraemonKit/Src/Core/Plugin/ANR/Function;
 			sourceTree = "<group>";
 		};
 		18BB8F62227318F6005EDC27 = {
@@ -523,17 +504,16 @@
 				1847EB3D2276D90500E6E35D /* CombineLoadingAnimationVC.m in Sources */,
 				180D72BC22C5FC3D00F437AE /* MKCrashCaught.m in Sources */,
 				18ABC9ED22C1F354004A885E /* MKThreadTraceLogger.m in Sources */,
+				187B9FFF22C9EB2900BB14CC /* MKSandbox.m in Sources */,
 				18BB8F73227318F6005EDC27 /* ViewController.m in Sources */,
 				18289DFD2292467800EB7FF2 /* MKPointWatch.m in Sources */,
 				180D72BF22C722E000F437AE /* MKDevice.m in Sources */,
-				18ABC9E522C0DB43004A885E /* DoraemonANRTracker.m in Sources */,
 				180D72B622C5F60500F437AE /* UTest.m in Sources */,
 				180D72B922C5FC1600F437AE /* MKCrashMonitor.m in Sources */,
 				188F8704229E848B00A288D4 /* MKDebug.m in Sources */,
 				18ABC9F622C20EDF004A885E /* MKRenderCounter.m in Sources */,
-				18ABC9E622C0DB43004A885E /* DoraemonANRManager.m in Sources */,
 				1847EB472276F73E00E6E35D /* DiffuseMenuVC.swift in Sources */,
-				188F8707229E85F600A288D4 /* MKFileManager.m in Sources */,
+				188F8707229E85F600A288D4 /* MKFileUtils.m in Sources */,
 				186FF093229F704600AFA303 /* CrashTest.m in Sources */,
 				1847EB422276DD4900E6E35D /* DropdownMailTFVC.m in Sources */,
 				18BB8F7E227318FD005EDC27 /* main.m in Sources */,
@@ -541,7 +521,6 @@
 				18ABC9DA22C0CDB0004A885E /* MKMainThreadWatch.m in Sources */,
 				18BB8F70227318F6005EDC27 /* AppDelegate.m in Sources */,
 				188F870A229E86DF00A288D4 /* MKFunctions.m in Sources */,
-				18ABC9E722C0DB43004A885E /* DoraemonPingThread.m in Sources */,
 				18ABC9D722C0BA24004A885E /* NSObject+MKTTimeLoad.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

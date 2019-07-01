@@ -133,16 +133,22 @@ typedef struct Test{
     int b;
 }Test;
 
-+ (void)testCrashCaught {
-// //     exception
-//    NSArray* aaa = @[];
-//    NSLog(@"%@",aaa[2]);
++ (void)testExceptionCrashCaught {
+ //     exception
+    NSArray* aaa = @[];
+    NSLog(@"%@",aaa[2]);
+// 
     
+}
++ (void)testSigCrashCaught {
     
-// //   SIGABRT
-//    Test *pTest = {1,2};
-//    free(pTest);
-//    pTest->a = 5;
+     //   SIGABRT
+        Test *pTest = {1,2};
+        free(pTest);
+        pTest->a = 5;
+    
+    // or
+    
     char* p1 = (char*)-1;
     *p1 = 10;
     
