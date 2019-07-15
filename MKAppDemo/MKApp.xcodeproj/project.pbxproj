@@ -11,6 +11,22 @@
 		180D72B922C5FC1600F437AE /* MKCrashMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 180D72B822C5FC1600F437AE /* MKCrashMonitor.m */; };
 		180D72BC22C5FC3D00F437AE /* MKCrashCaught.m in Sources */ = {isa = PBXBuildFile; fileRef = 180D72BB22C5FC3D00F437AE /* MKCrashCaught.m */; };
 		180D72BF22C722E000F437AE /* MKDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 180D72BE22C722E000F437AE /* MKDevice.m */; };
+		1810E5AC22CB12F0004DDCA7 /* JxbLogVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5AB22CB12F0004DDCA7 /* JxbLogVC.m */; };
+		1810E5AF22CB13BE004DDCA7 /* MKURLCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5AE22CB13BE004DDCA7 /* MKURLCategory.m */; };
+		1810E5B222CB14D0004DDCA7 /* JxbUrlSessionHook_NSURLSessionAsynchronousConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5B122CB14D0004DDCA7 /* JxbUrlSessionHook_NSURLSessionAsynchronousConvenience.m */; };
+		1810E5B522CB152C004DDCA7 /* JxbHttpCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5B422CB152C004DDCA7 /* JxbHttpCell.m */; };
+		1810E5B822CB1534004DDCA7 /* JxbHttpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5B622CB1533004DDCA7 /* JxbHttpVC.m */; };
+		1810E5BB22CB153C004DDCA7 /* JxbHttpDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5B922CB153C004DDCA7 /* JxbHttpDetailVC.m */; };
+		1810E5BE22CB1545004DDCA7 /* JxbHttpProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5BD22CB1545004DDCA7 /* JxbHttpProtocol.m */; };
+		1810E5C122CB154F004DDCA7 /* JxbHttpDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5BF22CB154E004DDCA7 /* JxbHttpDatasource.m */; };
+		1810E5C422CB15DE004DDCA7 /* JxbDebugTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5C322CB15DD004DDCA7 /* JxbDebugTool.m */; };
+		1810E5C722CB15F2004DDCA7 /* JxbBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5C622CB15F2004DDCA7 /* JxbBaseVC.m */; };
+		1810E5CA22CB1634004DDCA7 /* JxbDebugVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5C922CB1634004DDCA7 /* JxbDebugVC.m */; };
+		1810E5CD22CB163B004DDCA7 /* JxbContentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5CC22CB163B004DDCA7 /* JxbContentVC.m */; };
+		1810E5D022CB1641004DDCA7 /* JxbResponseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5CF22CB1641004DDCA7 /* JxbResponseVC.m */; };
+		1810E5D322CB165E004DDCA7 /* JxbMemoryHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5D222CB165E004DDCA7 /* JxbMemoryHelper.m */; };
+		1810E5D822CB16A1004DDCA7 /* JxbCrashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5D622CB16A0004DDCA7 /* JxbCrashHelper.m */; };
+		1810E5D922CB16A1004DDCA7 /* JxbCrashVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5D722CB16A0004DDCA7 /* JxbCrashVC.m */; };
 		18289DFD2292467800EB7FF2 /* MKPointWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 18289DFB2292467800EB7FF2 /* MKPointWatch.m */; };
 		1847EB3C2276D90500E6E35D /* CombineLoadingAnimationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1847EB392276D90400E6E35D /* CombineLoadingAnimationVC.xib */; };
 		1847EB3D2276D90500E6E35D /* CombineLoadingAnimationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1847EB3A2276D90400E6E35D /* CombineLoadingAnimationVC.m */; };
@@ -27,8 +43,8 @@
 		188F8707229E85F600A288D4 /* MKFileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F8706229E85F600A288D4 /* MKFileUtils.m */; };
 		188F870A229E86DF00A288D4 /* MKFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F8709229E86DF00A288D4 /* MKFunctions.m */; };
 		18ABC9D722C0BA24004A885E /* NSObject+MKTTimeLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABC9D622C0BA24004A885E /* NSObject+MKTTimeLoad.m */; };
-		18ABC9DA22C0CDB0004A885E /* MKMainThreadWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABC9D922C0CDB0004A885E /* MKMainThreadWatch.m */; };
-		18ABC9ED22C1F354004A885E /* MKThreadTraceLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABC9EC22C1F354004A885E /* MKThreadTraceLogger.m */; };
+		18ABC9DA22C0CDB0004A885E /* MKRenderWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABC9D922C0CDB0004A885E /* MKRenderWatch.m */; };
+		18ABC9ED22C1F354004A885E /* MKThreadTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABC9EC22C1F354004A885E /* MKThreadTrace.m */; };
 		18ABC9F622C20EDF004A885E /* MKRenderCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABC9F522C20EDF004A885E /* MKRenderCounter.m */; };
 		18BB8F70227318F6005EDC27 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BB8F6F227318F6005EDC27 /* AppDelegate.m */; };
 		18BB8F73227318F6005EDC27 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BB8F72227318F6005EDC27 /* ViewController.m */; };
@@ -58,6 +74,38 @@
 		180D72BB22C5FC3D00F437AE /* MKCrashCaught.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKCrashCaught.m; sourceTree = "<group>"; };
 		180D72BD22C722E000F437AE /* MKDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKDevice.h; sourceTree = "<group>"; };
 		180D72BE22C722E000F437AE /* MKDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKDevice.m; sourceTree = "<group>"; };
+		1810E5AA22CB12F0004DDCA7 /* JxbLogVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JxbLogVC.h; sourceTree = "<group>"; };
+		1810E5AB22CB12F0004DDCA7 /* JxbLogVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JxbLogVC.m; sourceTree = "<group>"; };
+		1810E5AD22CB13BE004DDCA7 /* MKURLCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKURLCategory.h; sourceTree = "<group>"; };
+		1810E5AE22CB13BE004DDCA7 /* MKURLCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKURLCategory.m; sourceTree = "<group>"; };
+		1810E5B022CB14D0004DDCA7 /* JxbUrlSessionHook_NSURLSessionAsynchronousConvenience.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JxbUrlSessionHook_NSURLSessionAsynchronousConvenience.h; sourceTree = "<group>"; };
+		1810E5B122CB14D0004DDCA7 /* JxbUrlSessionHook_NSURLSessionAsynchronousConvenience.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JxbUrlSessionHook_NSURLSessionAsynchronousConvenience.m; sourceTree = "<group>"; };
+		1810E5B322CB152B004DDCA7 /* JxbHttpCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbHttpCell.h; sourceTree = "<group>"; };
+		1810E5B422CB152C004DDCA7 /* JxbHttpCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbHttpCell.m; sourceTree = "<group>"; };
+		1810E5B622CB1533004DDCA7 /* JxbHttpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbHttpVC.m; sourceTree = "<group>"; };
+		1810E5B722CB1534004DDCA7 /* JxbHttpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbHttpVC.h; sourceTree = "<group>"; };
+		1810E5B922CB153C004DDCA7 /* JxbHttpDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbHttpDetailVC.m; sourceTree = "<group>"; };
+		1810E5BA22CB153C004DDCA7 /* JxbHttpDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbHttpDetailVC.h; sourceTree = "<group>"; };
+		1810E5BC22CB1544004DDCA7 /* JxbHttpProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbHttpProtocol.h; sourceTree = "<group>"; };
+		1810E5BD22CB1545004DDCA7 /* JxbHttpProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbHttpProtocol.m; sourceTree = "<group>"; };
+		1810E5BF22CB154E004DDCA7 /* JxbHttpDatasource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbHttpDatasource.m; sourceTree = "<group>"; };
+		1810E5C022CB154F004DDCA7 /* JxbHttpDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbHttpDatasource.h; sourceTree = "<group>"; };
+		1810E5C222CB15DD004DDCA7 /* JxbDebugTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbDebugTool.h; sourceTree = "<group>"; };
+		1810E5C322CB15DD004DDCA7 /* JxbDebugTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbDebugTool.m; sourceTree = "<group>"; };
+		1810E5C522CB15F2004DDCA7 /* JxbBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbBaseVC.h; sourceTree = "<group>"; };
+		1810E5C622CB15F2004DDCA7 /* JxbBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbBaseVC.m; sourceTree = "<group>"; };
+		1810E5C822CB1633004DDCA7 /* JxbDebugVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbDebugVC.h; sourceTree = "<group>"; };
+		1810E5C922CB1634004DDCA7 /* JxbDebugVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbDebugVC.m; sourceTree = "<group>"; };
+		1810E5CB22CB163A004DDCA7 /* JxbContentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbContentVC.h; sourceTree = "<group>"; };
+		1810E5CC22CB163B004DDCA7 /* JxbContentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbContentVC.m; sourceTree = "<group>"; };
+		1810E5CE22CB1641004DDCA7 /* JxbResponseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbResponseVC.h; sourceTree = "<group>"; };
+		1810E5CF22CB1641004DDCA7 /* JxbResponseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbResponseVC.m; sourceTree = "<group>"; };
+		1810E5D122CB165E004DDCA7 /* JxbMemoryHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbMemoryHelper.h; sourceTree = "<group>"; };
+		1810E5D222CB165E004DDCA7 /* JxbMemoryHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbMemoryHelper.m; sourceTree = "<group>"; };
+		1810E5D422CB16A0004DDCA7 /* JxbCrashHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbCrashHelper.h; sourceTree = "<group>"; };
+		1810E5D522CB16A0004DDCA7 /* JxbCrashVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbCrashVC.h; sourceTree = "<group>"; };
+		1810E5D622CB16A0004DDCA7 /* JxbCrashHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbCrashHelper.m; sourceTree = "<group>"; };
+		1810E5D722CB16A0004DDCA7 /* JxbCrashVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbCrashVC.m; sourceTree = "<group>"; };
 		18289DFB2292467800EB7FF2 /* MKPointWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPointWatch.m; sourceTree = "<group>"; };
 		18289DFC2292467800EB7FF2 /* MKPointWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPointWatch.h; sourceTree = "<group>"; };
 		1847EB392276D90400E6E35D /* CombineLoadingAnimationVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CombineLoadingAnimationVC.xib; sourceTree = "<group>"; };
@@ -87,10 +135,10 @@
 		188F870C229E8F3C00A288D4 /* CrashTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CrashTest.m; sourceTree = "<group>"; };
 		18ABC9D522C0BA24004A885E /* NSObject+MKTTimeLoad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+MKTTimeLoad.h"; sourceTree = "<group>"; };
 		18ABC9D622C0BA24004A885E /* NSObject+MKTTimeLoad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MKTTimeLoad.m"; sourceTree = "<group>"; };
-		18ABC9D822C0CDB0004A885E /* MKMainThreadWatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKMainThreadWatch.h; sourceTree = "<group>"; };
-		18ABC9D922C0CDB0004A885E /* MKMainThreadWatch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKMainThreadWatch.m; sourceTree = "<group>"; };
-		18ABC9EB22C1F354004A885E /* MKThreadTraceLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKThreadTraceLogger.h; sourceTree = "<group>"; };
-		18ABC9EC22C1F354004A885E /* MKThreadTraceLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKThreadTraceLogger.m; sourceTree = "<group>"; };
+		18ABC9D822C0CDB0004A885E /* MKRenderWatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKRenderWatch.h; sourceTree = "<group>"; };
+		18ABC9D922C0CDB0004A885E /* MKRenderWatch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKRenderWatch.m; sourceTree = "<group>"; };
+		18ABC9EB22C1F354004A885E /* MKThreadTrace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKThreadTrace.h; sourceTree = "<group>"; };
+		18ABC9EC22C1F354004A885E /* MKThreadTrace.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKThreadTrace.m; sourceTree = "<group>"; };
 		18ABC9F422C20EDF004A885E /* MKRenderCounter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKRenderCounter.h; sourceTree = "<group>"; };
 		18ABC9F522C20EDF004A885E /* MKRenderCounter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKRenderCounter.m; sourceTree = "<group>"; };
 		18B6A1C92276CB94008B1B97 /* libPods-MKCombineLoadingAnimation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-MKCombineLoadingAnimation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,9 +184,33 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1810E5A922CB12BC004DDCA7 /* MKMonitor */ = {
+			isa = PBXGroup;
+			children = (
+				1810E5D422CB16A0004DDCA7 /* JxbCrashHelper.h */,
+				1810E5D622CB16A0004DDCA7 /* JxbCrashHelper.m */,
+				1810E5D522CB16A0004DDCA7 /* JxbCrashVC.h */,
+				1810E5D722CB16A0004DDCA7 /* JxbCrashVC.m */,
+				1810E5C522CB15F2004DDCA7 /* JxbBaseVC.h */,
+				1810E5C622CB15F2004DDCA7 /* JxbBaseVC.m */,
+				1810E5C222CB15DD004DDCA7 /* JxbDebugTool.h */,
+				1810E5C322CB15DD004DDCA7 /* JxbDebugTool.m */,
+				1810E5CE22CB1641004DDCA7 /* JxbResponseVC.h */,
+				1810E5CF22CB1641004DDCA7 /* JxbResponseVC.m */,
+				1810E5CB22CB163A004DDCA7 /* JxbContentVC.h */,
+				1810E5CC22CB163B004DDCA7 /* JxbContentVC.m */,
+				1810E5C822CB1633004DDCA7 /* JxbDebugVC.h */,
+				1810E5C922CB1634004DDCA7 /* JxbDebugVC.m */,
+				1810E5AA22CB12F0004DDCA7 /* JxbLogVC.h */,
+				1810E5AB22CB12F0004DDCA7 /* JxbLogVC.m */,
+			);
+			path = MKMonitor;
+			sourceTree = "<group>";
+		};
 		1822A718228BF2FD00152CA5 /* MKMonitor */ = {
 			isa = PBXGroup;
 			children = (
+				1810E5A922CB12BC004DDCA7 /* MKMonitor */,
 				1822A719228BF2FD00152CA5 /* MKEnergyMonitor */,
 				1822A71A228BF2FD00152CA5 /* MKCrashMonitor */,
 				1822A71B228BF2FD00152CA5 /* MKLaunchMonitor */,
@@ -183,6 +255,8 @@
 		1822A722228BF2FD00152CA5 /* MKMemoryMonitor */ = {
 			isa = PBXGroup;
 			children = (
+				1810E5D122CB165E004DDCA7 /* JxbMemoryHelper.h */,
+				1810E5D222CB165E004DDCA7 /* JxbMemoryHelper.m */,
 			);
 			path = MKMemoryMonitor;
 			sourceTree = "<group>";
@@ -190,6 +264,20 @@
 		1822A723228BF2FD00152CA5 /* MKNetworkMonitor */ = {
 			isa = PBXGroup;
 			children = (
+				1810E5BA22CB153C004DDCA7 /* JxbHttpDetailVC.h */,
+				1810E5B922CB153C004DDCA7 /* JxbHttpDetailVC.m */,
+				1810E5B722CB1534004DDCA7 /* JxbHttpVC.h */,
+				1810E5B622CB1533004DDCA7 /* JxbHttpVC.m */,
+				1810E5B322CB152B004DDCA7 /* JxbHttpCell.h */,
+				1810E5B422CB152C004DDCA7 /* JxbHttpCell.m */,
+				1810E5C022CB154F004DDCA7 /* JxbHttpDatasource.h */,
+				1810E5BF22CB154E004DDCA7 /* JxbHttpDatasource.m */,
+				1810E5AD22CB13BE004DDCA7 /* MKURLCategory.h */,
+				1810E5AE22CB13BE004DDCA7 /* MKURLCategory.m */,
+				1810E5BC22CB1544004DDCA7 /* JxbHttpProtocol.h */,
+				1810E5BD22CB1545004DDCA7 /* JxbHttpProtocol.m */,
+				1810E5B022CB14D0004DDCA7 /* JxbUrlSessionHook_NSURLSessionAsynchronousConvenience.h */,
+				1810E5B122CB14D0004DDCA7 /* JxbUrlSessionHook_NSURLSessionAsynchronousConvenience.m */,
 			);
 			path = MKNetworkMonitor;
 			sourceTree = "<group>";
@@ -204,8 +292,8 @@
 		1822A725228BF2FD00152CA5 /* MKRenderMonitor */ = {
 			isa = PBXGroup;
 			children = (
-				18ABC9D822C0CDB0004A885E /* MKMainThreadWatch.h */,
-				18ABC9D922C0CDB0004A885E /* MKMainThreadWatch.m */,
+				18ABC9D822C0CDB0004A885E /* MKRenderWatch.h */,
+				18ABC9D922C0CDB0004A885E /* MKRenderWatch.m */,
 				18ABC9F422C20EDF004A885E /* MKRenderCounter.h */,
 				18ABC9F522C20EDF004A885E /* MKRenderCounter.m */,
 			);
@@ -275,8 +363,8 @@
 				188F8706229E85F600A288D4 /* MKFileUtils.m */,
 				188F8708229E86DF00A288D4 /* MKFunctions.h */,
 				188F8709229E86DF00A288D4 /* MKFunctions.m */,
-				18ABC9EB22C1F354004A885E /* MKThreadTraceLogger.h */,
-				18ABC9EC22C1F354004A885E /* MKThreadTraceLogger.m */,
+				18ABC9EB22C1F354004A885E /* MKThreadTrace.h */,
+				18ABC9EC22C1F354004A885E /* MKThreadTrace.m */,
 				180D725E22C4A83A00F437AE /* MKHeader.h */,
 				180D72BD22C722E000F437AE /* MKDevice.h */,
 				180D72BE22C722E000F437AE /* MKDevice.m */,
@@ -503,25 +591,41 @@
 			files = (
 				1847EB3D2276D90500E6E35D /* CombineLoadingAnimationVC.m in Sources */,
 				180D72BC22C5FC3D00F437AE /* MKCrashCaught.m in Sources */,
-				18ABC9ED22C1F354004A885E /* MKThreadTraceLogger.m in Sources */,
+				18ABC9ED22C1F354004A885E /* MKThreadTrace.m in Sources */,
+				1810E5CD22CB163B004DDCA7 /* JxbContentVC.m in Sources */,
 				187B9FFF22C9EB2900BB14CC /* MKSandbox.m in Sources */,
 				18BB8F73227318F6005EDC27 /* ViewController.m in Sources */,
 				18289DFD2292467800EB7FF2 /* MKPointWatch.m in Sources */,
 				180D72BF22C722E000F437AE /* MKDevice.m in Sources */,
+				1810E5D822CB16A1004DDCA7 /* JxbCrashHelper.m in Sources */,
+				1810E5D022CB1641004DDCA7 /* JxbResponseVC.m in Sources */,
 				180D72B622C5F60500F437AE /* UTest.m in Sources */,
 				180D72B922C5FC1600F437AE /* MKCrashMonitor.m in Sources */,
+				1810E5B822CB1534004DDCA7 /* JxbHttpVC.m in Sources */,
 				188F8704229E848B00A288D4 /* MKDebug.m in Sources */,
+				1810E5CA22CB1634004DDCA7 /* JxbDebugVC.m in Sources */,
+				1810E5B522CB152C004DDCA7 /* JxbHttpCell.m in Sources */,
+				1810E5C422CB15DE004DDCA7 /* JxbDebugTool.m in Sources */,
 				18ABC9F622C20EDF004A885E /* MKRenderCounter.m in Sources */,
 				1847EB472276F73E00E6E35D /* DiffuseMenuVC.swift in Sources */,
+				1810E5C722CB15F2004DDCA7 /* JxbBaseVC.m in Sources */,
+				1810E5BB22CB153C004DDCA7 /* JxbHttpDetailVC.m in Sources */,
 				188F8707229E85F600A288D4 /* MKFileUtils.m in Sources */,
 				186FF093229F704600AFA303 /* CrashTest.m in Sources */,
 				1847EB422276DD4900E6E35D /* DropdownMailTFVC.m in Sources */,
+				1810E5C122CB154F004DDCA7 /* JxbHttpDatasource.m in Sources */,
+				1810E5D322CB165E004DDCA7 /* JxbMemoryHelper.m in Sources */,
 				18BB8F7E227318FD005EDC27 /* main.m in Sources */,
 				186FF05D229EA19600AFA303 /* MKJSON.m in Sources */,
-				18ABC9DA22C0CDB0004A885E /* MKMainThreadWatch.m in Sources */,
+				18ABC9DA22C0CDB0004A885E /* MKRenderWatch.m in Sources */,
 				18BB8F70227318F6005EDC27 /* AppDelegate.m in Sources */,
+				1810E5BE22CB1545004DDCA7 /* JxbHttpProtocol.m in Sources */,
 				188F870A229E86DF00A288D4 /* MKFunctions.m in Sources */,
 				18ABC9D722C0BA24004A885E /* NSObject+MKTTimeLoad.m in Sources */,
+				1810E5AF22CB13BE004DDCA7 /* MKURLCategory.m in Sources */,
+				1810E5B222CB14D0004DDCA7 /* JxbUrlSessionHook_NSURLSessionAsynchronousConvenience.m in Sources */,
+				1810E5D922CB16A1004DDCA7 /* JxbCrashVC.m in Sources */,
+				1810E5AC22CB12F0004DDCA7 /* JxbLogVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,7 +723,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -679,6 +784,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;

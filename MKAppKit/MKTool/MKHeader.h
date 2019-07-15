@@ -18,25 +18,12 @@
 #endif
 
 
+#define MK_BASE_DIR [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"MKMonitor"]
+#define MK_CRASH_DIR [MK_BASE_DIR stringByAppendingPathComponent:@"MKCrashLog"]
+#define MK_LOG_DIR [MK_BASE_DIR stringByAppendingPathComponent:@"MKLog"]
+#define MK_RENDER_DIR  [MK_BASE_DIR stringByAppendingPathComponent:@"MKRenderLog"]
 
-#ifdef MKDEBUG
-static inline NSString* MK_LOG_PATH() {
-    NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *sandBoxPath  = [paths objectAtIndex:0];
-    NSString *crashLogPath = [sandBoxPath stringByAppendingPathComponent:@"MKCrashLog"];
-    crashLogPath = [crashLogPath stringByAppendingPathComponent:@"DEBUG"];
-    return crashLogPath;
-}
-#else
-static inline NSString* MK_LOG_PATH() {
-    NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *sandBoxPath  = [paths objectAtIndex:0];
-    NSString *crashLogPath = [sandBoxPath stringByAppendingPathComponent:@"MKCrashLog"];
-    crashLogPath = [crashLogPath stringByAppendingPathComponent:@"RELEASE"];
-    return crashLogPath;
-}
-#endif
-
+#define MK_FILE_NAME_TAG MKDEBUG?@"debug_":@"release_"
 
 #define MKDeviceVersion  [UIDevice currentDevice].systemVersion.doubleValue
 

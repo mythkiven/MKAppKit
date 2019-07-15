@@ -9,20 +9,26 @@
 
 
 
-#define MKTTLOG NSLog(@"%@",[MKThreadTraceLogger mkThreadTraceOfCurrentThread]);
-#define MKTTLOG_MAIN NSLog(@"%@",[MKThreadTraceLogger mkThreadTraceOfMainThread]);
-#define MKTTLOG_ALL NSLog(@"%@",[MKThreadTraceLogger mkThreadTraceOfAllThread]);
+#define MKTTLOG NSLog(@"%@",[MKThreadTrace mkThreadTraceOfCurrentThread]);
+#define MKTTLOG_MAIN NSLog(@"%@",[MKThreadTrace mkThreadTraceOfMainThread]);
+#define MKTTLOG_ALL NSLog(@"%@",[MKThreadTrace mkThreadTraceOfAllThread]);
 
 NS_ASSUME_NONNULL_BEGIN
 
 
-@interface MKThreadTraceLogger : NSObject
+@interface MKThreadTrace : NSObject
 
 + (NSString *)mkThreadTraceOfAllThread;
 + (NSString *)mkThreadTraceOfCurrentThread;
 + (NSString *)mkThreadTraceOfMainThread;
 + (NSString *)mkThreadTraceOfNSThread:(NSThread *)thread;
 
+extern NSString *mk_callStackSymbols(void);
+
 @end
+
+
+
+
 
 NS_ASSUME_NONNULL_END

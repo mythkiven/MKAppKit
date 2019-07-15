@@ -15,22 +15,19 @@ typedef NS_ENUM(NSUInteger, MKRenderCounterPosition) {
     MKRenderCounterPositionRight
 };
 
+typedef void(^RenderRecord)(NSDictionary *recordDic);
+
 @interface MKRenderCounter : NSObject
-
-// Set [MKRenderCounter sharedGeigerCounter].enabled = YES from -application:didFinishLaunchingWithOptions:.
 @property (nonatomic, assign, getter = isEnabled) BOOL enabled;
-
-// The meter draws over the status bar. Set the window level manually if your own custom windows obscure it.
+@property (nonatomic, assign) BOOL showLabel;
 @property (nonatomic, assign) UIWindowLevel windowLevel;
-
-// Position of the meter in the status bar. Takes effect on next enable.
 @property (nonatomic, assign) MKRenderCounterPosition position;
-
 @property (nonatomic, readonly, getter = isRunning) BOOL running;
 @property (nonatomic, readonly) NSInteger droppedFrameCountInLastSecond;
-@property (nonatomic, readonly) NSInteger drawnFrameCountInLastSecond; // -1 until one second of frames have been collected
+@property (nonatomic, readonly) NSInteger drawnFrameCountInLastSecond;
+@property (copy,nonatomic) RenderRecord recordRender ;
 
-+ (instancetype)sharedGeigerCounter;
++ (instancetype)sharedRenderCounter;
 
 @end
 

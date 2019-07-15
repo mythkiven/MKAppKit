@@ -5,14 +5,17 @@
  *
  */
 
-#import "MKMainThreadWatch.h"
-
+#import "MKRenderWatch.h"
+#import "MKHeader.h"
 #include <execinfo.h>
 #import <libkern/OSAtomic.h>
+#import "MKFileUtils.h"
+#import "MKThreadTrace.h"
+
 
 #define MKMainThreadWatcher_Interval    (16.0f/1000.0f)
 
-@interface MKMainThreadWatch ()
+@interface MKRenderWatch ()
 
 @property (assign,nonatomic) CFRunLoopObserverRef runloopObserver;
 @property (strong,nonatomic) dispatch_semaphore_t semaphore;
@@ -20,11 +23,11 @@
 @property (assign,nonatomic) CFRunLoopActivity activity;
 
 @end
-@implementation MKMainThreadWatch
+@implementation MKRenderWatch
 
 
 //开始监控
--(void)startWatch; {
+-(void)watchRenderWithLogPath:(NSString*)pathToSaveLog{
     if(_runloopObserver){
         return;
     }
@@ -40,8 +43,7 @@
              // 一个单位Runloop超过了16.7ms就会出现丢帧
             uint64_t interval = MKMainThreadWatcher_Interval * NSEC_PER_SEC;
             dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW,interval);
-            long semaphoreWait = dispatch_semaphore_wait(self.semaphore, time);
-            
+            long semaphoreWait = dispatch_semaphore_wait(self.semaphore, time); 
             if(semaphoreWait != 0){ // 出现超时
                 if(!self.runloopObserver) {
                     self.timeOutCount = 0;
@@ -50,16 +52,18 @@
                     return;
                 }
                 if(self.activity == kCFRunLoopAfterWaiting || self.activity == kCFRunLoopBeforeSources) {
-                    // 这里规定超过丢两帧就打印堆栈信息
+                    // 超过两帧就上报
                     if(++self.timeOutCount < 3){
                         continue;
                     }
                     NSLog(@"发现一次延时");
-//                    打印堆栈信息
-                    
-                    NSLog(@"-=--%@",[NSThread callStackSymbols]);
-                    NSLog(@"-----》》》%@",[self backtrace]);
-                    
+                    NSLog(@"callStackSymbols：%@",[NSThread callStackSymbols]);
+                    NSMutableDictionary *mdic = @[].mutableCopy;
+                    [mdic setObject:@"Frame loss" forKey:@"reason"];
+                    [mdic setObject:mk_callStackSymbols() forKey:@"thread"];
+                    if(pathToSaveLog){
+                        [MKFileUtils saveToDir:mk_isFileExist(pathToSaveLog)?pathToSaveLog:MK_RENDER_DIR content:mdic fileName:@"MKRender"];
+                    }
                 }
             }else{
                 self.timeOutCount = 0;
@@ -68,6 +72,8 @@
     });
 }
 
+
+
 volatile int32_t UncaughtExceptionCount = 0;
 const int32_t UncaughtExceptionMaximum = 10;
 const NSInteger UncaughtExceptionHandlerSkipAddressCount = 0;
@@ -75,22 +81,8 @@ const NSInteger UncaughtExceptionHandlerReportAddressCount = UncaughtExceptionMa
 NSString * const UncaughtExceptionHandlerSignalExceptionName = @"UncaughtExceptionHandlerSignalExceptionName";
 NSString * const UncaughtExceptionHandlerSignalKey = @"UncaughtExceptionHandlerSignalKey";
 NSString * const UncaughtExceptionHandlerAddressesKey = @"UncaughtExceptionHandlerAddressesKey";
-- (NSArray *)backtrace {
-    void *callstack[128];
-    int frames = backtrace(callstack, 128);
-    char **strs = backtrace_symbols(callstack, frames);
-    int i;
-    NSMutableArray *backtrace = [NSMutableArray arrayWithCapacity:frames];
-    for (i = UncaughtExceptionHandlerSkipAddressCount; i < UncaughtExceptionHandlerSkipAddressCount + UncaughtExceptionHandlerReportAddressCount; ++i) {
-        [backtrace addObject:[NSString stringWithUTF8String:strs[i]]];
-    }
-    free(strs);
-    return backtrace;
-}
-
 void runLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActivity activity, void *info) {
-    
-    MKMainThreadWatch *appFluencyMonitor = (__bridge MKMainThreadWatch*)info;
+    MKRenderWatch *appFluencyMonitor = (__bridge MKRenderWatch*)info;
     appFluencyMonitor.activity = activity;
     dispatch_semaphore_signal(appFluencyMonitor.semaphore); 
 }

@@ -13,12 +13,13 @@
 #include <pthread.h>
 #include <dirent.h>
 
+#import "MKDevice.h"
 #import "MKHeader.h"
 #import "MKFileUtils.h"
+#include <pthread.h>
 
 
-static pthread_mutex_t mk_pthread_mutex_t = PTHREAD_MUTEX_INITIALIZER;
-
+static pthread_mutex_t mk_pthread_mutex_t_write_content = PTHREAD_MUTEX_INITIALIZER;
 
 @implementation MKFileUtils
 
@@ -51,7 +52,7 @@ static pthread_mutex_t mk_pthread_mutex_t = PTHREAD_MUTEX_INITIALIZER;
     
 //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
 //    NSString *documentDirectory = [paths objectAtIndex:0];
-    NSString *documentDirectory = [MK_LOG_PATH() stringByAppendingPathComponent:@"MKLog"];
+    NSString *documentDirectory = [MK_LOG_DIR stringByAppendingPathComponent:@"MKLog"];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     BOOL isDir = NO;
@@ -107,6 +108,37 @@ static  NSString *mk_markline_e = @"└---";
     }]; 
 }
 
++ (void)saveToDir:(NSString*)dirPath content:(NSMutableDictionary *)dict fileName:(NSString*)fileName{
+    [dict setObject:[MKDevice new].deviceInfo forKey:@"appinfo"];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString* dateString = [formatter stringFromDate:[NSDate date]];
+    [dict setObject:dateString forKey:@"date"];
+    NSString* savePath = [[dirPath stringByAppendingPathComponent:dateString] stringByAppendingString:@".log"];
+    
+    pthread_mutex_lock(&mk_pthread_mutex_t_write_content);
+    BOOL succeed = [ dict writeToFile:savePath atomically:YES];
+    if(NO == succeed){
+        MKErrorLog(@"crash report failed!");
+    }else{
+        MKLog(@"save crash report succeed!");
+    }
+    if(fileName) {
+        NSMutableArray *mplist;
+        if (YES == [[NSFileManager defaultManager] fileExistsAtPath:[dirPath stringByAppendingPathComponent:[fileName stringByAppendingString:@".plist"]]]){
+            mplist = [[NSMutableArray arrayWithContentsOfFile:[dirPath stringByAppendingPathComponent:[fileName stringByAppendingString:@".plist"]]] mutableCopy];
+            [mplist addObject:dateString];
+            if([mplist writeToFile:[MK_CRASH_DIR stringByAppendingPathComponent:@"mkCrashLog.plist"] atomically:YES]){
+                MKLog(@"add to  %@.plist success",fileName);
+            }else{
+                MKErrorLog(@"add to %@.plist faile",fileName);
+            }
+        }
+    }
+    pthread_mutex_unlock(&mk_pthread_mutex_t_write_content);
+    
+}
+
 
 #pragma mark -
 bool mk_isFileExist(NSString *filePath) {
@@ -138,6 +170,8 @@ bool mk_safe_deleteContentsOfPath(NSString *filePath) {
     }
     return mk_deletePathContents([filePath UTF8String], false);
 }
+
+static pthread_mutex_t mk_pthread_mutex_t = PTHREAD_MUTEX_INITIALIZER;
 NSString* mk_safe_readFile(NSString *filePath) {  // 基于 kscrs_readReport
     pthread_mutex_lock(&mk_pthread_mutex_t);
     char* result;

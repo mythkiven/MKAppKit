@@ -31,9 +31,8 @@
     // debug
     [MKDebug debugRegister];
     
-    //// 打点
+    // 打点
     [[MKPointWatch pointWatch] pointWithDescription:@"didFinishLaunchingWithOptions"];
-    NSLog(@"_loadInfoArray>> %@",_loadInfoArray);
     
     return [self makeWindows];
 }
@@ -45,15 +44,6 @@
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
     return YES;
-}
-
-- (void)saveLogToLocalFile {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectory = [paths objectAtIndex:0];
-    NSString *fileName = [NSString stringWithFormat:@"%@.log",[[NSDate alloc] initWithTimeIntervalSinceNow:8*3600]];
-    NSString *logFilePath = [documentDirectory stringByAppendingPathComponent:fileName];
-    freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding],"a+",stdout);
-    freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding],"a+",stderr);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -78,6 +68,7 @@
     NSLog(@"des:%@ %@ %lf",[MKPointWatch pointWatch].printedPoints,[MKPointWatch pointWatch].points,[MKPointWatch pointWatch].lastWatchInterval);
     [[MKPointWatch pointWatch] stopWatchingAndAlertResult]; 
     
+    [MKDebug enableDebug];
 }
 
 

@@ -229,13 +229,29 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MKAppKit/MKMonitor/MKCrashMonitor/MKCrashMonitor.m"
-            timestampString = "583658783.306088"
+            timestampString = "583659687.732528"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "28"
             endingLineNumber = "28"
             landmarkName = "mk_registerCrashHandler()"
             landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MKApp/AppDelegate.m"
+            timestampString = "583739544.163494"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "-applicationDidBecomeActive:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

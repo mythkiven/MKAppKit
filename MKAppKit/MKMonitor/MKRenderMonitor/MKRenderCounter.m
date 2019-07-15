@@ -8,6 +8,9 @@
 #import "MKRenderCounter.h"
 #import <AudioToolbox/AudioToolbox.h>
 
+
+
+
 @interface MKRenderCounter ()
 
 @property (nonatomic, readwrite, assign, getter = isRunning) BOOL running;
@@ -58,13 +61,10 @@
     NSInteger droppedFrameCount = self.droppedFrameCountInLastSecond;
     // 一秒钟屏幕刷新时的显示帧数
     NSInteger drawnFrameCount = self.drawnFrameCountInLastSecond;
-    
     NSString *droppedString;
     NSString *drawnString;
-    
     if (droppedFrameCount <= 0) {
         self.meterLabel.backgroundColor = self.meterPerfectColor;
-        
         droppedString = @"--";
     } else {
         if (droppedFrameCount <= 2) {
@@ -72,17 +72,17 @@
         } else {
             self.meterLabel.backgroundColor = self.meterBadColor;
         }
-        
         droppedString = [NSString stringWithFormat:@"lost:%ld", (long) droppedFrameCount];
     }
-    
     if (drawnFrameCount == -1) {
         drawnString = @"--";
     } else {
         drawnString = [NSString stringWithFormat:@"displayed:%ld", (long) drawnFrameCount];
     }
-    
     self.meterLabel.text = [NSString stringWithFormat:@"fps:%@ %@", droppedString, drawnString];
+    if(self.recordRender){
+        self.recordRender(@{@"droppedFrameCount":@(droppedFrameCount),@"drawnFrameCount":@(drawnFrameCount)});
+    }
 }
 
 - (CFTimeInterval)hardwareFrameDuration {
@@ -118,49 +118,41 @@
     [self clearLastSecondOfFrameTimes];
 }
 
-- (void)stop
-{
+- (void)stop {
     [self.displayLink invalidate];
     self.displayLink = nil;
-    
     AudioServicesDisposeSystemSoundID(self.tickSoundID);
     self.tickSoundID = 0;
 }
 
-- (void)setRunning:(BOOL)running
-{
+- (void)setRunning:(BOOL)running {
     if (_running != running) {
         if (running) {
             [self start];
         } else {
             [self stop];
         }
-        
         _running = running;
     }
 }
 
 #pragma mark -
 
-- (void)applicationDidBecomeActive
-{
+- (void)applicationDidBecomeActive {
     self.running = self.enabled;
 }
 
-- (void)applicationWillResignActive
-{
+- (void)applicationWillResignActive {
     self.running = NO;
 }
 
 #pragma mark -
 
-- (void)enable
-{
+- (void)enable {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = [[UIViewController alloc] init];
     self.window.windowLevel = self.windowLevel;
-    self.window.userInteractionEnabled = NO;
-    
+    self.window.userInteractionEnabled = NO; 
     CGFloat const kMeterWidth = 145.0;
     CGFloat xOrigin = 0.0;
     UIViewAutoresizing autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
@@ -188,61 +180,46 @@
     self.meterLabel.textColor = [UIColor whiteColor];
     self.meterLabel.textAlignment = NSTextAlignmentCenter;
     [self.window.rootViewController.view addSubview:self.meterLabel];
-    
     self.window.hidden = NO;
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive) name:UIApplicationWillResignActiveNotification object:nil];
-    
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
         self.running = YES;
     }
 }
-
-- (void)disable
-{
+- (void)disable {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
     self.running = NO;
-    
     self.meterLabel = nil;
     self.window = nil;
 }
 
 #pragma mark - Init/dealloc
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
-        _windowLevel = UIWindowLevelStatusBar + 10.0;
+        _windowLevel = UIWindowLevelAlert+1;
         _position = MKRenderCounterPositionRight;
-        
         _meterPerfectColor = [MKRenderCounter colorWithHex:0x999999 alpha:1.0];
         _meterGoodColor = [MKRenderCounter colorWithHex:0x66a300 alpha:1.0];
         _meterBadColor = [MKRenderCounter colorWithHex:0xff7f0d alpha:1.0];
-        
         if (@available(iOS 10.3, *)) {
             _hardwareFramesPerSecond = [UIScreen mainScreen].maximumFramesPerSecond;
         } else {
             _hardwareFramesPerSecond = 60;
         }
-        
         _recentFrameTimes = malloc(sizeof(*_recentFrameTimes) * _hardwareFramesPerSecond);
     }
     return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
     [_displayLink invalidate];
-    
     if (_tickSoundID) {
         AudioServicesDisposeSystemSoundID(_tickSoundID);
     }
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
     if (_recentFrameTimes) {
         free(_recentFrameTimes);
         _recentFrameTimes = nil;
@@ -251,8 +228,7 @@
 
 #pragma mark - Public interface
 
-+ (instancetype)sharedGeigerCounter
-{
++ (instancetype)sharedRenderCounter {
     static MKRenderCounter *instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -261,8 +237,7 @@
     return instance;
 }
 
-- (void)setEnabled:(BOOL)enabled
-{
+- (void)setEnabled:(BOOL)enabled {
     if (_enabled != enabled) {
         if (enabled) {
             [self enable];
@@ -274,8 +249,12 @@
     }
 }
 
-- (void)setWindowLevel:(UIWindowLevel)windowLevel
-{
+- (void)setShowLabel:(BOOL)showLabel{
+    _showLabel = showLabel;
+    self.meterLabel.hidden = !_showLabel;
+}
+
+- (void)setWindowLevel:(UIWindowLevel)windowLevel {
     _windowLevel = windowLevel;
     self.window.windowLevel = windowLevel;
 }
@@ -288,17 +267,14 @@
         if (1.0 <= lastFrameTime - _recentFrameTimes[i]) {
             ++droppedFrameCount;
         }
-    }
-    
+    } 
     return droppedFrameCount;
 }
 
-- (NSInteger)drawnFrameCountInLastSecond
-{
+- (NSInteger)drawnFrameCountInLastSecond {
     if (!self.running || self.frameNumber < self.hardwareFramesPerSecond) {
         return -1;
     }
-    
     return self.hardwareFramesPerSecond - self.droppedFrameCountInLastSecond;
 }
 

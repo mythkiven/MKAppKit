@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)cacheDirectoryPath;
 + (NSString *)temporaryDirectoryPath;
 + (void)treeSanbox;
++ (void)saveToDir:(NSString*)dirPath content:(NSMutableDictionary *)dict fileName:(NSString*)fileName;
 /**
  NSlog printf 日志保存进沙盒
  @param savePath 保存的路径，可为空。将使用默认路径

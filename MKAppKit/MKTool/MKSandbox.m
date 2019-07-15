@@ -155,9 +155,7 @@ typedef enum : NSUInteger {
         if (isDir) {
             file.type = MKFileItemDirectory;
             file.name = [NSString stringWithFormat:@"%@ %@", @"📁", path];
-        }
-        else
-        {
+        }else {
             file.type = MKFileItemFile;
             file.name = [NSString stringWithFormat:@"%@ %@", @"📄", path];
         }
@@ -276,7 +274,7 @@ typedef enum : NSUInteger {
         _window.backgroundColor = [UIColor whiteColor];
         _window.layer.borderColor = ASThemeColor.CGColor;
         _window.layer.borderWidth = 2.0;
-        _window.windowLevel = UIWindowLevelStatusBar;
+        _window.windowLevel = UIWindowLevelAlert+1;
         
         _ctrl = [ASViewController new];
         _window.rootViewController = _ctrl;

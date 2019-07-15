@@ -5,7 +5,7 @@
  *
  */
 
-#import "MKThreadTraceLogger.h"
+#import "MKThreadTrace.h"
 #import <mach/mach.h>
 #include <dlfcn.h>
 #include <pthread.h>
@@ -14,6 +14,7 @@
 #include <string.h>
 #include <mach-o/dyld.h>
 #include <mach-o/nlist.h>
+#include <execinfo.h>
 
 #pragma -mark DEFINE MACRO FOR DIFFERENT CPU ARCHITECTURE
 #if defined(__arm64__)
@@ -71,7 +72,7 @@ typedef struct BSStackFrameEntry{
 
 static mach_port_t main_thread_id;
 
-@implementation MKThreadTraceLogger
+@implementation MKThreadTrace
 
 + (void)load {
     main_thread_id = mach_thread_self();
@@ -416,4 +417,28 @@ uintptr_t mk_segmentBaseOfImageIndex(const uint32_t idx) {
     return 0;
 }
 
+
+
+NSString *mk_callStackSymbols(void) {
+    NSMutableString *mstr = @"".mutableCopy;
+    [mstr appendString:@"Stack:\n"];
+    void *callstack[128];
+    int i, frames = backtrace(callstack, 128);
+    char **strs = backtrace_symbols(callstack, frames);
+    for (i = 0; i <frames; ++i) {
+        [mstr appendFormat:@"%s\n", strs[i]];
+    }
+    [mstr appendString:@"\n************************************************\ncallStackSymbols:\n"];
+    NSArray *arr = [NSThread callStackSymbols];
+    [mstr appendString: [arr componentsJoinedByString:@"\n"]];
+    free(strs);
+    return mstr;
+}
+
 @end
+
+
+
+
+
+

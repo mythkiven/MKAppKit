@@ -16,8 +16,7 @@
 
 #import "MKCrashGuardManager.h"
 #import "CrashTest.h"
-
-#import "MKMainThreadWatch.h" 
+ 
 #import "MKRenderCounter.h"
 
 
@@ -54,15 +53,13 @@
     self.title = @"MKAppKit";
     [self.view addSubview:self.tableview];
     
-    //    crash 防护测试
-    [self execTest];
     
-    //    render test
-    [self renderTest];
-    
+//    //    crash 防护测试
+//    [self execTest];
 //    //    crash 抓取测试
 //    [self crashCaught];
-    
+    //    //    render test
+    //    [self renderTest];
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];

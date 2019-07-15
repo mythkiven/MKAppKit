@@ -13,9 +13,9 @@
 
 #import "MKHeader.h"
 #import "MKDevice.h"
+#import "MKFileUtils.h"
+#import "MKThreadTrace.h"
 
-
-static pthread_mutex_t mk_pthread_mutex_t_write_crash = PTHREAD_MUTEX_INITIALIZER;
 
 // 最大处理数量
 const int mk_caughtExceptionMaximum  = 20;
@@ -23,72 +23,10 @@ volatile int32_t mk_caughtExceptionCount = 0;
 
 // 其他sdk添加的异常处理
 static NSUncaughtExceptionHandler *mk_old_exception_handler  = NULL;
-static sig_t mk_old_signal_handler = NULL;
 
-
-#pragma mark -  get info  -
-
-NSString *mk_getBacktrace() {
-//    void* callstack[128];
-//    int frames = backtrace(callstack, 128);
-//    char **strs = backtrace_symbols(callstack, frames);
-//    int i;
-//    NSMutableArray *backtrace = [NSMutableArray arrayWithCapacity:frames];
-//    for (i = 0;i < 32;i++){
-//        [backtrace addObject:[NSString stringWithUTF8String:strs[i]]];
-//    }
-//    free(strs);
-//    return backtrace;
-    
-    NSMutableString *mstr = [[NSMutableString alloc] init];
-    [mstr appendString:@"Stack:\n"];
-    void *callstack[128];
-    int i, frames = backtrace(callstack, 128);
-    char **strs = backtrace_symbols(callstack, frames);
-    for (i = 0; i <frames; ++i) {
-        [mstr appendFormat:@"%s\n", strs[i]];
-    }
-    [mstr appendString:@"\n************************************************\ncallStackSymbols:\n"];
-    NSArray *arr = [NSThread callStackSymbols];
-    [mstr appendString: [arr componentsJoinedByString:@"\n"]];
-    free(strs);
-    return mstr;
-}
-NSString *mk_getAppInfo() {
-    MKDevice *device = [MKDevice new];
-    return device.deviceInfo;
-}
 
 #pragma mark -  save to file -
 
-NSString *mk_crashLogPath(){
-    NSString *crashLogPath;
-    NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *sandBoxPath  = [paths objectAtIndex:0];
-    crashLogPath = [sandBoxPath stringByAppendingPathComponent:@"MKCrashLog"];
-    
-#ifdef DEBUG
-    crashLogPath = [crashLogPath stringByAppendingPathComponent:@"DEBUG"];
-    if(NO == [[NSFileManager defaultManager] fileExistsAtPath:crashLogPath]){
-        [[NSFileManager defaultManager] createDirectoryAtPath:crashLogPath
-                                  withIntermediateDirectories:YES
-                                                   attributes:nil
-                                                        error:NULL];
-    }
-    
-#else
-    crashLogPath = [sandBoxPath stringByAppendingPathComponent:@"RELEASE"];
-    if(NO == [[NSFileManager defaultManager] fileExistsAtPath:crashLogPath]){
-        [[NSFileManager defaultManager] createDirectoryAtPath:crashLogPath
-                                  withIntermediateDirectories:YES
-                                                   attributes:nil
-                                                        error:NULL];
-    }
-    
-#endif
-    
-    return crashLogPath;
-}
 
 static NSMutableArray *mk_logPlist;
 
@@ -96,35 +34,14 @@ NSMutableArray *mk_plist(){
     if(! mk_logPlist){
         mk_logPlist = [NSMutableArray new];
     }
-    if (YES == [[NSFileManager defaultManager] fileExistsAtPath:[mk_crashLogPath() stringByAppendingPathComponent:@"mkCrashLog.plist"]]){
-        mk_logPlist = [[NSMutableArray arrayWithContentsOfFile:[mk_crashLogPath() stringByAppendingPathComponent:@"mkCrashLog.plist"]] mutableCopy];
+    if (YES == [[NSFileManager defaultManager] fileExistsAtPath:[MK_CRASH_DIR stringByAppendingPathComponent:[MK_FILE_NAME_TAG stringByAppendingString:@"mkCrashLog.plist"]]]){
+        mk_logPlist = [[NSMutableArray arrayWithContentsOfFile:[MK_CRASH_DIR stringByAppendingPathComponent:[MK_FILE_NAME_TAG stringByAppendingString:@"mkCrashLog.plist"]]] mutableCopy];
     }
     return mk_logPlist;
 }
 
 void mk_saveToFile(NSMutableDictionary *dict) {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSString* dateString = [formatter stringFromDate:[NSDate date]];
-    [dict setObject:dateString forKey:@"date"];
-    NSString* savePath = [[mk_crashLogPath() stringByAppendingPathComponent:dateString] stringByAppendingString:@".plist"];
-    
-    pthread_mutex_lock(&mk_pthread_mutex_t_write_crash);
-        BOOL succeed = [ dict writeToFile:savePath atomically:YES];
-        if(NO == succeed){
-            MKErrorLog(@"crash report failed!");
-        }else{
-            MKLog(@"save crash report succeed!");
-        }
-        mk_plist();
-        [mk_logPlist addObject:dateString];
-        if([mk_logPlist writeToFile:[mk_crashLogPath() stringByAppendingPathComponent:@"crashLog.plist"] atomically:YES]){
-            MKLog(@"add to crashLog.plist success");
-        }else{
-            MKErrorLog(@"add to crashLog.plist faile");
-        }
-    pthread_mutex_unlock(&mk_pthread_mutex_t_write_crash);
-     
+    [MKFileUtils saveToDir:MK_CRASH_DIR content:dict fileName:@"mkCrashInfo"];
 }
 
 void mk_saveException(NSException*exception) {
@@ -142,26 +59,15 @@ void mk_saveException(NSException*exception) {
         [detail setObject:exception.callStackSymbols forKey:@"callStack"];
     }
     NSMutableDictionary * dict = [NSMutableDictionary dictionary];
-    [detail setObject:mk_getAppInfo() forKey:@"appinfo"];
     [dict setObject:@"exception" forKey:@"type"];
     [dict setObject:detail forKey:@"info"];
     mk_saveToFile(dict);
     NSSetUncaughtExceptionHandler(NULL);
 }
 void mk_saveSignal(int sig) {
-    //    NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithObject:[NSNumber numberWithInt:signal] forKey:UncaughtExceptionHandlerSignalKey];
-    //    NSArray *callStack = [UncaughtExceptionHandler backtrace];
-    //    [userInfo setObject:callStack forKey:UncaughtExceptionHandlerAddressesKey];
-    //    [userInfo setObject:@"SigCrash" forKey:UncaughtExceptionHandlerFileKey];
-    //
-    //    [[[UncaughtExceptionHandler alloc] init] performSelectorOnMainThread:@selector(handleException:)
-    //                                                              withObject:[NSException exceptionWithName:UncaughtExceptionHandlerSignalExceptionName
-    //                                                                                                 reason:[NSString stringWithFormat:NSLocalizedString(@"Signal %d was raised.\n" @"%@", nil), signal, getAppInfo()] userInfo:userInfo]
-    //                                                           waitUntilDone:YES];
     NSMutableDictionary * detail = [NSMutableDictionary dictionary];
-    [detail setObject:mk_getAppInfo() forKey:@"appinfo"];
     [detail setObject:@(sig) forKey:@"signal type"];
-    [detail setObject:mk_getBacktrace() forKey:@"backtrace"];
+    [detail setObject:mk_callStackSymbols() forKey:@"backtrace"];
     mk_saveToFile(detail);
     
     signal(SIGABRT, SIG_DFL );
@@ -174,12 +80,6 @@ void mk_saveSignal(int sig) {
     signal(SIGINT,  SIG_DFL);
     signal(SIGQUIT, SIG_DFL);
 }
-
-
-
-
-
-
 
 
 #pragma mark  - signal -
@@ -240,7 +140,7 @@ void mk_registerExceptionHandler(void){
 
 
 NSDictionary *mk_crashForKey(NSString *key) {
-    NSString* filePath = [[mk_crashLogPath() stringByAppendingPathComponent:key] stringByAppendingString:@".plist"];
+    NSString* filePath = [[MK_CRASH_DIR stringByAppendingPathComponent:key] stringByAppendingString:@".plist"];
     NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile:filePath];
     return dict;
 }
@@ -251,7 +151,7 @@ NSArray *mk_getCrashPlist() {
 NSArray *mk_getCrashLogs() {
     NSMutableArray* ret = [NSMutableArray new];
     for (NSString* key in mk_plist()) {
-        NSString* filePath = [mk_crashLogPath() stringByAppendingPathComponent:key];
+        NSString* filePath = [MK_CRASH_DIR stringByAppendingPathComponent:key];
         NSString* path = [filePath stringByAppendingString:@".plist"];
         NSDictionary* log = [NSDictionary dictionaryWithContentsOfFile:path];
         [ret addObject:log];
@@ -260,7 +160,7 @@ NSArray *mk_getCrashLogs() {
 }
 NSDictionary *mk_getCrashReport() {
     for (NSString* key in mk_plist()) {
-        NSString* filePath = [mk_crashLogPath() stringByAppendingPathComponent:key];
+        NSString* filePath = [MK_CRASH_DIR stringByAppendingPathComponent:key];
         NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile:filePath];
         return dict;
     }

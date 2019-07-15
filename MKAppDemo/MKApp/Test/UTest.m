@@ -8,10 +8,10 @@
 
 #import "UTest.h"
 #import "MKJSON.h"
-#import "MKDebug.h"
+#import "MKHeader.h"
 #import "MKFunctions.h"
 #import "MKRenderCounter.h"
-#import "MKMainThreadWatch.h"
+#import "MKRenderWatch.h"
 #import "MKCrashGuardManager.h"
 #import "CrashTest.h"
 
@@ -34,9 +34,8 @@
 }
 - (void)renderTest {
 #if !TARGET_IPHONE_SIMULATOR
-    [MKRenderCounter sharedGeigerCounter].enabled = YES;
+    [MKRenderCounter sharedRenderCounter].enabled = YES;
 #endif
-    [[MKMainThreadWatch new] startWatch];
     _timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(blockThread) userInfo:nil repeats:true];
     [self performSelector:@selector(cancelTest) withObject:nil afterDelay:3];
 }
