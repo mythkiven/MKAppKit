@@ -245,16 +245,6 @@ objc_exception_throw + 48                                           libobjc.A.dy
 - 对象释放后内存被改动过, 内存被写上不可访问的新数据, 很可能 Crash 在 objc_msgSend 上面（必现 Crash, 常见）
 - 对象释放后内存被改动过, 内存被写上可访问的新数据, 访问时访问到别的数据, 可能【随机 crash】
 
-self.delegate = myVC; 用 weak 修饰的
-myVC 执行  Pop, 之后就会被销毁
-[self.delegate doSomething]; 而 self.delegate 仍然起作用, 成了野指针
-
-避免这种异常可以在调用之前检查一下代理是否为空, 是否能够响应所给的 Selector
-if(self.delegate != nil) {
-    if([self.delegate respondsToSelector:@selector(doSomething)]) {
-        [self.delegate doSomething];
-    }
-}
 ```
 
 ##### 5.2 多线程 crash
