@@ -9,9 +9,9 @@
 #import "MKURLCategory.h"
 #import <objc/runtime.h>
 
-#import "JxbHttpDatasource.h"
+#import "MKHttpDatasource.h"
 #import <objc/runtime.h>
-#import "JxbDebugTool.h"
+#import "MKDebugTool.h"
 
 @implementation MKURLCategory
 
@@ -151,13 +151,13 @@
 - (void)URLSession_swizzling:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(nullable NSError *)error {
     [self URLSession_swizzling:session task:task didCompleteWithError:error];
     NSURLRequest* req = task.originalRequest;
-    if ([[[JxbHttpDatasource shareInstance] arrRequest] containsObject:req.requestId])
+    if ([[[MKHttpDatasource shareInstance] arrRequest] containsObject:req.requestId])
         return;
     BOOL canHandle = YES;
-    if ([[JxbDebugTool shareInstance] arrOnlyHosts].count > 0) {
+    if ([[MKDebugTool shareInstance] arrOnlyHosts].count > 0) {
         canHandle = NO;
         NSString* url = [req.URL.absoluteString lowercaseString];
-        for (NSString* _url in [JxbDebugTool shareInstance].arrOnlyHosts) {
+        for (NSString* _url in [MKDebugTool shareInstance].arrOnlyHosts) {
             if ([url rangeOfString:[_url lowercaseString]].location != NSNotFound) {
                 canHandle = YES;
                 break;
@@ -168,19 +168,19 @@
         return;
     
     NSURLResponse* resp = task.response;
-    JxbHttpModel* model = [[JxbHttpModel alloc] init];
+    MKHttpModel* model = [[MKHttpModel alloc] init];
     model.requestId = req.requestId;
     model.url = req.URL;
     model.method = req.HTTPMethod;
     model.mineType = resp.MIMEType;
     if (req.HTTPBody) {
         NSData* data = req.HTTPBody;
-        if ([[JxbDebugTool shareInstance] isHttpRequestEncrypt]) {
-            if ([[JxbDebugTool shareInstance] delegate] && [[JxbDebugTool shareInstance].delegate respondsToSelector:@selector(decryptJson:)]) {
-                data = [[JxbDebugTool shareInstance].delegate decryptJson:req.HTTPBody];
+        if ([[MKDebugTool shareInstance] isHttpRequestEncrypt]) {
+            if ([[MKDebugTool shareInstance] delegate] && [[MKDebugTool shareInstance].delegate respondsToSelector:@selector(decryptJson:)]) {
+                data = [[MKDebugTool shareInstance].delegate decryptJson:req.HTTPBody];
             }
         }
-        model.requestBody = [JxbHttpDatasource prettyJSONStringFromData:data];
+        model.requestBody = [MKHttpDatasource prettyJSONStringFromData:data];
     }
     NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)resp;
     model.statusCode = [NSString stringWithFormat:@"%d",(int)httpResponse.statusCode];
@@ -190,7 +190,7 @@
     model.totalDuration = [NSString stringWithFormat:@"%fs",[[NSDate date] timeIntervalSince1970] - req.startTime.doubleValue];
     model.startTime = [NSString stringWithFormat:@"%fs",req.startTime.doubleValue];
     
-    [[JxbHttpDatasource shareInstance] addHttpRequset:model];
+    [[MKHttpDatasource shareInstance] addHttpRequset:model];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotifyKeyReloadHttp object:nil];
 }
 #pragma mark  NSUrlSession data delegate with swizzling

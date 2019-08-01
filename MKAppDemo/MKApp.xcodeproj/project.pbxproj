@@ -11,22 +11,22 @@
 		180D72B922C5FC1600F437AE /* MKCrashMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 180D72B822C5FC1600F437AE /* MKCrashMonitor.m */; };
 		180D72BC22C5FC3D00F437AE /* MKCrashCaught.m in Sources */ = {isa = PBXBuildFile; fileRef = 180D72BB22C5FC3D00F437AE /* MKCrashCaught.m */; };
 		180D72BF22C722E000F437AE /* MKDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 180D72BE22C722E000F437AE /* MKDevice.m */; };
-		1810E5AC22CB12F0004DDCA7 /* JxbLogVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5AB22CB12F0004DDCA7 /* JxbLogVC.m */; };
+		1810E5AC22CB12F0004DDCA7 /* MKLogVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5AB22CB12F0004DDCA7 /* MKLogVC.m */; };
 		1810E5AF22CB13BE004DDCA7 /* MKURLCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5AE22CB13BE004DDCA7 /* MKURLCategory.m */; };
-		1810E5B222CB14D0004DDCA7 /* JxbUrlSessionHook_NSURLSessionAsynchronousConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5B122CB14D0004DDCA7 /* JxbUrlSessionHook_NSURLSessionAsynchronousConvenience.m */; };
-		1810E5B522CB152C004DDCA7 /* JxbHttpCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5B422CB152C004DDCA7 /* JxbHttpCell.m */; };
-		1810E5B822CB1534004DDCA7 /* JxbHttpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5B622CB1533004DDCA7 /* JxbHttpVC.m */; };
-		1810E5BB22CB153C004DDCA7 /* JxbHttpDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5B922CB153C004DDCA7 /* JxbHttpDetailVC.m */; };
-		1810E5BE22CB1545004DDCA7 /* JxbHttpProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5BD22CB1545004DDCA7 /* JxbHttpProtocol.m */; };
-		1810E5C122CB154F004DDCA7 /* JxbHttpDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5BF22CB154E004DDCA7 /* JxbHttpDatasource.m */; };
-		1810E5C422CB15DE004DDCA7 /* JxbDebugTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5C322CB15DD004DDCA7 /* JxbDebugTool.m */; };
-		1810E5C722CB15F2004DDCA7 /* JxbBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5C622CB15F2004DDCA7 /* JxbBaseVC.m */; };
-		1810E5CA22CB1634004DDCA7 /* JxbDebugVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5C922CB1634004DDCA7 /* JxbDebugVC.m */; };
-		1810E5CD22CB163B004DDCA7 /* JxbContentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5CC22CB163B004DDCA7 /* JxbContentVC.m */; };
-		1810E5D022CB1641004DDCA7 /* JxbResponseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5CF22CB1641004DDCA7 /* JxbResponseVC.m */; };
-		1810E5D322CB165E004DDCA7 /* JxbMemoryHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5D222CB165E004DDCA7 /* JxbMemoryHelper.m */; };
-		1810E5D822CB16A1004DDCA7 /* JxbCrashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5D622CB16A0004DDCA7 /* JxbCrashHelper.m */; };
-		1810E5D922CB16A1004DDCA7 /* JxbCrashVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5D722CB16A0004DDCA7 /* JxbCrashVC.m */; };
+		1810E5B222CB14D0004DDCA7 /* MKUrlSessionHook_NSURLSessionAsynchronousConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5B122CB14D0004DDCA7 /* MKUrlSessionHook_NSURLSessionAsynchronousConvenience.m */; };
+		1810E5B522CB152C004DDCA7 /* MKHttpCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5B422CB152C004DDCA7 /* MKHttpCell.m */; };
+		1810E5B822CB1534004DDCA7 /* MKHttpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5B622CB1533004DDCA7 /* MKHttpVC.m */; };
+		1810E5BB22CB153C004DDCA7 /* MKHttpDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5B922CB153C004DDCA7 /* MKHttpDetailVC.m */; };
+		1810E5BE22CB1545004DDCA7 /* MKHttpProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5BD22CB1545004DDCA7 /* MKHttpProtocol.m */; };
+		1810E5C122CB154F004DDCA7 /* MKHttpDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5BF22CB154E004DDCA7 /* MKHttpDatasource.m */; };
+		1810E5C422CB15DE004DDCA7 /* MKDebugTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5C322CB15DD004DDCA7 /* MKDebugTool.m */; };
+		1810E5C722CB15F2004DDCA7 /* MKBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5C622CB15F2004DDCA7 /* MKBaseVC.m */; };
+		1810E5CA22CB1634004DDCA7 /* MKDebugVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5C922CB1634004DDCA7 /* MKDebugVC.m */; };
+		1810E5CD22CB163B004DDCA7 /* MKContentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5CC22CB163B004DDCA7 /* MKContentVC.m */; };
+		1810E5D022CB1641004DDCA7 /* MKResponseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5CF22CB1641004DDCA7 /* MKResponseVC.m */; };
+		1810E5D322CB165E004DDCA7 /* MKMemoryHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5D222CB165E004DDCA7 /* MKMemoryHelper.m */; };
+		1810E5D822CB16A1004DDCA7 /* MKCrashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5D622CB16A0004DDCA7 /* MKCrashHelper.m */; };
+		1810E5D922CB16A1004DDCA7 /* MKCrashVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5D722CB16A0004DDCA7 /* MKCrashVC.m */; };
 		18289DFD2292467800EB7FF2 /* MKPointWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 18289DFB2292467800EB7FF2 /* MKPointWatch.m */; };
 		1847EB3C2276D90500E6E35D /* CombineLoadingAnimationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1847EB392276D90400E6E35D /* CombineLoadingAnimationVC.xib */; };
 		1847EB3D2276D90500E6E35D /* CombineLoadingAnimationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1847EB3A2276D90400E6E35D /* CombineLoadingAnimationVC.m */; };
@@ -34,6 +34,10 @@
 		1847EB442276DE6600E6E35D /* DropdownMailTFVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1847EB432276DE6600E6E35D /* DropdownMailTFVC.xib */; };
 		1847EB472276F73E00E6E35D /* DiffuseMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1847EB462276F73D00E6E35D /* DiffuseMenuVC.swift */; };
 		1847EB492276F8F500E6E35D /* DiffuseMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1847EB482276F8F500E6E35D /* DiffuseMenuVC.xib */; };
+		185B456422F270BB00F1E4B1 /* NSFileManager+MKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 185B455A22F270BB00F1E4B1 /* NSFileManager+MKCategory.m */; };
+		185B456522F270BB00F1E4B1 /* NSData+MKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 185B455E22F270BB00F1E4B1 /* NSData+MKCategory.m */; };
+		185B456622F270BB00F1E4B1 /* NSTimer+MKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 185B456122F270BB00F1E4B1 /* NSTimer+MKCategory.m */; };
+		185B456722F270BB00F1E4B1 /* NSString+MKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 185B456322F270BB00F1E4B1 /* NSString+MKCategory.m */; };
 		186FF05D229EA19600AFA303 /* MKJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FF05C229EA19600AFA303 /* MKJSON.m */; };
 		186FF08A229F65A500AFA303 /* MKAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FF089229F65A500AFA303 /* MKAppTests.m */; };
 		186FF091229F65B500AFA303 /* MKCrashGuardTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FF05F229F644500AFA303 /* MKCrashGuardTest.m */; };
@@ -74,38 +78,38 @@
 		180D72BB22C5FC3D00F437AE /* MKCrashCaught.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKCrashCaught.m; sourceTree = "<group>"; };
 		180D72BD22C722E000F437AE /* MKDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKDevice.h; sourceTree = "<group>"; };
 		180D72BE22C722E000F437AE /* MKDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKDevice.m; sourceTree = "<group>"; };
-		1810E5AA22CB12F0004DDCA7 /* JxbLogVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JxbLogVC.h; sourceTree = "<group>"; };
-		1810E5AB22CB12F0004DDCA7 /* JxbLogVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JxbLogVC.m; sourceTree = "<group>"; };
+		1810E5AA22CB12F0004DDCA7 /* MKLogVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKLogVC.h; sourceTree = "<group>"; };
+		1810E5AB22CB12F0004DDCA7 /* MKLogVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKLogVC.m; sourceTree = "<group>"; };
 		1810E5AD22CB13BE004DDCA7 /* MKURLCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKURLCategory.h; sourceTree = "<group>"; };
 		1810E5AE22CB13BE004DDCA7 /* MKURLCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKURLCategory.m; sourceTree = "<group>"; };
-		1810E5B022CB14D0004DDCA7 /* JxbUrlSessionHook_NSURLSessionAsynchronousConvenience.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JxbUrlSessionHook_NSURLSessionAsynchronousConvenience.h; sourceTree = "<group>"; };
-		1810E5B122CB14D0004DDCA7 /* JxbUrlSessionHook_NSURLSessionAsynchronousConvenience.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JxbUrlSessionHook_NSURLSessionAsynchronousConvenience.m; sourceTree = "<group>"; };
-		1810E5B322CB152B004DDCA7 /* JxbHttpCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbHttpCell.h; sourceTree = "<group>"; };
-		1810E5B422CB152C004DDCA7 /* JxbHttpCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbHttpCell.m; sourceTree = "<group>"; };
-		1810E5B622CB1533004DDCA7 /* JxbHttpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbHttpVC.m; sourceTree = "<group>"; };
-		1810E5B722CB1534004DDCA7 /* JxbHttpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbHttpVC.h; sourceTree = "<group>"; };
-		1810E5B922CB153C004DDCA7 /* JxbHttpDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbHttpDetailVC.m; sourceTree = "<group>"; };
-		1810E5BA22CB153C004DDCA7 /* JxbHttpDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbHttpDetailVC.h; sourceTree = "<group>"; };
-		1810E5BC22CB1544004DDCA7 /* JxbHttpProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbHttpProtocol.h; sourceTree = "<group>"; };
-		1810E5BD22CB1545004DDCA7 /* JxbHttpProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbHttpProtocol.m; sourceTree = "<group>"; };
-		1810E5BF22CB154E004DDCA7 /* JxbHttpDatasource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbHttpDatasource.m; sourceTree = "<group>"; };
-		1810E5C022CB154F004DDCA7 /* JxbHttpDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbHttpDatasource.h; sourceTree = "<group>"; };
-		1810E5C222CB15DD004DDCA7 /* JxbDebugTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbDebugTool.h; sourceTree = "<group>"; };
-		1810E5C322CB15DD004DDCA7 /* JxbDebugTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbDebugTool.m; sourceTree = "<group>"; };
-		1810E5C522CB15F2004DDCA7 /* JxbBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbBaseVC.h; sourceTree = "<group>"; };
-		1810E5C622CB15F2004DDCA7 /* JxbBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbBaseVC.m; sourceTree = "<group>"; };
-		1810E5C822CB1633004DDCA7 /* JxbDebugVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbDebugVC.h; sourceTree = "<group>"; };
-		1810E5C922CB1634004DDCA7 /* JxbDebugVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbDebugVC.m; sourceTree = "<group>"; };
-		1810E5CB22CB163A004DDCA7 /* JxbContentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbContentVC.h; sourceTree = "<group>"; };
-		1810E5CC22CB163B004DDCA7 /* JxbContentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbContentVC.m; sourceTree = "<group>"; };
-		1810E5CE22CB1641004DDCA7 /* JxbResponseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbResponseVC.h; sourceTree = "<group>"; };
-		1810E5CF22CB1641004DDCA7 /* JxbResponseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbResponseVC.m; sourceTree = "<group>"; };
-		1810E5D122CB165E004DDCA7 /* JxbMemoryHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbMemoryHelper.h; sourceTree = "<group>"; };
-		1810E5D222CB165E004DDCA7 /* JxbMemoryHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbMemoryHelper.m; sourceTree = "<group>"; };
-		1810E5D422CB16A0004DDCA7 /* JxbCrashHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbCrashHelper.h; sourceTree = "<group>"; };
-		1810E5D522CB16A0004DDCA7 /* JxbCrashVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JxbCrashVC.h; sourceTree = "<group>"; };
-		1810E5D622CB16A0004DDCA7 /* JxbCrashHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbCrashHelper.m; sourceTree = "<group>"; };
-		1810E5D722CB16A0004DDCA7 /* JxbCrashVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JxbCrashVC.m; sourceTree = "<group>"; };
+		1810E5B022CB14D0004DDCA7 /* MKUrlSessionHook_NSURLSessionAsynchronousConvenience.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKUrlSessionHook_NSURLSessionAsynchronousConvenience.h; sourceTree = "<group>"; };
+		1810E5B122CB14D0004DDCA7 /* MKUrlSessionHook_NSURLSessionAsynchronousConvenience.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKUrlSessionHook_NSURLSessionAsynchronousConvenience.m; sourceTree = "<group>"; };
+		1810E5B322CB152B004DDCA7 /* MKHttpCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKHttpCell.h; sourceTree = "<group>"; };
+		1810E5B422CB152C004DDCA7 /* MKHttpCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKHttpCell.m; sourceTree = "<group>"; };
+		1810E5B622CB1533004DDCA7 /* MKHttpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKHttpVC.m; sourceTree = "<group>"; };
+		1810E5B722CB1534004DDCA7 /* MKHttpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKHttpVC.h; sourceTree = "<group>"; };
+		1810E5B922CB153C004DDCA7 /* MKHttpDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKHttpDetailVC.m; sourceTree = "<group>"; };
+		1810E5BA22CB153C004DDCA7 /* MKHttpDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKHttpDetailVC.h; sourceTree = "<group>"; };
+		1810E5BC22CB1544004DDCA7 /* MKHttpProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKHttpProtocol.h; sourceTree = "<group>"; };
+		1810E5BD22CB1545004DDCA7 /* MKHttpProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKHttpProtocol.m; sourceTree = "<group>"; };
+		1810E5BF22CB154E004DDCA7 /* MKHttpDatasource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKHttpDatasource.m; sourceTree = "<group>"; };
+		1810E5C022CB154F004DDCA7 /* MKHttpDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKHttpDatasource.h; sourceTree = "<group>"; };
+		1810E5C222CB15DD004DDCA7 /* MKDebugTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDebugTool.h; sourceTree = "<group>"; };
+		1810E5C322CB15DD004DDCA7 /* MKDebugTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDebugTool.m; sourceTree = "<group>"; };
+		1810E5C522CB15F2004DDCA7 /* MKBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKBaseVC.h; sourceTree = "<group>"; };
+		1810E5C622CB15F2004DDCA7 /* MKBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKBaseVC.m; sourceTree = "<group>"; };
+		1810E5C822CB1633004DDCA7 /* MKDebugVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDebugVC.h; sourceTree = "<group>"; };
+		1810E5C922CB1634004DDCA7 /* MKDebugVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDebugVC.m; sourceTree = "<group>"; };
+		1810E5CB22CB163A004DDCA7 /* MKContentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKContentVC.h; sourceTree = "<group>"; };
+		1810E5CC22CB163B004DDCA7 /* MKContentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKContentVC.m; sourceTree = "<group>"; };
+		1810E5CE22CB1641004DDCA7 /* MKResponseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKResponseVC.h; sourceTree = "<group>"; };
+		1810E5CF22CB1641004DDCA7 /* MKResponseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKResponseVC.m; sourceTree = "<group>"; };
+		1810E5D122CB165E004DDCA7 /* MKMemoryHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKMemoryHelper.h; sourceTree = "<group>"; };
+		1810E5D222CB165E004DDCA7 /* MKMemoryHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKMemoryHelper.m; sourceTree = "<group>"; };
+		1810E5D422CB16A0004DDCA7 /* MKCrashHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCrashHelper.h; sourceTree = "<group>"; };
+		1810E5D522CB16A0004DDCA7 /* MKCrashVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCrashVC.h; sourceTree = "<group>"; };
+		1810E5D622CB16A0004DDCA7 /* MKCrashHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCrashHelper.m; sourceTree = "<group>"; };
+		1810E5D722CB16A0004DDCA7 /* MKCrashVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCrashVC.m; sourceTree = "<group>"; };
 		18289DFB2292467800EB7FF2 /* MKPointWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPointWatch.m; sourceTree = "<group>"; };
 		18289DFC2292467800EB7FF2 /* MKPointWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPointWatch.h; sourceTree = "<group>"; };
 		1847EB392276D90400E6E35D /* CombineLoadingAnimationVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CombineLoadingAnimationVC.xib; sourceTree = "<group>"; };
@@ -117,6 +121,16 @@
 		1847EB452276F73D00E6E35D /* MKApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MKApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		1847EB462276F73D00E6E35D /* DiffuseMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffuseMenuVC.swift; sourceTree = "<group>"; };
 		1847EB482276F8F500E6E35D /* DiffuseMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiffuseMenuVC.xib; sourceTree = "<group>"; };
+		185B455A22F270BB00F1E4B1 /* NSFileManager+MKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+MKCategory.m"; sourceTree = "<group>"; };
+		185B455B22F270BB00F1E4B1 /* NSFileManager+MKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+MKCategory.h"; sourceTree = "<group>"; };
+		185B455C22F270BB00F1E4B1 /* THCategory-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "THCategory-Prefix.pch"; sourceTree = "<group>"; };
+		185B455D22F270BB00F1E4B1 /* NSTimer+MKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+MKCategory.h"; sourceTree = "<group>"; };
+		185B455E22F270BB00F1E4B1 /* NSData+MKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MKCategory.m"; sourceTree = "<group>"; };
+		185B455F22F270BB00F1E4B1 /* NSData+MKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MKCategory.h"; sourceTree = "<group>"; };
+		185B456022F270BB00F1E4B1 /* NSString+MKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MKCategory.h"; sourceTree = "<group>"; };
+		185B456122F270BB00F1E4B1 /* NSTimer+MKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+MKCategory.m"; sourceTree = "<group>"; };
+		185B456222F270BB00F1E4B1 /* MKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCategory.h; sourceTree = "<group>"; };
+		185B456322F270BB00F1E4B1 /* NSString+MKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MKCategory.m"; sourceTree = "<group>"; };
 		186FF05B229EA19600AFA303 /* MKJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKJSON.h; sourceTree = "<group>"; };
 		186FF05C229EA19600AFA303 /* MKJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKJSON.m; sourceTree = "<group>"; };
 		186FF05F229F644500AFA303 /* MKCrashGuardTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKCrashGuardTest.m; sourceTree = "<group>"; };
@@ -187,22 +201,22 @@
 		1810E5A922CB12BC004DDCA7 /* MKMonitor */ = {
 			isa = PBXGroup;
 			children = (
-				1810E5D422CB16A0004DDCA7 /* JxbCrashHelper.h */,
-				1810E5D622CB16A0004DDCA7 /* JxbCrashHelper.m */,
-				1810E5D522CB16A0004DDCA7 /* JxbCrashVC.h */,
-				1810E5D722CB16A0004DDCA7 /* JxbCrashVC.m */,
-				1810E5C522CB15F2004DDCA7 /* JxbBaseVC.h */,
-				1810E5C622CB15F2004DDCA7 /* JxbBaseVC.m */,
-				1810E5C222CB15DD004DDCA7 /* JxbDebugTool.h */,
-				1810E5C322CB15DD004DDCA7 /* JxbDebugTool.m */,
-				1810E5CE22CB1641004DDCA7 /* JxbResponseVC.h */,
-				1810E5CF22CB1641004DDCA7 /* JxbResponseVC.m */,
-				1810E5CB22CB163A004DDCA7 /* JxbContentVC.h */,
-				1810E5CC22CB163B004DDCA7 /* JxbContentVC.m */,
-				1810E5C822CB1633004DDCA7 /* JxbDebugVC.h */,
-				1810E5C922CB1634004DDCA7 /* JxbDebugVC.m */,
-				1810E5AA22CB12F0004DDCA7 /* JxbLogVC.h */,
-				1810E5AB22CB12F0004DDCA7 /* JxbLogVC.m */,
+				1810E5D422CB16A0004DDCA7 /* MKCrashHelper.h */,
+				1810E5D622CB16A0004DDCA7 /* MKCrashHelper.m */,
+				1810E5D522CB16A0004DDCA7 /* MKCrashVC.h */,
+				1810E5D722CB16A0004DDCA7 /* MKCrashVC.m */,
+				1810E5C522CB15F2004DDCA7 /* MKBaseVC.h */,
+				1810E5C622CB15F2004DDCA7 /* MKBaseVC.m */,
+				1810E5C222CB15DD004DDCA7 /* MKDebugTool.h */,
+				1810E5C322CB15DD004DDCA7 /* MKDebugTool.m */,
+				1810E5CE22CB1641004DDCA7 /* MKResponseVC.h */,
+				1810E5CF22CB1641004DDCA7 /* MKResponseVC.m */,
+				1810E5CB22CB163A004DDCA7 /* MKContentVC.h */,
+				1810E5CC22CB163B004DDCA7 /* MKContentVC.m */,
+				1810E5C822CB1633004DDCA7 /* MKDebugVC.h */,
+				1810E5C922CB1634004DDCA7 /* MKDebugVC.m */,
+				1810E5AA22CB12F0004DDCA7 /* MKLogVC.h */,
+				1810E5AB22CB12F0004DDCA7 /* MKLogVC.m */,
 			);
 			path = MKMonitor;
 			sourceTree = "<group>";
@@ -255,8 +269,8 @@
 		1822A722228BF2FD00152CA5 /* MKMemoryMonitor */ = {
 			isa = PBXGroup;
 			children = (
-				1810E5D122CB165E004DDCA7 /* JxbMemoryHelper.h */,
-				1810E5D222CB165E004DDCA7 /* JxbMemoryHelper.m */,
+				1810E5D122CB165E004DDCA7 /* MKMemoryHelper.h */,
+				1810E5D222CB165E004DDCA7 /* MKMemoryHelper.m */,
 			);
 			path = MKMemoryMonitor;
 			sourceTree = "<group>";
@@ -264,20 +278,20 @@
 		1822A723228BF2FD00152CA5 /* MKNetworkMonitor */ = {
 			isa = PBXGroup;
 			children = (
-				1810E5BA22CB153C004DDCA7 /* JxbHttpDetailVC.h */,
-				1810E5B922CB153C004DDCA7 /* JxbHttpDetailVC.m */,
-				1810E5B722CB1534004DDCA7 /* JxbHttpVC.h */,
-				1810E5B622CB1533004DDCA7 /* JxbHttpVC.m */,
-				1810E5B322CB152B004DDCA7 /* JxbHttpCell.h */,
-				1810E5B422CB152C004DDCA7 /* JxbHttpCell.m */,
-				1810E5C022CB154F004DDCA7 /* JxbHttpDatasource.h */,
-				1810E5BF22CB154E004DDCA7 /* JxbHttpDatasource.m */,
+				1810E5BA22CB153C004DDCA7 /* MKHttpDetailVC.h */,
+				1810E5B922CB153C004DDCA7 /* MKHttpDetailVC.m */,
+				1810E5B722CB1534004DDCA7 /* MKHttpVC.h */,
+				1810E5B622CB1533004DDCA7 /* MKHttpVC.m */,
+				1810E5B322CB152B004DDCA7 /* MKHttpCell.h */,
+				1810E5B422CB152C004DDCA7 /* MKHttpCell.m */,
+				1810E5C022CB154F004DDCA7 /* MKHttpDatasource.h */,
+				1810E5BF22CB154E004DDCA7 /* MKHttpDatasource.m */,
 				1810E5AD22CB13BE004DDCA7 /* MKURLCategory.h */,
 				1810E5AE22CB13BE004DDCA7 /* MKURLCategory.m */,
-				1810E5BC22CB1544004DDCA7 /* JxbHttpProtocol.h */,
-				1810E5BD22CB1545004DDCA7 /* JxbHttpProtocol.m */,
-				1810E5B022CB14D0004DDCA7 /* JxbUrlSessionHook_NSURLSessionAsynchronousConvenience.h */,
-				1810E5B122CB14D0004DDCA7 /* JxbUrlSessionHook_NSURLSessionAsynchronousConvenience.m */,
+				1810E5BC22CB1544004DDCA7 /* MKHttpProtocol.h */,
+				1810E5BD22CB1545004DDCA7 /* MKHttpProtocol.m */,
+				1810E5B022CB14D0004DDCA7 /* MKUrlSessionHook_NSURLSessionAsynchronousConvenience.h */,
+				1810E5B122CB14D0004DDCA7 /* MKUrlSessionHook_NSURLSessionAsynchronousConvenience.m */,
 			);
 			path = MKNetworkMonitor;
 			sourceTree = "<group>";
@@ -332,6 +346,24 @@
 			path = UIKit;
 			sourceTree = "<group>";
 		};
+		185B455922F2709200F1E4B1 /* MKCategory */ = {
+			isa = PBXGroup;
+			children = (
+				185B455F22F270BB00F1E4B1 /* NSData+MKCategory.h */,
+				185B455E22F270BB00F1E4B1 /* NSData+MKCategory.m */,
+				185B455B22F270BB00F1E4B1 /* NSFileManager+MKCategory.h */,
+				185B455A22F270BB00F1E4B1 /* NSFileManager+MKCategory.m */,
+				185B456022F270BB00F1E4B1 /* NSString+MKCategory.h */,
+				185B456322F270BB00F1E4B1 /* NSString+MKCategory.m */,
+				185B455D22F270BB00F1E4B1 /* NSTimer+MKCategory.h */,
+				185B456122F270BB00F1E4B1 /* NSTimer+MKCategory.m */,
+				185B455C22F270BB00F1E4B1 /* THCategory-Prefix.pch */,
+				185B456222F270BB00F1E4B1 /* MKCategory.h */,
+			);
+			name = MKCategory;
+			path = ../MKAppKit/MKCategory;
+			sourceTree = "<group>";
+		};
 		186FF05A229EA18D00AFA303 /* MKFoundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -376,6 +408,7 @@
 		18BB8F62227318F6005EDC27 = {
 			isa = PBXGroup;
 			children = (
+				185B455922F2709200F1E4B1 /* MKCategory */,
 				186FF05A229EA18D00AFA303 /* MKFoundation */,
 				188F8701229E845500A288D4 /* MKTool */,
 				1822A718228BF2FD00152CA5 /* MKMonitor */,
@@ -592,40 +625,44 @@
 				1847EB3D2276D90500E6E35D /* CombineLoadingAnimationVC.m in Sources */,
 				180D72BC22C5FC3D00F437AE /* MKCrashCaught.m in Sources */,
 				18ABC9ED22C1F354004A885E /* MKThreadTrace.m in Sources */,
-				1810E5CD22CB163B004DDCA7 /* JxbContentVC.m in Sources */,
+				1810E5CD22CB163B004DDCA7 /* MKContentVC.m in Sources */,
 				187B9FFF22C9EB2900BB14CC /* MKSandbox.m in Sources */,
 				18BB8F73227318F6005EDC27 /* ViewController.m in Sources */,
 				18289DFD2292467800EB7FF2 /* MKPointWatch.m in Sources */,
 				180D72BF22C722E000F437AE /* MKDevice.m in Sources */,
-				1810E5D822CB16A1004DDCA7 /* JxbCrashHelper.m in Sources */,
-				1810E5D022CB1641004DDCA7 /* JxbResponseVC.m in Sources */,
+				1810E5D822CB16A1004DDCA7 /* MKCrashHelper.m in Sources */,
+				1810E5D022CB1641004DDCA7 /* MKResponseVC.m in Sources */,
 				180D72B622C5F60500F437AE /* UTest.m in Sources */,
 				180D72B922C5FC1600F437AE /* MKCrashMonitor.m in Sources */,
-				1810E5B822CB1534004DDCA7 /* JxbHttpVC.m in Sources */,
+				1810E5B822CB1534004DDCA7 /* MKHttpVC.m in Sources */,
 				188F8704229E848B00A288D4 /* MKDebug.m in Sources */,
-				1810E5CA22CB1634004DDCA7 /* JxbDebugVC.m in Sources */,
-				1810E5B522CB152C004DDCA7 /* JxbHttpCell.m in Sources */,
-				1810E5C422CB15DE004DDCA7 /* JxbDebugTool.m in Sources */,
+				185B456622F270BB00F1E4B1 /* NSTimer+MKCategory.m in Sources */,
+				1810E5CA22CB1634004DDCA7 /* MKDebugVC.m in Sources */,
+				1810E5B522CB152C004DDCA7 /* MKHttpCell.m in Sources */,
+				185B456522F270BB00F1E4B1 /* NSData+MKCategory.m in Sources */,
+				185B456422F270BB00F1E4B1 /* NSFileManager+MKCategory.m in Sources */,
+				1810E5C422CB15DE004DDCA7 /* MKDebugTool.m in Sources */,
+				185B456722F270BB00F1E4B1 /* NSString+MKCategory.m in Sources */,
 				18ABC9F622C20EDF004A885E /* MKRenderCounter.m in Sources */,
 				1847EB472276F73E00E6E35D /* DiffuseMenuVC.swift in Sources */,
-				1810E5C722CB15F2004DDCA7 /* JxbBaseVC.m in Sources */,
-				1810E5BB22CB153C004DDCA7 /* JxbHttpDetailVC.m in Sources */,
+				1810E5C722CB15F2004DDCA7 /* MKBaseVC.m in Sources */,
+				1810E5BB22CB153C004DDCA7 /* MKHttpDetailVC.m in Sources */,
 				188F8707229E85F600A288D4 /* MKFileUtils.m in Sources */,
 				186FF093229F704600AFA303 /* CrashTest.m in Sources */,
 				1847EB422276DD4900E6E35D /* DropdownMailTFVC.m in Sources */,
-				1810E5C122CB154F004DDCA7 /* JxbHttpDatasource.m in Sources */,
-				1810E5D322CB165E004DDCA7 /* JxbMemoryHelper.m in Sources */,
+				1810E5C122CB154F004DDCA7 /* MKHttpDatasource.m in Sources */,
+				1810E5D322CB165E004DDCA7 /* MKMemoryHelper.m in Sources */,
 				18BB8F7E227318FD005EDC27 /* main.m in Sources */,
 				186FF05D229EA19600AFA303 /* MKJSON.m in Sources */,
 				18ABC9DA22C0CDB0004A885E /* MKRenderWatch.m in Sources */,
 				18BB8F70227318F6005EDC27 /* AppDelegate.m in Sources */,
-				1810E5BE22CB1545004DDCA7 /* JxbHttpProtocol.m in Sources */,
+				1810E5BE22CB1545004DDCA7 /* MKHttpProtocol.m in Sources */,
 				188F870A229E86DF00A288D4 /* MKFunctions.m in Sources */,
 				18ABC9D722C0BA24004A885E /* NSObject+MKTTimeLoad.m in Sources */,
 				1810E5AF22CB13BE004DDCA7 /* MKURLCategory.m in Sources */,
-				1810E5B222CB14D0004DDCA7 /* JxbUrlSessionHook_NSURLSessionAsynchronousConvenience.m in Sources */,
-				1810E5D922CB16A1004DDCA7 /* JxbCrashVC.m in Sources */,
-				1810E5AC22CB12F0004DDCA7 /* JxbLogVC.m in Sources */,
+				1810E5B222CB14D0004DDCA7 /* MKUrlSessionHook_NSURLSessionAsynchronousConvenience.m in Sources */,
+				1810E5D922CB16A1004DDCA7 /* MKCrashVC.m in Sources */,
+				1810E5AC22CB12F0004DDCA7 /* MKLogVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

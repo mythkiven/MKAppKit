@@ -1,0 +1,10 @@
+/**
+ *
+ * Created by https://github.com/mythkiven/ on 19/08/01.
+ * Copyright © 2019年 mythkiven. All rights reserved.
+ *
+ */
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <AppKit/AppKit.h>
+#endif

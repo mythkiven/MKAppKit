@@ -19,6 +19,8 @@
  
 #import "MKRenderCounter.h"
 
+#import "MKCategory.h"
+
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource,MKExceptionHandle >
 @property (strong,nonatomic) UITableView *tableview;
@@ -52,6 +54,22 @@
     _dataSource = @[@"MKCombineLoadingAnimation",@"MKDropdownMailTF",@"MKDiffuseMenu"];
     self.title = @"MKAppKit";
     [self.view addSubview:self.tableview];
+    
+    
+    
+    //测试拼音
+    NSString *string = @"蒋先生";
+    NSLog(@"%@(%@)",[string mk_pinyin],[string mk_pinyinAndTone]);
+    //测试Size
+    uint64_t byteCount = 1234567890123456;
+    NSLog(@"%@",[NSString mk_stringFromFileSize:byteCount]);
+    //测试计算
+    NSString *path = [[NSBundle mainBundle] bundlePath];
+    NSLog(@"%llu",[[NSFileManager defaultManager] mk_fileSizeAtPath:path]); 
+    //测试Timer
+    [NSTimer mk_scheduledTimerWithTimeInterval:1.0 repeats:YES handler:^{
+        NSLog(@"xxx");
+    }];
     
     
 //    //    crash 防护测试

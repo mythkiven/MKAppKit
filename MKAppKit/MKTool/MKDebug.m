@@ -13,7 +13,7 @@
 #import "MKSandbox.h"
 #import "MKRenderCounter.h"
 
-#import "JxbDebugTool.h"
+#import "MKDebugTool.h"
 
 @implementation MKDebug
 
@@ -26,8 +26,8 @@
     [MKFileUtils treeSanbox];
     
 #if DEBUG
-    [[JxbDebugTool shareInstance] setMainColor:[UIColor redColor]];
-    [[JxbDebugTool shareInstance] enableDebugMode];
+    [[MKDebugTool shareInstance] setMainColor:[UIColor redColor]];
+    [[MKDebugTool shareInstance] enableDebugMode];
 #endif
     
 }
