@@ -80,16 +80,16 @@ static  NSString *mk_markline_e = @"└---";
 + (void)treeSanbox {
     NSString *homePath = NSHomeDirectory();
     MKPrintf(@"in %@/AppData directory:",homePath);
-    NSFileManager* fm = [NSFileManager defaultManager];
-    NSError* err = nil;
-    NSArray* paths = [fm contentsOfDirectoryAtPath:homePath error:&err];
-    for (NSString* path in paths) {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSError *err = nil;
+    NSArray *paths = [fm contentsOfDirectoryAtPath:homePath error:&err];
+    for (NSString *path in paths) {
         MKPrintf(@"%@ %@",[paths indexOfObject:path]<paths.count-1?mk_markline_c: mk_markline_e,path);
         if ([[path lastPathComponent] hasPrefix:@"."]) {
             continue;
         }
         BOOL isDir = false;
-        NSString* fullPath = [homePath stringByAppendingPathComponent:path];
+        NSString *fullPath = [homePath stringByAppendingPathComponent:path];
         [fm fileExistsAtPath:fullPath isDirectory:&isDir];
         if (isDir) {
             [self treeFile:fullPath mark:mk_markline_b];
