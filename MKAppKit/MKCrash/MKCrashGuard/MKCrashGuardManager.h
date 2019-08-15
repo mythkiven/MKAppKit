@@ -50,7 +50,7 @@ typedef NS_OPTIONS(NSInteger,MKCrashGuardType) {
     
     MKCrashGuardTypeNSUserDefaults = 1 << 13,
     MKCrashGuardTypeNSCache = 1 << 14,
-    MKCrashGuardTypeNSNumber = 1 << 14,
+    MKCrashGuardTypeNSNumber = 1 << 15,
     
     MKCrashGuardTypeAllExceptContainer = MKCrashGuardTypeUnrecognizedSelector | MKCrashGuardTypeKVOCrash | MKCrashGuardTypeKVCCrash | MKCrashGuardTypeNSTimer | MKCrashGuardTypeNSNotification | MKCrashGuardTypeNSNull | MKCrashGuardTypeUINavigationController | MKCrashGuardTypeNSUserDefaults | MKCrashGuardTypeNSCache | MKCrashGuardTypeNSNumber,
     
