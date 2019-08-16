@@ -27,6 +27,8 @@
 		1810E5D322CB165E004DDCA7 /* MKMemoryHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5D222CB165E004DDCA7 /* MKMemoryHelper.m */; };
 		1810E5D822CB16A1004DDCA7 /* MKCrashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5D622CB16A0004DDCA7 /* MKCrashHelper.m */; };
 		1810E5D922CB16A1004DDCA7 /* MKCrashVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810E5D722CB16A0004DDCA7 /* MKCrashVC.m */; };
+		1821DAFC2305CA5B0076D7B7 /* NSObject+MKGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 1821DAFB2305CA5B0076D7B7 /* NSObject+MKGuard.m */; };
+		1821DAFF230658A40076D7B7 /* MKLockSentinel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1821DAFE230658A40076D7B7 /* MKLockSentinel.m */; };
 		18289DFD2292467800EB7FF2 /* MKPointWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 18289DFB2292467800EB7FF2 /* MKPointWatch.m */; };
 		1847EB3C2276D90500E6E35D /* CombineLoadingAnimationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1847EB392276D90400E6E35D /* CombineLoadingAnimationVC.xib */; };
 		1847EB3D2276D90500E6E35D /* CombineLoadingAnimationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1847EB3A2276D90400E6E35D /* CombineLoadingAnimationVC.m */; };
@@ -110,6 +112,10 @@
 		1810E5D522CB16A0004DDCA7 /* MKCrashVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCrashVC.h; sourceTree = "<group>"; };
 		1810E5D622CB16A0004DDCA7 /* MKCrashHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCrashHelper.m; sourceTree = "<group>"; };
 		1810E5D722CB16A0004DDCA7 /* MKCrashVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCrashVC.m; sourceTree = "<group>"; };
+		1821DAFA2305CA5B0076D7B7 /* NSObject+MKGuard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+MKGuard.h"; sourceTree = "<group>"; };
+		1821DAFB2305CA5B0076D7B7 /* NSObject+MKGuard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MKGuard.m"; sourceTree = "<group>"; };
+		1821DAFD230658A40076D7B7 /* MKLockSentinel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKLockSentinel.h; sourceTree = "<group>"; };
+		1821DAFE230658A40076D7B7 /* MKLockSentinel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKLockSentinel.m; sourceTree = "<group>"; };
 		18289DFB2292467800EB7FF2 /* MKPointWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPointWatch.m; sourceTree = "<group>"; };
 		18289DFC2292467800EB7FF2 /* MKPointWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPointWatch.h; sourceTree = "<group>"; };
 		1847EB392276D90400E6E35D /* CombineLoadingAnimationVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CombineLoadingAnimationVC.xib; sourceTree = "<group>"; };
@@ -123,7 +129,6 @@
 		1847EB482276F8F500E6E35D /* DiffuseMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiffuseMenuVC.xib; sourceTree = "<group>"; };
 		185B455A22F270BB00F1E4B1 /* NSFileManager+MKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+MKCategory.m"; sourceTree = "<group>"; };
 		185B455B22F270BB00F1E4B1 /* NSFileManager+MKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+MKCategory.h"; sourceTree = "<group>"; };
-		185B455C22F270BB00F1E4B1 /* THCategory-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "THCategory-Prefix.pch"; sourceTree = "<group>"; };
 		185B455D22F270BB00F1E4B1 /* NSTimer+MKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+MKCategory.h"; sourceTree = "<group>"; };
 		185B455E22F270BB00F1E4B1 /* NSData+MKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MKCategory.m"; sourceTree = "<group>"; };
 		185B455F22F270BB00F1E4B1 /* NSData+MKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MKCategory.h"; sourceTree = "<group>"; };
@@ -357,8 +362,9 @@
 				185B456322F270BB00F1E4B1 /* NSString+MKCategory.m */,
 				185B455D22F270BB00F1E4B1 /* NSTimer+MKCategory.h */,
 				185B456122F270BB00F1E4B1 /* NSTimer+MKCategory.m */,
-				185B455C22F270BB00F1E4B1 /* THCategory-Prefix.pch */,
 				185B456222F270BB00F1E4B1 /* MKCategory.h */,
+				1821DAFA2305CA5B0076D7B7 /* NSObject+MKGuard.h */,
+				1821DAFB2305CA5B0076D7B7 /* NSObject+MKGuard.m */,
 			);
 			name = MKCategory;
 			path = ../MKAppKit/MKCategory;
@@ -369,6 +375,8 @@
 			children = (
 				186FF05B229EA19600AFA303 /* MKJSON.h */,
 				186FF05C229EA19600AFA303 /* MKJSON.m */,
+				1821DAFD230658A40076D7B7 /* MKLockSentinel.h */,
+				1821DAFE230658A40076D7B7 /* MKLockSentinel.m */,
 			);
 			name = MKFoundation;
 			path = ../MKAppKit/MKFoundation;
@@ -653,6 +661,7 @@
 				1810E5C122CB154F004DDCA7 /* MKHttpDatasource.m in Sources */,
 				1810E5D322CB165E004DDCA7 /* MKMemoryHelper.m in Sources */,
 				18BB8F7E227318FD005EDC27 /* main.m in Sources */,
+				1821DAFC2305CA5B0076D7B7 /* NSObject+MKGuard.m in Sources */,
 				186FF05D229EA19600AFA303 /* MKJSON.m in Sources */,
 				18ABC9DA22C0CDB0004A885E /* MKRenderWatch.m in Sources */,
 				18BB8F70227318F6005EDC27 /* AppDelegate.m in Sources */,
@@ -661,6 +670,7 @@
 				18ABC9D722C0BA24004A885E /* NSObject+MKTTimeLoad.m in Sources */,
 				1810E5AF22CB13BE004DDCA7 /* MKURLCategory.m in Sources */,
 				1810E5B222CB14D0004DDCA7 /* MKUrlSessionHook_NSURLSessionAsynchronousConvenience.m in Sources */,
+				1821DAFF230658A40076D7B7 /* MKLockSentinel.m in Sources */,
 				1810E5D922CB16A1004DDCA7 /* MKCrashVC.m in Sources */,
 				1810E5AC22CB12F0004DDCA7 /* MKLogVC.m in Sources */,
 			);

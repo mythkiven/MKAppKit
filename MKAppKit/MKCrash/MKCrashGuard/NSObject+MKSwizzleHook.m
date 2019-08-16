@@ -79,13 +79,14 @@ void mk_swizzleClassMethod(Class cls, SEL originSelector, SEL swizzleSelector) {
                             method_getTypeEncoding(originalMethod));
         
     } else {
-        class_replaceMethod(metacls,
-                            swizzleSelector,
-                            class_replaceMethod(metacls,
-                                                originSelector,
-                                                method_getImplementation(swizzledMethod),
-                                                method_getTypeEncoding(swizzledMethod)),
-                            method_getTypeEncoding(originalMethod));
+        method_exchangeImplementations(originalMethod, swizzledMethod);
+//        class_replaceMethod(metacls,
+//                            swizzleSelector,
+//                            class_replaceMethod(metacls,
+//                                                originSelector,
+//                                                method_getImplementation(swizzledMethod),
+//                                                method_getTypeEncoding(swizzledMethod)),
+//                            method_getTypeEncoding(originalMethod));
     }
 }
 
@@ -116,14 +117,15 @@ void mk_swizzleInstanceMethod(Class cls, SEL originSelector, SEL swizzleSelector
                             method_getImplementation(originalMethod),
                             method_getTypeEncoding(originalMethod));
         
-    } else {
-        class_replaceMethod(cls,
-                            swizzleSelector,
-                            class_replaceMethod(cls,
-                                                originSelector,
-                                                method_getImplementation(swizzledMethod),
-                                                method_getTypeEncoding(swizzledMethod)),
-                            method_getTypeEncoding(originalMethod));
+    } else { 
+        method_exchangeImplementations(originalMethod, swizzledMethod);
+//        class_replaceMethod(cls,
+//                            swizzleSelector,
+//                            class_replaceMethod(cls,
+//                                                originSelector,
+//                                                method_getImplementation(swizzledMethod),
+//                                                method_getTypeEncoding(swizzledMethod)),
+//                            method_getTypeEncoding(originalMethod));
     }
 }
 // a class doesn't need dealloc swizzled if it or a superclass has been swizzled already
