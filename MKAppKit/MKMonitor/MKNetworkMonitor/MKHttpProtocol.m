@@ -27,20 +27,18 @@
 
 
 #pragma mark - protocol
-+ (void)load {
-    
-}
+//+ (void)load {
+//    
+//}
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
     if (![request.URL.scheme isEqualToString:@"http"] &&
         ![request.URL.scheme isEqualToString:@"https"]) {
         return NO;
     }
-    
     if ([NSURLProtocol propertyForKey:myProtocolKey inRequest:request] ) {
         return NO;
     }
-    
     if ([[MKDebugTool shareInstance] arrOnlyHosts].count > 0) {
         NSString* url = [request.URL.absoluteString lowercaseString];
         for (NSString* _url in [MKDebugTool shareInstance].arrOnlyHosts) {
@@ -49,7 +47,6 @@
         }
         return NO;
     }
-    
     return YES;
 }
 
@@ -96,8 +93,7 @@
 }
 
 #pragma mark - NSURLConnectionDelegate
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [[self client] URLProtocol:self didFailWithError:error];
     self.error = error;
 }
@@ -115,20 +111,17 @@
 }
 
 #pragma mark - NSURLConnectionDataDelegate
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     [[self client] URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowed];
     self.response = response;
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [[self client] URLProtocol:self didLoadData:data];
     [self.data appendData:data];
 }
 
-- (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse
-{
+- (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse {
     return cachedResponse;
 }
 

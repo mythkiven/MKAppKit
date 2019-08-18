@@ -9,5 +9,7 @@
 #import "MKBaseVC.h"
 
 @interface MKContentVC : MKBaseVC
+
 @property (nonatomic,copy)NSString  *content;
+
 @end

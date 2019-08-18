@@ -6,16 +6,16 @@
  */
 
 
-#import "MKUrlSessionHook_NSURLSessionAsynchronousConvenience.h"
+#import "MKUrlSessionHook.h"
 #import <objc/runtime.h>
 #import "MKHttpDatasource.h"
 #import "MKURLCategory.h"
 
-@interface MKUrlSessionHook_NSURLSessionAsynchronousConvenience()
+@interface MKUrlSessionHook()
 
 @end
 
-@implementation MKUrlSessionHook_NSURLSessionAsynchronousConvenience
+@implementation MKUrlSessionHook
 
 #pragma mark - 加载hook
 + (void)load {

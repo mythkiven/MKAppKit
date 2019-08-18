@@ -11,4 +11,5 @@
 @interface MKHttpCell : UITableViewCell
 
 - (void)setTitle:(NSString*)title value:(NSString*)value;
+
 @end

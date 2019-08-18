@@ -11,7 +11,7 @@
 #import "MKFileUtils.h"
 #import "MKCrashMonitor.h"
 #import "MKSandbox.h"
-#import "MKRenderCounter.h"
+#import "MKFPSWatch.h"
 
 #import "MKDebugTool.h"
 
@@ -39,8 +39,8 @@
     });
     
 //#if !TARGET_IPHONE_SIMULATOR
-    [MKRenderCounter sharedRenderCounter].enabled = YES;
-    [MKRenderCounter sharedRenderCounter].recordRender = ^(NSDictionary * _Nonnull recordDic) {
+    [MKFPSWatch sharedFPSCounter].enabled = YES;
+    [MKFPSWatch sharedFPSCounter].recordRender = ^(NSDictionary * _Nonnull recordDic) {
 //        NSLog(@"》》》%@",recordDic);
     };
 //#endif

@@ -10,12 +10,12 @@
 #import "MKDebugTool.h"
 
 @interface MKContentVC ()
-{
-    UITextView  *txt;
-}
 @end
 
 @implementation MKContentVC
+{
+    UITextView  *txt;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

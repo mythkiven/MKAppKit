@@ -8,9 +8,11 @@
 #import <Foundation/Foundation.h>
 
 @interface MKCrashHelper : NSObject
+
 + (instancetype)sharedInstance;
 - (void)install;
 - (NSDictionary* )crashForKey:(NSString* )key;
 - (NSArray* )crashPlist;
 - (NSArray* )crashLogs;
+
 @end

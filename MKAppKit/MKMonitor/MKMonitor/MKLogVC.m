@@ -20,8 +20,7 @@
 
 @implementation MKLogModel
 
-+(instancetype)messageFromASLMessage:(aslmsg)aslMessage
-{
++(instancetype)messageFromASLMessage:(aslmsg)aslMessage {
     MKLogModel *logMessage = [[MKLogModel alloc] init];
     
     const char *timestamp = asl_get(aslMessage, ASL_KEY_TIME);
@@ -33,29 +32,24 @@
         }
         logMessage.date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
     }
-    
     const char *sender = asl_get(aslMessage, ASL_KEY_SENDER);
     if (sender) {
         logMessage.sender = @(sender);
     }
-    
     const char *messageText = asl_get(aslMessage, ASL_KEY_MSG);
     if (messageText) {
         logMessage.messageText = @(messageText);
         
     }
-    
     const char *messageID = asl_get(aslMessage, ASL_KEY_MSG_ID);
     if (messageID) {
         logMessage.messageID = [@(messageID) longLongValue];
         
     }
-    
     return logMessage;
 }
 
-+ (NSString *)stringFormatFromDate:(NSDate *)date
-{
++ (NSString *)stringFormatFromDate:(NSDate *)date {
     static NSDateFormatter *formatter = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -68,13 +62,14 @@
 @end
 
 @interface MKLogVC ()
+
+@end
+
+@implementation MKLogVC
 {
     int maxCount;
     UITextView  *txt;
 }
-@end
-
-@implementation MKLogVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];

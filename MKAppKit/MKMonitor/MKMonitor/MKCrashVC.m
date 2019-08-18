@@ -13,8 +13,8 @@
 #import "MKContentVC.h"
 
 @interface MKCrashVC ()<UITableViewDataSource,UITableViewDelegate>
-@property(nonatomic,strong)UITableView  *tableView;
-@property(nonatomic,strong)NSArray      *listData;
+@property(nonatomic,strong) UITableView  *tableView;
+@property(nonatomic,strong) NSArray      *listData;
 @end
 
 @implementation MKCrashVC

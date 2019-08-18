@@ -8,10 +8,10 @@
 
 #import "UTest.h"
 #import "MKJSON.h"
-#import "MKHeader.h"
+#import "MKMacro.h"
 #import "MKFunctions.h"
-#import "MKRenderCounter.h"
-#import "MKRenderWatch.h"
+#import "MKFPSWatch.h"
+#import "MKRunLoopWatch.h"
 #import "MKCrashGuardManager.h"
 #import "CrashTest.h"
 
@@ -34,7 +34,7 @@
 }
 - (void)renderTest {
 #if !TARGET_IPHONE_SIMULATOR
-    [MKRenderCounter sharedRenderCounter].enabled = YES;
+    [MKFPSWatch sharedFPSCounter].enabled = YES;
 #endif
     _timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(blockThread) userInfo:nil repeats:true];
     [self performSelector:@selector(cancelTest) withObject:nil afterDelay:3];

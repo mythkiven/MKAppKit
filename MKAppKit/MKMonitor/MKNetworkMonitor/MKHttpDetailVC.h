@@ -10,5 +10,7 @@
 #import "MKBaseVC.h"
 
 @interface MKHttpDetailVC : MKBaseVC
-@property (nonatomic,strong)MKHttpModel    *detail;
+
+@property (nonatomic,strong) MKHttpModel * detail;
+
 @end

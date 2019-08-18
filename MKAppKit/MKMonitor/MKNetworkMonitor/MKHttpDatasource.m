@@ -88,8 +88,7 @@
 
 
 #pragma mark - parse
-+ (NSString *)prettyJSONStringFromData:(NSData *)data
-{
++ (NSString *)prettyJSONStringFromData:(NSData *)data {
     NSString *prettyString = nil;
     
     id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];

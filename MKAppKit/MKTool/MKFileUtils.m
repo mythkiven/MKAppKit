@@ -14,7 +14,7 @@
 #include <dirent.h>
 
 #import "MKDevice.h"
-#import "MKHeader.h"
+#import "MKMacro.h"
 #import "MKFileUtils.h"
 #include <pthread.h>
 

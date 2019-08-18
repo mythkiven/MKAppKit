@@ -9,13 +9,14 @@
 #import "MKDebugTool.h"
 
 @interface MKHttpCell()
+
+@end
+
+@implementation MKHttpCell
 {
     UILabel *lblTitle;
     UILabel *lblValue;
 }
-@end
-
-@implementation MKHttpCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

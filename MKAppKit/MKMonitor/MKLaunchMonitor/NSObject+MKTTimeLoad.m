@@ -25,13 +25,9 @@ const char **classes;
 + (void)load {
     
     _loadInfoArray = [[NSMutableArray alloc] init];
-    
-    CFAbsoluteTime time1 =CFAbsoluteTimeGetCurrent();
-    
+    CFAbsoluteTime time1 = CFAbsoluteTimeGetCurrent();
     int imageCount = (int)_dyld_image_count();
-    
-    for(int iImg = 0; iImg < imageCount; iImg++) {
-        
+    for(int iImg = 0; iImg < imageCount; iImg++) { 
         const char* path = _dyld_get_image_name((unsigned)iImg);
         NSString *imagePath = [NSString stringWithUTF8String:path];
         
@@ -47,23 +43,19 @@ const char **classes;
             }
         }
     }
-    CFAbsoluteTime time2 =CFAbsoluteTimeGetCurrent();
+    CFAbsoluteTime time2 = CFAbsoluteTimeGetCurrent();
     NSLog(@"MK>> Hook Time:%f",(time2 - time1) * 1000);
 }
 
 + (void)mk_Load {
-    
-    CFAbsoluteTime start =CFAbsoluteTimeGetCurrent();
-    
+    CFAbsoluteTime start = CFAbsoluteTimeGetCurrent();
     [self mk_Load];
-    
-    CFAbsoluteTime end =CFAbsoluteTimeGetCurrent();
+    CFAbsoluteTime end = CFAbsoluteTimeGetCurrent();
     // 时间精度 us
     NSDictionary *infoDic = @{@"st":TIMESTAMP_NUMBER(start),
                               @"et":TIMESTAMP_NUMBER(end),
                               @"name":NSStringFromClass([self class])
                               };
-    
     [_loadInfoArray addObject:infoDic];
 }
 

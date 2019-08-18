@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface MKMemoryHelper : NSObject
+
 + (int64_t)memoryUsage;
 + (unsigned long long)bytesOfUsedMemory;
+
 @end

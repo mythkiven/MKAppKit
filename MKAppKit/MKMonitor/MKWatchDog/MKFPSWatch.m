@@ -5,13 +5,11 @@
  *
  */
 
-#import "MKRenderCounter.h"
+#import "MKFPSWatch.h"
 #import <AudioToolbox/AudioToolbox.h>
 
 
-
-
-@interface MKRenderCounter ()
+@interface MKFPSWatch ()
 
 @property (nonatomic, readwrite, assign, getter = isRunning) BOOL running;
 @property (nonatomic, strong) UIWindow *window;
@@ -27,7 +25,7 @@
 
 @end
 
-@implementation MKRenderCounter
+@implementation MKFPSWatch
 
 #pragma mark - Helpers
 
@@ -42,7 +40,6 @@
     return _recentFrameTimes[self.frameNumber % self.hardwareFramesPerSecond];
 }
 
-// 通过一个数组（60个元素），来记录屏幕每次刷新时的时间（60次刷新的时间）
 - (void)recordFrameTime:(CFTimeInterval)frameTime {
     ++self.frameNumber;
     _recentFrameTimes[self.frameNumber % self.hardwareFramesPerSecond] = frameTime;
@@ -57,9 +54,7 @@
 }
 
 - (void)updateMeterLabel {
-    // 一秒钟屏幕刷新时的丢帧数
     NSInteger droppedFrameCount = self.droppedFrameCountInLastSecond;
-    // 一秒钟屏幕刷新时的显示帧数
     NSInteger drawnFrameCount = self.drawnFrameCountInLastSecond;
     NSString *droppedString;
     NSString *drawnString;
@@ -90,25 +85,19 @@
 }
 
 - (void)displayLinkWillDraw:(CADisplayLink *)displayLink {
-    // 当前屏幕刷新回调的时间
     CFTimeInterval currentFrameTime = displayLink.timestamp;
-    // 这次屏幕刷新和上一次屏幕刷新的时间间隔
     CFTimeInterval frameDuration = currentFrameTime - [self lastFrameTime];
-    // 如果界面不卡顿，那么屏幕刷新频率应该是1秒钟60帧，那么帧间间隔时间应该是1/60秒，如果当前刷新和上一次屏幕刷新的时间间隔，超过这个时间间隔，那么就属于卡顿
-    // 则系统响一下，这里设定，屏幕刷新如果是1秒钟少于40帧（60/1.5）则响一下。
     if (1.5 < frameDuration / [self hardwareFrameDuration]) {
         AudioServicesPlaySystemSound(self.tickSoundID);
     }
-    // 记录每次屏幕刷新时的时间（60次）
     [self recordFrameTime:currentFrameTime];
-    // 显示帧率和丢帧数
     [self updateMeterLabel];
 }
 
 #pragma mark -
 
 - (void)start {
-    NSURL *tickSoundURL = [[NSBundle bundleForClass:MKRenderCounter.class] URLForResource:@"MKRenderCounterTick" withExtension:@"aiff"];
+    NSURL *tickSoundURL = [[NSBundle bundleForClass:MKFPSWatch.class] URLForResource:@"MKFPSWatchTick" withExtension:@"aiff"];
     SystemSoundID tickSoundID;
     AudioServicesCreateSystemSoundID((__bridge CFURLRef) tickSoundURL, &tickSoundID);
     self.tickSoundID = tickSoundID;
@@ -157,15 +146,15 @@
     CGFloat xOrigin = 0.0;
     UIViewAutoresizing autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
     switch (self.position) {
-        case MKRenderCounterPositionLeft:
+        case MKFPSWatchPositionLeft:
             xOrigin = 0.0;
             autoresizingMask |= UIViewAutoresizingFlexibleRightMargin;
             break;
-        case MKRenderCounterPositionMiddle:
+        case MKFPSWatchPositionMiddle:
             xOrigin = (CGRectGetWidth(self.window.bounds) - kMeterWidth) / 2.0;
             autoresizingMask |= UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin;
             break;
-        case MKRenderCounterPositionRight:
+        case MKFPSWatchPositionRight:
             xOrigin = (CGRectGetWidth(self.window.bounds) - kMeterWidth);
             autoresizingMask |= UIViewAutoresizingFlexibleLeftMargin;
             break;
@@ -194,45 +183,13 @@
     self.window = nil;
 }
 
-#pragma mark - Init/dealloc
-
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        _windowLevel = UIWindowLevelAlert+1;
-        _position = MKRenderCounterPositionRight;
-        _meterPerfectColor = [MKRenderCounter colorWithHex:0x999999 alpha:1.0];
-        _meterGoodColor = [MKRenderCounter colorWithHex:0x66a300 alpha:1.0];
-        _meterBadColor = [MKRenderCounter colorWithHex:0xff7f0d alpha:1.0];
-        if (@available(iOS 10.3, *)) {
-            _hardwareFramesPerSecond = [UIScreen mainScreen].maximumFramesPerSecond;
-        } else {
-            _hardwareFramesPerSecond = 60;
-        }
-        _recentFrameTimes = malloc(sizeof(*_recentFrameTimes) * _hardwareFramesPerSecond);
-    }
-    return self;
-}
-
-- (void)dealloc {
-    [_displayLink invalidate];
-    if (_tickSoundID) {
-        AudioServicesDisposeSystemSoundID(_tickSoundID);
-    }
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    if (_recentFrameTimes) {
-        free(_recentFrameTimes);
-        _recentFrameTimes = nil;
-    }
-}
-
 #pragma mark - Public interface
 
-+ (instancetype)sharedRenderCounter {
-    static MKRenderCounter *instance;
++ (instancetype)sharedFPSCounter {
+    static MKFPSWatch *instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        instance = [[MKRenderCounter alloc] init];
+        instance = [[MKFPSWatch alloc] init];
     });
     return instance;
 }
@@ -276,6 +233,38 @@
         return -1;
     }
     return self.hardwareFramesPerSecond - self.droppedFrameCountInLastSecond;
+}
+
+#pragma mark - Init/dealloc
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _windowLevel = UIWindowLevelAlert+1;
+        _position = MKFPSWatchPositionRight;
+        _meterPerfectColor = [MKFPSWatch colorWithHex:0x999999 alpha:1.0];
+        _meterGoodColor = [MKFPSWatch colorWithHex:0x66a300 alpha:1.0];
+        _meterBadColor = [MKFPSWatch colorWithHex:0xff7f0d alpha:1.0];
+        if (@available(iOS 10.3, *)) {
+            _hardwareFramesPerSecond = [UIScreen mainScreen].maximumFramesPerSecond;
+        } else {
+            _hardwareFramesPerSecond = 60;
+        }
+        _recentFrameTimes = malloc(sizeof(*_recentFrameTimes) * _hardwareFramesPerSecond);
+    }
+    return self;
+}
+
+- (void)dealloc {
+    [_displayLink invalidate];
+    if (_tickSoundID) {
+        AudioServicesDisposeSystemSoundID(_tickSoundID);
+    }
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    if (_recentFrameTimes) {
+        free(_recentFrameTimes);
+        _recentFrameTimes = nil;
+    }
 }
 
 @end

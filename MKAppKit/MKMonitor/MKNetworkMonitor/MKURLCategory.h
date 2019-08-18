@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_END
 
 
 
-@interface NSURLRequest (Identify)
+@interface NSURLRequest (MKIdentify)
 - (NSString *)requestId;
 - (void)setRequestId:(NSString *)requestId;
 - (NSNumber*)startTime;
@@ -26,16 +26,16 @@ NS_ASSUME_NONNULL_END
 @end
 
 
-@interface NSURLResponse (Data)
+@interface NSURLResponse (MKData)
 - (NSData *)responseData;
 - (void)setResponseData:(NSData *)responseData; 
 @end
 
 
-@interface NSURLSession (Swizzling) 
+@interface NSURLSession (MKSwizzling)
 @end
 
-@interface NSURLSessionTask (Data)
+@interface NSURLSessionTask (MKData)
 - (NSString*)taskDataIdentify;
 - (void)setTaskDataIdentify:(NSString*)name;
 - (NSMutableData*)responseDatas;

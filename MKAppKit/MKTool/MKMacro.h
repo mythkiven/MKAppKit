@@ -6,16 +6,24 @@
  *
  */
 
-#ifndef MKHeader_h
-#define MKHeader_h
+#ifndef MKMacro_h
+#define MKMacro_h
 
-#import <Foundation/Foundation.h>
-
+// debug
 #ifdef DEBUG
 #define MKDEBUG  true
 #else
 #define MKDEBUG  false
 #endif
+
+
+#define STRINGIFY(S) #S
+#define DEFER_STRINGIFY(S) STRINGIFY(S)// 需要解两次才解开的宏
+#define PRAGMA_MESSAGE(MSG) _Pragma(STRINGIFY(message(MSG)))
+#define FORMATTED_MESSAGE(MSG) "[TODO-" DEFER_STRINGIFY(__COUNTER__) "] " MSG " \n" DEFER_STRINGIFY(__FILE__) " line " DEFER_STRINGIFY(__LINE__) // 为warning增加更多信息
+#define KEYWORDIFY try {} @catch (...) {} // 使宏前面可以加@
+#define TODO(MSG) KEYWORDIFY PRAGMA_MESSAGE(FORMATTED_MESSAGE(MSG)) // 最终使用的宏
+
 
 
 #define MK_BASE_DIR [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"MKMonitor"]
@@ -56,4 +64,4 @@
 #define MKAssertBadConstructor() NSAssert(NO, @"%s: This constructor can't use.", __PRETTY_FUNCTION__)
 #define MKAssertFailed(...) NSAssert(NO, ##__VA_ARGS__)
 
-#endif /* MKHeader_h */
+#endif /* MKMacro_h */

@@ -21,13 +21,6 @@
 @property (nonatomic,copy)NSString  *totalDuration;
 
 
-/**
- *  <#Description#>
- *
- *  @param data <#data description#>
- *  @param resp <#resp description#>
- *  @param req  <#req description#>
- */
 + (void)dealwithResponse:(NSData *)data resp:(NSURLResponse*)resp req:(NSURLRequest *)req;
 @end
 
@@ -50,11 +43,7 @@
 - (void)clear;
 
 /**
- *  解析
- *
- *  @param data
- *
- *  @return 
+ *  解析 
  */
 + (NSString *)prettyJSONStringFromData:(NSData *)data;
 

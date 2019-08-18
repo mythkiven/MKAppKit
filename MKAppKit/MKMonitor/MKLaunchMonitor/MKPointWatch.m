@@ -81,7 +81,7 @@ CFAbsoluteTime MKPointWatchBreakTime;
 }
 
 #pragma mark 打点
-- (NSString *)printedPoints{
+- (NSString *)printedPoints {
     NSMutableString *output = [[NSMutableString alloc] init];
     pthread_mutex_lock(&_lock);
     [self.mutablePoints enumerateObjectsUsingBlock:^(NSDictionary<NSString *, NSNumber *> *obj, NSUInteger idx, BOOL *stop) {

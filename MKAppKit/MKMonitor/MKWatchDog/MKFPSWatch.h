@@ -9,25 +9,26 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSUInteger, MKRenderCounterPosition) {
-    MKRenderCounterPositionLeft,
-    MKRenderCounterPositionMiddle,
-    MKRenderCounterPositionRight
+typedef NS_ENUM(NSUInteger, MKFPSWatchPosition) {
+    MKFPSWatchPositionLeft,
+    MKFPSWatchPositionMiddle,
+    MKFPSWatchPositionRight
 };
 
-typedef void(^RenderRecord)(NSDictionary *recordDic);
+typedef void(^FPSRecord)(NSDictionary *recordDic);
 
-@interface MKRenderCounter : NSObject
+@interface MKFPSWatch : NSObject
+
 @property (nonatomic, assign, getter = isEnabled) BOOL enabled;
 @property (nonatomic, assign) BOOL showLabel;
 @property (nonatomic, assign) UIWindowLevel windowLevel;
-@property (nonatomic, assign) MKRenderCounterPosition position;
+@property (nonatomic, assign) MKFPSWatchPosition position;
 @property (nonatomic, readonly, getter = isRunning) BOOL running;
 @property (nonatomic, readonly) NSInteger droppedFrameCountInLastSecond;
 @property (nonatomic, readonly) NSInteger drawnFrameCountInLastSecond;
-@property (copy,nonatomic) RenderRecord recordRender ;
+@property (copy,nonatomic) FPSRecord recordRender ;
 
-+ (instancetype)sharedRenderCounter;
++ (instancetype)sharedFPSCounter;
 
 @end
 

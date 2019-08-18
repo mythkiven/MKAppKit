@@ -10,16 +10,15 @@
 #import "MKDebugTool.h"
 #import "MKHttpDatasource.h"
 
-@interface MKResponseVC ()
-{
-    UITextView   *txt;
-    UIImageView  *img;
-
-}
-@property (nonatomic, strong) NSString    *contentString;
+@interface MKResponseVC () 
+@property (nonatomic, strong) NSString *contentString;
 @end
 
 @implementation MKResponseVC
+{
+    UITextView   *txt;
+    UIImageView  *img;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -67,8 +66,7 @@
         CGRect r = [txt.text boundingRectWithSize:CGSizeMake(self.view.bounds.size.width, MAXFLOAT) options:option attributes:attributes context:nil];
         txt.contentSize = CGSizeMake(self.view.bounds.size.width, r.size.height);
         [self.view addSubview:txt];
-    }
-    else {
+    }else{
         img = [[UIImageView alloc] initWithFrame:self.view.bounds];
         img.contentMode = UIViewContentModeScaleAspectFit;
         img.image = [UIImage imageWithData:self.data];

@@ -32,14 +32,10 @@
 }
 
 #pragma mark - gesture delegate
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
-{
-    if (self.navigationController.viewControllers.count == 1)//关闭主界面的右滑返回
-    {
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    if (self.navigationController.viewControllers.count == 1){//关闭主界面的右滑返回
         return NO;
-    }
-    else
-    {
+    }else{
         return YES;
     }
 }

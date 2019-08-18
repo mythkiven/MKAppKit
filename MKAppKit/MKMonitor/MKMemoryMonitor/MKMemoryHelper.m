@@ -10,7 +10,7 @@
 #include <mach/mach.h>
 #include <malloc/malloc.h>
 
-static vm_size_t            jPageSize = 0;
+static vm_size_t          jPageSize = 0;
 static vm_statistics_data_t jVMStats;
 
 @implementation MKMemoryHelper
@@ -32,8 +32,7 @@ static vm_statistics_data_t jVMStats;
 }
 
 
-+ (unsigned long long)bytesOfUsedMemory
-{
++ (unsigned long long)bytesOfUsedMemory {
     struct mstats stat = mstats();
     return  stat.bytes_used;
 }
@@ -43,8 +42,7 @@ static vm_statistics_data_t jVMStats;
 //    return NSRealMemoryAvailable();
 //}
 
-+ (unsigned long long)bytesOfTotalMemory
-{
++ (unsigned long long)bytesOfTotalMemory {
     [self updateHostStatistics];
     
     unsigned long long free_count   = (unsigned long long)jVMStats.free_count;

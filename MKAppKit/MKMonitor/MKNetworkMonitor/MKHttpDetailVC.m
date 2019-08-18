@@ -81,46 +81,35 @@
     if (indexPath.row == 0) {
         value = self.detail.url.absoluteString;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-    else if (indexPath.row == 1) {
+    }else if (indexPath.row == 1) {
         value = self.detail.method;
-    }
-    else if (indexPath.row == 2) {
+    }else if (indexPath.row == 2) {
         value = self.detail.statusCode;
-    }
-    else if (indexPath.row == 3) {
+    }else if (indexPath.row == 3) {
         value = self.detail.mineType;
-    }
-    else if (indexPath.row == 4) {
+    }else if (indexPath.row == 4) {
         NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         value = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:self.detail.startTime.doubleValue]];
-    }
-    else if (indexPath.row == 5) {
+    }else if (indexPath.row == 5) {
         value = self.detail.totalDuration;
-    }
-    else if (indexPath.row == 6) {
+    }else if (indexPath.row == 6) {
         if (self.detail.requestBody.length > 0) {
             value = @"Tap to view";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        }
-        else {
+        }else {
             value = @"Empty";
         }
-    }
-    else if (indexPath.row == 7) {
+    }else if (indexPath.row == 7) {
         NSInteger lenght = self.detail.responseData.length;
         if (lenght > 0) {
             if (lenght < 1024) {
                 value = [NSString stringWithFormat:@"(%zdB) Tap to view",lenght];
-            }
-            else {
+            }else {
                 value = [NSString stringWithFormat:@"(%.2fKB) Tap to view",1.0 * lenght / 1024];
             }
-            
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        }
-        else {
+        }else {
             value = @"Empty";
         }
     }
@@ -136,23 +125,20 @@
         vc.content = self.detail.url.absoluteString;
         vc.title = @"接口地址";
         [self.navigationController pushViewController:vc animated:YES];
-    }
-    else if (indexPath.row == 6 && self.detail.requestBody.length > 0) {
+    }else if (indexPath.row == 6 && self.detail.requestBody.length > 0) {
         MKContentVC* vc = [[MKContentVC alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         vc.content = self.detail.requestBody;
         vc.title = @"请求数据";
         [self.navigationController pushViewController:vc animated:YES];
-    }
-    else if (indexPath.row == 7 && self.detail.responseData.length > 0) {
+    }else if (indexPath.row == 7 && self.detail.responseData.length > 0) {
         MKResponseVC* vc = [[MKResponseVC alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         vc.data = self.detail.responseData;
         vc.isImage = self.detail.isImage;
         vc.title = @"返回数据";
         [self.navigationController pushViewController:vc animated:YES];
-    }
-    else {
+    }else {
         return;
     }
 }

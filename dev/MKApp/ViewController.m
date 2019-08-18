@@ -10,17 +10,14 @@
 #import "CombineLoadingAnimationVC.h"
 #import "DropdownMailTFVC.h"
 #import "MKApp-Swift.h"
-
 #import "UTest.h"
 #import "MKPointWatch.h"
-
 #import "MKCrashGuardManager.h"
 #import "CrashTest.h"
- 
-#import "MKRenderCounter.h"
-
+#import "MKFPSWatch.h"
 #import "MKCategory.h"
-
+#import "MKMacro.h"
+#import "MKMainThreadWatch.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource,MKExceptionHandle >
 @property (strong,nonatomic) UITableView *tableview;
@@ -48,7 +45,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    @TODO("666");
     [[MKPointWatch pointWatch] pointWithDescription:@"viewDidLoad"];
     
     _dataSource = @[@"MKCombineLoadingAnimation",@"MKDropdownMailTF",@"MKDiffuseMenu"];
@@ -71,6 +68,8 @@
         NSLog(@"xxx");
     }];
     
+    
+    [[MKMainThreadWatch alloc]initWithThreshold:1.0/60.0 strictMode:NO];
     
 //    //    crash 防护测试
 //    [self execTest];

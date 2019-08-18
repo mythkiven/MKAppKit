@@ -6,17 +6,14 @@
 //  Copyright © 2019 MythKiven. All rights reserved.
 //
 
+
+
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "MKPointWatch.h"
-#import "NSObject+MKTTimeLoad.h"
-
-
-#import <sys/utsname.h>
+#import "NSObject+MKTTimeLoad.h" 
 #import "MKDevice.h"
-
-#import "MKHeader.h"
-
+#import "MKMacro.h"
 #import "MKDebug.h"
 
 @interface AppDelegate ()
@@ -27,10 +24,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
     // debug
     [MKDebug debugRegister];
-    
     // 打点
     [[MKPointWatch pointWatch] pointWithDescription:@"didFinishLaunchingWithOptions"];
     
@@ -66,8 +61,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application { 
     [[MKPointWatch pointWatch] pointWithDescription:@"applicationDidBecomeActive"];
     NSLog(@"des:%@ %@ %lf",[MKPointWatch pointWatch].printedPoints,[MKPointWatch pointWatch].points,[MKPointWatch pointWatch].lastWatchInterval);
-    [[MKPointWatch pointWatch] stopWatchingAndAlertResult]; 
-    
+    [[MKPointWatch pointWatch] stopWatchingAndAlertResult];
     [MKDebug enableDebug];
 }
 

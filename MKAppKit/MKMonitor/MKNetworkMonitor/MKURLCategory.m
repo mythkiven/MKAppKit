@@ -19,8 +19,7 @@
 
 
 
-
-@implementation NSURLRequest (Identify)
+@implementation NSURLRequest (MKIdentify)
 - (NSString *)requestId {
     return objc_getAssociatedObject(self, @"requestId");
 }
@@ -36,7 +35,7 @@
 @end
 
 
-@implementation NSURLResponse (Data)
+@implementation NSURLResponse (MKData)
 - (NSData *)responseData {
     return objc_getAssociatedObject(self, @"responseData");
 }
@@ -47,7 +46,7 @@
 
 
 @class NSURLSession;
-@implementation NSURLSession (Swizzling)
+@implementation NSURLSession (MKSwizzling)
 + (void)load {
     Method oriMethod = class_getInstanceMethod([NSURLSession class], @selector(dataTaskWithRequest:));
     Method newMethod = class_getInstanceMethod([NSURLSession class], @selector(dataTaskWithRequest_swizzling:));
@@ -242,8 +241,7 @@
     struct objc_method_description methodDescription = protocol_getMethodDescription(protocol, selector, NO, YES);
     [self replaceImplementationOfSelector:selector withSelector:swizzledSelector forClass:cls withMethodDescription:methodDescription];
 }
-+ (void)replaceImplementationOfSelector:(SEL)selector withSelector:(SEL)swizzledSelector forClass:(Class)cls withMethodDescription:(struct objc_method_description)methodDescription
-{
++ (void)replaceImplementationOfSelector:(SEL)selector withSelector:(SEL)swizzledSelector forClass:(Class)cls withMethodDescription:(struct objc_method_description)methodDescription {
     IMP implementation = class_getMethodImplementation([self class], swizzledSelector);
     Method oldMethod = class_getInstanceMethod(cls, selector);
     if (oldMethod) {
@@ -289,7 +287,7 @@
 
 
 
-@implementation NSURLSessionTask (Data)
+@implementation NSURLSessionTask (MKData)
 - (NSString*)taskDataIdentify {
     return objc_getAssociatedObject(self, @"taskDataIdentify");
 }

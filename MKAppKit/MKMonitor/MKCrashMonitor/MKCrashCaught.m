@@ -11,7 +11,7 @@
 #include <execinfo.h>
 #import <UIKit/UIKit.h>
 
-#import "MKHeader.h"
+#import "MKMacro.h"
 #import "MKDevice.h"
 #import "MKFileUtils.h"
 #import "MKThreadTrace.h"
@@ -70,12 +70,12 @@ void mk_saveSignal(int sig) {
     [detail setObject:mk_callStackSymbols() forKey:@"backtrace"];
     mk_saveToFile(detail);
     
-    signal(SIGABRT, SIG_DFL );
-    signal(SIGBUS,  SIG_DFL );
-    signal(SIGFPE,  SIG_DFL );
-    signal(SIGILL,  SIG_DFL );
-    signal(SIGPIPE, SIG_DFL );
-    signal(SIGSEGV, SIG_DFL );
+    signal(SIGABRT, SIG_DFL);
+    signal(SIGBUS,  SIG_DFL);
+    signal(SIGFPE,  SIG_DFL);
+    signal(SIGILL,  SIG_DFL);
+    signal(SIGPIPE, SIG_DFL);
+    signal(SIGSEGV, SIG_DFL);
     signal(SIGHUP,  SIG_DFL);
     signal(SIGINT,  SIG_DFL);
     signal(SIGQUIT, SIG_DFL);
@@ -93,7 +93,7 @@ void mk_signal_Handler(int sig) {
     mk_saveSignal(sig);
 }
 
-void mk_registerSignalHandler(void){
+void mk_registerSignalHandler(void) {
     signal(SIGHUP, mk_signal_Handler);
     signal(SIGINT, mk_signal_Handler);
     signal(SIGQUIT, mk_signal_Handler);
