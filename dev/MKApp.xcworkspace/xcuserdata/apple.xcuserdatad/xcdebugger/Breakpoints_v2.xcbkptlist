@@ -225,16 +225,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../MKAppKit/MKMonitor/MKCrashMonitor/MKCrashMonitor.m"
-            timestampString = "583659687.732528"
+            filePath = "../MKAppKit/MKMonitor/MKCrashMonitor/MKCrashCaught.m"
+            timestampString = "588170698.753755"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "mk_registerCrashHandler()"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "mk_saveException()"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../MKAppKit/MKMonitor/MKCrashMonitor/MKCrashCaught.m"
+            timestampString = "588170698.754016"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "mk_saveSignal()"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>

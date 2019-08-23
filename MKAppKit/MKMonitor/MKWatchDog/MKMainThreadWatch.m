@@ -17,7 +17,7 @@ typedef void (^watchdogFiredCallBack)();
 @property (nonatomic, assign) double threshold;
 @property (nonatomic, assign) BOOL   pingTaskIsRunning;
 @property (nonatomic, copy)   handler handler;
-
+@property (assign,nonatomic) NSInteger timeOutCount;
 @end
 
 @implementation MKPingThread
@@ -31,19 +31,28 @@ typedef void (^watchdogFiredCallBack)();
     return self;
 }
 - (void)main {
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-    while (!self.cancelled) {
-        self.pingTaskIsRunning = YES;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.pingTaskIsRunning = NO;
-            dispatch_semaphore_signal(semaphore);
-        });
-        [NSThread sleepForTimeInterval:self.threshold];
-        if (self.pingTaskIsRunning) {
-            self.handler();
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+        while (!self.cancelled) {
+            self.pingTaskIsRunning = YES;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.pingTaskIsRunning = NO;
+                dispatch_semaphore_signal(semaphore);
+            });
+//            [NSThread sleepForTimeInterval:5];
+//            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER); 
+            uint64_t interval = self.threshold * NSEC_PER_SEC;
+            dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW,interval);
+            long semaphoreWait = dispatch_semaphore_wait(semaphore, time);
+            if(semaphoreWait != 0){ 
+                if (self.pingTaskIsRunning && ++self.timeOutCount > 3) {
+                    self.handler();
+                }
+            }else{
+                self.timeOutCount = 0; 
+            }
         }
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-    }
+    });
 }
 @end
 

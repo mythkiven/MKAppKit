@@ -13,7 +13,6 @@
 #import "MKThreadTrace.h"
 
 
-#define MKMainThreadWatcher_Interval    (16.0f/1000.0f)
 
 @interface MKRunLoopWatch ()
 
@@ -26,11 +25,20 @@
 
 @implementation MKRunLoopWatch
 
++ (instancetype)shareInstance {
+    static id instance = nil;
+    static dispatch_once_t dispatchOnce;
+    dispatch_once(&dispatchOnce, ^{
+        instance = [[self alloc] init];
+    });
+    return instance;
+}
 
--(void)watchRenderWithLogPath:(NSString*)pathToSaveLog{
+- (void)watchRenderWithLogPath:(NSString*)pathToSaveLog {
     if(_runloopObserver){
         return;
     }
+    self.isMonitoring = YES;
     _semaphore = dispatch_semaphore_create(0);
     
     CFRunLoopObserverContext context = {0, (__bridge void *)(self), NULL, NULL};
@@ -39,24 +47,27 @@
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         while (YES) {
+            
             uint64_t interval = MKMainThreadWatcher_Interval * NSEC_PER_SEC;
             dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW,interval);
-            long semaphoreWait = dispatch_semaphore_wait(self.semaphore, time); 
+            long semaphoreWait = dispatch_semaphore_wait(self.semaphore, time);
+            
             if(semaphoreWait != 0){
+                
                 if(!self.runloopObserver) {
                     self.timeOutCount = 0;
                     self.semaphore  = 0;
                     self.activity = 0;
                     return;
                 }
+                
                 if(self.activity == kCFRunLoopAfterWaiting || self.activity == kCFRunLoopBeforeSources) {
-                    // 超过两帧就上报
+                    // 超过3帧就上报
                     if(++self.timeOutCount < 3){
                         continue;
                     }
-                    NSLog(@"发现一次延时");
-                    NSLog(@"callStackSymbols：%@",[NSThread callStackSymbols]);
-                    NSMutableDictionary *mdic = @[].mutableCopy;
+                    MKLog(@"发现一次延时<======"); 
+                    NSMutableDictionary *mdic = @{}.mutableCopy;
                     [mdic setObject:@"Frame loss" forKey:@"reason"];
                     [mdic setObject:mk_callStackSymbols() forKey:@"thread"];
                     if(pathToSaveLog){
@@ -70,6 +81,18 @@
     });
 }
 
+- (void)beginMonitor {
+    [self watchRenderWithLogPath:nil];
+}
+- (void)endMonitor {
+    self.isMonitoring = NO; 
+    if (!_runloopObserver) {
+        return;
+    }
+    CFRunLoopRemoveObserver(CFRunLoopGetMain(), _runloopObserver, kCFRunLoopCommonModes);
+    CFRelease(_runloopObserver);
+    _runloopObserver = NULL;
+}
 
 
 volatile int32_t UncaughtExceptionCount = 0;
@@ -82,7 +105,7 @@ NSString * const UncaughtExceptionHandlerAddressesKey = @"UncaughtExceptionHandl
 void runLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActivity activity, void *info) {
     MKRunLoopWatch *appFluencyMonitor = (__bridge MKRunLoopWatch*)info;
     appFluencyMonitor.activity = activity;
-    dispatch_semaphore_signal(appFluencyMonitor.semaphore); 
+    dispatch_semaphore_signal(appFluencyMonitor.semaphore);
 }
 
 

@@ -254,8 +254,8 @@
 			isa = PBXGroup;
 			children = (
 				1869DEC323094EB900EE45AE /* MKLockSentinel.h */,
-				1869DEC423094EB900EE45AE /* MKJSON.h */,
 				1869DEC523094EB900EE45AE /* MKLockSentinel.m */,
+				1869DEC423094EB900EE45AE /* MKJSON.h */,
 				1869DEC623094EB900EE45AE /* MKJSON.m */,
 			);
 			name = MKFoundation;
@@ -265,17 +265,17 @@
 		1869DEC723094EB900EE45AE /* MKCategory */ = {
 			isa = PBXGroup;
 			children = (
+				1869DED123094EB900EE45AE /* MKCategory.h */,
 				1869DEC823094EB900EE45AE /* NSFileManager+MKCategory.h */,
-				1869DEC923094EB900EE45AE /* NSTimer+MKCategory.m */,
-				1869DECA23094EB900EE45AE /* NSData+MKCategory.h */,
-				1869DECB23094EB900EE45AE /* NSObject+MKGuard.h */,
-				1869DECC23094EB900EE45AE /* NSString+MKCategory.h */,
 				1869DECD23094EB900EE45AE /* NSFileManager+MKCategory.m */,
 				1869DECE23094EB900EE45AE /* NSTimer+MKCategory.h */,
+				1869DEC923094EB900EE45AE /* NSTimer+MKCategory.m */,
+				1869DECA23094EB900EE45AE /* NSData+MKCategory.h */,
 				1869DECF23094EB900EE45AE /* NSData+MKCategory.m */,
-				1869DED023094EB900EE45AE /* NSString+MKCategory.m */,
-				1869DED123094EB900EE45AE /* MKCategory.h */,
+				1869DECB23094EB900EE45AE /* NSObject+MKGuard.h */,
 				1869DED223094EB900EE45AE /* NSObject+MKGuard.m */,
+				1869DECC23094EB900EE45AE /* NSString+MKCategory.h */,
+				1869DED023094EB900EE45AE /* NSString+MKCategory.m */,
 			);
 			name = MKCategory;
 			path = ../../MKAppKit/MKCategory;
@@ -284,13 +284,11 @@
 		1869DED323094EB900EE45AE /* MKTool */ = {
 			isa = PBXGroup;
 			children = (
-				1869DED423094EB900EE45AE /* MKDebug.m */,
 				1869DED523094EB900EE45AE /* MKFunctions.m */,
 				1869DED623094EB900EE45AE /* MKSandbox.m */,
 				1869DED723094EB900EE45AE /* MKThreadTrace.h */,
 				1869DED823094EB900EE45AE /* MKFileUtils.h */,
 				1869DED923094EB900EE45AE /* MKDevice.h */,
-				1869DEDA23094EB900EE45AE /* MKDebug.h */,
 				1869DEDB23094EB900EE45AE /* MKFileUtils.m */,
 				1869DEDC23094EB900EE45AE /* MKThreadTrace.m */,
 				1869DEDD23094EB900EE45AE /* MKSandbox.h */,
@@ -387,6 +385,8 @@
 		1869DF0223094EB900EE45AE /* MKMonitor */ = {
 			isa = PBXGroup;
 			children = (
+				1869DEDA23094EB900EE45AE /* MKDebug.h */,
+				1869DED423094EB900EE45AE /* MKDebug.m */,
 				1869DF0423094EB900EE45AE /* MKCrashVC.h */,
 				1869DF0B23094EB900EE45AE /* MKCrashVC.m */,
 				1869DF0F23094EB900EE45AE /* MKDebugVC.h */,

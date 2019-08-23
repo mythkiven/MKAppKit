@@ -18,6 +18,8 @@
 #import "MKCategory.h"
 #import "MKMacro.h"
 #import "MKMainThreadWatch.h"
+#import "MKRunLoopWatch.h"
+#import "MKMainThreadWatch.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource,MKExceptionHandle >
 @property (strong,nonatomic) UITableView *tableview;
@@ -43,16 +45,30 @@
     }
     return _tableview;
 }
+-(void)testRunloop{
+    NSTimer *t = [NSTimer timerWithTimeInterval:0.5 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        [self testSleep];
+    }];
+    [[NSRunLoop currentRunLoop] addTimer:t  forMode:NSRunLoopCommonModes];
+}
+-(void)testSleep{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [NSThread sleepForTimeInterval:0.5];
+    });
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     @TODO("666");
+    
+    [[MKMainThreadWatch alloc]initWithThreshold:1.0/60.0 strictMode:NO];
+    
+    [[MKRunLoopWatch shareInstance] beginMonitor];
+    
     [[MKPointWatch pointWatch] pointWithDescription:@"viewDidLoad"];
     
     _dataSource = @[@"MKCombineLoadingAnimation",@"MKDropdownMailTF",@"MKDiffuseMenu"];
     self.title = @"MKAppKit";
     [self.view addSubview:self.tableview];
-    
-    
     
     //测试拼音
     NSString *string = @"蒋先生";
@@ -63,17 +79,17 @@
     //测试计算
     NSString *path = [[NSBundle mainBundle] bundlePath];
     NSLog(@"%llu",[[NSFileManager defaultManager] mk_fileSizeAtPath:path]); 
-    //测试Timer
-    [NSTimer mk_scheduledTimerWithTimeInterval:1.0 repeats:YES handler:^{
-        NSLog(@"xxx");
-    }];
+//    //测试Timer
+//    [NSTimer mk_scheduledTimerWithTimeInterval:1.0 repeats:YES handler:^{
+//        NSLog(@"xxx");
+//    }];
     
     
-    [[MKMainThreadWatch alloc]initWithThreshold:1.0/60.0 strictMode:NO];
+   
     
 //    //    crash 防护测试
 //    [self execTest];
-//    //    crash 抓取测试
+    //    crash 抓取测试
 //    [self crashCaught];
     //    //    render test
     //    [self renderTest];
@@ -81,7 +97,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [[MKPointWatch pointWatch] pointWithDescription:@"viewDidAppear"];
-    
+    [self testSleep];
 //    [[MKLaunchMonitor sharedMonitor] logAllCallStack];
     
 }
@@ -90,8 +106,9 @@
 
 #pragma mark crash抓取测试
 - (void)crashCaught {
-    [CrashCaughtTest testExceptionCrashCaught];
     [CrashCaughtTest testSigCrashCaught];
+    [CrashCaughtTest testExceptionCrashCaught];
+    
 }
 #pragma mark 帧率测试
 - (void)renderTest {
