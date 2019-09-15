@@ -16,6 +16,7 @@
 #import "MKMacro.h"
 #import "MKDebug.h"
 
+#import "MKMacro.h"
 @interface AppDelegate ()
 
 @end

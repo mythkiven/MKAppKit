@@ -17,6 +17,18 @@
 #endif
 
 
+#ifndef mk_dispatch_main_async_safe
+#define mk_dispatch_main_async_safe(block)\
+if (dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL) == dispatch_queue_get_label(dispatch_get_main_queue())) {\
+block();\
+} else {\
+dispatch_async(dispatch_get_main_queue(), block);\
+}
+#endif
+
+
+
+
 #define STRINGIFY(S) #S
 #define DEFER_STRINGIFY(S) STRINGIFY(S)// 需要解两次才解开的宏
 #define PRAGMA_MESSAGE(MSG) _Pragma(STRINGIFY(message(MSG)))

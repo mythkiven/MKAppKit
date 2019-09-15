@@ -284,17 +284,17 @@
 		1869DED323094EB900EE45AE /* MKTool */ = {
 			isa = PBXGroup;
 			children = (
+				1869DEE023094EB900EE45AE /* MKMacro.h */,
+				1869DEDE23094EB900EE45AE /* MKFunctions.h */,
 				1869DED523094EB900EE45AE /* MKFunctions.m */,
 				1869DED623094EB900EE45AE /* MKSandbox.m */,
 				1869DED723094EB900EE45AE /* MKThreadTrace.h */,
 				1869DED823094EB900EE45AE /* MKFileUtils.h */,
-				1869DED923094EB900EE45AE /* MKDevice.h */,
 				1869DEDB23094EB900EE45AE /* MKFileUtils.m */,
 				1869DEDC23094EB900EE45AE /* MKThreadTrace.m */,
 				1869DEDD23094EB900EE45AE /* MKSandbox.h */,
-				1869DEDE23094EB900EE45AE /* MKFunctions.h */,
+				1869DED923094EB900EE45AE /* MKDevice.h */,
 				1869DEDF23094EB900EE45AE /* MKDevice.m */,
-				1869DEE023094EB900EE45AE /* MKMacro.h */,
 			);
 			name = MKTool;
 			path = ../../MKAppKit/MKTool;
@@ -889,7 +889,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "DemoVC/Animation/MKApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -917,7 +917,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DemoVC/Animation/MKApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
