@@ -1,0 +1,905 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		03A7FC67F8A8405F7E8E73F4556E48C1 /* NSMutableArray+MKCrashGuard.h in Headers */ = {isa = PBXBuildFile; fileRef = F35F7EB8F4AAA68F6EE6B6382408143C /* NSMutableArray+MKCrashGuard.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		064D8429E4D50220F29BF1A8539A956E /* NSAttributedString+MKCrashGuard.h in Headers */ = {isa = PBXBuildFile; fileRef = 094A1BC6D8233D853EB3166C188C1E55 /* NSAttributedString+MKCrashGuard.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0A1377C89B49E1B60DD4E5A8BB69A82B /* MKAppKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 799F35E41831E749DBCB9239E92AFACA /* MKAppKit-dummy.m */; };
+		0BFBB2CDE7F6199DCE88177817AA65E9 /* NSUserDefaults+MKCrashGuard.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F029193B9A7F4CCEF22EB44651CF946 /* NSUserDefaults+MKCrashGuard.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0D7446F244EDFB73B09E52CB6B8FE1DA /* NSObject+MKCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 161829472B53BE76306BCF305EB49A7C /* NSObject+MKCrashGuard.m */; };
+		102274845E9520EF85399F478C810A7F /* NSObject+MKNotificationCrashGuard.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C1EF6D00F881E31B2480AF7DF27E54B /* NSObject+MKNotificationCrashGuard.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1163752626718269F74E0E49221E582A /* NSArray+MKCrashGuard.h in Headers */ = {isa = PBXBuildFile; fileRef = BC6826848E295BDA88C06CFBE982E3B8 /* NSArray+MKCrashGuard.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1404F85A8D69A72E396718EA4257C4A4 /* NSObject+MKSwizzleHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC0659CAE635E4DF7143E1187B0ECEA /* NSObject+MKSwizzleHook.m */; };
+		18E5A307224C75537C595B69EE164FB6 /* MKDradualLoadingView.h in Headers */ = {isa = PBXBuildFile; fileRef = D48C4AC6D0A2EB3AAE011F05F5951BAD /* MKDradualLoadingView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1C948EAF90424F2874467852814E4A75 /* NSString+MKCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F33FCBE26888261366A80D4DC54D00 /* NSString+MKCrashGuard.m */; };
+		23F544BE0951112A1623E45A605D8A07 /* NSMutableString+MKCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5746604EA8C4A09348446FF1CF80AFED /* NSMutableString+MKCrashGuard.m */; };
+		248A6BA64068831A029CDA591F350F82 /* NSObject+MKSwizzleHook.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DED2A1D46820B9787E40B5AF3E50945 /* NSObject+MKSwizzleHook.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2AB4CE655022F5812FBBB47E60A3DB92 /* NSObject+MKSELCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 9287708ACDB2B7B4019E7B74F587A520 /* NSObject+MKSELCrashGuard.m */; };
+		2C65DCBB48A1C92A317A5345F7A736BC /* MKDropdownMailTFCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B8E7D630ABDBE70508FB39D3CBFD66D /* MKDropdownMailTFCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2C772CF47AF0A306033C339DC9618FC0 /* MKPushTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 439BC4C3051B29FD0E4942D9FE559671 /* MKPushTableCell.m */; };
+		30063A641C23F80E0F7A87F994E320C0 /* MKControlLoadingCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = B40D7297ADFAA0C5038CEB4D48DCA066 /* MKControlLoadingCircleView.m */; };
+		350A7A8C3A1B298272CD996E7D80BC9E /* NSObject+MKKVOCrashGuard.h in Headers */ = {isa = PBXBuildFile; fileRef = FD8B5325B792330CDA05EB3ABFA2E3B8 /* NSObject+MKKVOCrashGuard.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		37518007E4512AE43B9FEC91029A6545 /* NSUserDefaults+MKCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F91D6024EA0998FD95E8FD6419349F /* NSUserDefaults+MKCrashGuard.m */; };
+		38DCF66167AFA6FAF34663920E902A21 /* MKCrashGuardConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D54BA660C570AAE09698558C8B6E644 /* MKCrashGuardConst.m */; };
+		3978A67EA10C4B2D82A34518CACE6BD7 /* NSMutableDictionary+MKCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F58DC43600A99D7137B34F6E3D64CC0 /* NSMutableDictionary+MKCrashGuard.m */; };
+		3BA3923D56718EAC80EA0193253B1C6F /* NSMutableSet+MKCrashGuard.h in Headers */ = {isa = PBXBuildFile; fileRef = 29F85235D0E1DEC8AEEA4AB44599D095 /* NSMutableSet+MKCrashGuard.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4365D72452DA0CD619A38E8465DEA961 /* NSCache+MKCrashGuard.h in Headers */ = {isa = PBXBuildFile; fileRef = 053D634ADAE7F4B9515AB624A4DF9447 /* NSCache+MKCrashGuard.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		46002C67F0CD74FB1D15FC87C344CC9C /* NSObject+MKKVCCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E2748960A139F16A6106B929AE3951 /* NSObject+MKKVCCrashGuard.m */; };
+		4E8D950B6746EA5AAE1654166630BB8E /* NSString+MKCrashGuard.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A3710722CD5EC41FC2F26F53B4EB982 /* NSString+MKCrashGuard.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		50C6F12D8175291262534BB86A7C44B5 /* NSMutableAttributedString+MKCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6AB5DB60A11AFBE3BE3A77F7278784 /* NSMutableAttributedString+MKCrashGuard.m */; };
+		5412DFD57E63BD2C8C7DD52C82234B00 /* NSNumber+MKCrashGuard.h in Headers */ = {isa = PBXBuildFile; fileRef = 33B179E7AC85267DA93127971DFF1C72 /* NSNumber+MKCrashGuard.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		5648C039014ADB9019B40BF6AE1D311C /* NSTimer+MKCrashGuard.h in Headers */ = {isa = PBXBuildFile; fileRef = A791177F15CA252D56AE17C7D8B1A3E7 /* NSTimer+MKCrashGuard.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		57985BF6362C574DAFBE40ECE25F8A8E /* NSSet+MKCrashGuard.h in Headers */ = {isa = PBXBuildFile; fileRef = A6B9D0AC772ACE3E3AF4106D8924EABB /* NSSet+MKCrashGuard.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6078D4A678B2F63E1CE588479D39AAFC /* MKDropdownMailTF.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D0A20181A57D2B03DE49BA044420895 /* MKDropdownMailTF.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		64A8B5C95D4A1EDFB6936AE3187A2866 /* MKDradualLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F0DF4C52D2CD88F923FEED8CE2563D /* MKDradualLoadingView.m */; };
+		652975D000ADF32F5D30C0FD1EF7CDA6 /* MKAppKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9143675DB195CA3F7D48D17F9AF5568A /* MKAppKit-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6AC06DED792ADAD05B298E6CB5F76780 /* MKDiffuseMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E4DB553AC4D196FAA533AB6F46E28D /* MKDiffuseMenu.swift */; };
+		6C3D582A23DDEBD4052E816913762D69 /* MKControlLoadingCircleView.h in Headers */ = {isa = PBXBuildFile; fileRef = BE117B5E1DEEF22E48CF964801CE3093 /* MKControlLoadingCircleView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6F8B9847FA1D243F48E3EEB92DBEB25B /* MKException.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5457B351BE05086BEA842FF8890461 /* MKException.m */; };
+		7095B12F89E325FF9304E22FCD46E752 /* NSMutableString+MKCrashGuard.h in Headers */ = {isa = PBXBuildFile; fileRef = BB172BF3221650AE02D1346A7FE2236A /* NSMutableString+MKCrashGuard.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		70FDE3A51C467C99FF922E25FC4337EE /* MKControlLoadingCircleLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 8D0C94104BA34D9A7393E8A5720AA595 /* MKControlLoadingCircleLayer.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7175106784D20235CF39141D1883DDC0 /* MKCrashGuardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D7F93B7EE4E60C23BAFDC67C142AB /* MKCrashGuardManager.m */; };
+		7998D512B7543A292CAA8FF4076DD44D /* MKCrashGuardManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EC1BFE937B962BFC2CD48D43AD3B3700 /* MKCrashGuardManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7AD3284D0235216C1F4A1D9EB69B6798 /* NSObject+MKCrashGuard.h in Headers */ = {isa = PBXBuildFile; fileRef = C07A70DD1EB1E601EE786065EA12A884 /* NSObject+MKCrashGuard.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7FAB560E458F156033F76F403DD617C5 /* UINavigationController+MKCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 01597551ABF9C702C6BB3BFF0D48F3F8 /* UINavigationController+MKCrashGuard.m */; };
+		84477A1EBF19719C63F5819A8BA85F10 /* NSNull+MKCrashGuard.h in Headers */ = {isa = PBXBuildFile; fileRef = 57E6F010777AB267F8803CF18BE3EB9B /* NSNull+MKCrashGuard.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		87E6BB48731C3C8457E36CF188DCE46D /* NSNull+MKCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B10E951D9548861FA0A73D6836C4756 /* NSNull+MKCrashGuard.m */; };
+		8BD3DAE45FAF6CA52B968142A9F17B07 /* UINavigationController+MKCrashGuard.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A211816EF6DA22CCCD97F0DD9253087 /* UINavigationController+MKCrashGuard.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8CA9CAAED4435198F736E381F93D62CE /* NSMutableDictionary+MKCrashGuard.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C7BA444254984510C5103BB41F07E77 /* NSMutableDictionary+MKCrashGuard.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8EE9D476C2FB5E879A6CD60825AF17E1 /* MKDropdownMailTF.m in Sources */ = {isa = PBXBuildFile; fileRef = AA01106AAB4DBA36A544C33BE711FA31 /* MKDropdownMailTF.m */; };
+		986BF3DAC90F72EE967D4106E02DB432 /* NSDictionary+MKCrashGuard.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F0E27BD51D80AFA2D6D1FC8CADC6C70 /* NSDictionary+MKCrashGuard.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9DF56E751594B4FE0FE9D6E0A403970C /* MKDiffuseMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3BC2E5B0C71601DF0A55894420F2EF /* MKDiffuseMenuItem.swift */; };
+		9E4F56E7DEBF6134A57F1381B67878C8 /* MKCrashGuardConst.h in Headers */ = {isa = PBXBuildFile; fileRef = 466628D50F77149331E7770A65E545A5 /* MKCrashGuardConst.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A38B9EA7AD8787BADD8386D91588E5F1 /* NSAttributedString+MKCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD94796B2843A96E8307C93EAFCEFD3 /* NSAttributedString+MKCrashGuard.m */; };
+		AE1D3EB0DDFBF9EE003DA277587A2B04 /* NSNumber+MKCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB30F398CE4C9BE10263A5AF1202308 /* NSNumber+MKCrashGuard.m */; };
+		B26CD9C6E39D56B871297444569A9D0D /* MKControlLoadingCircleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A0A4A592DE8AC5ED7CF9249EBA16EE /* MKControlLoadingCircleLayer.m */; };
+		B751413CC0C0EE19538A6E27E4083AC5 /* NSObject+MKKVOCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = B407DBA67FD4AC3B6B040BB91DDD893F /* NSObject+MKKVOCrashGuard.m */; };
+		B75F73F3C20813CC5BAB77F5F62D3B64 /* NSArray+MKCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 59725D892A09BA08EEB15EC85FD37184 /* NSArray+MKCrashGuard.m */; };
+		B8ADDF723B75A98543B64C04E30EC4BB /* NSObject+MKNotificationCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB5B1A58093652E619C6C2FAEECFC0B /* NSObject+MKNotificationCrashGuard.m */; };
+		B94AE8FD7803C5CE1D231AFDB6D57A81 /* MKException.h in Headers */ = {isa = PBXBuildFile; fileRef = A411E020C3AB4BDCB059804278D0929B /* MKException.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C20B9FC458B0A7C0678AC9D0BDA2F9B3 /* MKLoadingManagerView.h in Headers */ = {isa = PBXBuildFile; fileRef = F5A68515C75BA418FB3E219029599D10 /* MKLoadingManagerView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C25A7F9422AC13C396617753C41A3945 /* Pods-MKApp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DF9AE9EF8FE3CB631BB1B4913D43A1AB /* Pods-MKApp-dummy.m */; };
+		C74923686945247F88FA032329BFB697 /* NSMutableSet+MKCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7BB50FAC20D4C9FC6BD427453AF6CF /* NSMutableSet+MKCrashGuard.m */; };
+		CBE4F4573D3431F751DF84DB17BD1ADB /* NSSet+MKCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 765490AAD1DEF0016D61792B7434FDB5 /* NSSet+MKCrashGuard.m */; };
+		D5E015D74A6CFF0C2E547F9A245EEAA5 /* MKPushTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A58AB17E66F0B249BCB089B57481807 /* MKPushTableCellView.m */; };
+		D8B97669D05C15AF5C5BE546C2B5D4C0 /* NSMutableAttributedString+MKCrashGuard.h in Headers */ = {isa = PBXBuildFile; fileRef = 591F2BC4110FF4DB1D6ED9ACAE3735B9 /* NSMutableAttributedString+MKCrashGuard.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D9FCA6F0AD5B97B2101210D7CC65534C /* NSMutableArray+MKCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = E309F14098CD01CF839094F91DBBB34E /* NSMutableArray+MKCrashGuard.m */; };
+		DC376EC92DD840358A7FD50F9EA7AAF3 /* NSTimer+MKCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = EFBCB93ABC800CE935BE2FF4E5815D2E /* NSTimer+MKCrashGuard.m */; };
+		DEFC1DEABF2022FC6B37EF5E8F84E9B1 /* NSDictionary+MKCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF29345A6D4D0C0DE838648102BF3BD /* NSDictionary+MKCrashGuard.m */; };
+		E119BC69B8FD44957BF5B7336F9D1522 /* NSObject+MKKVCCrashGuard.h in Headers */ = {isa = PBXBuildFile; fileRef = 67C28C44470538FD2B350AED619DB313 /* NSObject+MKKVCCrashGuard.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E38CF350F4246C957360836AB10850DF /* NSObject+MKSELCrashGuard.h in Headers */ = {isa = PBXBuildFile; fileRef = F6038BA5F29ACF174106142F358E29E2 /* NSObject+MKSELCrashGuard.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E42EC3D96D128347CA637BC500ED6331 /* MKPushTableCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 18B92C60EFA5C065D82FD729E4B01429 /* MKPushTableCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E8A6BD67B6906CDC4EE6539855A51323 /* MKPushTableCellView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B60FEA57599A40B1B71F79F5373717B /* MKPushTableCellView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F246B27BDD9B4D9C9931BDC32BAD4F88 /* Pods-MKApp-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C36D21A01DF7FE7EF962B707CB9A8D4 /* Pods-MKApp-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F466A06581B4C9BA7DE8E93F3FE33C0C /* NSCache+MKCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DFEE94B3C5302FAB4949A30B82B93A /* NSCache+MKCrashGuard.m */; };
+		F84819AA387E344EF11F12A09C1B488B /* MKLoadingManagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F63C587C2F53F9C0041BFE5248BBD722 /* MKLoadingManagerView.m */; };
+		FCA158CEA8E220913D89A1F1D6EB37A4 /* MKDropdownMailTFCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9569EEC80D0B4FDBE84398D100CA2B /* MKDropdownMailTFCell.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6CA4723807B0D7B32E67127826F85EA0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 50FDC0B4CEF2068BB24880100C92CA7A;
+			remoteInfo = MKAppKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		01597551ABF9C702C6BB3BFF0D48F3F8 /* UINavigationController+MKCrashGuard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+MKCrashGuard.m"; path = "MKAppKit/MKCrash/MKCrashGuard/UINavigationController+MKCrashGuard.m"; sourceTree = "<group>"; };
+		053D634ADAE7F4B9515AB624A4DF9447 /* NSCache+MKCrashGuard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSCache+MKCrashGuard.h"; path = "MKAppKit/MKCrash/MKCrashGuard/NSCache+MKCrashGuard.h"; sourceTree = "<group>"; };
+		094A1BC6D8233D853EB3166C188C1E55 /* NSAttributedString+MKCrashGuard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSAttributedString+MKCrashGuard.h"; path = "MKAppKit/MKCrash/MKCrashGuard/NSAttributedString+MKCrashGuard.h"; sourceTree = "<group>"; };
+		0D54BA660C570AAE09698558C8B6E644 /* MKCrashGuardConst.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MKCrashGuardConst.m; path = MKAppKit/MKCrash/MKCrashGuard/MKCrashGuardConst.m; sourceTree = "<group>"; };
+		0DC0659CAE635E4DF7143E1187B0ECEA /* NSObject+MKSwizzleHook.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+MKSwizzleHook.m"; path = "MKAppKit/MKCrash/MKCrashGuard/NSObject+MKSwizzleHook.m"; sourceTree = "<group>"; };
+		0E3BC2E5B0C71601DF0A55894420F2EF /* MKDiffuseMenuItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MKDiffuseMenuItem.swift; path = MKAppKit/MKAnimation/MKDiffuseMenu/MKDiffuseMenuItem.swift; sourceTree = "<group>"; };
+		161829472B53BE76306BCF305EB49A7C /* NSObject+MKCrashGuard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+MKCrashGuard.m"; path = "MKAppKit/MKCrash/MKCrashGuard/NSObject+MKCrashGuard.m"; sourceTree = "<group>"; };
+		17F7B70A6FCF26445225649BDDBC4435 /* MKDropdownMailTFCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = MKDropdownMailTFCell.xib; path = MKAppKit/MKUIKit/MKDropdownMailTF/MKDropdownMailTFCell.xib; sourceTree = "<group>"; };
+		18B92C60EFA5C065D82FD729E4B01429 /* MKPushTableCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MKPushTableCell.h; path = MKAppKit/MKAnimation/MKCombineLoadingAnimation/MKPushTableCell.h; sourceTree = "<group>"; };
+		18DFEE94B3C5302FAB4949A30B82B93A /* NSCache+MKCrashGuard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSCache+MKCrashGuard.m"; path = "MKAppKit/MKCrash/MKCrashGuard/NSCache+MKCrashGuard.m"; sourceTree = "<group>"; };
+		1A211816EF6DA22CCCD97F0DD9253087 /* UINavigationController+MKCrashGuard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+MKCrashGuard.h"; path = "MKAppKit/MKCrash/MKCrashGuard/UINavigationController+MKCrashGuard.h"; sourceTree = "<group>"; };
+		1A4FE64390C9CFD6FA8BBFBDBAAA2462 /* MKAppKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = MKAppKit.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		1CF29345A6D4D0C0DE838648102BF3BD /* NSDictionary+MKCrashGuard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+MKCrashGuard.m"; path = "MKAppKit/MKCrash/MKCrashGuard/NSDictionary+MKCrashGuard.m"; sourceTree = "<group>"; };
+		1F0E27BD51D80AFA2D6D1FC8CADC6C70 /* NSDictionary+MKCrashGuard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+MKCrashGuard.h"; path = "MKAppKit/MKCrash/MKCrashGuard/NSDictionary+MKCrashGuard.h"; sourceTree = "<group>"; };
+		29F85235D0E1DEC8AEEA4AB44599D095 /* NSMutableSet+MKCrashGuard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableSet+MKCrashGuard.h"; path = "MKAppKit/MKCrash/MKCrashGuard/NSMutableSet+MKCrashGuard.h"; sourceTree = "<group>"; };
+		2B8E7D630ABDBE70508FB39D3CBFD66D /* MKDropdownMailTFCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MKDropdownMailTFCell.h; path = MKAppKit/MKUIKit/MKDropdownMailTF/MKDropdownMailTFCell.h; sourceTree = "<group>"; };
+		2C9569EEC80D0B4FDBE84398D100CA2B /* MKDropdownMailTFCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MKDropdownMailTFCell.m; path = MKAppKit/MKUIKit/MKDropdownMailTF/MKDropdownMailTFCell.m; sourceTree = "<group>"; };
+		31A04DF023D1B1BEF289D8A732433566 /* libPods-MKApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-MKApp.a"; path = "libPods-MKApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		33B179E7AC85267DA93127971DFF1C72 /* NSNumber+MKCrashGuard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSNumber+MKCrashGuard.h"; path = "MKAppKit/MKCrash/MKCrashGuard/NSNumber+MKCrashGuard.h"; sourceTree = "<group>"; };
+		377B068871003A605EAACD0D7EB09595 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		3C1EF6D00F881E31B2480AF7DF27E54B /* NSObject+MKNotificationCrashGuard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+MKNotificationCrashGuard.h"; path = "MKAppKit/MKCrash/MKCrashGuard/NSObject+MKNotificationCrashGuard.h"; sourceTree = "<group>"; };
+		3F029193B9A7F4CCEF22EB44651CF946 /* NSUserDefaults+MKCrashGuard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSUserDefaults+MKCrashGuard.h"; path = "MKAppKit/MKCrash/MKCrashGuard/NSUserDefaults+MKCrashGuard.h"; sourceTree = "<group>"; };
+		439BC4C3051B29FD0E4942D9FE559671 /* MKPushTableCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MKPushTableCell.m; path = MKAppKit/MKAnimation/MKCombineLoadingAnimation/MKPushTableCell.m; sourceTree = "<group>"; };
+		4495818A1761AEFE358408A9BDA59CB6 /* Pods-MKApp-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MKApp-acknowledgements.plist"; sourceTree = "<group>"; };
+		466628D50F77149331E7770A65E545A5 /* MKCrashGuardConst.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MKCrashGuardConst.h; path = MKAppKit/MKCrash/MKCrashGuard/MKCrashGuardConst.h; sourceTree = "<group>"; };
+		4A3710722CD5EC41FC2F26F53B4EB982 /* NSString+MKCrashGuard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+MKCrashGuard.h"; path = "MKAppKit/MKCrash/MKCrashGuard/NSString+MKCrashGuard.h"; sourceTree = "<group>"; };
+		4B10E951D9548861FA0A73D6836C4756 /* NSNull+MKCrashGuard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSNull+MKCrashGuard.m"; path = "MKAppKit/MKCrash/MKCrashGuard/NSNull+MKCrashGuard.m"; sourceTree = "<group>"; };
+		4BD94796B2843A96E8307C93EAFCEFD3 /* NSAttributedString+MKCrashGuard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSAttributedString+MKCrashGuard.m"; path = "MKAppKit/MKCrash/MKCrashGuard/NSAttributedString+MKCrashGuard.m"; sourceTree = "<group>"; };
+		5746604EA8C4A09348446FF1CF80AFED /* NSMutableString+MKCrashGuard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableString+MKCrashGuard.m"; path = "MKAppKit/MKCrash/MKCrashGuard/NSMutableString+MKCrashGuard.m"; sourceTree = "<group>"; };
+		57E6F010777AB267F8803CF18BE3EB9B /* NSNull+MKCrashGuard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSNull+MKCrashGuard.h"; path = "MKAppKit/MKCrash/MKCrashGuard/NSNull+MKCrashGuard.h"; sourceTree = "<group>"; };
+		58E4DB553AC4D196FAA533AB6F46E28D /* MKDiffuseMenu.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MKDiffuseMenu.swift; path = MKAppKit/MKAnimation/MKDiffuseMenu/MKDiffuseMenu.swift; sourceTree = "<group>"; };
+		591F2BC4110FF4DB1D6ED9ACAE3735B9 /* NSMutableAttributedString+MKCrashGuard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableAttributedString+MKCrashGuard.h"; path = "MKAppKit/MKCrash/MKCrashGuard/NSMutableAttributedString+MKCrashGuard.h"; sourceTree = "<group>"; };
+		59725D892A09BA08EEB15EC85FD37184 /* NSArray+MKCrashGuard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+MKCrashGuard.m"; path = "MKAppKit/MKCrash/MKCrashGuard/NSArray+MKCrashGuard.m"; sourceTree = "<group>"; };
+		5B3D7F93B7EE4E60C23BAFDC67C142AB /* MKCrashGuardManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MKCrashGuardManager.m; path = MKAppKit/MKCrash/MKCrashGuard/MKCrashGuardManager.m; sourceTree = "<group>"; };
+		5B5457B351BE05086BEA842FF8890461 /* MKException.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MKException.m; path = MKAppKit/MKCrash/MKCrashGuard/MKException.m; sourceTree = "<group>"; };
+		5BB5B1A58093652E619C6C2FAEECFC0B /* NSObject+MKNotificationCrashGuard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+MKNotificationCrashGuard.m"; path = "MKAppKit/MKCrash/MKCrashGuard/NSObject+MKNotificationCrashGuard.m"; sourceTree = "<group>"; };
+		5C7BA444254984510C5103BB41F07E77 /* NSMutableDictionary+MKCrashGuard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableDictionary+MKCrashGuard.h"; path = "MKAppKit/MKCrash/MKCrashGuard/NSMutableDictionary+MKCrashGuard.h"; sourceTree = "<group>"; };
+		5C7BB50FAC20D4C9FC6BD427453AF6CF /* NSMutableSet+MKCrashGuard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableSet+MKCrashGuard.m"; path = "MKAppKit/MKCrash/MKCrashGuard/NSMutableSet+MKCrashGuard.m"; sourceTree = "<group>"; };
+		5D0A20181A57D2B03DE49BA044420895 /* MKDropdownMailTF.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MKDropdownMailTF.h; path = MKAppKit/MKUIKit/MKDropdownMailTF/MKDropdownMailTF.h; sourceTree = "<group>"; };
+		67C28C44470538FD2B350AED619DB313 /* NSObject+MKKVCCrashGuard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+MKKVCCrashGuard.h"; path = "MKAppKit/MKCrash/MKCrashGuard/NSObject+MKKVCCrashGuard.h"; sourceTree = "<group>"; };
+		6B60FEA57599A40B1B71F79F5373717B /* MKPushTableCellView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MKPushTableCellView.h; path = MKAppKit/MKAnimation/MKCombineLoadingAnimation/MKPushTableCellView.h; sourceTree = "<group>"; };
+		6F58DC43600A99D7137B34F6E3D64CC0 /* NSMutableDictionary+MKCrashGuard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableDictionary+MKCrashGuard.m"; path = "MKAppKit/MKCrash/MKCrashGuard/NSMutableDictionary+MKCrashGuard.m"; sourceTree = "<group>"; };
+		7330348289A250AD959E86F22CF1DCFE /* Pods-MKApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MKApp.release.xcconfig"; sourceTree = "<group>"; };
+		765490AAD1DEF0016D61792B7434FDB5 /* NSSet+MKCrashGuard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSSet+MKCrashGuard.m"; path = "MKAppKit/MKCrash/MKCrashGuard/NSSet+MKCrashGuard.m"; sourceTree = "<group>"; };
+		799F35E41831E749DBCB9239E92AFACA /* MKAppKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MKAppKit-dummy.m"; sourceTree = "<group>"; };
+		7A58AB17E66F0B249BCB089B57481807 /* MKPushTableCellView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MKPushTableCellView.m; path = MKAppKit/MKAnimation/MKCombineLoadingAnimation/MKPushTableCellView.m; sourceTree = "<group>"; };
+		7D6AB5DB60A11AFBE3BE3A77F7278784 /* NSMutableAttributedString+MKCrashGuard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableAttributedString+MKCrashGuard.m"; path = "MKAppKit/MKCrash/MKCrashGuard/NSMutableAttributedString+MKCrashGuard.m"; sourceTree = "<group>"; };
+		81E2748960A139F16A6106B929AE3951 /* NSObject+MKKVCCrashGuard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+MKKVCCrashGuard.m"; path = "MKAppKit/MKCrash/MKCrashGuard/NSObject+MKKVCCrashGuard.m"; sourceTree = "<group>"; };
+		8944EE85E393A09A105FA72514D78BA8 /* MKAppKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MKAppKit.xcconfig; sourceTree = "<group>"; };
+		8C36D21A01DF7FE7EF962B707CB9A8D4 /* Pods-MKApp-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MKApp-umbrella.h"; sourceTree = "<group>"; };
+		8D0C94104BA34D9A7393E8A5720AA595 /* MKControlLoadingCircleLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MKControlLoadingCircleLayer.h; path = MKAppKit/MKAnimation/MKCombineLoadingAnimation/MKControlLoadingCircleLayer.h; sourceTree = "<group>"; };
+		8F47E18880C30E12BB00ABBC0035BE8B /* MKPushTableCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = MKPushTableCell.xib; sourceTree = "<group>"; };
+		9143675DB195CA3F7D48D17F9AF5568A /* MKAppKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MKAppKit-umbrella.h"; sourceTree = "<group>"; };
+		9287708ACDB2B7B4019E7B74F587A520 /* NSObject+MKSELCrashGuard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+MKSELCrashGuard.m"; path = "MKAppKit/MKCrash/MKCrashGuard/NSObject+MKSELCrashGuard.m"; sourceTree = "<group>"; };
+		95A0A4A592DE8AC5ED7CF9249EBA16EE /* MKControlLoadingCircleLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MKControlLoadingCircleLayer.m; path = MKAppKit/MKAnimation/MKCombineLoadingAnimation/MKControlLoadingCircleLayer.m; sourceTree = "<group>"; };
+		98F91D6024EA0998FD95E8FD6419349F /* NSUserDefaults+MKCrashGuard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSUserDefaults+MKCrashGuard.m"; path = "MKAppKit/MKCrash/MKCrashGuard/NSUserDefaults+MKCrashGuard.m"; sourceTree = "<group>"; };
+		9936421D6358C98D12D73183BB070629 /* MKAppKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = MKAppKit.modulemap; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9DED2A1D46820B9787E40B5AF3E50945 /* NSObject+MKSwizzleHook.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+MKSwizzleHook.h"; path = "MKAppKit/MKCrash/MKCrashGuard/NSObject+MKSwizzleHook.h"; sourceTree = "<group>"; };
+		A411E020C3AB4BDCB059804278D0929B /* MKException.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MKException.h; path = MKAppKit/MKCrash/MKCrashGuard/MKException.h; sourceTree = "<group>"; };
+		A5E62C200696E9C62C1DBB99B21F7F01 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		A6B9D0AC772ACE3E3AF4106D8924EABB /* NSSet+MKCrashGuard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSSet+MKCrashGuard.h"; path = "MKAppKit/MKCrash/MKCrashGuard/NSSet+MKCrashGuard.h"; sourceTree = "<group>"; };
+		A791177F15CA252D56AE17C7D8B1A3E7 /* NSTimer+MKCrashGuard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSTimer+MKCrashGuard.h"; path = "MKAppKit/MKCrash/MKCrashGuard/NSTimer+MKCrashGuard.h"; sourceTree = "<group>"; };
+		AA01106AAB4DBA36A544C33BE711FA31 /* MKDropdownMailTF.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MKDropdownMailTF.m; path = MKAppKit/MKUIKit/MKDropdownMailTF/MKDropdownMailTF.m; sourceTree = "<group>"; };
+		B407DBA67FD4AC3B6B040BB91DDD893F /* NSObject+MKKVOCrashGuard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+MKKVOCrashGuard.m"; path = "MKAppKit/MKCrash/MKCrashGuard/NSObject+MKKVOCrashGuard.m"; sourceTree = "<group>"; };
+		B40D7297ADFAA0C5038CEB4D48DCA066 /* MKControlLoadingCircleView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MKControlLoadingCircleView.m; path = MKAppKit/MKAnimation/MKCombineLoadingAnimation/MKControlLoadingCircleView.m; sourceTree = "<group>"; };
+		B9F33FCBE26888261366A80D4DC54D00 /* NSString+MKCrashGuard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+MKCrashGuard.m"; path = "MKAppKit/MKCrash/MKCrashGuard/NSString+MKCrashGuard.m"; sourceTree = "<group>"; };
+		BB172BF3221650AE02D1346A7FE2236A /* NSMutableString+MKCrashGuard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableString+MKCrashGuard.h"; path = "MKAppKit/MKCrash/MKCrashGuard/NSMutableString+MKCrashGuard.h"; sourceTree = "<group>"; };
+		BC6826848E295BDA88C06CFBE982E3B8 /* NSArray+MKCrashGuard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+MKCrashGuard.h"; path = "MKAppKit/MKCrash/MKCrashGuard/NSArray+MKCrashGuard.h"; sourceTree = "<group>"; };
+		BE117B5E1DEEF22E48CF964801CE3093 /* MKControlLoadingCircleView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MKControlLoadingCircleView.h; path = MKAppKit/MKAnimation/MKCombineLoadingAnimation/MKControlLoadingCircleView.h; sourceTree = "<group>"; };
+		C07A70DD1EB1E601EE786065EA12A884 /* NSObject+MKCrashGuard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+MKCrashGuard.h"; path = "MKAppKit/MKCrash/MKCrashGuard/NSObject+MKCrashGuard.h"; sourceTree = "<group>"; };
+		C0ACD8AC3D8B1B045A0E1B27D5A8651F /* Pods-MKApp-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MKApp-resources.sh"; sourceTree = "<group>"; };
+		C0AF5D7BE1C27634A01BBC3DA68C70F1 /* libMKAppKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libMKAppKit.a; path = libMKAppKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBA63A2AC4ACFD8D50020E5DDCC7AE24 /* Pods-MKApp.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MKApp.modulemap"; sourceTree = "<group>"; };
+		D2BE7B745293ACB8D015AD04E097D7DF /* Pods-MKApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MKApp.debug.xcconfig"; sourceTree = "<group>"; };
+		D2EBBEC1C8E94B393480D082BD03EB73 /* MKAppKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MKAppKit-prefix.pch"; sourceTree = "<group>"; };
+		D48C4AC6D0A2EB3AAE011F05F5951BAD /* MKDradualLoadingView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MKDradualLoadingView.h; path = MKAppKit/MKAnimation/MKCombineLoadingAnimation/MKDradualLoadingView.h; sourceTree = "<group>"; };
+		DAB30F398CE4C9BE10263A5AF1202308 /* NSNumber+MKCrashGuard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSNumber+MKCrashGuard.m"; path = "MKAppKit/MKCrash/MKCrashGuard/NSNumber+MKCrashGuard.m"; sourceTree = "<group>"; };
+		DB3A315DF7AD8C015A711366E6DA7F26 /* MKCLAResource.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; path = MKCLAResource.bundle; sourceTree = "<group>"; };
+		DDD4E8C49DBD594365559B74874AA937 /* Pods-MKApp-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MKApp-acknowledgements.markdown"; sourceTree = "<group>"; };
+		DF9AE9EF8FE3CB631BB1B4913D43A1AB /* Pods-MKApp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MKApp-dummy.m"; sourceTree = "<group>"; };
+		E309F14098CD01CF839094F91DBBB34E /* NSMutableArray+MKCrashGuard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableArray+MKCrashGuard.m"; path = "MKAppKit/MKCrash/MKCrashGuard/NSMutableArray+MKCrashGuard.m"; sourceTree = "<group>"; };
+		EC1BFE937B962BFC2CD48D43AD3B3700 /* MKCrashGuardManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MKCrashGuardManager.h; path = MKAppKit/MKCrash/MKCrashGuard/MKCrashGuardManager.h; sourceTree = "<group>"; };
+		EFBCB93ABC800CE935BE2FF4E5815D2E /* NSTimer+MKCrashGuard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSTimer+MKCrashGuard.m"; path = "MKAppKit/MKCrash/MKCrashGuard/NSTimer+MKCrashGuard.m"; sourceTree = "<group>"; };
+		F35F7EB8F4AAA68F6EE6B6382408143C /* NSMutableArray+MKCrashGuard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableArray+MKCrashGuard.h"; path = "MKAppKit/MKCrash/MKCrashGuard/NSMutableArray+MKCrashGuard.h"; sourceTree = "<group>"; };
+		F5A68515C75BA418FB3E219029599D10 /* MKLoadingManagerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MKLoadingManagerView.h; path = MKAppKit/MKAnimation/MKCombineLoadingAnimation/MKLoadingManagerView.h; sourceTree = "<group>"; };
+		F6038BA5F29ACF174106142F358E29E2 /* NSObject+MKSELCrashGuard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+MKSELCrashGuard.h"; path = "MKAppKit/MKCrash/MKCrashGuard/NSObject+MKSELCrashGuard.h"; sourceTree = "<group>"; };
+		F63C587C2F53F9C0041BFE5248BBD722 /* MKLoadingManagerView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MKLoadingManagerView.m; path = MKAppKit/MKAnimation/MKCombineLoadingAnimation/MKLoadingManagerView.m; sourceTree = "<group>"; };
+		F9F0DF4C52D2CD88F923FEED8CE2563D /* MKDradualLoadingView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MKDradualLoadingView.m; path = MKAppKit/MKAnimation/MKCombineLoadingAnimation/MKDradualLoadingView.m; sourceTree = "<group>"; };
+		FD8B5325B792330CDA05EB3ABFA2E3B8 /* NSObject+MKKVOCrashGuard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+MKKVOCrashGuard.h"; path = "MKAppKit/MKCrash/MKCrashGuard/NSObject+MKKVOCrashGuard.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A9FE67121D27CBDDCE9459B11F15D21D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7AEAB2190709F358EA731AAE0916D72 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0D9F4095B7A82AB6E05E822BB7CA565B /* MKAppKit */ = {
+			isa = PBXGroup;
+			children = (
+				76DED68B6919259AC0B2756C2A438256 /* MKCombineLoadingAnimation */,
+				9FE79ADE15598BDB135B20566B4ED7BC /* MKCrashGuard */,
+				41ED5F0521DA45B122BCD0FAC527E0EB /* MKDiffuseMenu */,
+				5D8D3BC58703F3DDE13CEA4428BA81AB /* MKDropdownMailTF */,
+				4240CDC093866780EA75D8222315CA52 /* Pod */,
+				1FEA8CCBE9F8E446AA9B2C76C9F5EC29 /* Support Files */,
+			);
+			name = MKAppKit;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		1FEA8CCBE9F8E446AA9B2C76C9F5EC29 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				9936421D6358C98D12D73183BB070629 /* MKAppKit.modulemap */,
+				8944EE85E393A09A105FA72514D78BA8 /* MKAppKit.xcconfig */,
+				799F35E41831E749DBCB9239E92AFACA /* MKAppKit-dummy.m */,
+				D2EBBEC1C8E94B393480D082BD03EB73 /* MKAppKit-prefix.pch */,
+				9143675DB195CA3F7D48D17F9AF5568A /* MKAppKit-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "dev/Pods/Target Support Files/MKAppKit";
+			sourceTree = "<group>";
+		};
+		38A180F3C00158822B38DA959B46C40E /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0D9F4095B7A82AB6E05E822BB7CA565B /* MKAppKit */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		41ED5F0521DA45B122BCD0FAC527E0EB /* MKDiffuseMenu */ = {
+			isa = PBXGroup;
+			children = (
+				58E4DB553AC4D196FAA533AB6F46E28D /* MKDiffuseMenu.swift */,
+				0E3BC2E5B0C71601DF0A55894420F2EF /* MKDiffuseMenuItem.swift */,
+			);
+			name = MKDiffuseMenu;
+			sourceTree = "<group>";
+		};
+		4240CDC093866780EA75D8222315CA52 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				377B068871003A605EAACD0D7EB09595 /* LICENSE */,
+				1A4FE64390C9CFD6FA8BBFBDBAAA2462 /* MKAppKit.podspec */,
+				A5E62C200696E9C62C1DBB99B21F7F01 /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		5D8D3BC58703F3DDE13CEA4428BA81AB /* MKDropdownMailTF */ = {
+			isa = PBXGroup;
+			children = (
+				5D0A20181A57D2B03DE49BA044420895 /* MKDropdownMailTF.h */,
+				AA01106AAB4DBA36A544C33BE711FA31 /* MKDropdownMailTF.m */,
+				2B8E7D630ABDBE70508FB39D3CBFD66D /* MKDropdownMailTFCell.h */,
+				2C9569EEC80D0B4FDBE84398D100CA2B /* MKDropdownMailTFCell.m */,
+				DFF3ADF6864A1FE1E7A209522D8FE577 /* Resources */,
+			);
+			name = MKDropdownMailTF;
+			sourceTree = "<group>";
+		};
+		6ADB250AC191DC431BD29C0D8791C9A5 /* Pods-MKApp */ = {
+			isa = PBXGroup;
+			children = (
+				CBA63A2AC4ACFD8D50020E5DDCC7AE24 /* Pods-MKApp.modulemap */,
+				DDD4E8C49DBD594365559B74874AA937 /* Pods-MKApp-acknowledgements.markdown */,
+				4495818A1761AEFE358408A9BDA59CB6 /* Pods-MKApp-acknowledgements.plist */,
+				DF9AE9EF8FE3CB631BB1B4913D43A1AB /* Pods-MKApp-dummy.m */,
+				C0ACD8AC3D8B1B045A0E1B27D5A8651F /* Pods-MKApp-resources.sh */,
+				8C36D21A01DF7FE7EF962B707CB9A8D4 /* Pods-MKApp-umbrella.h */,
+				D2BE7B745293ACB8D015AD04E097D7DF /* Pods-MKApp.debug.xcconfig */,
+				7330348289A250AD959E86F22CF1DCFE /* Pods-MKApp.release.xcconfig */,
+			);
+			name = "Pods-MKApp";
+			path = "Target Support Files/Pods-MKApp";
+			sourceTree = "<group>";
+		};
+		76DED68B6919259AC0B2756C2A438256 /* MKCombineLoadingAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				8D0C94104BA34D9A7393E8A5720AA595 /* MKControlLoadingCircleLayer.h */,
+				95A0A4A592DE8AC5ED7CF9249EBA16EE /* MKControlLoadingCircleLayer.m */,
+				BE117B5E1DEEF22E48CF964801CE3093 /* MKControlLoadingCircleView.h */,
+				B40D7297ADFAA0C5038CEB4D48DCA066 /* MKControlLoadingCircleView.m */,
+				D48C4AC6D0A2EB3AAE011F05F5951BAD /* MKDradualLoadingView.h */,
+				F9F0DF4C52D2CD88F923FEED8CE2563D /* MKDradualLoadingView.m */,
+				F5A68515C75BA418FB3E219029599D10 /* MKLoadingManagerView.h */,
+				F63C587C2F53F9C0041BFE5248BBD722 /* MKLoadingManagerView.m */,
+				18B92C60EFA5C065D82FD729E4B01429 /* MKPushTableCell.h */,
+				439BC4C3051B29FD0E4942D9FE559671 /* MKPushTableCell.m */,
+				6B60FEA57599A40B1B71F79F5373717B /* MKPushTableCellView.h */,
+				7A58AB17E66F0B249BCB089B57481807 /* MKPushTableCellView.m */,
+				C214813D099FBF982EF4609C3FBB9233 /* Resources */,
+			);
+			name = MKCombineLoadingAnimation;
+			sourceTree = "<group>";
+		};
+		9FE79ADE15598BDB135B20566B4ED7BC /* MKCrashGuard */ = {
+			isa = PBXGroup;
+			children = (
+				466628D50F77149331E7770A65E545A5 /* MKCrashGuardConst.h */,
+				0D54BA660C570AAE09698558C8B6E644 /* MKCrashGuardConst.m */,
+				EC1BFE937B962BFC2CD48D43AD3B3700 /* MKCrashGuardManager.h */,
+				5B3D7F93B7EE4E60C23BAFDC67C142AB /* MKCrashGuardManager.m */,
+				A411E020C3AB4BDCB059804278D0929B /* MKException.h */,
+				5B5457B351BE05086BEA842FF8890461 /* MKException.m */,
+				BC6826848E295BDA88C06CFBE982E3B8 /* NSArray+MKCrashGuard.h */,
+				59725D892A09BA08EEB15EC85FD37184 /* NSArray+MKCrashGuard.m */,
+				094A1BC6D8233D853EB3166C188C1E55 /* NSAttributedString+MKCrashGuard.h */,
+				4BD94796B2843A96E8307C93EAFCEFD3 /* NSAttributedString+MKCrashGuard.m */,
+				053D634ADAE7F4B9515AB624A4DF9447 /* NSCache+MKCrashGuard.h */,
+				18DFEE94B3C5302FAB4949A30B82B93A /* NSCache+MKCrashGuard.m */,
+				1F0E27BD51D80AFA2D6D1FC8CADC6C70 /* NSDictionary+MKCrashGuard.h */,
+				1CF29345A6D4D0C0DE838648102BF3BD /* NSDictionary+MKCrashGuard.m */,
+				F35F7EB8F4AAA68F6EE6B6382408143C /* NSMutableArray+MKCrashGuard.h */,
+				E309F14098CD01CF839094F91DBBB34E /* NSMutableArray+MKCrashGuard.m */,
+				591F2BC4110FF4DB1D6ED9ACAE3735B9 /* NSMutableAttributedString+MKCrashGuard.h */,
+				7D6AB5DB60A11AFBE3BE3A77F7278784 /* NSMutableAttributedString+MKCrashGuard.m */,
+				5C7BA444254984510C5103BB41F07E77 /* NSMutableDictionary+MKCrashGuard.h */,
+				6F58DC43600A99D7137B34F6E3D64CC0 /* NSMutableDictionary+MKCrashGuard.m */,
+				29F85235D0E1DEC8AEEA4AB44599D095 /* NSMutableSet+MKCrashGuard.h */,
+				5C7BB50FAC20D4C9FC6BD427453AF6CF /* NSMutableSet+MKCrashGuard.m */,
+				BB172BF3221650AE02D1346A7FE2236A /* NSMutableString+MKCrashGuard.h */,
+				5746604EA8C4A09348446FF1CF80AFED /* NSMutableString+MKCrashGuard.m */,
+				57E6F010777AB267F8803CF18BE3EB9B /* NSNull+MKCrashGuard.h */,
+				4B10E951D9548861FA0A73D6836C4756 /* NSNull+MKCrashGuard.m */,
+				33B179E7AC85267DA93127971DFF1C72 /* NSNumber+MKCrashGuard.h */,
+				DAB30F398CE4C9BE10263A5AF1202308 /* NSNumber+MKCrashGuard.m */,
+				C07A70DD1EB1E601EE786065EA12A884 /* NSObject+MKCrashGuard.h */,
+				161829472B53BE76306BCF305EB49A7C /* NSObject+MKCrashGuard.m */,
+				67C28C44470538FD2B350AED619DB313 /* NSObject+MKKVCCrashGuard.h */,
+				81E2748960A139F16A6106B929AE3951 /* NSObject+MKKVCCrashGuard.m */,
+				FD8B5325B792330CDA05EB3ABFA2E3B8 /* NSObject+MKKVOCrashGuard.h */,
+				B407DBA67FD4AC3B6B040BB91DDD893F /* NSObject+MKKVOCrashGuard.m */,
+				3C1EF6D00F881E31B2480AF7DF27E54B /* NSObject+MKNotificationCrashGuard.h */,
+				5BB5B1A58093652E619C6C2FAEECFC0B /* NSObject+MKNotificationCrashGuard.m */,
+				F6038BA5F29ACF174106142F358E29E2 /* NSObject+MKSELCrashGuard.h */,
+				9287708ACDB2B7B4019E7B74F587A520 /* NSObject+MKSELCrashGuard.m */,
+				9DED2A1D46820B9787E40B5AF3E50945 /* NSObject+MKSwizzleHook.h */,
+				0DC0659CAE635E4DF7143E1187B0ECEA /* NSObject+MKSwizzleHook.m */,
+				A6B9D0AC772ACE3E3AF4106D8924EABB /* NSSet+MKCrashGuard.h */,
+				765490AAD1DEF0016D61792B7434FDB5 /* NSSet+MKCrashGuard.m */,
+				4A3710722CD5EC41FC2F26F53B4EB982 /* NSString+MKCrashGuard.h */,
+				B9F33FCBE26888261366A80D4DC54D00 /* NSString+MKCrashGuard.m */,
+				A791177F15CA252D56AE17C7D8B1A3E7 /* NSTimer+MKCrashGuard.h */,
+				EFBCB93ABC800CE935BE2FF4E5815D2E /* NSTimer+MKCrashGuard.m */,
+				3F029193B9A7F4CCEF22EB44651CF946 /* NSUserDefaults+MKCrashGuard.h */,
+				98F91D6024EA0998FD95E8FD6419349F /* NSUserDefaults+MKCrashGuard.m */,
+				1A211816EF6DA22CCCD97F0DD9253087 /* UINavigationController+MKCrashGuard.h */,
+				01597551ABF9C702C6BB3BFF0D48F3F8 /* UINavigationController+MKCrashGuard.m */,
+			);
+			name = MKCrashGuard;
+			sourceTree = "<group>";
+		};
+		A723AB58F1C7B550443DBC5E10EBAA38 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				6ADB250AC191DC431BD29C0D8791C9A5 /* Pods-MKApp */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		A79A754BD62221168247B96C6AE29E0E /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				DB3A315DF7AD8C015A711366E6DA7F26 /* MKCLAResource.bundle */,
+			);
+			name = Resource;
+			path = MKAppKit/Resource;
+			sourceTree = "<group>";
+		};
+		AF1B6921331020F1A9F2478960EEE591 /* MKAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				D90F6D2B8112BD82E3D064344AF75206 /* MKCombineLoadingAnimation */,
+			);
+			name = MKAnimation;
+			path = MKAppKit/MKAnimation;
+			sourceTree = "<group>";
+		};
+		C214813D099FBF982EF4609C3FBB9233 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AF1B6921331020F1A9F2478960EEE591 /* MKAnimation */,
+				A79A754BD62221168247B96C6AE29E0E /* Resource */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		C3D577A2B39B734ADB821ED0F732327F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C0AF5D7BE1C27634A01BBC3DA68C70F1 /* libMKAppKit.a */,
+				31A04DF023D1B1BEF289D8A732433566 /* libPods-MKApp.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				38A180F3C00158822B38DA959B46C40E /* Development Pods */,
+				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
+				C3D577A2B39B734ADB821ED0F732327F /* Products */,
+				A723AB58F1C7B550443DBC5E10EBAA38 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D89477F20FB1DE18A04690586D7808C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D90F6D2B8112BD82E3D064344AF75206 /* MKCombineLoadingAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				8F47E18880C30E12BB00ABBC0035BE8B /* MKPushTableCell.xib */,
+			);
+			name = MKCombineLoadingAnimation;
+			path = MKCombineLoadingAnimation;
+			sourceTree = "<group>";
+		};
+		DFF3ADF6864A1FE1E7A209522D8FE577 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				17F7B70A6FCF26445225649BDDBC4435 /* MKDropdownMailTFCell.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		90354AAD937DAFDC74CD064657C6DAC5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F246B27BDD9B4D9C9931BDC32BAD4F88 /* Pods-MKApp-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B76B70AD778D7904E4E0BAE966F7D2D9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				652975D000ADF32F5D30C0FD1EF7CDA6 /* MKAppKit-umbrella.h in Headers */,
+				70FDE3A51C467C99FF922E25FC4337EE /* MKControlLoadingCircleLayer.h in Headers */,
+				6C3D582A23DDEBD4052E816913762D69 /* MKControlLoadingCircleView.h in Headers */,
+				9E4F56E7DEBF6134A57F1381B67878C8 /* MKCrashGuardConst.h in Headers */,
+				7998D512B7543A292CAA8FF4076DD44D /* MKCrashGuardManager.h in Headers */,
+				18E5A307224C75537C595B69EE164FB6 /* MKDradualLoadingView.h in Headers */,
+				6078D4A678B2F63E1CE588479D39AAFC /* MKDropdownMailTF.h in Headers */,
+				2C65DCBB48A1C92A317A5345F7A736BC /* MKDropdownMailTFCell.h in Headers */,
+				B94AE8FD7803C5CE1D231AFDB6D57A81 /* MKException.h in Headers */,
+				C20B9FC458B0A7C0678AC9D0BDA2F9B3 /* MKLoadingManagerView.h in Headers */,
+				E42EC3D96D128347CA637BC500ED6331 /* MKPushTableCell.h in Headers */,
+				E8A6BD67B6906CDC4EE6539855A51323 /* MKPushTableCellView.h in Headers */,
+				1163752626718269F74E0E49221E582A /* NSArray+MKCrashGuard.h in Headers */,
+				064D8429E4D50220F29BF1A8539A956E /* NSAttributedString+MKCrashGuard.h in Headers */,
+				4365D72452DA0CD619A38E8465DEA961 /* NSCache+MKCrashGuard.h in Headers */,
+				986BF3DAC90F72EE967D4106E02DB432 /* NSDictionary+MKCrashGuard.h in Headers */,
+				03A7FC67F8A8405F7E8E73F4556E48C1 /* NSMutableArray+MKCrashGuard.h in Headers */,
+				D8B97669D05C15AF5C5BE546C2B5D4C0 /* NSMutableAttributedString+MKCrashGuard.h in Headers */,
+				8CA9CAAED4435198F736E381F93D62CE /* NSMutableDictionary+MKCrashGuard.h in Headers */,
+				3BA3923D56718EAC80EA0193253B1C6F /* NSMutableSet+MKCrashGuard.h in Headers */,
+				7095B12F89E325FF9304E22FCD46E752 /* NSMutableString+MKCrashGuard.h in Headers */,
+				84477A1EBF19719C63F5819A8BA85F10 /* NSNull+MKCrashGuard.h in Headers */,
+				5412DFD57E63BD2C8C7DD52C82234B00 /* NSNumber+MKCrashGuard.h in Headers */,
+				7AD3284D0235216C1F4A1D9EB69B6798 /* NSObject+MKCrashGuard.h in Headers */,
+				E119BC69B8FD44957BF5B7336F9D1522 /* NSObject+MKKVCCrashGuard.h in Headers */,
+				350A7A8C3A1B298272CD996E7D80BC9E /* NSObject+MKKVOCrashGuard.h in Headers */,
+				102274845E9520EF85399F478C810A7F /* NSObject+MKNotificationCrashGuard.h in Headers */,
+				E38CF350F4246C957360836AB10850DF /* NSObject+MKSELCrashGuard.h in Headers */,
+				248A6BA64068831A029CDA591F350F82 /* NSObject+MKSwizzleHook.h in Headers */,
+				57985BF6362C574DAFBE40ECE25F8A8E /* NSSet+MKCrashGuard.h in Headers */,
+				4E8D950B6746EA5AAE1654166630BB8E /* NSString+MKCrashGuard.h in Headers */,
+				5648C039014ADB9019B40BF6AE1D311C /* NSTimer+MKCrashGuard.h in Headers */,
+				0BFBB2CDE7F6199DCE88177817AA65E9 /* NSUserDefaults+MKCrashGuard.h in Headers */,
+				8BD3DAE45FAF6CA52B968142A9F17B07 /* UINavigationController+MKCrashGuard.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		50FDC0B4CEF2068BB24880100C92CA7A /* MKAppKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 103DF224F46071574A3F6D86F84CB1E8 /* Build configuration list for PBXNativeTarget "MKAppKit" */;
+			buildPhases = (
+				B76B70AD778D7904E4E0BAE966F7D2D9 /* Headers */,
+				555EBC679F1FE4E7CF594F6878810940 /* Sources */,
+				A9FE67121D27CBDDCE9459B11F15D21D /* Frameworks */,
+				E6C524CF8454AD44353EC14675CD3C7B /* Copy generated compatibility header */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MKAppKit;
+			productName = MKAppKit;
+			productReference = C0AF5D7BE1C27634A01BBC3DA68C70F1 /* libMKAppKit.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		5B4345964F01E9D60C0250C18BA6A8B2 /* Pods-MKApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42C00C007F4154DE193655B0F370CF19 /* Build configuration list for PBXNativeTarget "Pods-MKApp" */;
+			buildPhases = (
+				90354AAD937DAFDC74CD064657C6DAC5 /* Headers */,
+				369516DED36152A2B13D0191C8FB3702 /* Sources */,
+				B7AEAB2190709F358EA731AAE0916D72 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C95EF2967D8B5D9706D5FC53AF7BC3B7 /* PBXTargetDependency */,
+			);
+			name = "Pods-MKApp";
+			productName = "Pods-MKApp";
+			productReference = 31A04DF023D1B1BEF289D8A732433566 /* libPods-MKApp.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 10.0";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = C3D577A2B39B734ADB821ED0F732327F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				50FDC0B4CEF2068BB24880100C92CA7A /* MKAppKit */,
+				5B4345964F01E9D60C0250C18BA6A8B2 /* Pods-MKApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E6C524CF8454AD44353EC14675CD3C7B /* Copy generated compatibility header */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h",
+				"${PODS_ROOT}/Headers/Public/MKAppKit/MKAppKit.modulemap",
+				"${PODS_ROOT}/Headers/Public/MKAppKit/MKAppKit-umbrella.h",
+			);
+			name = "Copy generated compatibility header";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap",
+				"${BUILT_PRODUCTS_DIR}/MKAppKit-umbrella.h",
+				"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "COMPATIBILITY_HEADER_PATH=\"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h\"\nMODULE_MAP_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap\"\n\nditto \"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h\" \"${COMPATIBILITY_HEADER_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/MKAppKit/MKAppKit.modulemap\" \"${MODULE_MAP_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/MKAppKit/MKAppKit-umbrella.h\" \"${BUILT_PRODUCTS_DIR}\"\nprintf \"\\n\\nmodule ${PRODUCT_MODULE_NAME}.Swift {\\n  header \\\"${COMPATIBILITY_HEADER_PATH}\\\"\\n  requires objc\\n}\\n\" >> \"${MODULE_MAP_PATH}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		369516DED36152A2B13D0191C8FB3702 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C25A7F9422AC13C396617753C41A3945 /* Pods-MKApp-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		555EBC679F1FE4E7CF594F6878810940 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A1377C89B49E1B60DD4E5A8BB69A82B /* MKAppKit-dummy.m in Sources */,
+				B26CD9C6E39D56B871297444569A9D0D /* MKControlLoadingCircleLayer.m in Sources */,
+				30063A641C23F80E0F7A87F994E320C0 /* MKControlLoadingCircleView.m in Sources */,
+				38DCF66167AFA6FAF34663920E902A21 /* MKCrashGuardConst.m in Sources */,
+				7175106784D20235CF39141D1883DDC0 /* MKCrashGuardManager.m in Sources */,
+				6AC06DED792ADAD05B298E6CB5F76780 /* MKDiffuseMenu.swift in Sources */,
+				9DF56E751594B4FE0FE9D6E0A403970C /* MKDiffuseMenuItem.swift in Sources */,
+				64A8B5C95D4A1EDFB6936AE3187A2866 /* MKDradualLoadingView.m in Sources */,
+				8EE9D476C2FB5E879A6CD60825AF17E1 /* MKDropdownMailTF.m in Sources */,
+				FCA158CEA8E220913D89A1F1D6EB37A4 /* MKDropdownMailTFCell.m in Sources */,
+				6F8B9847FA1D243F48E3EEB92DBEB25B /* MKException.m in Sources */,
+				F84819AA387E344EF11F12A09C1B488B /* MKLoadingManagerView.m in Sources */,
+				2C772CF47AF0A306033C339DC9618FC0 /* MKPushTableCell.m in Sources */,
+				D5E015D74A6CFF0C2E547F9A245EEAA5 /* MKPushTableCellView.m in Sources */,
+				B75F73F3C20813CC5BAB77F5F62D3B64 /* NSArray+MKCrashGuard.m in Sources */,
+				A38B9EA7AD8787BADD8386D91588E5F1 /* NSAttributedString+MKCrashGuard.m in Sources */,
+				F466A06581B4C9BA7DE8E93F3FE33C0C /* NSCache+MKCrashGuard.m in Sources */,
+				DEFC1DEABF2022FC6B37EF5E8F84E9B1 /* NSDictionary+MKCrashGuard.m in Sources */,
+				D9FCA6F0AD5B97B2101210D7CC65534C /* NSMutableArray+MKCrashGuard.m in Sources */,
+				50C6F12D8175291262534BB86A7C44B5 /* NSMutableAttributedString+MKCrashGuard.m in Sources */,
+				3978A67EA10C4B2D82A34518CACE6BD7 /* NSMutableDictionary+MKCrashGuard.m in Sources */,
+				C74923686945247F88FA032329BFB697 /* NSMutableSet+MKCrashGuard.m in Sources */,
+				23F544BE0951112A1623E45A605D8A07 /* NSMutableString+MKCrashGuard.m in Sources */,
+				87E6BB48731C3C8457E36CF188DCE46D /* NSNull+MKCrashGuard.m in Sources */,
+				AE1D3EB0DDFBF9EE003DA277587A2B04 /* NSNumber+MKCrashGuard.m in Sources */,
+				0D7446F244EDFB73B09E52CB6B8FE1DA /* NSObject+MKCrashGuard.m in Sources */,
+				46002C67F0CD74FB1D15FC87C344CC9C /* NSObject+MKKVCCrashGuard.m in Sources */,
+				B751413CC0C0EE19538A6E27E4083AC5 /* NSObject+MKKVOCrashGuard.m in Sources */,
+				B8ADDF723B75A98543B64C04E30EC4BB /* NSObject+MKNotificationCrashGuard.m in Sources */,
+				2AB4CE655022F5812FBBB47E60A3DB92 /* NSObject+MKSELCrashGuard.m in Sources */,
+				1404F85A8D69A72E396718EA4257C4A4 /* NSObject+MKSwizzleHook.m in Sources */,
+				CBE4F4573D3431F751DF84DB17BD1ADB /* NSSet+MKCrashGuard.m in Sources */,
+				1C948EAF90424F2874467852814E4A75 /* NSString+MKCrashGuard.m in Sources */,
+				DC376EC92DD840358A7FD50F9EA7AAF3 /* NSTimer+MKCrashGuard.m in Sources */,
+				37518007E4512AE43B9FEC91029A6545 /* NSUserDefaults+MKCrashGuard.m in Sources */,
+				7FAB560E458F156033F76F403DD617C5 /* UINavigationController+MKCrashGuard.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C95EF2967D8B5D9706D5FC53AF7BC3B7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MKAppKit;
+			target = 50FDC0B4CEF2068BB24880100C92CA7A /* MKAppKit */;
+			targetProxy = 6CA4723807B0D7B32E67127826F85EA0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		07488D4657FB0A78086563621D425F8A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		09BCEFF8FD96586AA138204CFC512FA3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7330348289A250AD959E86F22CF1DCFE /* Pods-MKApp.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MKApp/Pods-MKApp.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		834022C9A60A38D391A344816A4D9D01 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8944EE85E393A09A105FA72514D78BA8 /* MKAppKit.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/MKAppKit/MKAppKit-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MODULEMAP_FILE = Headers/Public/MKAppKit/MKAppKit.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = MKAppKit;
+				PRODUCT_NAME = MKAppKit;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A1962E6FF39BBAC201A2E5DDF99557DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		BF35BA8050E541CD004BD030937AE2B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D2BE7B745293ACB8D015AD04E097D7DF /* Pods-MKApp.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MKApp/Pods-MKApp.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D056B1213F2F69668574C8A55D6980F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8944EE85E393A09A105FA72514D78BA8 /* MKAppKit.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/MKAppKit/MKAppKit-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MODULEMAP_FILE = Headers/Public/MKAppKit/MKAppKit.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = MKAppKit;
+				PRODUCT_NAME = MKAppKit;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		103DF224F46071574A3F6D86F84CB1E8 /* Build configuration list for PBXNativeTarget "MKAppKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				834022C9A60A38D391A344816A4D9D01 /* Debug */,
+				D056B1213F2F69668574C8A55D6980F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42C00C007F4154DE193655B0F370CF19 /* Build configuration list for PBXNativeTarget "Pods-MKApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF35BA8050E541CD004BD030937AE2B3 /* Debug */,
+				09BCEFF8FD96586AA138204CFC512FA3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07488D4657FB0A78086563621D425F8A /* Debug */,
+				A1962E6FF39BBAC201A2E5DDF99557DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

@@ -1,0 +1,6 @@
+module MKAppKit {
+  umbrella header "MKAppKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

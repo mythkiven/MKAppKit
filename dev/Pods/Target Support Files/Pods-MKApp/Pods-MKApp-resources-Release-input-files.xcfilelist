@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-MKApp/Pods-MKApp-resources.sh
+${PODS_ROOT}/../../MKAppKit/Resource/MKCLAResource.bundle
+${PODS_ROOT}/../../MKAppKit/MKAnimation/MKCombineLoadingAnimation/MKPushTableCell.xib
+${PODS_ROOT}/../../MKAppKit/MKUIKit/MKDropdownMailTF/MKDropdownMailTFCell.xib

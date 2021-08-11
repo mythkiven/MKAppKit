@@ -1,0 +1,1 @@
+../../../../../MKAppKit/MKCrash/MKCrashGuard/NSString+MKCrashGuard.h

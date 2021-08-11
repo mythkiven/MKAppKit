@@ -1,0 +1,1 @@
+../../../../../MKAppKit/MKCrash/MKCrashGuard/NSCache+MKCrashGuard.h
