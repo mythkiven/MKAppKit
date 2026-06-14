@@ -1,5 +1,21 @@
 
+# MKAppKit | iOS Crash Guard, Launch Monitor & UI Components
 
+CocoaPods library for iOS: runtime crash protection (KVO/KVC/unrecognized selector/containers), launch performance monitoring, loading animations, radial menu, and email autocomplete TextField. Objective-C + Swift.
+
+Keywords: ios crash guard, cocoapods ios, launch monitor, kvo crash protection, ios ui components, objective-c swift library
+
+## Quick Start
+
+```ruby
+pod 'MKAppKit/MKCrashGuard'
+pod 'MKAppKit/MKLaunchMonitor'
+```
+
+```objc
+[MKCrashGuardManager executeAppGuard];
+[MKCrashGuardManager registerCrashHandle:self];
+```
 
 ![](https://api.travis-ci.org/mythkiven/MKAppKit.svg?branch=master)
 [![Version](https://img.shields.io/cocoapods/v/MKAppKit.svg?style=flat)](http://cocoapods.org/pods/MKAppKit)
