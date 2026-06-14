@@ -17,6 +17,8 @@
 /** 匹配输入的邮箱后缀数组(用来显示在列表中)dataSource*/
 @property (strong, nonatomic) NSArray *matchedSuffixArray;
 
+/** 下拉列表所在的父视图 */
+@property (weak, nonatomic) UIView *hostView;
 
 @end
 
@@ -63,6 +65,7 @@
     [self.pullTableView registerNib:[UINib nibWithNibName:@"MKDropdownMailTFCell" bundle:nil]    forCellReuseIdentifier:@"MKDropdownMailTFCell"];
     self.pullTableView.userInteractionEnabled = YES;
     self.pullTableView.hidden = YES;
+    self.hostView = view;
     [view addSubview:self.pullTableView];
     
     [self addTarget:self action:@selector(textFieldDidChanged) forControlEvents:UIControlEventEditingChanged];
@@ -71,9 +74,18 @@
     return self;
 }
 #pragma mark － textFieldDidChanged
+- (void)bringEmailPromptToFront {
+    if (self.hostView) {
+        [self.hostView bringSubviewToFront:self.pullTableView];
+    } else if (self.pullTableView.superview) {
+        [self.pullTableView.superview bringSubviewToFront:self.pullTableView];
+    }
+}
+
 - (void)textFieldDidChanged {
     if ([self.text containsString:@"@"]) {
         self.pullTableView.hidden = NO;
+        [self bringEmailPromptToFront];
         NSString *latterStr = [self.text substringFromIndex:[self.text rangeOfString:@"@"].location+1];
         if ([latterStr isEqualToString:@""]) {
             self.matchedSuffixArray = self.mailsuffixData;

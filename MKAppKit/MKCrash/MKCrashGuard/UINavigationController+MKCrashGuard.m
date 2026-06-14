@@ -13,6 +13,7 @@
 
 
 static const char mkNavigationControllerAssociatedKey;
+static const char mkNavigationOriginalDelegateKey;
 
 @interface UINavigationController () <UINavigationControllerDelegate>
 
@@ -23,11 +24,13 @@ static const char mkNavigationControllerAssociatedKey;
 @implementation UINavigationController (MKCrashGuard)
 
 + (void)guardNavigationController {
-//    mk_swizzleInstanceMethod(self,@selector(pushViewController:animated:),@selector(guardPushViewController:animated:));
-//    mk_swizzleInstanceMethod(self,@selector(popViewControllerAnimated:),@selector(guardPopViewControllerAnimated:));
-//    mk_swizzleInstanceMethod(self,@selector(popToRootViewControllerAnimated:),@selector(guardPopToRootViewControllerAnimated:));
-//    mk_swizzleInstanceMethod(self,@selector(popToViewController:animated:),@selector(guardPopToViewController:animated:));
-    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        mk_swizzleInstanceMethod(self,@selector(pushViewController:animated:),@selector(guardPushViewController:animated:));
+        mk_swizzleInstanceMethod(self,@selector(popViewControllerAnimated:),@selector(guardPopViewControllerAnimated:));
+        mk_swizzleInstanceMethod(self,@selector(popToRootViewControllerAnimated:),@selector(guardPopToRootViewControllerAnimated:));
+        mk_swizzleInstanceMethod(self,@selector(popToViewController:animated:),@selector(guardPopToViewController:animated:));
+    });
 }
 
 - (void)setViewTransitionInProgress:(BOOL)property {
@@ -40,55 +43,99 @@ static const char mkNavigationControllerAssociatedKey;
     return [number boolValue];
 }
 
+#pragma mark - Delegate forwarding
+
+- (id<UINavigationControllerDelegate>)mk_originalNavigationDelegate {
+    return objc_getAssociatedObject(self, &mkNavigationOriginalDelegateKey);
+}
+
+- (void)mk_installGuardDelegateIfNeeded {
+    id<UINavigationControllerDelegate> delegate = self.delegate;
+    if (delegate && delegate != (id)self) {
+        objc_setAssociatedObject(self, &mkNavigationOriginalDelegateKey, delegate, OBJC_ASSOCIATION_ASSIGN);
+        self.delegate = (id<UINavigationControllerDelegate>)self;
+    }
+}
+
+- (void)mk_scheduleTransitionResetForViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    if (!animated) {
+        self.viewTransitionInProgress = NO;
+        return;
+    }
+    id<UIViewControllerTransitionCoordinator> coordinator = viewController.transitionCoordinator;
+    if (!coordinator) {
+        self.viewTransitionInProgress = NO;
+        return;
+    }
+    __weak typeof(self) weakSelf = self;
+    [coordinator animateAlongsideTransition:nil completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+        if (!context.isCancelled) {
+            weakSelf.viewTransitionInProgress = NO;
+        }
+    }];
+}
+
 #pragma mark - Intercept Pop, Push, PopToRootVC
+
 - (NSArray *)guardPopToRootViewControllerAnimated:(BOOL)animated {
     if (self.viewTransitionInProgress) return nil;
-    if (animated) {
+    [self mk_installGuardDelegateIfNeeded];
+    NSArray *viewControllers = [self guardPopToRootViewControllerAnimated:animated];
+    if (animated && viewControllers.count > 0) {
         self.viewTransitionInProgress = YES;
     }
-    return [self guardPopToRootViewControllerAnimated:animated];
+    return viewControllers;
 }
 
 - (NSArray *)guardPopToViewController:(UIViewController *)viewController animated:(BOOL)animated {
     if (self.viewTransitionInProgress) return nil;
-    if (animated) {
+    [self mk_installGuardDelegateIfNeeded];
+    NSArray *viewControllers = [self guardPopToViewController:viewController animated:animated];
+    if (animated && viewControllers.count > 0) {
         self.viewTransitionInProgress = YES;
     }
-    return [self guardPopToViewController:viewController animated:animated];
+    return viewControllers;
 }
 
 - (UIViewController *)guardPopViewControllerAnimated:(BOOL)animated {
     if (self.viewTransitionInProgress) return nil;
-    if (animated) {
+    [self mk_installGuardDelegateIfNeeded];
+    UIViewController *viewController = [self guardPopViewControllerAnimated:animated];
+    if (animated && viewController) {
         self.viewTransitionInProgress = YES;
     }
-    return [self guardPopViewControllerAnimated:animated];
+    return viewController;
 }
 
 - (void)guardPushViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    self.delegate = self;
-    if (self.isViewTransitionInProgress == NO) {
-        [self guardPushViewController:viewController animated:animated];
-        if (animated) {
-            self.viewTransitionInProgress = YES;
-        }
+    if (self.viewTransitionInProgress) return;
+    [self mk_installGuardDelegateIfNeeded];
+    [self guardPushViewController:viewController animated:animated];
+    if (animated) {
+        self.viewTransitionInProgress = YES;
     }
 }
+
+#pragma mark - UINavigationControllerDelegate
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    id<UIViewControllerTransitionCoordinator> tc = navigationController.topViewController.transitionCoordinator;
-    [tc notifyWhenInteractionEndsUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-        self.viewTransitionInProgress = NO;
-        self.interactivePopGestureRecognizer.delegate = (id<UIGestureRecognizerDelegate>)viewController;
-        [self.interactivePopGestureRecognizer setEnabled:YES];
-    }];
-    if (navigationController.delegate != self) {
-        [navigationController.delegate navigationController:navigationController
-                                     willShowViewController:viewController
-                                                   animated:animated];
+    id<UINavigationControllerDelegate> originalDelegate = [self mk_originalNavigationDelegate];
+    if (originalDelegate && [originalDelegate respondsToSelector:@selector(navigationController:willShowViewController:animated:)]) {
+        [originalDelegate navigationController:navigationController willShowViewController:viewController animated:animated];
     }
+    [self mk_scheduleTransitionResetForViewController:viewController animated:animated];
 }
 
-
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    id<UINavigationControllerDelegate> originalDelegate = [self mk_originalNavigationDelegate];
+    if (originalDelegate && [originalDelegate respondsToSelector:@selector(navigationController:didShowViewController:animated:)]) {
+        [originalDelegate navigationController:navigationController didShowViewController:viewController animated:animated];
+    }
+    self.viewTransitionInProgress = NO;
+    if (navigationController.interactivePopGestureRecognizer) {
+        navigationController.interactivePopGestureRecognizer.delegate = (id<UIGestureRecognizerDelegate>)viewController;
+        [navigationController.interactivePopGestureRecognizer setEnabled:navigationController.viewControllers.count > 1];
+    }
+}
 
 @end
