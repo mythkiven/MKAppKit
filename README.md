@@ -19,6 +19,8 @@ pod 'MKAppKit/MKLaunchMonitor'
 
 Requires iOS 9.0+. Run `pod install` after updating your Podfile.
 
+Component docs: [doc/](doc/).
+
 ![](https://api.travis-ci.org/mythkiven/MKAppKit.svg?branch=master)
 [![Version](https://img.shields.io/cocoapods/v/MKAppKit.svg?style=flat)](http://cocoapods.org/pods/MKAppKit)
 [![License](https://img.shields.io/apm/l/vim-mode.svg)](http://cocoapods.org/pods/MKAppKit)
