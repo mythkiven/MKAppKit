@@ -65,6 +65,9 @@ Component docs: [doc/](doc/). Crash guard guide: [doc/MKCrashGuard.md](doc/MKCra
 $ pod repo update
 ```
 
+## Local Demo
 
+After `pod install`, open `Example/MKAppKit.xcworkspace` in Xcode to browse component demos.
+Email autocomplete docs: [doc/MKDropdownMailTF.md](doc/MKDropdownMailTF.md).
 
 
